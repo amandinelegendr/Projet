@@ -21,6 +21,9 @@ jobs:
       - name: Extraire les immatriculations par région
         run: python scripts/extraction_immatriculations.py
 
+      - name: Extraire les données de référence Insee
+        run: python scripts/extraction_insee.py
+
       - name: Enregistrer les nouvelles données
         run: |
           git config user.name "github-actions[bot]"
