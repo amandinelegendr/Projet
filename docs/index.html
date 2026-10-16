@@ -65,6 +65,11 @@ header p { margin: 0; color: var(--muted); max-width: 760px; }
 :root[data-theme="dark"] .seg button[aria-pressed="true"] { color: #0f1115; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .seg button[aria-pressed="true"] { color: #0f1115; } }
 .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.seg-carb { flex-wrap: wrap; }
+.seg-carb button { display: inline-flex; align-items: center; gap: 6px; }
+.seg-carb button i { width: 9px; height: 9px; border-radius: 3px; display: block; }
+.fuel .off, .stack .off { opacity: .35; }
+.fuel .on { font-weight: 600; }
 .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 20px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
 .kpi { padding: 16px 18px; }
@@ -110,8 +115,8 @@ header p { margin: 0; color: var(--muted); max-width: 760px; }
 }
 .rank-row:hover, .rank-row.sel { background: var(--bg); }
 .rank-row .i { color: var(--muted); font-variant-numeric: tabular-nums; }
-.rank-row .track { height: 12px; background: var(--map-empty); border-radius: 4px; overflow: hidden; }
-.rank-row .fill { height: 100%; background: var(--accent); border-radius: 4px; }
+.rank-row .track { display: block; height: 12px; background: var(--map-empty); border-radius: 4px; overflow: hidden; }
+.rank-row .fill { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
 .rank-row .n, .rank-row .e { text-align: right; font-variant-numeric: tabular-nums; }
 .tip {
   position: fixed; pointer-events: none; background: var(--surface); color: var(--text); border: 1px solid var(--line);
@@ -146,6 +151,7 @@ footer a { color: var(--accent); }
       <button data-v="occasions" aria-pressed="false">Occasion</button>
     </div>
     <div class="seg" role="group" aria-label="Période" id="seg-annee"></div>
+    <div class="seg seg-carb" role="group" aria-label="Motorisation" id="seg-carb"></div>
   </div>
 
   <section class="kpis" id="kpis" aria-live="polite"></section>
@@ -191,10 +197,16 @@ const pct = (x, d = 1) => (x * 100).toFixed(d).replace(".", ",") + " %";
 const evo = x => (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x * 100).toFixed(1).replace(".", ",") + " %";
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
-const state = { type: "neufs", periode: null, sel: "11" };
+const state = { type: "neufs", periode: null, sel: "11", carb: "tous" };
 let DATA, GEO, Y0, Y1;
 
-function valeur(r, type, annee) { return r[type]?.[annee]?.total ?? 0; }
+// Toutes motorisations confondues
+function total(r, type, annee) { return r[type]?.[annee]?.total ?? 0; }
+// Selon le filtre de motorisation choisi
+function valeur(r, type, annee) {
+  return state.carb === "tous" ? total(r, type, annee) : r[type]?.[annee]?.carburants?.[state.carb] ?? 0;
+}
+function libCarb() { return state.carb === "tous" ? "" : ` · ${state.carb}`; }
 function evolution(r, type) {
   const a = valeur(r, type, Y0), b = valeur(r, type, Y1);
   return a ? b / a - 1 : 0;
@@ -219,10 +231,14 @@ function rendreControles() {
   const seg = document.getElementById("seg-annee");
   seg.innerHTML = [Y0, Y1].map(a => `<button data-v="${a}">${a}</button>`).join("") +
     `<button data-v="evo">Évolution ${Y0}→${Y1}</button>`;
-  for (const g of ["seg-type", "seg-annee"]) {
+  document.getElementById("seg-carb").innerHTML = `<button data-v="tous">Toutes motorisations</button>` +
+    FUELS.map(([k, c]) => `<button data-v="${k}"><i style="background:var(${c})"></i>${k}</button>`).join("");
+  for (const g of ["seg-type", "seg-annee", "seg-carb"]) {
     document.getElementById(g).addEventListener("click", e => {
       const b = e.target.closest("button"); if (!b) return;
-      if (g === "seg-type") state.type = b.dataset.v; else state.periode = b.dataset.v === "evo" ? "evo" : +b.dataset.v;
+      if (g === "seg-type") state.type = b.dataset.v;
+      else if (g === "seg-carb") state.carb = b.dataset.v;
+      else state.periode = b.dataset.v === "evo" ? "evo" : +b.dataset.v;
       rendre();
     });
   }
@@ -232,26 +248,29 @@ function syncBoutons() {
   document.querySelectorAll("#seg-type button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === state.type));
   document.querySelectorAll("#seg-annee button").forEach(b =>
     b.setAttribute("aria-pressed", String(b.dataset.v === String(state.periode))));
+  document.querySelectorAll("#seg-carb button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === state.carb));
 }
 
 function rendreKpis() {
   const t = state.type, an = state.periode === "evo" ? Y1 : state.periode;
   const tot = a => d3.sum(DATA.regions, r => valeur(r, t, a));
   const T = tot(an);
-  const elec = d3.sum(DATA.regions, r => r[t]?.[an]?.carburants?.["Électrique"] ?? 0);
+  const tous = d3.sum(DATA.regions, r => total(r, t, an));
+  const partLib = state.carb === "tous" ? "l'électrique" : state.carb.toLowerCase();
+  const part = state.carb === "tous" ? d3.sum(DATA.regions, r => r[t]?.[an]?.carburants?.["Électrique"] ?? 0) : T;
   const tri = [...DATA.regions].sort((a, b) => valeur(b, t, an) - valeur(a, t, an));
   const prog = [...DATA.regions].sort((a, b) => evolution(b, t) - evolution(a, t))[0];
   const ev = an === Y1 ? T / tot(Y0) - 1 : null;
   document.getElementById("kpis").innerHTML = `
-    <div class="card kpi"><div class="lbl">Ventes ${t === "neufs" ? "de voitures neuves" : "d'occasion"} en ${an}</div>
+    <div class="card kpi"><div class="lbl">Ventes ${t === "neufs" ? "de voitures neuves" : "d'occasion"} en ${an}${libCarb()}</div>
       <div class="val">${nb(T)}</div>
       <div class="sub">${ev === null ? "France entière" : `<span class="${ev >= 0 ? "pos" : "neg"}">${evo(ev)}</span> vs ${Y0}`}</div></div>
     <div class="card kpi"><div class="lbl">1<sup>re</sup> région en ${an}</div>
       <div class="val">${ABREV[tri[0].code] ?? tri[0].nom}</div>
       <div class="sub">${tri[0].nom} · ${pct(valeur(tri[0], t, an) / T)} des ventes</div></div>
-    <div class="card kpi"><div class="lbl">Part de l'électrique en ${an}</div>
-      <div class="val">${pct(elec / T)}</div>
-      <div class="sub">${nb(elec)} voitures</div></div>
+    <div class="card kpi"><div class="lbl">Part ${state.carb === "tous" ? "de " : "« "}${partLib}${state.carb === "tous" ? "" : " »"} en ${an}</div>
+      <div class="val">${pct(part / tous)}</div>
+      <div class="sub">${nb(part)} voitures sur ${nb(tous)}</div></div>
     <div class="card kpi"><div class="lbl">Plus forte progression ${Y0}→${Y1}</div>
       <div class="val ${evolution(prog, t) >= 0 ? "pos" : "neg"}">${evo(evolution(prog, t))}</div>
       <div class="sub">${prog.nom}</div></div>`;
@@ -300,8 +319,8 @@ function rendreCarte(sc) {
   lg.innerHTML = `<span>${sc.lab(sc.min)}</span><div class="bar">${sc.cols.map(c => `<span style="background:${c}"></span>`).join("")}</div><span>${sc.lab(sc.max)}</span>
     <span>${state.periode === "evo" ? "évolution des ventes" : "voitures vendues"}</span>`;
   document.getElementById("map-title").textContent = state.periode === "evo"
-    ? `Évolution des ventes ${state.type === "neufs" ? "neuves" : "d'occasion"} entre ${Y0} et ${Y1}`
-    : `Ventes ${state.type === "neufs" ? "de voitures neuves" : "de voitures d'occasion"} en ${state.periode}`;
+    ? `Évolution des ventes ${state.type === "neufs" ? "neuves" : "d'occasion"} entre ${Y0} et ${Y1}${libCarb()}`
+    : `Ventes ${state.type === "neufs" ? "de voitures neuves" : "de voitures d'occasion"} en ${state.periode}${libCarb()}`;
 }
 
 function montrerTip(e, r) {
@@ -317,24 +336,26 @@ function montrerTip(e, r) {
 function rendreDetail() {
   const r = regionParCode(state.sel), t = state.type;
   const an = state.periode === "evo" ? Y1 : state.periode;
-  const v = valeur(r, t, an), total = d3.sum(DATA.regions, x => valeur(x, t, an));
+  const v = valeur(r, t, an), nat = d3.sum(DATA.regions, x => valeur(x, t, an));
   const ev = evolution(r, t);
   const carb = r[t]?.[an]?.carburants ?? {};
+  const rt = total(r, t, an);
   const fuels = FUELS.map(([k, c]) => ({ k, c: css(c), n: carb[k] ?? 0 })).filter(f => f.n > 0);
+  const etat = k => state.carb === "tous" ? "" : k === state.carb ? "on" : "off";
   const autre = t === "neufs" ? "occasions" : "neufs";
   document.getElementById("detail").innerHTML = `
     <h2>Zoom sur une région</h2>
-    <p class="hint">${t === "neufs" ? "Voitures neuves" : "Voitures d'occasion"} · ${an}</p>
+    <p class="hint">${t === "neufs" ? "Voitures neuves" : "Voitures d'occasion"} · ${an}${libCarb()}</p>
     <h3>${r.nom}</h3>
     <div class="big">${nb(v)}</div>
     <div class="row">
-      <div>Part nationale<strong>${pct(v / total)}</strong></div>
+      <div>Part nationale<strong>${pct(v / nat)}</strong></div>
       <div>Évolution ${Y0}→${Y1}<strong class="${ev >= 0 ? "pos" : "neg"}">${evo(ev)}</strong></div>
       <div>${autre === "neufs" ? "Neuves" : "Occasion"} en ${an}<strong>${nb(valeur(r, autre, an))}</strong></div>
     </div>
     <h2 style="margin-top:8px">Motorisation</h2>
-    <div class="stack">${fuels.map(f => `<span title="${f.k}" style="background:${f.c};width:${f.n / v * 100}%"></span>`).join("")}</div>
-    <div class="fuel">${fuels.map(f => `<i style="background:${f.c}"></i><span>${f.k}</span><span class="n">${nb(f.n)}</span><span class="p">${pct(f.n / v)}</span>`).join("")}</div>`;
+    <div class="stack">${fuels.map(f => `<span title="${f.k}" class="${etat(f.k)}" style="background:${f.c};width:${f.n / rt * 100}%"></span>`).join("")}</div>
+    <div class="fuel">${fuels.map(f => `<i class="${etat(f.k)}" style="background:${f.c}"></i><span class="${etat(f.k)}">${f.k}</span><span class="n ${etat(f.k)}">${nb(f.n)}</span><span class="p ${etat(f.k)}">${pct(f.n / rt)}</span>`).join("")}</div>`;
 }
 
 function rendreClassement() {
