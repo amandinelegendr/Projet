@@ -1,0 +1,35 @@
+name: Mise à jour des données
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # chaque lundi à 6 h UTC
+  workflow_dispatch: # lancement manuel depuis l'onglet Actions
+
+permissions:
+  contents: write
+
+jobs:
+  extraction:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Extraire les immatriculations par région
+        run: python scripts/extraction_immatriculations.py
+
+      - name: Enregistrer les nouvelles données
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          # La date d'extraction change à chaque passage : on ne commit que si les chiffres ont bougé
+          if git diff --cached -U0 docs/data | grep -E '^[+-][^+-]' | grep -qv '"mise_a_jour"'; then
+            git commit -m "Données : mise à jour automatique du $(date +%F)"
+            git push
+          else
+            echo "Aucune nouvelle donnée."
+          fi
