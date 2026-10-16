@@ -1,959 +1,959 @@
 {
-    "titre":  "Immatriculations de voitures particulières par région",
-    "source":  "SDES, répertoire statistique des véhicules routiers (API DiDo) ; découpage régional INSEE (COG)",
-    "jeu_de_donnees":  "https://www.statistiques.developpement-durable.gouv.fr/catalogue?page=dataset\u0026datasetId=682c30aad455a8571c7d00fe",
-    "millesime":  "2026-02",
-    "mise_a_jour":  "2026-10-16",
-    "annees":  [
-                   2024,
-                   2025
-               ],
-    "non_localises":  {
-                          "neufs":  {
-                                        "2024":  0,
-                                        "2025":  0
-                                    },
-                          "occasions":  {
-                                            "2024":  3,
-                                            "2025":  17
-                                        }
-                      },
-    "regions":  [
-                    {
-                        "code":  "84",
-                        "nom":  "Auvergne-Rhône-Alpes",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  198659,
-                                                   "carburants":  {
-                                                                      "Hybride non rechargeable":  68191,
-                                                                      "Diesel":  15896,
-                                                                      "Essence":  53938,
-                                                                      "Autre":  6121,
-                                                                      "Électrique":  37034,
-                                                                      "Hybride rechargeable":  17479
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  181306,
-                                                   "carburants":  {
-                                                                      "Hybride non rechargeable":  76124,
-                                                                      "Diesel":  8917,
-                                                                      "Essence":  36936,
-                                                                      "Autre":  6061,
-                                                                      "Électrique":  39408,
-                                                                      "Hybride rechargeable":  13860
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  702805,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  44107,
-                                                                          "Diesel":  321495,
-                                                                          "Électrique":  18338,
-                                                                          "Essence":  295652,
-                                                                          "Autre":  4872,
-                                                                          "Hybride rechargeable":  18341
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  720786,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  61248,
-                                                                          "Diesel":  312491,
-                                                                          "Électrique":  24282,
-                                                                          "Essence":  293517,
-                                                                          "Autre":  6380,
-                                                                          "Hybride rechargeable":  22868
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "27",
-                        "nom":  "Bourgogne-Franche-Comté",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  60166,
-                                                   "carburants":  {
-                                                                      "Diesel":  5706,
-                                                                      "Électrique":  10039,
-                                                                      "Hybride non rechargeable":  19331,
-                                                                      "Essence":  18496,
-                                                                      "Autre":  2039,
-                                                                      "Hybride rechargeable":  4555
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  55747,
-                                                   "carburants":  {
-                                                                      "Diesel":  3459,
-                                                                      "Électrique":  10581,
-                                                                      "Hybride non rechargeable":  23157,
-                                                                      "Essence":  12770,
-                                                                      "Autre":  2076,
-                                                                      "Hybride rechargeable":  3704
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  244179,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  12963,
-                                                                          "Diesel":  126774,
-                                                                          "Électrique":  4373,
-                                                                          "Essence":  93578,
-                                                                          "Autre":  1587,
-                                                                          "Hybride rechargeable":  4904
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  247713,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  18898,
-                                                                          "Diesel":  122095,
-                                                                          "Électrique":  6460,
-                                                                          "Essence":  91863,
-                                                                          "Autre":  2206,
-                                                                          "Hybride rechargeable":  6191
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "53",
-                        "nom":  "Bretagne",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  70134,
-                                                   "carburants":  {
-                                                                      "Diesel":  6102,
-                                                                      "Électrique":  13632,
-                                                                      "Hybride non rechargeable":  23559,
-                                                                      "Essence":  19770,
-                                                                      "Hybride rechargeable":  4346,
-                                                                      "Autre":  2725
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  67772,
-                                                   "carburants":  {
-                                                                      "Diesel":  3285,
-                                                                      "Électrique":  13624,
-                                                                      "Hybride non rechargeable":  29173,
-                                                                      "Essence":  15174,
-                                                                      "Hybride rechargeable":  3774,
-                                                                      "Autre":  2742
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  270775,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  16888,
-                                                                          "Diesel":  137108,
-                                                                          "Électrique":  6640,
-                                                                          "Essence":  102714,
-                                                                          "Autre":  1826,
-                                                                          "Hybride rechargeable":  5599
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  274527,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  23977,
-                                                                          "Diesel":  130188,
-                                                                          "Électrique":  9007,
-                                                                          "Essence":  101523,
-                                                                          "Autre":  2530,
-                                                                          "Hybride rechargeable":  7302
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "24",
-                        "nom":  "Centre-Val de Loire",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  51759,
-                                                   "carburants":  {
-                                                                      "Hybride non rechargeable":  17385,
-                                                                      "Essence":  14846,
-                                                                      "Diesel":  4547,
-                                                                      "Électrique":  9402,
-                                                                      "Hybride rechargeable":  3757,
-                                                                      "Autre":  1822
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  48692,
-                                                   "carburants":  {
-                                                                      "Hybride non rechargeable":  21130,
-                                                                      "Essence":  10422,
-                                                                      "Diesel":  2496,
-                                                                      "Électrique":  9639,
-                                                                      "Hybride rechargeable":  3145,
-                                                                      "Autre":  1860
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  221019,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  12951,
-                                                                          "Diesel":  111534,
-                                                                          "Électrique":  4874,
-                                                                          "Essence":  85890,
-                                                                          "Autre":  1282,
-                                                                          "Hybride rechargeable":  4488
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  225787,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  18350,
-                                                                          "Diesel":  108221,
-                                                                          "Électrique":  6658,
-                                                                          "Essence":  84866,
-                                                                          "Autre":  1759,
-                                                                          "Hybride rechargeable":  5933
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "94",
-                        "nom":  "Corse",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  28773,
-                                                   "carburants":  {
-                                                                      "Hybride non rechargeable":  6222,
-                                                                      "Diesel":  1566,
-                                                                      "Électrique":  2580,
-                                                                      "Essence":  14883,
-                                                                      "Autre":  1734,
-                                                                      "Hybride rechargeable":  1788
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  28269,
-                                                   "carburants":  {
-                                                                      "Hybride non rechargeable":  10526,
-                                                                      "Diesel":  1369,
-                                                                      "Électrique":  5437,
-                                                                      "Essence":  8611,
-                                                                      "Autre":  1297,
-                                                                      "Hybride rechargeable":  1029
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  32536,
-                                                       "carburants":  {
-                                                                          "Diesel":  13017,
-                                                                          "Électrique":  1151,
-                                                                          "Hybride non rechargeable":  2198,
-                                                                          "Essence":  15176,
-                                                                          "Autre":  93,
-                                                                          "Hybride rechargeable":  901
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  31121,
-                                                       "carburants":  {
-                                                                          "Diesel":  12006,
-                                                                          "Électrique":  1016,
-                                                                          "Hybride non rechargeable":  2322,
-                                                                          "Essence":  14700,
-                                                                          "Autre":  122,
-                                                                          "Hybride rechargeable":  955
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "44",
-                        "nom":  "Grand Est",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  124364,
-                                                   "carburants":  {
-                                                                      "Diesel":  9528,
-                                                                      "Électrique":  23990,
-                                                                      "Hybride non rechargeable":  41597,
-                                                                      "Essence":  35058,
-                                                                      "Hybride rechargeable":  9899,
-                                                                      "Autre":  4292
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  115117,
-                                                   "carburants":  {
-                                                                      "Diesel":  5927,
-                                                                      "Électrique":  24082,
-                                                                      "Hybride non rechargeable":  50017,
-                                                                      "Essence":  23702,
-                                                                      "Hybride rechargeable":  7366,
-                                                                      "Autre":  4023
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  476522,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  27834,
-                                                                          "Diesel":  231413,
-                                                                          "Électrique":  10247,
-                                                                          "Essence":  192583,
-                                                                          "Autre":  2953,
-                                                                          "Hybride rechargeable":  11492
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  479554,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  37850,
-                                                                          "Diesel":  222234,
-                                                                          "Électrique":  14512,
-                                                                          "Essence":  186679,
-                                                                          "Autre":  3833,
-                                                                          "Hybride rechargeable":  14446
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "32",
-                        "nom":  "Hauts-de-France",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  194958,
-                                                   "carburants":  {
-                                                                      "Diesel":  14116,
-                                                                      "Électrique":  25561,
-                                                                      "Hybride non rechargeable":  62278,
-                                                                      "Essence":  70566,
-                                                                      "Autre":  9677,
-                                                                      "Hybride rechargeable":  12760
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  179478,
-                                                   "carburants":  {
-                                                                      "Diesel":  8471,
-                                                                      "Électrique":  30629,
-                                                                      "Hybride non rechargeable":  76174,
-                                                                      "Essence":  45515,
-                                                                      "Autre":  8663,
-                                                                      "Hybride rechargeable":  10026
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  528059,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  31280,
-                                                                          "Diesel":  276286,
-                                                                          "Électrique":  10037,
-                                                                          "Essence":  195420,
-                                                                          "Autre":  4502,
-                                                                          "Hybride rechargeable":  10534
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  531774,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  42387,
-                                                                          "Diesel":  263654,
-                                                                          "Électrique":  15023,
-                                                                          "Essence":  191116,
-                                                                          "Autre":  6205,
-                                                                          "Hybride rechargeable":  13389
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "11",
-                        "nom":  "Île-de-France",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  363412,
-                                                   "carburants":  {
-                                                                      "Diesel":  18402,
-                                                                      "Électrique":  57811,
-                                                                      "Hybride non rechargeable":  140070,
-                                                                      "Essence":  95108,
-                                                                      "Autre":  5960,
-                                                                      "Hybride rechargeable":  46061
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  377391,
-                                                   "carburants":  {
-                                                                      "Diesel":  16993,
-                                                                      "Électrique":  77287,
-                                                                      "Hybride non rechargeable":  175900,
-                                                                      "Essence":  68877,
-                                                                      "Autre":  6867,
-                                                                      "Hybride rechargeable":  31467
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  753026,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  79442,
-                                                                          "Diesel":  274455,
-                                                                          "Électrique":  27914,
-                                                                          "Essence":  333054,
-                                                                          "Autre":  4345,
-                                                                          "Hybride rechargeable":  33816
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  735824,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  98184,
-                                                                          "Diesel":  261605,
-                                                                          "Électrique":  27390,
-                                                                          "Essence":  309375,
-                                                                          "Autre":  5276,
-                                                                          "Hybride rechargeable":  33994
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "28",
-                        "nom":  "Normandie",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  103658,
-                                                   "carburants":  {
-                                                                      "Diesel":  7598,
-                                                                      "Électrique":  13863,
-                                                                      "Hybride non rechargeable":  34239,
-                                                                      "Essence":  37777,
-                                                                      "Hybride rechargeable":  6257,
-                                                                      "Autre":  3924
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  80316,
-                                                   "carburants":  {
-                                                                      "Diesel":  3926,
-                                                                      "Électrique":  14774,
-                                                                      "Hybride non rechargeable":  33537,
-                                                                      "Essence":  20222,
-                                                                      "Hybride rechargeable":  3953,
-                                                                      "Autre":  3904
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  297139,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  17633,
-                                                                          "Diesel":  146118,
-                                                                          "Électrique":  6695,
-                                                                          "Essence":  118128,
-                                                                          "Autre":  2009,
-                                                                          "Hybride rechargeable":  6556
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  285274,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  23231,
-                                                                          "Diesel":  131525,
-                                                                          "Électrique":  9434,
-                                                                          "Essence":  110543,
-                                                                          "Autre":  2630,
-                                                                          "Hybride rechargeable":  7911
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "75",
-                        "nom":  "Nouvelle-Aquitaine",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  147920,
-                                                   "carburants":  {
-                                                                      "Diesel":  11574,
-                                                                      "Hybride non rechargeable":  51585,
-                                                                      "Essence":  44993,
-                                                                      "Électrique":  24844,
-                                                                      "Autre":  5403,
-                                                                      "Hybride rechargeable":  9521
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  135796,
-                                                   "carburants":  {
-                                                                      "Diesel":  6522,
-                                                                      "Hybride non rechargeable":  60523,
-                                                                      "Essence":  29724,
-                                                                      "Électrique":  25868,
-                                                                      "Autre":  5559,
-                                                                      "Hybride rechargeable":  7600
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  542918,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  35414,
-                                                                          "Diesel":  266829,
-                                                                          "Électrique":  12249,
-                                                                          "Essence":  212615,
-                                                                          "Autre":  4157,
-                                                                          "Hybride rechargeable":  11654
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  548865,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  49170,
-                                                                          "Diesel":  253396,
-                                                                          "Électrique":  17206,
-                                                                          "Essence":  208562,
-                                                                          "Autre":  5807,
-                                                                          "Hybride rechargeable":  14724
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "76",
-                        "nom":  "Occitanie",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  135121,
-                                                   "carburants":  {
-                                                                      "Diesel":  10022,
-                                                                      "Électrique":  27690,
-                                                                      "Hybride rechargeable":  10575,
-                                                                      "Essence":  37892,
-                                                                      "Autre":  4692,
-                                                                      "Hybride non rechargeable":  44250
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  127947,
-                                                   "carburants":  {
-                                                                      "Diesel":  6248,
-                                                                      "Électrique":  28712,
-                                                                      "Hybride rechargeable":  8747,
-                                                                      "Essence":  26757,
-                                                                      "Autre":  4624,
-                                                                      "Hybride non rechargeable":  52859
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  532552,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  32452,
-                                                                          "Diesel":  262568,
-                                                                          "Électrique":  14028,
-                                                                          "Essence":  207502,
-                                                                          "Autre":  3968,
-                                                                          "Hybride rechargeable":  12034
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  546479,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  44868,
-                                                                          "Diesel":  258141,
-                                                                          "Électrique":  18915,
-                                                                          "Essence":  204333,
-                                                                          "Autre":  5212,
-                                                                          "Hybride rechargeable":  15010
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "52",
-                        "nom":  "Pays de la Loire",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  82247,
-                                                   "carburants":  {
-                                                                      "Diesel":  7503,
-                                                                      "Électrique":  16317,
-                                                                      "Hybride non rechargeable":  28807,
-                                                                      "Essence":  21772,
-                                                                      "Autre":  2789,
-                                                                      "Hybride rechargeable":  5059
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  80859,
-                                                   "carburants":  {
-                                                                      "Diesel":  3998,
-                                                                      "Électrique":  16955,
-                                                                      "Hybride non rechargeable":  36875,
-                                                                      "Essence":  16120,
-                                                                      "Autre":  2847,
-                                                                      "Hybride rechargeable":  4064
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  315428,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  19494,
-                                                                          "Diesel":  159603,
-                                                                          "Électrique":  7799,
-                                                                          "Essence":  120052,
-                                                                          "Autre":  2205,
-                                                                          "Hybride rechargeable":  6275
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  324319,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  28699,
-                                                                          "Diesel":  154618,
-                                                                          "Électrique":  10688,
-                                                                          "Essence":  119206,
-                                                                          "Autre":  2944,
-                                                                          "Hybride rechargeable":  8164
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "93",
-                        "nom":  "Provence-Alpes-Côte d\u0027Azur",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  135335,
-                                                   "carburants":  {
-                                                                      "Diesel":  7255,
-                                                                      "Électrique":  28346,
-                                                                      "Essence":  37117,
-                                                                      "Hybride non rechargeable":  44689,
-                                                                      "Autre":  4989,
-                                                                      "Hybride rechargeable":  12939
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  127306,
-                                                   "carburants":  {
-                                                                      "Diesel":  4439,
-                                                                      "Électrique":  30204,
-                                                                      "Essence":  27814,
-                                                                      "Hybride non rechargeable":  50386,
-                                                                      "Autre":  4643,
-                                                                      "Hybride rechargeable":  9820
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  446520,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  31160,
-                                                                          "Diesel":  185137,
-                                                                          "Électrique":  13085,
-                                                                          "Essence":  201210,
-                                                                          "Autre":  3255,
-                                                                          "Hybride rechargeable":  12673
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  457388,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  40442,
-                                                                          "Diesel":  179097,
-                                                                          "Électrique":  18492,
-                                                                          "Essence":  199042,
-                                                                          "Autre":  4241,
-                                                                          "Hybride rechargeable":  16074
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "01",
-                        "nom":  "Guadeloupe",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  13962,
-                                                   "carburants":  {
-                                                                      "Hybride non rechargeable":  4313,
-                                                                      "Diesel":  1107,
-                                                                      "Électrique":  844,
-                                                                      "Essence":  7114,
-                                                                      "Autre":  43,
-                                                                      "Hybride rechargeable":  541
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  12265,
-                                                   "carburants":  {
-                                                                      "Hybride non rechargeable":  5825,
-                                                                      "Diesel":  589,
-                                                                      "Électrique":  718,
-                                                                      "Essence":  4853,
-                                                                      "Autre":  46,
-                                                                      "Hybride rechargeable":  234
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  21936,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  1248,
-                                                                          "Diesel":  8270,
-                                                                          "Électrique":  335,
-                                                                          "Essence":  11853,
-                                                                          "Hybride rechargeable":  222,
-                                                                          "Autre":  8
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  22807,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  1706,
-                                                                          "Diesel":  8032,
-                                                                          "Électrique":  421,
-                                                                          "Essence":  12303,
-                                                                          "Hybride rechargeable":  331,
-                                                                          "Autre":  14
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "02",
-                        "nom":  "Martinique",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  12874,
-                                                   "carburants":  {
-                                                                      "Diesel":  677,
-                                                                      "Essence":  7981,
-                                                                      "Hybride non rechargeable":  3111,
-                                                                      "Électrique":  627,
-                                                                      "Hybride rechargeable":  440,
-                                                                      "Autre":  38
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  12855,
-                                                   "carburants":  {
-                                                                      "Diesel":  310,
-                                                                      "Essence":  6287,
-                                                                      "Hybride non rechargeable":  5175,
-                                                                      "Électrique":  759,
-                                                                      "Hybride rechargeable":  294,
-                                                                      "Autre":  30
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  22161,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  941,
-                                                                          "Diesel":  8093,
-                                                                          "Électrique":  293,
-                                                                          "Essence":  12665,
-                                                                          "Hybride rechargeable":  162,
-                                                                          "Autre":  7
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  23339,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  1328,
-                                                                          "Diesel":  7918,
-                                                                          "Électrique":  358,
-                                                                          "Essence":  13399,
-                                                                          "Hybride rechargeable":  326,
-                                                                          "Autre":  10
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "03",
-                        "nom":  "Guyane",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  5115,
-                                                   "carburants":  {
-                                                                      "Diesel":  522,
-                                                                      "Essence":  2936,
-                                                                      "Hybride non rechargeable":  1404,
-                                                                      "Électrique":  132,
-                                                                      "Autre":  1,
-                                                                      "Hybride rechargeable":  120
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  4816,
-                                                   "carburants":  {
-                                                                      "Diesel":  179,
-                                                                      "Essence":  1861,
-                                                                      "Hybride non rechargeable":  2512,
-                                                                      "Électrique":  120,
-                                                                      "Autre":  0,
-                                                                      "Hybride rechargeable":  144
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  9536,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  512,
-                                                                          "Diesel":  4047,
-                                                                          "Électrique":  60,
-                                                                          "Essence":  4841,
-                                                                          "Hybride rechargeable":  74,
-                                                                          "Autre":  2
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  10160,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  783,
-                                                                          "Diesel":  3953,
-                                                                          "Électrique":  80,
-                                                                          "Essence":  5218,
-                                                                          "Hybride rechargeable":  122,
-                                                                          "Autre":  4
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "04",
-                        "nom":  "La Réunion",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  24740,
-                                                   "carburants":  {
-                                                                      "Diesel":  3462,
-                                                                      "Électrique":  2832,
-                                                                      "Essence":  9059,
-                                                                      "Hybride rechargeable":  986,
-                                                                      "Hybride non rechargeable":  7934,
-                                                                      "Autre":  467
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  26463,
-                                                   "carburants":  {
-                                                                      "Diesel":  2579,
-                                                                      "Électrique":  2350,
-                                                                      "Essence":  8064,
-                                                                      "Hybride rechargeable":  528,
-                                                                      "Hybride non rechargeable":  12347,
-                                                                      "Autre":  595
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  64202,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  3693,
-                                                                          "Diesel":  34092,
-                                                                          "Électrique":  1516,
-                                                                          "Essence":  24261,
-                                                                          "Hybride rechargeable":  631,
-                                                                          "Autre":  9
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  64323,
-                                                       "carburants":  {
-                                                                          "Hybride non rechargeable":  4803,
-                                                                          "Diesel":  32123,
-                                                                          "Électrique":  2097,
-                                                                          "Essence":  24408,
-                                                                          "Hybride rechargeable":  885,
-                                                                          "Autre":  7
-                                                                      }
-                                                   }
-                                      }
-                    },
-                    {
-                        "code":  "06",
-                        "nom":  "Mayotte",
-                        "neufs":  {
-                                      "2024":  {
-                                                   "total":  1970,
-                                                   "carburants":  {
-                                                                      "Hybride non rechargeable":  756,
-                                                                      "Diesel":  237,
-                                                                      "Essence":  918,
-                                                                      "Électrique":  40,
-                                                                      "Autre":  8,
-                                                                      "Hybride rechargeable":  11
-                                                                  }
-                                               },
-                                      "2025":  {
-                                                   "total":  2279,
-                                                   "carburants":  {
-                                                                      "Hybride non rechargeable":  1345,
-                                                                      "Diesel":  76,
-                                                                      "Essence":  786,
-                                                                      "Électrique":  53,
-                                                                      "Autre":  10,
-                                                                      "Hybride rechargeable":  9
-                                                                  }
-                                               }
-                                  },
-                        "occasions":  {
-                                          "2024":  {
-                                                       "total":  3941,
-                                                       "carburants":  {
-                                                                          "Diesel":  2068,
-                                                                          "Essence":  1652,
-                                                                          "Hybride non rechargeable":  195,
-                                                                          "Autre":  9,
-                                                                          "Hybride rechargeable":  12,
-                                                                          "Électrique":  5
-                                                                      }
-                                                   },
-                                          "2025":  {
-                                                       "total":  4292,
-                                                       "carburants":  {
-                                                                          "Diesel":  2130,
-                                                                          "Essence":  1798,
-                                                                          "Hybride non rechargeable":  290,
-                                                                          "Autre":  27,
-                                                                          "Hybride rechargeable":  35,
-                                                                          "Électrique":  12
-                                                                      }
-                                                   }
-                                      }
-                    }
-                ]
+ "titre": "Immatriculations de voitures particulières par région",
+ "source": "SDES, répertoire statistique des véhicules routiers (API DiDo) ; découpage régional INSEE (COG)",
+ "jeu_de_donnees": "https://www.statistiques.developpement-durable.gouv.fr/catalogue?page=dataset&datasetId=682c30aad455a8571c7d00fe",
+ "millesime": "2026-02",
+ "mise_a_jour": "2026-10-16",
+ "annees": [
+  2024,
+  2025
+ ],
+ "non_localises": {
+  "neufs": {
+   "2024": 0,
+   "2025": 0
+  },
+  "occasions": {
+   "2024": 3,
+   "2025": 17
+  }
+ },
+ "regions": [
+  {
+   "code": "84",
+   "nom": "Auvergne-Rhône-Alpes",
+   "neufs": {
+    "2024": {
+     "total": 198659,
+     "carburants": {
+      "Hybride non rechargeable": 68191,
+      "Diesel": 15896,
+      "Essence": 53938,
+      "Autre": 6121,
+      "Électrique": 37034,
+      "Hybride rechargeable": 17479
+     }
+    },
+    "2025": {
+     "total": 181306,
+     "carburants": {
+      "Hybride non rechargeable": 76124,
+      "Diesel": 8917,
+      "Essence": 36936,
+      "Autre": 6061,
+      "Électrique": 39408,
+      "Hybride rechargeable": 13860
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 702805,
+     "carburants": {
+      "Hybride non rechargeable": 44107,
+      "Diesel": 321495,
+      "Électrique": 18338,
+      "Essence": 295652,
+      "Autre": 4872,
+      "Hybride rechargeable": 18341
+     }
+    },
+    "2025": {
+     "total": 720786,
+     "carburants": {
+      "Hybride non rechargeable": 61248,
+      "Diesel": 312491,
+      "Électrique": 24282,
+      "Essence": 293517,
+      "Autre": 6380,
+      "Hybride rechargeable": 22868
+     }
+    }
+   }
+  },
+  {
+   "code": "27",
+   "nom": "Bourgogne-Franche-Comté",
+   "neufs": {
+    "2024": {
+     "total": 60166,
+     "carburants": {
+      "Diesel": 5706,
+      "Électrique": 10039,
+      "Hybride non rechargeable": 19331,
+      "Essence": 18496,
+      "Autre": 2039,
+      "Hybride rechargeable": 4555
+     }
+    },
+    "2025": {
+     "total": 55747,
+     "carburants": {
+      "Diesel": 3459,
+      "Électrique": 10581,
+      "Hybride non rechargeable": 23157,
+      "Essence": 12770,
+      "Autre": 2076,
+      "Hybride rechargeable": 3704
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 244179,
+     "carburants": {
+      "Hybride non rechargeable": 12963,
+      "Diesel": 126774,
+      "Électrique": 4373,
+      "Essence": 93578,
+      "Autre": 1587,
+      "Hybride rechargeable": 4904
+     }
+    },
+    "2025": {
+     "total": 247713,
+     "carburants": {
+      "Hybride non rechargeable": 18898,
+      "Diesel": 122095,
+      "Électrique": 6460,
+      "Essence": 91863,
+      "Autre": 2206,
+      "Hybride rechargeable": 6191
+     }
+    }
+   }
+  },
+  {
+   "code": "53",
+   "nom": "Bretagne",
+   "neufs": {
+    "2024": {
+     "total": 70134,
+     "carburants": {
+      "Diesel": 6102,
+      "Électrique": 13632,
+      "Hybride non rechargeable": 23559,
+      "Essence": 19770,
+      "Hybride rechargeable": 4346,
+      "Autre": 2725
+     }
+    },
+    "2025": {
+     "total": 67772,
+     "carburants": {
+      "Diesel": 3285,
+      "Électrique": 13624,
+      "Hybride non rechargeable": 29173,
+      "Essence": 15174,
+      "Hybride rechargeable": 3774,
+      "Autre": 2742
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 270775,
+     "carburants": {
+      "Hybride non rechargeable": 16888,
+      "Diesel": 137108,
+      "Électrique": 6640,
+      "Essence": 102714,
+      "Autre": 1826,
+      "Hybride rechargeable": 5599
+     }
+    },
+    "2025": {
+     "total": 274527,
+     "carburants": {
+      "Hybride non rechargeable": 23977,
+      "Diesel": 130188,
+      "Électrique": 9007,
+      "Essence": 101523,
+      "Autre": 2530,
+      "Hybride rechargeable": 7302
+     }
+    }
+   }
+  },
+  {
+   "code": "24",
+   "nom": "Centre-Val de Loire",
+   "neufs": {
+    "2024": {
+     "total": 51759,
+     "carburants": {
+      "Hybride non rechargeable": 17385,
+      "Essence": 14846,
+      "Diesel": 4547,
+      "Électrique": 9402,
+      "Hybride rechargeable": 3757,
+      "Autre": 1822
+     }
+    },
+    "2025": {
+     "total": 48692,
+     "carburants": {
+      "Hybride non rechargeable": 21130,
+      "Essence": 10422,
+      "Diesel": 2496,
+      "Électrique": 9639,
+      "Hybride rechargeable": 3145,
+      "Autre": 1860
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 221019,
+     "carburants": {
+      "Hybride non rechargeable": 12951,
+      "Diesel": 111534,
+      "Électrique": 4874,
+      "Essence": 85890,
+      "Autre": 1282,
+      "Hybride rechargeable": 4488
+     }
+    },
+    "2025": {
+     "total": 225787,
+     "carburants": {
+      "Hybride non rechargeable": 18350,
+      "Diesel": 108221,
+      "Électrique": 6658,
+      "Essence": 84866,
+      "Autre": 1759,
+      "Hybride rechargeable": 5933
+     }
+    }
+   }
+  },
+  {
+   "code": "94",
+   "nom": "Corse",
+   "neufs": {
+    "2024": {
+     "total": 28773,
+     "carburants": {
+      "Hybride non rechargeable": 6222,
+      "Diesel": 1566,
+      "Électrique": 2580,
+      "Essence": 14883,
+      "Autre": 1734,
+      "Hybride rechargeable": 1788
+     }
+    },
+    "2025": {
+     "total": 28269,
+     "carburants": {
+      "Hybride non rechargeable": 10526,
+      "Diesel": 1369,
+      "Électrique": 5437,
+      "Essence": 8611,
+      "Autre": 1297,
+      "Hybride rechargeable": 1029
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 32536,
+     "carburants": {
+      "Diesel": 13017,
+      "Électrique": 1151,
+      "Hybride non rechargeable": 2198,
+      "Essence": 15176,
+      "Autre": 93,
+      "Hybride rechargeable": 901
+     }
+    },
+    "2025": {
+     "total": 31121,
+     "carburants": {
+      "Diesel": 12006,
+      "Électrique": 1016,
+      "Hybride non rechargeable": 2322,
+      "Essence": 14700,
+      "Autre": 122,
+      "Hybride rechargeable": 955
+     }
+    }
+   }
+  },
+  {
+   "code": "44",
+   "nom": "Grand Est",
+   "neufs": {
+    "2024": {
+     "total": 124364,
+     "carburants": {
+      "Diesel": 9528,
+      "Électrique": 23990,
+      "Hybride non rechargeable": 41597,
+      "Essence": 35058,
+      "Hybride rechargeable": 9899,
+      "Autre": 4292
+     }
+    },
+    "2025": {
+     "total": 115117,
+     "carburants": {
+      "Diesel": 5927,
+      "Électrique": 24082,
+      "Hybride non rechargeable": 50017,
+      "Essence": 23702,
+      "Hybride rechargeable": 7366,
+      "Autre": 4023
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 476522,
+     "carburants": {
+      "Hybride non rechargeable": 27834,
+      "Diesel": 231413,
+      "Électrique": 10247,
+      "Essence": 192583,
+      "Autre": 2953,
+      "Hybride rechargeable": 11492
+     }
+    },
+    "2025": {
+     "total": 479554,
+     "carburants": {
+      "Hybride non rechargeable": 37850,
+      "Diesel": 222234,
+      "Électrique": 14512,
+      "Essence": 186679,
+      "Autre": 3833,
+      "Hybride rechargeable": 14446
+     }
+    }
+   }
+  },
+  {
+   "code": "32",
+   "nom": "Hauts-de-France",
+   "neufs": {
+    "2024": {
+     "total": 194958,
+     "carburants": {
+      "Diesel": 14116,
+      "Électrique": 25561,
+      "Hybride non rechargeable": 62278,
+      "Essence": 70566,
+      "Autre": 9677,
+      "Hybride rechargeable": 12760
+     }
+    },
+    "2025": {
+     "total": 179478,
+     "carburants": {
+      "Diesel": 8471,
+      "Électrique": 30629,
+      "Hybride non rechargeable": 76174,
+      "Essence": 45515,
+      "Autre": 8663,
+      "Hybride rechargeable": 10026
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 528059,
+     "carburants": {
+      "Hybride non rechargeable": 31280,
+      "Diesel": 276286,
+      "Électrique": 10037,
+      "Essence": 195420,
+      "Autre": 4502,
+      "Hybride rechargeable": 10534
+     }
+    },
+    "2025": {
+     "total": 531774,
+     "carburants": {
+      "Hybride non rechargeable": 42387,
+      "Diesel": 263654,
+      "Électrique": 15023,
+      "Essence": 191116,
+      "Autre": 6205,
+      "Hybride rechargeable": 13389
+     }
+    }
+   }
+  },
+  {
+   "code": "11",
+   "nom": "Île-de-France",
+   "neufs": {
+    "2024": {
+     "total": 363412,
+     "carburants": {
+      "Diesel": 18402,
+      "Électrique": 57811,
+      "Hybride non rechargeable": 140070,
+      "Essence": 95108,
+      "Autre": 5960,
+      "Hybride rechargeable": 46061
+     }
+    },
+    "2025": {
+     "total": 377391,
+     "carburants": {
+      "Diesel": 16993,
+      "Électrique": 77287,
+      "Hybride non rechargeable": 175900,
+      "Essence": 68877,
+      "Autre": 6867,
+      "Hybride rechargeable": 31467
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 753026,
+     "carburants": {
+      "Hybride non rechargeable": 79442,
+      "Diesel": 274455,
+      "Électrique": 27914,
+      "Essence": 333054,
+      "Autre": 4345,
+      "Hybride rechargeable": 33816
+     }
+    },
+    "2025": {
+     "total": 735824,
+     "carburants": {
+      "Hybride non rechargeable": 98184,
+      "Diesel": 261605,
+      "Électrique": 27390,
+      "Essence": 309375,
+      "Autre": 5276,
+      "Hybride rechargeable": 33994
+     }
+    }
+   }
+  },
+  {
+   "code": "28",
+   "nom": "Normandie",
+   "neufs": {
+    "2024": {
+     "total": 103658,
+     "carburants": {
+      "Diesel": 7598,
+      "Électrique": 13863,
+      "Hybride non rechargeable": 34239,
+      "Essence": 37777,
+      "Hybride rechargeable": 6257,
+      "Autre": 3924
+     }
+    },
+    "2025": {
+     "total": 80316,
+     "carburants": {
+      "Diesel": 3926,
+      "Électrique": 14774,
+      "Hybride non rechargeable": 33537,
+      "Essence": 20222,
+      "Hybride rechargeable": 3953,
+      "Autre": 3904
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 297139,
+     "carburants": {
+      "Hybride non rechargeable": 17633,
+      "Diesel": 146118,
+      "Électrique": 6695,
+      "Essence": 118128,
+      "Autre": 2009,
+      "Hybride rechargeable": 6556
+     }
+    },
+    "2025": {
+     "total": 285274,
+     "carburants": {
+      "Hybride non rechargeable": 23231,
+      "Diesel": 131525,
+      "Électrique": 9434,
+      "Essence": 110543,
+      "Autre": 2630,
+      "Hybride rechargeable": 7911
+     }
+    }
+   }
+  },
+  {
+   "code": "75",
+   "nom": "Nouvelle-Aquitaine",
+   "neufs": {
+    "2024": {
+     "total": 147920,
+     "carburants": {
+      "Diesel": 11574,
+      "Hybride non rechargeable": 51585,
+      "Essence": 44993,
+      "Électrique": 24844,
+      "Autre": 5403,
+      "Hybride rechargeable": 9521
+     }
+    },
+    "2025": {
+     "total": 135796,
+     "carburants": {
+      "Diesel": 6522,
+      "Hybride non rechargeable": 60523,
+      "Essence": 29724,
+      "Électrique": 25868,
+      "Autre": 5559,
+      "Hybride rechargeable": 7600
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 542918,
+     "carburants": {
+      "Hybride non rechargeable": 35414,
+      "Diesel": 266829,
+      "Électrique": 12249,
+      "Essence": 212615,
+      "Autre": 4157,
+      "Hybride rechargeable": 11654
+     }
+    },
+    "2025": {
+     "total": 548865,
+     "carburants": {
+      "Hybride non rechargeable": 49170,
+      "Diesel": 253396,
+      "Électrique": 17206,
+      "Essence": 208562,
+      "Autre": 5807,
+      "Hybride rechargeable": 14724
+     }
+    }
+   }
+  },
+  {
+   "code": "76",
+   "nom": "Occitanie",
+   "neufs": {
+    "2024": {
+     "total": 135121,
+     "carburants": {
+      "Diesel": 10022,
+      "Électrique": 27690,
+      "Hybride rechargeable": 10575,
+      "Essence": 37892,
+      "Autre": 4692,
+      "Hybride non rechargeable": 44250
+     }
+    },
+    "2025": {
+     "total": 127947,
+     "carburants": {
+      "Diesel": 6248,
+      "Électrique": 28712,
+      "Hybride rechargeable": 8747,
+      "Essence": 26757,
+      "Autre": 4624,
+      "Hybride non rechargeable": 52859
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 532552,
+     "carburants": {
+      "Hybride non rechargeable": 32452,
+      "Diesel": 262568,
+      "Électrique": 14028,
+      "Essence": 207502,
+      "Autre": 3968,
+      "Hybride rechargeable": 12034
+     }
+    },
+    "2025": {
+     "total": 546479,
+     "carburants": {
+      "Hybride non rechargeable": 44868,
+      "Diesel": 258141,
+      "Électrique": 18915,
+      "Essence": 204333,
+      "Autre": 5212,
+      "Hybride rechargeable": 15010
+     }
+    }
+   }
+  },
+  {
+   "code": "52",
+   "nom": "Pays de la Loire",
+   "neufs": {
+    "2024": {
+     "total": 82247,
+     "carburants": {
+      "Diesel": 7503,
+      "Électrique": 16317,
+      "Hybride non rechargeable": 28807,
+      "Essence": 21772,
+      "Autre": 2789,
+      "Hybride rechargeable": 5059
+     }
+    },
+    "2025": {
+     "total": 80859,
+     "carburants": {
+      "Diesel": 3998,
+      "Électrique": 16955,
+      "Hybride non rechargeable": 36875,
+      "Essence": 16120,
+      "Autre": 2847,
+      "Hybride rechargeable": 4064
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 315428,
+     "carburants": {
+      "Hybride non rechargeable": 19494,
+      "Diesel": 159603,
+      "Électrique": 7799,
+      "Essence": 120052,
+      "Autre": 2205,
+      "Hybride rechargeable": 6275
+     }
+    },
+    "2025": {
+     "total": 324319,
+     "carburants": {
+      "Hybride non rechargeable": 28699,
+      "Diesel": 154618,
+      "Électrique": 10688,
+      "Essence": 119206,
+      "Autre": 2944,
+      "Hybride rechargeable": 8164
+     }
+    }
+   }
+  },
+  {
+   "code": "93",
+   "nom": "Provence-Alpes-Côte d'Azur",
+   "neufs": {
+    "2024": {
+     "total": 135335,
+     "carburants": {
+      "Diesel": 7255,
+      "Électrique": 28346,
+      "Essence": 37117,
+      "Hybride non rechargeable": 44689,
+      "Autre": 4989,
+      "Hybride rechargeable": 12939
+     }
+    },
+    "2025": {
+     "total": 127306,
+     "carburants": {
+      "Diesel": 4439,
+      "Électrique": 30204,
+      "Essence": 27814,
+      "Hybride non rechargeable": 50386,
+      "Autre": 4643,
+      "Hybride rechargeable": 9820
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 446520,
+     "carburants": {
+      "Hybride non rechargeable": 31160,
+      "Diesel": 185137,
+      "Électrique": 13085,
+      "Essence": 201210,
+      "Autre": 3255,
+      "Hybride rechargeable": 12673
+     }
+    },
+    "2025": {
+     "total": 457388,
+     "carburants": {
+      "Hybride non rechargeable": 40442,
+      "Diesel": 179097,
+      "Électrique": 18492,
+      "Essence": 199042,
+      "Autre": 4241,
+      "Hybride rechargeable": 16074
+     }
+    }
+   }
+  },
+  {
+   "code": "01",
+   "nom": "Guadeloupe",
+   "neufs": {
+    "2024": {
+     "total": 13962,
+     "carburants": {
+      "Hybride non rechargeable": 4313,
+      "Diesel": 1107,
+      "Électrique": 844,
+      "Essence": 7114,
+      "Autre": 43,
+      "Hybride rechargeable": 541
+     }
+    },
+    "2025": {
+     "total": 12265,
+     "carburants": {
+      "Hybride non rechargeable": 5825,
+      "Diesel": 589,
+      "Électrique": 718,
+      "Essence": 4853,
+      "Autre": 46,
+      "Hybride rechargeable": 234
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 21936,
+     "carburants": {
+      "Hybride non rechargeable": 1248,
+      "Diesel": 8270,
+      "Électrique": 335,
+      "Essence": 11853,
+      "Hybride rechargeable": 222,
+      "Autre": 8
+     }
+    },
+    "2025": {
+     "total": 22807,
+     "carburants": {
+      "Hybride non rechargeable": 1706,
+      "Diesel": 8032,
+      "Électrique": 421,
+      "Essence": 12303,
+      "Hybride rechargeable": 331,
+      "Autre": 14
+     }
+    }
+   }
+  },
+  {
+   "code": "02",
+   "nom": "Martinique",
+   "neufs": {
+    "2024": {
+     "total": 12874,
+     "carburants": {
+      "Diesel": 677,
+      "Essence": 7981,
+      "Hybride non rechargeable": 3111,
+      "Électrique": 627,
+      "Hybride rechargeable": 440,
+      "Autre": 38
+     }
+    },
+    "2025": {
+     "total": 12855,
+     "carburants": {
+      "Diesel": 310,
+      "Essence": 6287,
+      "Hybride non rechargeable": 5175,
+      "Électrique": 759,
+      "Hybride rechargeable": 294,
+      "Autre": 30
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 22161,
+     "carburants": {
+      "Hybride non rechargeable": 941,
+      "Diesel": 8093,
+      "Électrique": 293,
+      "Essence": 12665,
+      "Hybride rechargeable": 162,
+      "Autre": 7
+     }
+    },
+    "2025": {
+     "total": 23339,
+     "carburants": {
+      "Hybride non rechargeable": 1328,
+      "Diesel": 7918,
+      "Électrique": 358,
+      "Essence": 13399,
+      "Hybride rechargeable": 326,
+      "Autre": 10
+     }
+    }
+   }
+  },
+  {
+   "code": "03",
+   "nom": "Guyane",
+   "neufs": {
+    "2024": {
+     "total": 5115,
+     "carburants": {
+      "Diesel": 522,
+      "Essence": 2936,
+      "Hybride non rechargeable": 1404,
+      "Électrique": 132,
+      "Autre": 1,
+      "Hybride rechargeable": 120
+     }
+    },
+    "2025": {
+     "total": 4816,
+     "carburants": {
+      "Diesel": 179,
+      "Essence": 1861,
+      "Hybride non rechargeable": 2512,
+      "Électrique": 120,
+      "Autre": 0,
+      "Hybride rechargeable": 144
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 9536,
+     "carburants": {
+      "Hybride non rechargeable": 512,
+      "Diesel": 4047,
+      "Électrique": 60,
+      "Essence": 4841,
+      "Hybride rechargeable": 74,
+      "Autre": 2
+     }
+    },
+    "2025": {
+     "total": 10160,
+     "carburants": {
+      "Hybride non rechargeable": 783,
+      "Diesel": 3953,
+      "Électrique": 80,
+      "Essence": 5218,
+      "Hybride rechargeable": 122,
+      "Autre": 4
+     }
+    }
+   }
+  },
+  {
+   "code": "04",
+   "nom": "La Réunion",
+   "neufs": {
+    "2024": {
+     "total": 24740,
+     "carburants": {
+      "Diesel": 3462,
+      "Électrique": 2832,
+      "Essence": 9059,
+      "Hybride rechargeable": 986,
+      "Hybride non rechargeable": 7934,
+      "Autre": 467
+     }
+    },
+    "2025": {
+     "total": 26463,
+     "carburants": {
+      "Diesel": 2579,
+      "Électrique": 2350,
+      "Essence": 8064,
+      "Hybride rechargeable": 528,
+      "Hybride non rechargeable": 12347,
+      "Autre": 595
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 64202,
+     "carburants": {
+      "Hybride non rechargeable": 3693,
+      "Diesel": 34092,
+      "Électrique": 1516,
+      "Essence": 24261,
+      "Hybride rechargeable": 631,
+      "Autre": 9
+     }
+    },
+    "2025": {
+     "total": 64323,
+     "carburants": {
+      "Hybride non rechargeable": 4803,
+      "Diesel": 32123,
+      "Électrique": 2097,
+      "Essence": 24408,
+      "Hybride rechargeable": 885,
+      "Autre": 7
+     }
+    }
+   }
+  },
+  {
+   "code": "06",
+   "nom": "Mayotte",
+   "neufs": {
+    "2024": {
+     "total": 1970,
+     "carburants": {
+      "Hybride non rechargeable": 756,
+      "Diesel": 237,
+      "Essence": 918,
+      "Électrique": 40,
+      "Autre": 8,
+      "Hybride rechargeable": 11
+     }
+    },
+    "2025": {
+     "total": 2279,
+     "carburants": {
+      "Hybride non rechargeable": 1345,
+      "Diesel": 76,
+      "Essence": 786,
+      "Électrique": 53,
+      "Autre": 10,
+      "Hybride rechargeable": 9
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 3941,
+     "carburants": {
+      "Diesel": 2068,
+      "Essence": 1652,
+      "Hybride non rechargeable": 195,
+      "Autre": 9,
+      "Hybride rechargeable": 12,
+      "Électrique": 5
+     }
+    },
+    "2025": {
+     "total": 4292,
+     "carburants": {
+      "Diesel": 2130,
+      "Essence": 1798,
+      "Hybride non rechargeable": 290,
+      "Autre": 27,
+      "Hybride rechargeable": 35,
+      "Électrique": 12
+     }
+    }
+   }
+  }
+ ]
 }

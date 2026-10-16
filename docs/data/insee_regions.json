@@ -1,167 +1,167 @@
 {
-    "source":  "Insee, API Melodi : populations de référence, Filosofi, recensement de la population",
-    "millesimes":  {
-                       "population":  "2023",
-                       "revenu_median":  "2023",
-                       "menages_motorises":  "2023"
-                   },
-    "definitions":  {
-                        "population":  "Population municipale (population légale)",
-                        "revenu_median":  "Revenu disponible médian annuel par unité de consommation (niveau de vie médian), en euros",
-                        "menages_motorises":  "Part des ménages disposant d\u0027au moins une voiture, en %"
-                    },
-    "mise_a_jour":  "2026-10-16",
-    "france":  {
-                   "population":  68404843,
-                   "revenu_median":  25920,
-                   "revenu_median_champ":  "France métropolitaine",
-                   "menages_motorises":  81.2
-               },
-    "regions":  {
-                    "11":  {
-                               "code":  "11",
-                               "abrev":  "IDF",
-                               "nom":  "Île-de-France",
-                               "population":  12463067,
-                               "revenu_median":  28210,
-                               "menages_motorises":  64.5
-                           },
-                    "84":  {
-                               "code":  "84",
-                               "abrev":  "ARA",
-                               "nom":  "Auvergne-Rhône-Alpes",
-                               "population":  8205557,
-                               "revenu_median":  26920,
-                               "menages_motorises":  84.6
-                           },
-                    "32":  {
-                               "code":  "32",
-                               "abrev":  "HDF",
-                               "nom":  "Hauts-de-France",
-                               "population":  5992194,
-                               "revenu_median":  23950,
-                               "menages_motorises":  82.2
-                           },
-                    "75":  {
-                               "code":  "75",
-                               "abrev":  "NAQ",
-                               "nom":  "Nouvelle-Aquitaine",
-                               "population":  6150451,
-                               "revenu_median":  25520,
-                               "menages_motorises":  87.5
-                           },
-                    "76":  {
-                               "code":  "76",
-                               "abrev":  "OCC",
-                               "nom":  "Occitanie",
-                               "population":  6124653,
-                               "revenu_median":  24650,
-                               "menages_motorises":  85.5
-                           },
-                    "93":  {
-                               "code":  "93",
-                               "abrev":  "PACA",
-                               "nom":  "Provence-Alpes-Côte d\u0027Azur",
-                               "population":  5218960,
-                               "revenu_median":  25560,
-                               "menages_motorises":  81.7
-                           },
-                    "44":  {
-                               "code":  "44",
-                               "abrev":  "GES",
-                               "nom":  "Grand Est",
-                               "population":  5563378,
-                               "revenu_median":  25850,
-                               "menages_motorises":  84.5
-                           },
-                    "52":  {
-                               "code":  "52",
-                               "abrev":  "PDL",
-                               "nom":  "Pays de la Loire",
-                               "population":  3907156,
-                               "revenu_median":  26040,
-                               "menages_motorises":  87.4
-                           },
-                    "28":  {
-                               "code":  "28",
-                               "abrev":  "NOR",
-                               "nom":  "Normandie",
-                               "population":  3345842,
-                               "revenu_median":  25200,
-                               "menages_motorises":  84.9
-                           },
-                    "53":  {
-                               "code":  "53",
-                               "abrev":  "BRE",
-                               "nom":  "Bretagne",
-                               "population":  3449370,
-                               "revenu_median":  26240,
-                               "menages_motorises":  88.2
-                           },
-                    "27":  {
-                               "code":  "27",
-                               "abrev":  "BFC",
-                               "nom":  "Bourgogne-Franche-Comté",
-                               "population":  2802670,
-                               "revenu_median":  25640,
-                               "menages_motorises":  86.4
-                           },
-                    "24":  {
-                               "code":  "24",
-                               "abrev":  "CVL",
-                               "nom":  "Centre-Val de Loire",
-                               "population":  2587031,
-                               "revenu_median":  25490,
-                               "menages_motorises":  86.6
-                           },
-                    "94":  {
-                               "code":  "94",
-                               "abrev":  "COR",
-                               "nom":  "Corse",
-                               "population":  355486,
-                               "revenu_median":  25020,
-                               "menages_motorises":  88.7
-                           },
-                    "01":  {
-                               "code":  "01",
-                               "abrev":  "GUA",
-                               "nom":  "Guadeloupe",
-                               "population":  384160,
-                               "revenu_median":  null,
-                               "menages_motorises":  72.2
-                           },
-                    "02":  {
-                               "code":  "02",
-                               "abrev":  "MTQ",
-                               "nom":  "Martinique",
-                               "population":  360630,
-                               "revenu_median":  null,
-                               "menages_motorises":  75.3
-                           },
-                    "03":  {
-                               "code":  "03",
-                               "abrev":  "GUF",
-                               "nom":  "Guyane",
-                               "population":  293996,
-                               "revenu_median":  null,
-                               "menages_motorises":  58.2
-                           },
-                    "04":  {
-                               "code":  "04",
-                               "abrev":  "REU",
-                               "nom":  "La Réunion",
-                               "population":  889679,
-                               "revenu_median":  19110,
-                               "menages_motorises":  74.8
-                           },
-                    "06":  {
-                               "code":  "06",
-                               "abrev":  "MAY",
-                               "nom":  "Mayotte",
-                               "population":  310563,
-                               "revenu_median":  null,
-                               "menages_motorises":  null,
-                               "note_population":  "Estimation de population au 1er janvier 2023 (pas de population légale publiée)"
-                           }
-                }
+ "source": "Insee, API Melodi : populations de référence, Filosofi, recensement de la population",
+ "millesimes": {
+  "population": "2023",
+  "revenu_median": "2023",
+  "menages_motorises": "2023"
+ },
+ "definitions": {
+  "population": "Population municipale (population légale)",
+  "revenu_median": "Revenu disponible médian annuel par unité de consommation (niveau de vie médian), en euros",
+  "menages_motorises": "Part des ménages disposant d'au moins une voiture, en %"
+ },
+ "mise_a_jour": "2026-10-16",
+ "france": {
+  "population": 68404843,
+  "revenu_median": 25920,
+  "revenu_median_champ": "France métropolitaine",
+  "menages_motorises": 81.2
+ },
+ "regions": {
+  "11": {
+   "code": "11",
+   "abrev": "IDF",
+   "nom": "Île-de-France",
+   "population": 12463067,
+   "revenu_median": 28210,
+   "menages_motorises": 64.5
+  },
+  "84": {
+   "code": "84",
+   "abrev": "ARA",
+   "nom": "Auvergne-Rhône-Alpes",
+   "population": 8205557,
+   "revenu_median": 26920,
+   "menages_motorises": 84.6
+  },
+  "32": {
+   "code": "32",
+   "abrev": "HDF",
+   "nom": "Hauts-de-France",
+   "population": 5992194,
+   "revenu_median": 23950,
+   "menages_motorises": 82.2
+  },
+  "75": {
+   "code": "75",
+   "abrev": "NAQ",
+   "nom": "Nouvelle-Aquitaine",
+   "population": 6150451,
+   "revenu_median": 25520,
+   "menages_motorises": 87.5
+  },
+  "76": {
+   "code": "76",
+   "abrev": "OCC",
+   "nom": "Occitanie",
+   "population": 6124653,
+   "revenu_median": 24650,
+   "menages_motorises": 85.5
+  },
+  "93": {
+   "code": "93",
+   "abrev": "PACA",
+   "nom": "Provence-Alpes-Côte d'Azur",
+   "population": 5218960,
+   "revenu_median": 25560,
+   "menages_motorises": 81.7
+  },
+  "44": {
+   "code": "44",
+   "abrev": "GES",
+   "nom": "Grand Est",
+   "population": 5563378,
+   "revenu_median": 25850,
+   "menages_motorises": 84.5
+  },
+  "52": {
+   "code": "52",
+   "abrev": "PDL",
+   "nom": "Pays de la Loire",
+   "population": 3907156,
+   "revenu_median": 26040,
+   "menages_motorises": 87.4
+  },
+  "28": {
+   "code": "28",
+   "abrev": "NOR",
+   "nom": "Normandie",
+   "population": 3345842,
+   "revenu_median": 25200,
+   "menages_motorises": 84.9
+  },
+  "53": {
+   "code": "53",
+   "abrev": "BRE",
+   "nom": "Bretagne",
+   "population": 3449370,
+   "revenu_median": 26240,
+   "menages_motorises": 88.2
+  },
+  "27": {
+   "code": "27",
+   "abrev": "BFC",
+   "nom": "Bourgogne-Franche-Comté",
+   "population": 2802670,
+   "revenu_median": 25640,
+   "menages_motorises": 86.4
+  },
+  "24": {
+   "code": "24",
+   "abrev": "CVL",
+   "nom": "Centre-Val de Loire",
+   "population": 2587031,
+   "revenu_median": 25490,
+   "menages_motorises": 86.6
+  },
+  "94": {
+   "code": "94",
+   "abrev": "COR",
+   "nom": "Corse",
+   "population": 355486,
+   "revenu_median": 25020,
+   "menages_motorises": 88.7
+  },
+  "01": {
+   "code": "01",
+   "abrev": "GUA",
+   "nom": "Guadeloupe",
+   "population": 384160,
+   "revenu_median": null,
+   "menages_motorises": 72.2
+  },
+  "02": {
+   "code": "02",
+   "abrev": "MTQ",
+   "nom": "Martinique",
+   "population": 360630,
+   "revenu_median": null,
+   "menages_motorises": 75.3
+  },
+  "03": {
+   "code": "03",
+   "abrev": "GUF",
+   "nom": "Guyane",
+   "population": 293996,
+   "revenu_median": null,
+   "menages_motorises": 58.2
+  },
+  "04": {
+   "code": "04",
+   "abrev": "REU",
+   "nom": "La Réunion",
+   "population": 889679,
+   "revenu_median": 19110,
+   "menages_motorises": 74.8
+  },
+  "06": {
+   "code": "06",
+   "abrev": "MAY",
+   "nom": "Mayotte",
+   "population": 310563,
+   "revenu_median": null,
+   "menages_motorises": null,
+   "note_population": "Estimation de population au 1er janvier 2023 (pas de population légale publiée)"
+  }
+ }
 }

@@ -1,0 +1,7815 @@
+{
+ "titre": "Immatriculations de voitures particulières par département et grande ville",
+ "millesime": "2026-02",
+ "mise_a_jour": "2026-10-16",
+ "annees": [
+  2024,
+  2025
+ ],
+ "departements": {
+  "01": {
+   "code": "01",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 15332,
+     "carburants": {
+      "Hybride non rechargeable": 5212,
+      "Diesel": 1222,
+      "Essence": 4038,
+      "Autre": 435,
+      "Électrique": 3214,
+      "Hybride rechargeable": 1211
+     }
+    },
+    "2025": {
+     "total": 14293,
+     "carburants": {
+      "Hybride non rechargeable": 6086,
+      "Diesel": 629,
+      "Essence": 2896,
+      "Autre": 391,
+      "Électrique": 3232,
+      "Hybride rechargeable": 1059
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 63731,
+     "carburants": {
+      "Hybride non rechargeable": 4036,
+      "Diesel": 29000,
+      "Électrique": 1688,
+      "Essence": 27042,
+      "Autre": 333,
+      "Hybride rechargeable": 1632
+     }
+    },
+    "2025": {
+     "total": 66139,
+     "carburants": {
+      "Hybride non rechargeable": 5808,
+      "Diesel": 28700,
+      "Électrique": 2366,
+      "Essence": 26765,
+      "Autre": 453,
+      "Hybride rechargeable": 2047
+     }
+    }
+   }
+  },
+  "02": {
+   "code": "02",
+   "region": "32",
+   "neufs": {
+    "2024": {
+     "total": 20200,
+     "carburants": {
+      "Diesel": 1724,
+      "Électrique": 2177,
+      "Hybride non rechargeable": 5932,
+      "Essence": 8566,
+      "Autre": 538,
+      "Hybride rechargeable": 1263
+     }
+    },
+    "2025": {
+     "total": 12140,
+     "carburants": {
+      "Diesel": 645,
+      "Électrique": 2354,
+      "Hybride non rechargeable": 4570,
+      "Essence": 2763,
+      "Autre": 472,
+      "Hybride rechargeable": 1336
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 46806,
+     "carburants": {
+      "Hybride non rechargeable": 2626,
+      "Diesel": 25176,
+      "Électrique": 797,
+      "Essence": 17088,
+      "Autre": 303,
+      "Hybride rechargeable": 816
+     }
+    },
+    "2025": {
+     "total": 47135,
+     "carburants": {
+      "Hybride non rechargeable": 3452,
+      "Diesel": 24350,
+      "Électrique": 1115,
+      "Essence": 16757,
+      "Autre": 419,
+      "Hybride rechargeable": 1042
+     }
+    }
+   }
+  },
+  "03": {
+   "code": "03",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 6751,
+     "carburants": {
+      "Diesel": 712,
+      "Électrique": 1039,
+      "Hybride non rechargeable": 2239,
+      "Essence": 2027,
+      "Autre": 344,
+      "Hybride rechargeable": 390
+     }
+    },
+    "2025": {
+     "total": 5868,
+     "carburants": {
+      "Diesel": 405,
+      "Électrique": 1014,
+      "Hybride non rechargeable": 2539,
+      "Essence": 1257,
+      "Autre": 354,
+      "Hybride rechargeable": 299
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 29196,
+     "carburants": {
+      "Hybride non rechargeable": 1537,
+      "Diesel": 15214,
+      "Électrique": 460,
+      "Essence": 11348,
+      "Autre": 159,
+      "Hybride rechargeable": 478
+     }
+    },
+    "2025": {
+     "total": 30173,
+     "carburants": {
+      "Hybride non rechargeable": 2169,
+      "Diesel": 14982,
+      "Électrique": 625,
+      "Essence": 11469,
+      "Autre": 245,
+      "Hybride rechargeable": 683
+     }
+    }
+   }
+  },
+  "04": {
+   "code": "04",
+   "region": "93",
+   "neufs": {
+    "2024": {
+     "total": 4085,
+     "carburants": {
+      "Diesel": 271,
+      "Électrique": 791,
+      "Essence": 1171,
+      "Hybride non rechargeable": 1464,
+      "Autre": 177,
+      "Hybride rechargeable": 211
+     }
+    },
+    "2025": {
+     "total": 3612,
+     "carburants": {
+      "Diesel": 135,
+      "Électrique": 712,
+      "Essence": 796,
+      "Hybride non rechargeable": 1600,
+      "Autre": 192,
+      "Hybride rechargeable": 177
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 15576,
+     "carburants": {
+      "Hybride non rechargeable": 976,
+      "Diesel": 7498,
+      "Électrique": 354,
+      "Essence": 6300,
+      "Autre": 142,
+      "Hybride rechargeable": 306
+     }
+    },
+    "2025": {
+     "total": 15696,
+     "carburants": {
+      "Hybride non rechargeable": 1306,
+      "Diesel": 7203,
+      "Électrique": 473,
+      "Essence": 6145,
+      "Autre": 172,
+      "Hybride rechargeable": 397
+     }
+    }
+   }
+  },
+  "05": {
+   "code": "05",
+   "region": "93",
+   "neufs": {
+    "2024": {
+     "total": 3091,
+     "carburants": {
+      "Diesel": 300,
+      "Électrique": 493,
+      "Hybride non rechargeable": 1158,
+      "Essence": 766,
+      "Autre": 174,
+      "Hybride rechargeable": 200
+     }
+    },
+    "2025": {
+     "total": 3003,
+     "carburants": {
+      "Diesel": 130,
+      "Électrique": 474,
+      "Hybride non rechargeable": 1409,
+      "Essence": 662,
+      "Autre": 161,
+      "Hybride rechargeable": 167
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 12575,
+     "carburants": {
+      "Hybride non rechargeable": 909,
+      "Diesel": 5922,
+      "Électrique": 224,
+      "Essence": 5100,
+      "Autre": 131,
+      "Hybride rechargeable": 289
+     }
+    },
+    "2025": {
+     "total": 12697,
+     "carburants": {
+      "Hybride non rechargeable": 1182,
+      "Diesel": 5703,
+      "Électrique": 319,
+      "Essence": 4954,
+      "Autre": 170,
+      "Hybride rechargeable": 369
+     }
+    }
+   }
+  },
+  "06": {
+   "code": "06",
+   "region": "93",
+   "neufs": {
+    "2024": {
+     "total": 31274,
+     "carburants": {
+      "Diesel": 1527,
+      "Électrique": 6463,
+      "Hybride non rechargeable": 10519,
+      "Essence": 8349,
+      "Autre": 1113,
+      "Hybride rechargeable": 3303
+     }
+    },
+    "2025": {
+     "total": 29248,
+     "carburants": {
+      "Diesel": 975,
+      "Électrique": 7098,
+      "Hybride non rechargeable": 11332,
+      "Essence": 6477,
+      "Autre": 990,
+      "Hybride rechargeable": 2376
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 90530,
+     "carburants": {
+      "Hybride non rechargeable": 7554,
+      "Diesel": 28568,
+      "Électrique": 3469,
+      "Essence": 46908,
+      "Autre": 672,
+      "Hybride rechargeable": 3359
+     }
+    },
+    "2025": {
+     "total": 92661,
+     "carburants": {
+      "Hybride non rechargeable": 9392,
+      "Diesel": 27121,
+      "Électrique": 5053,
+      "Essence": 46161,
+      "Autre": 859,
+      "Hybride rechargeable": 4075
+     }
+    }
+   }
+  },
+  "07": {
+   "code": "07",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 5584,
+     "carburants": {
+      "Diesel": 540,
+      "Électrique": 1186,
+      "Hybride non rechargeable": 1795,
+      "Essence": 1503,
+      "Autre": 241,
+      "Hybride rechargeable": 319
+     }
+    },
+    "2025": {
+     "total": 5237,
+     "carburants": {
+      "Diesel": 286,
+      "Électrique": 1148,
+      "Hybride non rechargeable": 2173,
+      "Essence": 1158,
+      "Autre": 188,
+      "Hybride rechargeable": 284
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 29590,
+     "carburants": {
+      "Hybride non rechargeable": 1478,
+      "Diesel": 14874,
+      "Électrique": 610,
+      "Essence": 11862,
+      "Autre": 180,
+      "Hybride rechargeable": 586
+     }
+    },
+    "2025": {
+     "total": 30769,
+     "carburants": {
+      "Hybride non rechargeable": 2040,
+      "Diesel": 14982,
+      "Électrique": 925,
+      "Essence": 11806,
+      "Autre": 262,
+      "Hybride rechargeable": 754
+     }
+    }
+   }
+  },
+  "08": {
+   "code": "08",
+   "region": "44",
+   "neufs": {
+    "2024": {
+     "total": 5111,
+     "carburants": {
+      "Diesel": 477,
+      "Électrique": 844,
+      "Hybride non rechargeable": 1647,
+      "Essence": 1488,
+      "Hybride rechargeable": 280,
+      "Autre": 375
+     }
+    },
+    "2025": {
+     "total": 4581,
+     "carburants": {
+      "Diesel": 215,
+      "Électrique": 812,
+      "Hybride non rechargeable": 1933,
+      "Essence": 1059,
+      "Hybride rechargeable": 230,
+      "Autre": 332
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 23014,
+     "carburants": {
+      "Hybride non rechargeable": 1172,
+      "Diesel": 13006,
+      "Électrique": 396,
+      "Essence": 7792,
+      "Autre": 226,
+      "Hybride rechargeable": 422
+     }
+    },
+    "2025": {
+     "total": 23762,
+     "carburants": {
+      "Hybride non rechargeable": 1563,
+      "Diesel": 12944,
+      "Électrique": 622,
+      "Essence": 7734,
+      "Autre": 296,
+      "Hybride rechargeable": 603
+     }
+    }
+   }
+  },
+  "09": {
+   "code": "09",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 2860,
+     "carburants": {
+      "Diesel": 283,
+      "Électrique": 463,
+      "Hybride rechargeable": 115,
+      "Essence": 831,
+      "Autre": 113,
+      "Hybride non rechargeable": 1055
+     }
+    },
+    "2025": {
+     "total": 2729,
+     "carburants": {
+      "Diesel": 191,
+      "Électrique": 453,
+      "Hybride rechargeable": 132,
+      "Essence": 612,
+      "Autre": 108,
+      "Hybride non rechargeable": 1233
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 14561,
+     "carburants": {
+      "Hybride non rechargeable": 720,
+      "Diesel": 8030,
+      "Électrique": 262,
+      "Essence": 5159,
+      "Autre": 135,
+      "Hybride rechargeable": 255
+     }
+    },
+    "2025": {
+     "total": 14645,
+     "carburants": {
+      "Hybride non rechargeable": 1020,
+      "Diesel": 7756,
+      "Électrique": 328,
+      "Essence": 5091,
+      "Autre": 160,
+      "Hybride rechargeable": 290
+     }
+    }
+   }
+  },
+  "10": {
+   "code": "10",
+   "region": "44",
+   "neufs": {
+    "2024": {
+     "total": 5917,
+     "carburants": {
+      "Diesel": 504,
+      "Électrique": 1096,
+      "Hybride rechargeable": 428,
+      "Hybride non rechargeable": 2062,
+      "Essence": 1560,
+      "Autre": 267
+     }
+    },
+    "2025": {
+     "total": 5173,
+     "carburants": {
+      "Diesel": 304,
+      "Électrique": 1006,
+      "Hybride rechargeable": 353,
+      "Hybride non rechargeable": 2243,
+      "Essence": 1048,
+      "Autre": 219
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 25470,
+     "carburants": {
+      "Hybride non rechargeable": 1551,
+      "Diesel": 13371,
+      "Électrique": 481,
+      "Essence": 9325,
+      "Autre": 192,
+      "Hybride rechargeable": 550
+     }
+    },
+    "2025": {
+     "total": 26393,
+     "carburants": {
+      "Hybride non rechargeable": 2220,
+      "Diesel": 13047,
+      "Électrique": 645,
+      "Essence": 9557,
+      "Autre": 268,
+      "Hybride rechargeable": 656
+     }
+    }
+   }
+  },
+  "11": {
+   "code": "11",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 8296,
+     "carburants": {
+      "Diesel": 704,
+      "Électrique": 1407,
+      "Hybride non rechargeable": 2949,
+      "Essence": 2398,
+      "Autre": 344,
+      "Hybride rechargeable": 494
+     }
+    },
+    "2025": {
+     "total": 8004,
+     "carburants": {
+      "Diesel": 372,
+      "Électrique": 1477,
+      "Hybride non rechargeable": 3531,
+      "Essence": 1699,
+      "Autre": 493,
+      "Hybride rechargeable": 432
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 34930,
+     "carburants": {
+      "Hybride non rechargeable": 2132,
+      "Diesel": 18297,
+      "Électrique": 663,
+      "Essence": 12894,
+      "Autre": 234,
+      "Hybride rechargeable": 710
+     }
+    },
+    "2025": {
+     "total": 35998,
+     "carburants": {
+      "Hybride non rechargeable": 2895,
+      "Diesel": 17903,
+      "Électrique": 1051,
+      "Essence": 12903,
+      "Autre": 392,
+      "Hybride rechargeable": 854
+     }
+    }
+   }
+  },
+  "12": {
+   "code": "12",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 5369,
+     "carburants": {
+      "Diesel": 604,
+      "Hybride non rechargeable": 1702,
+      "Essence": 1641,
+      "Autre": 197,
+      "Électrique": 873,
+      "Hybride rechargeable": 352
+     }
+    },
+    "2025": {
+     "total": 5161,
+     "carburants": {
+      "Diesel": 398,
+      "Hybride non rechargeable": 2369,
+      "Essence": 966,
+      "Autre": 159,
+      "Électrique": 962,
+      "Hybride rechargeable": 307
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 25212,
+     "carburants": {
+      "Hybride non rechargeable": 1209,
+      "Diesel": 14485,
+      "Électrique": 428,
+      "Essence": 8511,
+      "Autre": 138,
+      "Hybride rechargeable": 441
+     }
+    },
+    "2025": {
+     "total": 25305,
+     "carburants": {
+      "Hybride non rechargeable": 1936,
+      "Diesel": 13682,
+      "Électrique": 628,
+      "Essence": 8367,
+      "Autre": 163,
+      "Hybride rechargeable": 529
+     }
+    }
+   }
+  },
+  "13": {
+   "code": "13",
+   "region": "93",
+   "neufs": {
+    "2024": {
+     "total": 51279,
+     "carburants": {
+      "Diesel": 2962,
+      "Électrique": 11410,
+      "Hybride non rechargeable": 16456,
+      "Essence": 13797,
+      "Autre": 1431,
+      "Hybride rechargeable": 5223
+     }
+    },
+    "2025": {
+     "total": 47807,
+     "carburants": {
+      "Diesel": 1713,
+      "Électrique": 12426,
+      "Hybride non rechargeable": 18467,
+      "Essence": 10168,
+      "Autre": 1300,
+      "Hybride rechargeable": 3733
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 169726,
+     "carburants": {
+      "Hybride non rechargeable": 11491,
+      "Diesel": 75074,
+      "Électrique": 4943,
+      "Essence": 72575,
+      "Autre": 1147,
+      "Hybride rechargeable": 4496
+     }
+    },
+    "2025": {
+     "total": 173357,
+     "carburants": {
+      "Hybride non rechargeable": 15035,
+      "Diesel": 72711,
+      "Électrique": 6857,
+      "Essence": 71502,
+      "Autre": 1472,
+      "Hybride rechargeable": 5780
+     }
+    }
+   }
+  },
+  "14": {
+   "code": "14",
+   "region": "28",
+   "neufs": {
+    "2024": {
+     "total": 17930,
+     "carburants": {
+      "Diesel": 1392,
+      "Électrique": 3286,
+      "Hybride non rechargeable": 5677,
+      "Essence": 5536,
+      "Hybride rechargeable": 1394,
+      "Autre": 645
+     }
+    },
+    "2025": {
+     "total": 16702,
+     "carburants": {
+      "Diesel": 794,
+      "Électrique": 3440,
+      "Hybride non rechargeable": 6719,
+      "Essence": 4161,
+      "Hybride rechargeable": 954,
+      "Autre": 634
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 62321,
+     "carburants": {
+      "Hybride non rechargeable": 4170,
+      "Diesel": 29049,
+      "Électrique": 1613,
+      "Essence": 25342,
+      "Autre": 408,
+      "Hybride rechargeable": 1739
+     }
+    },
+    "2025": {
+     "total": 60182,
+     "carburants": {
+      "Hybride non rechargeable": 5402,
+      "Diesel": 25751,
+      "Électrique": 2335,
+      "Essence": 24081,
+      "Autre": 563,
+      "Hybride rechargeable": 2050
+     }
+    }
+   }
+  },
+  "15": {
+   "code": "15",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 2973,
+     "carburants": {
+      "Diesel": 358,
+      "Hybride rechargeable": 189,
+      "Hybride non rechargeable": 1004,
+      "Électrique": 425,
+      "Essence": 920,
+      "Autre": 77
+     }
+    },
+    "2025": {
+     "total": 2628,
+     "carburants": {
+      "Diesel": 200,
+      "Hybride rechargeable": 158,
+      "Hybride non rechargeable": 1194,
+      "Électrique": 389,
+      "Essence": 541,
+      "Autre": 146
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 12587,
+     "carburants": {
+      "Hybride non rechargeable": 685,
+      "Diesel": 6750,
+      "Électrique": 231,
+      "Essence": 4655,
+      "Hybride rechargeable": 204,
+      "Autre": 62
+     }
+    },
+    "2025": {
+     "total": 12602,
+     "carburants": {
+      "Hybride non rechargeable": 1030,
+      "Diesel": 6308,
+      "Électrique": 257,
+      "Essence": 4603,
+      "Hybride rechargeable": 300,
+      "Autre": 104
+     }
+    }
+   }
+  },
+  "16": {
+   "code": "16",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 7152,
+     "carburants": {
+      "Diesel": 637,
+      "Hybride non rechargeable": 2368,
+      "Essence": 2207,
+      "Électrique": 1205,
+      "Autre": 256,
+      "Hybride rechargeable": 479
+     }
+    },
+    "2025": {
+     "total": 5953,
+     "carburants": {
+      "Diesel": 293,
+      "Hybride non rechargeable": 2521,
+      "Essence": 1347,
+      "Électrique": 1148,
+      "Autre": 293,
+      "Hybride rechargeable": 351
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 32160,
+     "carburants": {
+      "Hybride non rechargeable": 1886,
+      "Diesel": 17055,
+      "Électrique": 681,
+      "Essence": 11718,
+      "Autre": 196,
+      "Hybride rechargeable": 624
+     }
+    },
+    "2025": {
+     "total": 32289,
+     "carburants": {
+      "Hybride non rechargeable": 2448,
+      "Diesel": 16318,
+      "Électrique": 910,
+      "Essence": 11631,
+      "Autre": 277,
+      "Hybride rechargeable": 705
+     }
+    }
+   }
+  },
+  "17": {
+   "code": "17",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 18131,
+     "carburants": {
+      "Diesel": 1248,
+      "Hybride non rechargeable": 6469,
+      "Essence": 5618,
+      "Électrique": 2947,
+      "Autre": 625,
+      "Hybride rechargeable": 1224
+     }
+    },
+    "2025": {
+     "total": 16531,
+     "carburants": {
+      "Diesel": 724,
+      "Hybride non rechargeable": 7316,
+      "Essence": 3936,
+      "Électrique": 2844,
+      "Autre": 811,
+      "Hybride rechargeable": 900
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 59483,
+     "carburants": {
+      "Hybride non rechargeable": 3961,
+      "Diesel": 28117,
+      "Électrique": 1287,
+      "Essence": 24370,
+      "Autre": 427,
+      "Hybride rechargeable": 1321
+     }
+    },
+    "2025": {
+     "total": 60131,
+     "carburants": {
+      "Hybride non rechargeable": 5409,
+      "Diesel": 26106,
+      "Électrique": 1915,
+      "Essence": 24440,
+      "Autre": 524,
+      "Hybride rechargeable": 1737
+     }
+    }
+   }
+  },
+  "18": {
+   "code": "18",
+   "region": "24",
+   "neufs": {
+    "2024": {
+     "total": 5400,
+     "carburants": {
+      "Hybride non rechargeable": 1659,
+      "Essence": 1773,
+      "Diesel": 604,
+      "Électrique": 843,
+      "Hybride rechargeable": 355,
+      "Autre": 166
+     }
+    },
+    "2025": {
+     "total": 5058,
+     "carburants": {
+      "Hybride non rechargeable": 2150,
+      "Essence": 1162,
+      "Diesel": 319,
+      "Électrique": 956,
+      "Hybride rechargeable": 307,
+      "Autre": 164
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 26449,
+     "carburants": {
+      "Hybride non rechargeable": 1365,
+      "Diesel": 14027,
+      "Électrique": 485,
+      "Essence": 9952,
+      "Autre": 136,
+      "Hybride rechargeable": 484
+     }
+    },
+    "2025": {
+     "total": 27150,
+     "carburants": {
+      "Hybride non rechargeable": 1998,
+      "Diesel": 13545,
+      "Électrique": 654,
+      "Essence": 10142,
+      "Autre": 182,
+      "Hybride rechargeable": 629
+     }
+    }
+   }
+  },
+  "19": {
+   "code": "19",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 5409,
+     "carburants": {
+      "Diesel": 532,
+      "Électrique": 844,
+      "Hybride non rechargeable": 1887,
+      "Essence": 1562,
+      "Autre": 206,
+      "Hybride rechargeable": 378
+     }
+    },
+    "2025": {
+     "total": 5183,
+     "carburants": {
+      "Diesel": 309,
+      "Électrique": 992,
+      "Hybride non rechargeable": 2215,
+      "Essence": 1200,
+      "Autre": 184,
+      "Hybride rechargeable": 283
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 22951,
+     "carburants": {
+      "Hybride non rechargeable": 1362,
+      "Diesel": 11943,
+      "Électrique": 443,
+      "Essence": 8663,
+      "Autre": 157,
+      "Hybride rechargeable": 383
+     }
+    },
+    "2025": {
+     "total": 23191,
+     "carburants": {
+      "Hybride non rechargeable": 1886,
+      "Diesel": 11462,
+      "Électrique": 614,
+      "Essence": 8437,
+      "Autre": 266,
+      "Hybride rechargeable": 526
+     }
+    }
+   }
+  },
+  "21": {
+   "code": "21",
+   "region": "27",
+   "neufs": {
+    "2024": {
+     "total": 12743,
+     "carburants": {
+      "Diesel": 1067,
+      "Électrique": 2095,
+      "Hybride non rechargeable": 4375,
+      "Essence": 3660,
+      "Autre": 401,
+      "Hybride rechargeable": 1145
+     }
+    },
+    "2025": {
+     "total": 11632,
+     "carburants": {
+      "Diesel": 594,
+      "Électrique": 2297,
+      "Hybride non rechargeable": 4906,
+      "Essence": 2537,
+      "Autre": 358,
+      "Hybride rechargeable": 940
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 41374,
+     "carburants": {
+      "Hybride non rechargeable": 2661,
+      "Diesel": 19674,
+      "Électrique": 813,
+      "Essence": 16854,
+      "Autre": 287,
+      "Hybride rechargeable": 1085
+     }
+    },
+    "2025": {
+     "total": 43014,
+     "carburants": {
+      "Hybride non rechargeable": 4026,
+      "Diesel": 19210,
+      "Électrique": 1245,
+      "Essence": 16846,
+      "Autre": 373,
+      "Hybride rechargeable": 1314
+     }
+    }
+   }
+  },
+  "22": {
+   "code": "22",
+   "region": "53",
+   "neufs": {
+    "2024": {
+     "total": 11620,
+     "carburants": {
+      "Diesel": 1133,
+      "Électrique": 2173,
+      "Hybride non rechargeable": 3690,
+      "Essence": 3363,
+      "Hybride rechargeable": 626,
+      "Autre": 635
+     }
+    },
+    "2025": {
+     "total": 11372,
+     "carburants": {
+      "Diesel": 603,
+      "Électrique": 2247,
+      "Hybride non rechargeable": 4922,
+      "Essence": 2451,
+      "Hybride rechargeable": 546,
+      "Autre": 603
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 50249,
+     "carburants": {
+      "Hybride non rechargeable": 2682,
+      "Diesel": 27047,
+      "Électrique": 1071,
+      "Essence": 18143,
+      "Autre": 393,
+      "Hybride rechargeable": 913
+     }
+    },
+    "2025": {
+     "total": 51084,
+     "carburants": {
+      "Hybride non rechargeable": 3853,
+      "Diesel": 25841,
+      "Électrique": 1498,
+      "Essence": 18171,
+      "Autre": 534,
+      "Hybride rechargeable": 1187
+     }
+    }
+   }
+  },
+  "23": {
+   "code": "23",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 1742,
+     "carburants": {
+      "Hybride non rechargeable": 614,
+      "Diesel": 203,
+      "Électrique": 208,
+      "Essence": 539,
+      "Autre": 94,
+      "Hybride rechargeable": 84
+     }
+    },
+    "2025": {
+     "total": 1659,
+     "carburants": {
+      "Hybride non rechargeable": 744,
+      "Diesel": 128,
+      "Électrique": 227,
+      "Essence": 412,
+      "Autre": 83,
+      "Hybride rechargeable": 65
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 10604,
+     "carburants": {
+      "Hybride non rechargeable": 459,
+      "Diesel": 6216,
+      "Électrique": 125,
+      "Essence": 3590,
+      "Autre": 69,
+      "Hybride rechargeable": 145
+     }
+    },
+    "2025": {
+     "total": 10957,
+     "carburants": {
+      "Hybride non rechargeable": 689,
+      "Diesel": 6181,
+      "Électrique": 177,
+      "Essence": 3605,
+      "Autre": 92,
+      "Hybride rechargeable": 213
+     }
+    }
+   }
+  },
+  "24": {
+   "code": "24",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 8999,
+     "carburants": {
+      "Diesel": 832,
+      "Hybride non rechargeable": 3035,
+      "Essence": 2727,
+      "Électrique": 1519,
+      "Autre": 377,
+      "Hybride rechargeable": 509
+     }
+    },
+    "2025": {
+     "total": 8767,
+     "carburants": {
+      "Diesel": 409,
+      "Hybride non rechargeable": 3721,
+      "Essence": 2227,
+      "Électrique": 1566,
+      "Autre": 371,
+      "Hybride rechargeable": 473
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 39209,
+     "carburants": {
+      "Hybride non rechargeable": 2211,
+      "Diesel": 20694,
+      "Électrique": 727,
+      "Essence": 14444,
+      "Autre": 308,
+      "Hybride rechargeable": 825
+     }
+    },
+    "2025": {
+     "total": 39518,
+     "carburants": {
+      "Hybride non rechargeable": 3162,
+      "Diesel": 19430,
+      "Électrique": 1083,
+      "Essence": 14286,
+      "Autre": 545,
+      "Hybride rechargeable": 1012
+     }
+    }
+   }
+  },
+  "25": {
+   "code": "25",
+   "region": "27",
+   "neufs": {
+    "2024": {
+     "total": 13286,
+     "carburants": {
+      "Diesel": 1329,
+      "Hybride non rechargeable": 3933,
+      "Essence": 4011,
+      "Électrique": 2540,
+      "Hybride rechargeable": 1153,
+      "Autre": 320
+     }
+    },
+    "2025": {
+     "total": 12343,
+     "carburants": {
+      "Diesel": 866,
+      "Hybride non rechargeable": 4988,
+      "Essence": 2697,
+      "Électrique": 2547,
+      "Hybride rechargeable": 948,
+      "Autre": 297
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 51777,
+     "carburants": {
+      "Hybride non rechargeable": 2669,
+      "Diesel": 27097,
+      "Électrique": 998,
+      "Essence": 19667,
+      "Autre": 257,
+      "Hybride rechargeable": 1089
+     }
+    },
+    "2025": {
+     "total": 51828,
+     "carburants": {
+      "Hybride non rechargeable": 3805,
+      "Diesel": 25991,
+      "Électrique": 1390,
+      "Essence": 18912,
+      "Autre": 317,
+      "Hybride rechargeable": 1413
+     }
+    }
+   }
+  },
+  "26": {
+   "code": "26",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 12749,
+     "carburants": {
+      "Diesel": 1032,
+      "Hybride non rechargeable": 4190,
+      "Hybride rechargeable": 1086,
+      "Électrique": 2429,
+      "Essence": 3510,
+      "Autre": 502
+     }
+    },
+    "2025": {
+     "total": 12352,
+     "carburants": {
+      "Diesel": 558,
+      "Hybride non rechargeable": 5292,
+      "Hybride rechargeable": 785,
+      "Électrique": 2659,
+      "Essence": 2714,
+      "Autre": 344
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 47299,
+     "carburants": {
+      "Hybride non rechargeable": 2586,
+      "Diesel": 23386,
+      "Électrique": 1235,
+      "Essence": 18581,
+      "Autre": 321,
+      "Hybride rechargeable": 1190
+     }
+    },
+    "2025": {
+     "total": 49122,
+     "carburants": {
+      "Hybride non rechargeable": 3620,
+      "Diesel": 22923,
+      "Électrique": 1829,
+      "Essence": 18821,
+      "Autre": 407,
+      "Hybride rechargeable": 1522
+     }
+    }
+   }
+  },
+  "27": {
+   "code": "27",
+   "region": "28",
+   "neufs": {
+    "2024": {
+     "total": 14889,
+     "carburants": {
+      "Diesel": 937,
+      "Électrique": 2349,
+      "Hybride non rechargeable": 4589,
+      "Essence": 5647,
+      "Hybride rechargeable": 831,
+      "Autre": 536
+     }
+    },
+    "2025": {
+     "total": 11915,
+     "carburants": {
+      "Diesel": 591,
+      "Électrique": 2402,
+      "Hybride non rechargeable": 5250,
+      "Essence": 2569,
+      "Hybride rechargeable": 642,
+      "Autre": 461
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 58342,
+     "carburants": {
+      "Hybride non rechargeable": 3541,
+      "Diesel": 28874,
+      "Électrique": 1229,
+      "Essence": 23093,
+      "Autre": 354,
+      "Hybride rechargeable": 1251
+     }
+    },
+    "2025": {
+     "total": 55603,
+     "carburants": {
+      "Hybride non rechargeable": 4482,
+      "Diesel": 25799,
+      "Électrique": 1724,
+      "Essence": 21499,
+      "Autre": 475,
+      "Hybride rechargeable": 1624
+     }
+    }
+   }
+  },
+  "28": {
+   "code": "28",
+   "region": "24",
+   "neufs": {
+    "2024": {
+     "total": 9478,
+     "carburants": {
+      "Diesel": 762,
+      "Essence": 2761,
+      "Hybride rechargeable": 692,
+      "Hybride non rechargeable": 3343,
+      "Électrique": 1625,
+      "Autre": 295
+     }
+    },
+    "2025": {
+     "total": 9302,
+     "carburants": {
+      "Diesel": 440,
+      "Essence": 1870,
+      "Hybride rechargeable": 614,
+      "Hybride non rechargeable": 4383,
+      "Électrique": 1679,
+      "Autre": 316
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 37993,
+     "carburants": {
+      "Hybride non rechargeable": 2445,
+      "Diesel": 19199,
+      "Électrique": 819,
+      "Essence": 14547,
+      "Autre": 196,
+      "Hybride rechargeable": 787
+     }
+    },
+    "2025": {
+     "total": 38769,
+     "carburants": {
+      "Hybride non rechargeable": 3283,
+      "Diesel": 18822,
+      "Électrique": 1159,
+      "Essence": 14170,
+      "Autre": 274,
+      "Hybride rechargeable": 1061
+     }
+    }
+   }
+  },
+  "29": {
+   "code": "29",
+   "region": "53",
+   "neufs": {
+    "2024": {
+     "total": 19676,
+     "carburants": {
+      "Diesel": 1593,
+      "Électrique": 3826,
+      "Hybride non rechargeable": 6572,
+      "Essence": 5952,
+      "Autre": 744,
+      "Hybride rechargeable": 989
+     }
+    },
+    "2025": {
+     "total": 18908,
+     "carburants": {
+      "Diesel": 800,
+      "Électrique": 3796,
+      "Hybride non rechargeable": 8397,
+      "Essence": 4235,
+      "Autre": 721,
+      "Hybride rechargeable": 959
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 72210,
+     "carburants": {
+      "Hybride non rechargeable": 4745,
+      "Diesel": 35634,
+      "Électrique": 1748,
+      "Essence": 28138,
+      "Autre": 445,
+      "Hybride rechargeable": 1500
+     }
+    },
+    "2025": {
+     "total": 73471,
+     "carburants": {
+      "Hybride non rechargeable": 6817,
+      "Diesel": 33297,
+      "Électrique": 2750,
+      "Essence": 28021,
+      "Autre": 604,
+      "Hybride rechargeable": 1982
+     }
+    }
+   }
+  },
+  "2A": {
+   "code": "2A",
+   "region": "94",
+   "neufs": {
+    "2024": {
+     "total": 10448,
+     "carburants": {
+      "Hybride non rechargeable": 2417,
+      "Diesel": 595,
+      "Électrique": 875,
+      "Essence": 5286,
+      "Autre": 781,
+      "Hybride rechargeable": 494
+     }
+    },
+    "2025": {
+     "total": 11468,
+     "carburants": {
+      "Hybride non rechargeable": 4682,
+      "Diesel": 602,
+      "Électrique": 1329,
+      "Essence": 3784,
+      "Autre": 727,
+      "Hybride rechargeable": 344
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 15437,
+     "carburants": {
+      "Diesel": 5700,
+      "Électrique": 350,
+      "Hybride non rechargeable": 1369,
+      "Essence": 7565,
+      "Autre": 50,
+      "Hybride rechargeable": 403
+     }
+    },
+    "2025": {
+     "total": 14691,
+     "carburants": {
+      "Diesel": 5184,
+      "Électrique": 526,
+      "Hybride non rechargeable": 1156,
+      "Essence": 7288,
+      "Autre": 60,
+      "Hybride rechargeable": 477
+     }
+    }
+   }
+  },
+  "2B": {
+   "code": "2B",
+   "region": "94",
+   "neufs": {
+    "2024": {
+     "total": 18325,
+     "carburants": {
+      "Diesel": 971,
+      "Électrique": 1705,
+      "Hybride non rechargeable": 3805,
+      "Essence": 9597,
+      "Hybride rechargeable": 1294,
+      "Autre": 953
+     }
+    },
+    "2025": {
+     "total": 16801,
+     "carburants": {
+      "Diesel": 767,
+      "Électrique": 4108,
+      "Hybride non rechargeable": 5844,
+      "Essence": 4827,
+      "Hybride rechargeable": 685,
+      "Autre": 570
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 17099,
+     "carburants": {
+      "Diesel": 7317,
+      "Électrique": 801,
+      "Essence": 7611,
+      "Hybride non rechargeable": 829,
+      "Autre": 43,
+      "Hybride rechargeable": 498
+     }
+    },
+    "2025": {
+     "total": 16430,
+     "carburants": {
+      "Diesel": 6822,
+      "Électrique": 490,
+      "Essence": 7412,
+      "Hybride non rechargeable": 1166,
+      "Autre": 62,
+      "Hybride rechargeable": 478
+     }
+    }
+   }
+  },
+  "30": {
+   "code": "30",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 17576,
+     "carburants": {
+      "Diesel": 1160,
+      "Électrique": 4175,
+      "Hybride non rechargeable": 5509,
+      "Essence": 4843,
+      "Autre": 686,
+      "Hybride rechargeable": 1203
+     }
+    },
+    "2025": {
+     "total": 16320,
+     "carburants": {
+      "Diesel": 639,
+      "Électrique": 4300,
+      "Hybride non rechargeable": 6395,
+      "Essence": 3306,
+      "Autre": 649,
+      "Hybride rechargeable": 1031
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 69973,
+     "carburants": {
+      "Hybride non rechargeable": 4102,
+      "Diesel": 35001,
+      "Électrique": 2000,
+      "Essence": 26728,
+      "Autre": 515,
+      "Hybride rechargeable": 1627
+     }
+    },
+    "2025": {
+     "total": 71657,
+     "carburants": {
+      "Hybride non rechargeable": 5439,
+      "Diesel": 33980,
+      "Électrique": 2674,
+      "Essence": 26835,
+      "Autre": 626,
+      "Hybride rechargeable": 2103
+     }
+    }
+   }
+  },
+  "31": {
+   "code": "31",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 34609,
+     "carburants": {
+      "Électrique": 7626,
+      "Hybride non rechargeable": 11541,
+      "Essence": 8896,
+      "Autre": 1009,
+      "Diesel": 2346,
+      "Hybride rechargeable": 3191
+     }
+    },
+    "2025": {
+     "total": 32357,
+     "carburants": {
+      "Électrique": 7961,
+      "Hybride non rechargeable": 13298,
+      "Essence": 6236,
+      "Autre": 1004,
+      "Diesel": 1424,
+      "Hybride rechargeable": 2434
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 118039,
+     "carburants": {
+      "Hybride non rechargeable": 8357,
+      "Diesel": 51347,
+      "Électrique": 4005,
+      "Essence": 50444,
+      "Autre": 981,
+      "Hybride rechargeable": 2905
+     }
+    },
+    "2025": {
+     "total": 120336,
+     "carburants": {
+      "Hybride non rechargeable": 11639,
+      "Diesel": 50992,
+      "Électrique": 4997,
+      "Essence": 47957,
+      "Autre": 1247,
+      "Hybride rechargeable": 3504
+     }
+    }
+   }
+  },
+  "32": {
+   "code": "32",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 3990,
+     "carburants": {
+      "Électrique": 782,
+      "Hybride non rechargeable": 1303,
+      "Essence": 1139,
+      "Diesel": 386,
+      "Autre": 149,
+      "Hybride rechargeable": 231
+     }
+    },
+    "2025": {
+     "total": 3566,
+     "carburants": {
+      "Électrique": 764,
+      "Hybride non rechargeable": 1565,
+      "Essence": 675,
+      "Diesel": 259,
+      "Autre": 129,
+      "Hybride rechargeable": 174
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 17692,
+     "carburants": {
+      "Hybride non rechargeable": 898,
+      "Diesel": 10059,
+      "Électrique": 435,
+      "Essence": 5854,
+      "Autre": 133,
+      "Hybride rechargeable": 313
+     }
+    },
+    "2025": {
+     "total": 18274,
+     "carburants": {
+      "Hybride non rechargeable": 1281,
+      "Diesel": 9762,
+      "Électrique": 579,
+      "Essence": 6037,
+      "Autre": 184,
+      "Hybride rechargeable": 431
+     }
+    }
+   }
+  },
+  "33": {
+   "code": "33",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 40308,
+     "carburants": {
+      "Diesel": 2710,
+      "Électrique": 7931,
+      "Hybride non rechargeable": 13684,
+      "Essence": 11381,
+      "Hybride rechargeable": 2924,
+      "Autre": 1678
+     }
+    },
+    "2025": {
+     "total": 37555,
+     "carburants": {
+      "Diesel": 1512,
+      "Électrique": 7921,
+      "Hybride non rechargeable": 16331,
+      "Essence": 7687,
+      "Hybride rechargeable": 2480,
+      "Autre": 1624
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 142049,
+     "carburants": {
+      "Hybride non rechargeable": 10626,
+      "Diesel": 62353,
+      "Électrique": 4110,
+      "Essence": 59862,
+      "Autre": 1285,
+      "Hybride rechargeable": 3813
+     }
+    },
+    "2025": {
+     "total": 142067,
+     "carburants": {
+      "Hybride non rechargeable": 14531,
+      "Diesel": 58419,
+      "Électrique": 5511,
+      "Essence": 57255,
+      "Autre": 1790,
+      "Hybride rechargeable": 4561
+     }
+    }
+   }
+  },
+  "34": {
+   "code": "34",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 27672,
+     "carburants": {
+      "Diesel": 1504,
+      "Électrique": 5925,
+      "Hybride non rechargeable": 8860,
+      "Essence": 7811,
+      "Hybride rechargeable": 2582,
+      "Autre": 990
+     }
+    },
+    "2025": {
+     "total": 26770,
+     "carburants": {
+      "Diesel": 1034,
+      "Électrique": 6459,
+      "Hybride non rechargeable": 10393,
+      "Essence": 5782,
+      "Hybride rechargeable": 2158,
+      "Autre": 944
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 102182,
+     "carburants": {
+      "Hybride non rechargeable": 7010,
+      "Diesel": 46030,
+      "Électrique": 2907,
+      "Essence": 42825,
+      "Autre": 745,
+      "Hybride rechargeable": 2665
+     }
+    },
+    "2025": {
+     "total": 105707,
+     "carburants": {
+      "Hybride non rechargeable": 9299,
+      "Diesel": 46059,
+      "Électrique": 3966,
+      "Essence": 41967,
+      "Autre": 1016,
+      "Hybride rechargeable": 3400
+     }
+    }
+   }
+  },
+  "35": {
+   "code": "35",
+   "region": "53",
+   "neufs": {
+    "2024": {
+     "total": 22379,
+     "carburants": {
+      "Diesel": 1966,
+      "Électrique": 4722,
+      "Hybride non rechargeable": 7690,
+      "Essence": 5577,
+      "Autre": 826,
+      "Hybride rechargeable": 1598
+     }
+    },
+    "2025": {
+     "total": 21120,
+     "carburants": {
+      "Diesel": 1074,
+      "Électrique": 4690,
+      "Hybride non rechargeable": 9063,
+      "Essence": 4332,
+      "Autre": 699,
+      "Hybride rechargeable": 1262
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 83505,
+     "carburants": {
+      "Hybride non rechargeable": 5001,
+      "Diesel": 42109,
+      "Électrique": 2369,
+      "Essence": 31700,
+      "Autre": 585,
+      "Hybride rechargeable": 1741
+     }
+    },
+    "2025": {
+     "total": 84870,
+     "carburants": {
+      "Hybride non rechargeable": 7319,
+      "Diesel": 40447,
+      "Électrique": 2816,
+      "Essence": 31242,
+      "Autre": 785,
+      "Hybride rechargeable": 2261
+     }
+    }
+   }
+  },
+  "36": {
+   "code": "36",
+   "region": "24",
+   "neufs": {
+    "2024": {
+     "total": 3345,
+     "carburants": {
+      "Hybride non rechargeable": 1280,
+      "Diesel": 360,
+      "Électrique": 479,
+      "Essence": 909,
+      "Hybride rechargeable": 183,
+      "Autre": 134
+     }
+    },
+    "2025": {
+     "total": 3245,
+     "carburants": {
+      "Hybride non rechargeable": 1486,
+      "Diesel": 193,
+      "Électrique": 558,
+      "Essence": 717,
+      "Hybride rechargeable": 177,
+      "Autre": 114
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 19022,
+     "carburants": {
+      "Hybride non rechargeable": 922,
+      "Diesel": 10775,
+      "Électrique": 216,
+      "Essence": 6758,
+      "Autre": 86,
+      "Hybride rechargeable": 265
+     }
+    },
+    "2025": {
+     "total": 19271,
+     "carburants": {
+      "Hybride non rechargeable": 1457,
+      "Diesel": 10384,
+      "Électrique": 304,
+      "Essence": 6654,
+      "Autre": 139,
+      "Hybride rechargeable": 333
+     }
+    }
+   }
+  },
+  "37": {
+   "code": "37",
+   "region": "24",
+   "neufs": {
+    "2024": {
+     "total": 12808,
+     "carburants": {
+      "Diesel": 923,
+      "Hybride non rechargeable": 4001,
+      "Électrique": 2854,
+      "Essence": 3548,
+      "Autre": 447,
+      "Hybride rechargeable": 1035
+     }
+    },
+    "2025": {
+     "total": 11970,
+     "carburants": {
+      "Diesel": 575,
+      "Hybride non rechargeable": 4700,
+      "Électrique": 2702,
+      "Essence": 2627,
+      "Autre": 548,
+      "Hybride rechargeable": 818
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 49997,
+     "carburants": {
+      "Hybride non rechargeable": 3145,
+      "Diesel": 22588,
+      "Électrique": 1399,
+      "Essence": 21408,
+      "Autre": 374,
+      "Hybride rechargeable": 1083
+     }
+    },
+    "2025": {
+     "total": 50695,
+     "carburants": {
+      "Hybride non rechargeable": 4444,
+      "Diesel": 21783,
+      "Électrique": 1842,
+      "Essence": 20711,
+      "Autre": 491,
+      "Hybride rechargeable": 1424
+     }
+    }
+   }
+  },
+  "38": {
+   "code": "38",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 28795,
+     "carburants": {
+      "Hybride non rechargeable": 9256,
+      "Diesel": 1987,
+      "Essence": 7692,
+      "Hybride rechargeable": 2360,
+      "Électrique": 6280,
+      "Autre": 1220
+     }
+    },
+    "2025": {
+     "total": 26267,
+     "carburants": {
+      "Hybride non rechargeable": 10634,
+      "Diesel": 1009,
+      "Essence": 5193,
+      "Hybride rechargeable": 2039,
+      "Électrique": 6291,
+      "Autre": 1101
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 109838,
+     "carburants": {
+      "Hybride non rechargeable": 6536,
+      "Diesel": 49730,
+      "Électrique": 3014,
+      "Essence": 46847,
+      "Autre": 922,
+      "Hybride rechargeable": 2789
+     }
+    },
+    "2025": {
+     "total": 113656,
+     "carburants": {
+      "Hybride non rechargeable": 9435,
+      "Diesel": 48593,
+      "Électrique": 4187,
+      "Essence": 46724,
+      "Autre": 1250,
+      "Hybride rechargeable": 3467
+     }
+    }
+   }
+  },
+  "39": {
+   "code": "39",
+   "region": "27",
+   "neufs": {
+    "2024": {
+     "total": 5770,
+     "carburants": {
+      "Diesel": 658,
+      "Électrique": 890,
+      "Hybride non rechargeable": 1724,
+      "Essence": 1869,
+      "Autre": 250,
+      "Hybride rechargeable": 379
+     }
+    },
+    "2025": {
+     "total": 5517,
+     "carburants": {
+      "Diesel": 375,
+      "Électrique": 927,
+      "Hybride non rechargeable": 2272,
+      "Essence": 1402,
+      "Autre": 261,
+      "Hybride rechargeable": 280
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 24548,
+     "carburants": {
+      "Hybride non rechargeable": 1365,
+      "Diesel": 12571,
+      "Électrique": 439,
+      "Essence": 9494,
+      "Autre": 220,
+      "Hybride rechargeable": 459
+     }
+    },
+    "2025": {
+     "total": 25023,
+     "carburants": {
+      "Hybride non rechargeable": 1989,
+      "Diesel": 12126,
+      "Électrique": 650,
+      "Essence": 9387,
+      "Autre": 267,
+      "Hybride rechargeable": 604
+     }
+    }
+   }
+  },
+  "40": {
+   "code": "40",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 11273,
+     "carburants": {
+      "Diesel": 963,
+      "Hybride non rechargeable": 3935,
+      "Électrique": 1967,
+      "Essence": 3335,
+      "Autre": 483,
+      "Hybride rechargeable": 590
+     }
+    },
+    "2025": {
+     "total": 11113,
+     "carburants": {
+      "Diesel": 557,
+      "Hybride non rechargeable": 5196,
+      "Électrique": 2095,
+      "Essence": 2218,
+      "Autre": 543,
+      "Hybride rechargeable": 504
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 41776,
+     "carburants": {
+      "Hybride non rechargeable": 2683,
+      "Diesel": 20745,
+      "Électrique": 941,
+      "Essence": 16264,
+      "Autre": 316,
+      "Hybride rechargeable": 827
+     }
+    },
+    "2025": {
+     "total": 42675,
+     "carburants": {
+      "Hybride non rechargeable": 3824,
+      "Diesel": 19976,
+      "Électrique": 1273,
+      "Essence": 16007,
+      "Autre": 527,
+      "Hybride rechargeable": 1068
+     }
+    }
+   }
+  },
+  "41": {
+   "code": "41",
+   "region": "24",
+   "neufs": {
+    "2024": {
+     "total": 6422,
+     "carburants": {
+      "Diesel": 654,
+      "Électrique": 1125,
+      "Hybride non rechargeable": 2145,
+      "Essence": 1810,
+      "Autre": 281,
+      "Hybride rechargeable": 407
+     }
+    },
+    "2025": {
+     "total": 5694,
+     "carburants": {
+      "Diesel": 356,
+      "Électrique": 1089,
+      "Hybride non rechargeable": 2318,
+      "Essence": 1360,
+      "Autre": 240,
+      "Hybride rechargeable": 331
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 28780,
+     "carburants": {
+      "Hybride non rechargeable": 1533,
+      "Diesel": 15221,
+      "Électrique": 554,
+      "Essence": 10789,
+      "Autre": 157,
+      "Hybride rechargeable": 526
+     }
+    },
+    "2025": {
+     "total": 29453,
+     "carburants": {
+      "Hybride non rechargeable": 2248,
+      "Diesel": 14572,
+      "Électrique": 795,
+      "Essence": 10879,
+      "Autre": 227,
+      "Hybride rechargeable": 732
+     }
+    }
+   }
+  },
+  "42": {
+   "code": "42",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 14289,
+     "carburants": {
+      "Diesel": 1345,
+      "Hybride non rechargeable": 4311,
+      "Essence": 3984,
+      "Hybride rechargeable": 1232,
+      "Électrique": 2890,
+      "Autre": 527
+     }
+    },
+    "2025": {
+     "total": 13133,
+     "carburants": {
+      "Diesel": 750,
+      "Hybride non rechargeable": 4920,
+      "Essence": 2918,
+      "Hybride rechargeable": 1044,
+      "Électrique": 2968,
+      "Autre": 533
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 69518,
+     "carburants": {
+      "Hybride non rechargeable": 3332,
+      "Diesel": 36239,
+      "Électrique": 1537,
+      "Essence": 26403,
+      "Autre": 513,
+      "Hybride rechargeable": 1494
+     }
+    },
+    "2025": {
+     "total": 69915,
+     "carburants": {
+      "Hybride non rechargeable": 4521,
+      "Diesel": 35103,
+      "Électrique": 1886,
+      "Essence": 26000,
+      "Autre": 613,
+      "Hybride rechargeable": 1792
+     }
+    }
+   }
+  },
+  "43": {
+   "code": "43",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 3880,
+     "carburants": {
+      "Diesel": 458,
+      "Essence": 1125,
+      "Électrique": 824,
+      "Hybride non rechargeable": 1042,
+      "Autre": 156,
+      "Hybride rechargeable": 275
+     }
+    },
+    "2025": {
+     "total": 3814,
+     "carburants": {
+      "Diesel": 294,
+      "Essence": 1023,
+      "Électrique": 769,
+      "Hybride non rechargeable": 1344,
+      "Autre": 173,
+      "Hybride rechargeable": 211
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 21306,
+     "carburants": {
+      "Hybride non rechargeable": 846,
+      "Diesel": 11604,
+      "Électrique": 362,
+      "Essence": 7960,
+      "Autre": 155,
+      "Hybride rechargeable": 379
+     }
+    },
+    "2025": {
+     "total": 22104,
+     "carburants": {
+      "Hybride non rechargeable": 1332,
+      "Diesel": 11587,
+      "Électrique": 469,
+      "Essence": 8077,
+      "Autre": 186,
+      "Hybride rechargeable": 453
+     }
+    }
+   }
+  },
+  "44": {
+   "code": "44",
+   "region": "52",
+   "neufs": {
+    "2024": {
+     "total": 31087,
+     "carburants": {
+      "Diesel": 2702,
+      "Électrique": 6274,
+      "Hybride non rechargeable": 11027,
+      "Essence": 8036,
+      "Autre": 1011,
+      "Hybride rechargeable": 2037
+     }
+    },
+    "2025": {
+     "total": 33183,
+     "carburants": {
+      "Diesel": 1483,
+      "Électrique": 6564,
+      "Hybride non rechargeable": 15784,
+      "Essence": 6687,
+      "Autre": 1060,
+      "Hybride rechargeable": 1605
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 113827,
+     "carburants": {
+      "Hybride non rechargeable": 7650,
+      "Diesel": 53160,
+      "Électrique": 3286,
+      "Essence": 46462,
+      "Autre": 803,
+      "Hybride rechargeable": 2466
+     }
+    },
+    "2025": {
+     "total": 117352,
+     "carburants": {
+      "Hybride non rechargeable": 11094,
+      "Diesel": 51858,
+      "Électrique": 4388,
+      "Essence": 45688,
+      "Autre": 1137,
+      "Hybride rechargeable": 3187
+     }
+    }
+   }
+  },
+  "45": {
+   "code": "45",
+   "region": "24",
+   "neufs": {
+    "2024": {
+     "total": 14306,
+     "carburants": {
+      "Diesel": 1244,
+      "Électrique": 2476,
+      "Hybride non rechargeable": 4957,
+      "Essence": 4045,
+      "Autre": 499,
+      "Hybride rechargeable": 1085
+     }
+    },
+    "2025": {
+     "total": 13423,
+     "carburants": {
+      "Diesel": 613,
+      "Électrique": 2655,
+      "Hybride non rechargeable": 6093,
+      "Essence": 2686,
+      "Autre": 478,
+      "Hybride rechargeable": 898
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 58778,
+     "carburants": {
+      "Hybride non rechargeable": 3541,
+      "Diesel": 29724,
+      "Électrique": 1401,
+      "Essence": 22436,
+      "Autre": 333,
+      "Hybride rechargeable": 1343
+     }
+    },
+    "2025": {
+     "total": 60449,
+     "carburants": {
+      "Hybride non rechargeable": 4920,
+      "Diesel": 29115,
+      "Électrique": 1904,
+      "Essence": 22310,
+      "Autre": 446,
+      "Hybride rechargeable": 1754
+     }
+    }
+   }
+  },
+  "46": {
+   "code": "46",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 3670,
+     "carburants": {
+      "Hybride non rechargeable": 1303,
+      "Essence": 1126,
+      "Diesel": 397,
+      "Électrique": 511,
+      "Autre": 171,
+      "Hybride rechargeable": 162
+     }
+    },
+    "2025": {
+     "total": 3621,
+     "carburants": {
+      "Hybride non rechargeable": 1573,
+      "Essence": 966,
+      "Diesel": 286,
+      "Électrique": 528,
+      "Autre": 108,
+      "Hybride rechargeable": 160
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 16282,
+     "carburants": {
+      "Hybride non rechargeable": 885,
+      "Diesel": 8443,
+      "Électrique": 313,
+      "Essence": 6180,
+      "Hybride rechargeable": 315,
+      "Autre": 146
+     }
+    },
+    "2025": {
+     "total": 16552,
+     "carburants": {
+      "Hybride non rechargeable": 1265,
+      "Diesel": 8319,
+      "Électrique": 365,
+      "Essence": 6086,
+      "Hybride rechargeable": 364,
+      "Autre": 153
+     }
+    }
+   }
+  },
+  "47": {
+   "code": "47",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 7763,
+     "carburants": {
+      "Essence": 1993,
+      "Hybride non rechargeable": 2878,
+      "Diesel": 754,
+      "Électrique": 1245,
+      "Autre": 321,
+      "Hybride rechargeable": 572
+     }
+    },
+    "2025": {
+     "total": 6875,
+     "carburants": {
+      "Essence": 1257,
+      "Hybride non rechargeable": 3030,
+      "Diesel": 441,
+      "Électrique": 1414,
+      "Autre": 315,
+      "Hybride rechargeable": 418
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 31888,
+     "carburants": {
+      "Hybride non rechargeable": 1974,
+      "Diesel": 17832,
+      "Électrique": 587,
+      "Essence": 10593,
+      "Autre": 274,
+      "Hybride rechargeable": 628
+     }
+    },
+    "2025": {
+     "total": 32075,
+     "carburants": {
+      "Hybride non rechargeable": 2696,
+      "Diesel": 17361,
+      "Électrique": 849,
+      "Essence": 10025,
+      "Autre": 327,
+      "Hybride rechargeable": 817
+     }
+    }
+   }
+  },
+  "48": {
+   "code": "48",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 1087,
+     "carburants": {
+      "Électrique": 151,
+      "Diesel": 185,
+      "Hybride non rechargeable": 300,
+      "Essence": 367,
+      "Autre": 35,
+      "Hybride rechargeable": 49
+     }
+    },
+    "2025": {
+     "total": 1047,
+     "carburants": {
+      "Électrique": 160,
+      "Diesel": 122,
+      "Hybride non rechargeable": 410,
+      "Essence": 298,
+      "Autre": 19,
+      "Hybride rechargeable": 38
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 6676,
+     "carburants": {
+      "Hybride non rechargeable": 284,
+      "Diesel": 3987,
+      "Électrique": 81,
+      "Essence": 2188,
+      "Autre": 31,
+      "Hybride rechargeable": 105
+     }
+    },
+    "2025": {
+     "total": 6866,
+     "carburants": {
+      "Hybride non rechargeable": 406,
+      "Diesel": 3967,
+      "Électrique": 120,
+      "Essence": 2195,
+      "Autre": 43,
+      "Hybride rechargeable": 135
+     }
+    }
+   }
+  },
+  "49": {
+   "code": "49",
+   "region": "52",
+   "neufs": {
+    "2024": {
+     "total": 16668,
+     "carburants": {
+      "Diesel": 1518,
+      "Électrique": 3725,
+      "Hybride non rechargeable": 5321,
+      "Essence": 4630,
+      "Autre": 497,
+      "Hybride rechargeable": 977
+     }
+    },
+    "2025": {
+     "total": 15860,
+     "carburants": {
+      "Diesel": 854,
+      "Électrique": 3829,
+      "Hybride non rechargeable": 6867,
+      "Essence": 2972,
+      "Autre": 532,
+      "Hybride rechargeable": 806
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 67147,
+     "carburants": {
+      "Hybride non rechargeable": 3894,
+      "Diesel": 35813,
+      "Électrique": 1609,
+      "Essence": 24101,
+      "Autre": 409,
+      "Hybride rechargeable": 1321
+     }
+    },
+    "2025": {
+     "total": 69363,
+     "carburants": {
+      "Hybride non rechargeable": 5864,
+      "Diesel": 34831,
+      "Électrique": 2264,
+      "Essence": 24260,
+      "Autre": 535,
+      "Hybride rechargeable": 1609
+     }
+    }
+   }
+  },
+  "50": {
+   "code": "50",
+   "region": "28",
+   "neufs": {
+    "2024": {
+     "total": 10697,
+     "carburants": {
+      "Hybride non rechargeable": 3712,
+      "Diesel": 861,
+      "Électrique": 2241,
+      "Essence": 2892,
+      "Hybride rechargeable": 558,
+      "Autre": 433
+     }
+    },
+    "2025": {
+     "total": 9315,
+     "carburants": {
+      "Hybride non rechargeable": 4103,
+      "Diesel": 528,
+      "Électrique": 2005,
+      "Essence": 1752,
+      "Hybride rechargeable": 503,
+      "Autre": 424
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 46451,
+     "carburants": {
+      "Hybride non rechargeable": 2535,
+      "Diesel": 25395,
+      "Électrique": 1162,
+      "Essence": 16158,
+      "Autre": 335,
+      "Hybride rechargeable": 866
+     }
+    },
+    "2025": {
+     "total": 43646,
+     "carburants": {
+      "Hybride non rechargeable": 3384,
+      "Diesel": 22450,
+      "Électrique": 1500,
+      "Essence": 14800,
+      "Autre": 419,
+      "Hybride rechargeable": 1093
+     }
+    }
+   }
+  },
+  "51": {
+   "code": "51",
+   "region": "44",
+   "neufs": {
+    "2024": {
+     "total": 13749,
+     "carburants": {
+      "Diesel": 1348,
+      "Électrique": 2175,
+      "Hybride non rechargeable": 4661,
+      "Essence": 3918,
+      "Autre": 459,
+      "Hybride rechargeable": 1188
+     }
+    },
+    "2025": {
+     "total": 12743,
+     "carburants": {
+      "Diesel": 829,
+      "Électrique": 2462,
+      "Hybride non rechargeable": 5645,
+      "Essence": 2507,
+      "Autre": 475,
+      "Hybride rechargeable": 825
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 45917,
+     "carburants": {
+      "Hybride non rechargeable": 3045,
+      "Diesel": 21613,
+      "Électrique": 1008,
+      "Essence": 18702,
+      "Autre": 272,
+      "Hybride rechargeable": 1277
+     }
+    },
+    "2025": {
+     "total": 45733,
+     "carburants": {
+      "Hybride non rechargeable": 4082,
+      "Diesel": 20521,
+      "Électrique": 1364,
+      "Essence": 17867,
+      "Autre": 379,
+      "Hybride rechargeable": 1520
+     }
+    }
+   }
+  },
+  "52": {
+   "code": "52",
+   "region": "44",
+   "neufs": {
+    "2024": {
+     "total": 3020,
+     "carburants": {
+      "Diesel": 286,
+      "Électrique": 429,
+      "Hybride non rechargeable": 977,
+      "Essence": 985,
+      "Autre": 142,
+      "Hybride rechargeable": 201
+     }
+    },
+    "2025": {
+     "total": 2827,
+     "carburants": {
+      "Diesel": 232,
+      "Électrique": 451,
+      "Hybride non rechargeable": 1214,
+      "Essence": 600,
+      "Autre": 177,
+      "Hybride rechargeable": 153
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 15017,
+     "carburants": {
+      "Hybride non rechargeable": 675,
+      "Diesel": 8526,
+      "Électrique": 175,
+      "Essence": 5299,
+      "Autre": 120,
+      "Hybride rechargeable": 222
+     }
+    },
+    "2025": {
+     "total": 14864,
+     "carburants": {
+      "Hybride non rechargeable": 1070,
+      "Diesel": 7976,
+      "Électrique": 257,
+      "Essence": 5098,
+      "Autre": 136,
+      "Hybride rechargeable": 327
+     }
+    }
+   }
+  },
+  "53": {
+   "code": "53",
+   "region": "52",
+   "neufs": {
+    "2024": {
+     "total": 5785,
+     "carburants": {
+      "Diesel": 454,
+      "Essence": 1422,
+      "Hybride non rechargeable": 2078,
+      "Électrique": 1236,
+      "Autre": 184,
+      "Hybride rechargeable": 411
+     }
+    },
+    "2025": {
+     "total": 5465,
+     "carburants": {
+      "Diesel": 262,
+      "Essence": 910,
+      "Hybride non rechargeable": 2519,
+      "Électrique": 1285,
+      "Autre": 173,
+      "Hybride rechargeable": 316
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 24965,
+     "carburants": {
+      "Hybride non rechargeable": 1287,
+      "Diesel": 14308,
+      "Électrique": 608,
+      "Essence": 8108,
+      "Autre": 215,
+      "Hybride rechargeable": 439
+     }
+    },
+    "2025": {
+     "total": 25185,
+     "carburants": {
+      "Hybride non rechargeable": 1854,
+      "Diesel": 13723,
+      "Électrique": 731,
+      "Essence": 8018,
+      "Autre": 248,
+      "Hybride rechargeable": 611
+     }
+    }
+   }
+  },
+  "54": {
+   "code": "54",
+   "region": "44",
+   "neufs": {
+    "2024": {
+     "total": 16705,
+     "carburants": {
+      "Diesel": 1154,
+      "Hybride non rechargeable": 5655,
+      "Essence": 4787,
+      "Hybride rechargeable": 1290,
+      "Électrique": 3271,
+      "Autre": 548
+     }
+    },
+    "2025": {
+     "total": 15711,
+     "carburants": {
+      "Diesel": 746,
+      "Hybride non rechargeable": 6766,
+      "Essence": 3379,
+      "Hybride rechargeable": 940,
+      "Électrique": 3295,
+      "Autre": 585
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 61470,
+     "carburants": {
+      "Hybride non rechargeable": 3545,
+      "Diesel": 31051,
+      "Électrique": 1345,
+      "Essence": 23893,
+      "Autre": 374,
+      "Hybride rechargeable": 1262
+     }
+    },
+    "2025": {
+     "total": 62451,
+     "carburants": {
+      "Hybride non rechargeable": 5019,
+      "Diesel": 29433,
+      "Électrique": 1946,
+      "Essence": 23825,
+      "Autre": 524,
+      "Hybride rechargeable": 1704
+     }
+    }
+   }
+  },
+  "55": {
+   "code": "55",
+   "region": "44",
+   "neufs": {
+    "2024": {
+     "total": 3239,
+     "carburants": {
+      "Diesel": 378,
+      "Électrique": 523,
+      "Hybride non rechargeable": 1137,
+      "Essence": 867,
+      "Autre": 151,
+      "Hybride rechargeable": 183
+     }
+    },
+    "2025": {
+     "total": 2993,
+     "carburants": {
+      "Diesel": 185,
+      "Électrique": 538,
+      "Hybride non rechargeable": 1369,
+      "Essence": 626,
+      "Autre": 137,
+      "Hybride rechargeable": 138
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 16783,
+     "carburants": {
+      "Hybride non rechargeable": 891,
+      "Diesel": 9497,
+      "Électrique": 254,
+      "Essence": 5758,
+      "Hybride rechargeable": 271,
+      "Autre": 112
+     }
+    },
+    "2025": {
+     "total": 16941,
+     "carburants": {
+      "Hybride non rechargeable": 1176,
+      "Diesel": 9186,
+      "Électrique": 400,
+      "Essence": 5676,
+      "Hybride rechargeable": 369,
+      "Autre": 134
+     }
+    }
+   }
+  },
+  "56": {
+   "code": "56",
+   "region": "53",
+   "neufs": {
+    "2024": {
+     "total": 16459,
+     "carburants": {
+      "Hybride non rechargeable": 5607,
+      "Diesel": 1410,
+      "Électrique": 2911,
+      "Essence": 4878,
+      "Autre": 520,
+      "Hybride rechargeable": 1133
+     }
+    },
+    "2025": {
+     "total": 16372,
+     "carburants": {
+      "Hybride non rechargeable": 6791,
+      "Diesel": 808,
+      "Électrique": 2891,
+      "Essence": 4156,
+      "Autre": 719,
+      "Hybride rechargeable": 1007
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 64811,
+     "carburants": {
+      "Hybride non rechargeable": 4460,
+      "Diesel": 32318,
+      "Électrique": 1452,
+      "Essence": 24733,
+      "Autre": 403,
+      "Hybride rechargeable": 1445
+     }
+    },
+    "2025": {
+     "total": 65102,
+     "carburants": {
+      "Hybride non rechargeable": 5988,
+      "Diesel": 30603,
+      "Électrique": 1943,
+      "Essence": 24089,
+      "Autre": 607,
+      "Hybride rechargeable": 1872
+     }
+    }
+   }
+  },
+  "57": {
+   "code": "57",
+   "region": "44",
+   "neufs": {
+    "2024": {
+     "total": 23457,
+     "carburants": {
+      "Hybride non rechargeable": 7767,
+      "Diesel": 1825,
+      "Électrique": 4750,
+      "Essence": 6744,
+      "Autre": 660,
+      "Hybride rechargeable": 1711
+     }
+    },
+    "2025": {
+     "total": 22645,
+     "carburants": {
+      "Hybride non rechargeable": 9744,
+      "Diesel": 1145,
+      "Électrique": 4665,
+      "Essence": 4895,
+      "Autre": 640,
+      "Hybride rechargeable": 1556
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 96638,
+     "carburants": {
+      "Hybride non rechargeable": 5319,
+      "Diesel": 50738,
+      "Électrique": 2010,
+      "Essence": 35980,
+      "Autre": 444,
+      "Hybride rechargeable": 2147
+     }
+    },
+    "2025": {
+     "total": 96906,
+     "carburants": {
+      "Hybride non rechargeable": 7502,
+      "Diesel": 47967,
+      "Électrique": 2824,
+      "Essence": 35277,
+      "Autre": 538,
+      "Hybride rechargeable": 2798
+     }
+    }
+   }
+  },
+  "58": {
+   "code": "58",
+   "region": "27",
+   "neufs": {
+    "2024": {
+     "total": 3894,
+     "carburants": {
+      "Diesel": 463,
+      "Hybride non rechargeable": 1254,
+      "Essence": 1331,
+      "Hybride rechargeable": 199,
+      "Électrique": 471,
+      "Autre": 176
+     }
+    },
+    "2025": {
+     "total": 3636,
+     "carburants": {
+      "Diesel": 315,
+      "Hybride non rechargeable": 1480,
+      "Essence": 904,
+      "Hybride rechargeable": 194,
+      "Électrique": 589,
+      "Autre": 154
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 16569,
+     "carburants": {
+      "Hybride non rechargeable": 869,
+      "Diesel": 8721,
+      "Électrique": 239,
+      "Essence": 6372,
+      "Hybride rechargeable": 246,
+      "Autre": 122
+     }
+    },
+    "2025": {
+     "total": 16888,
+     "carburants": {
+      "Hybride non rechargeable": 1162,
+      "Diesel": 8456,
+      "Électrique": 381,
+      "Essence": 6382,
+      "Hybride rechargeable": 314,
+      "Autre": 193
+     }
+    }
+   }
+  },
+  "59": {
+   "code": "59",
+   "region": "32",
+   "neufs": {
+    "2024": {
+     "total": 85309,
+     "carburants": {
+      "Diesel": 5470,
+      "Électrique": 11414,
+      "Hybride non rechargeable": 28684,
+      "Essence": 27712,
+      "Autre": 5908,
+      "Hybride rechargeable": 6121
+     }
+    },
+    "2025": {
+     "total": 83930,
+     "carburants": {
+      "Diesel": 4321,
+      "Électrique": 14660,
+      "Hybride non rechargeable": 37392,
+      "Essence": 17864,
+      "Autre": 5112,
+      "Hybride rechargeable": 4581
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 225560,
+     "carburants": {
+      "Hybride non rechargeable": 13646,
+      "Diesel": 116210,
+      "Électrique": 4493,
+      "Essence": 84116,
+      "Autre": 2387,
+      "Hybride rechargeable": 4708
+     }
+    },
+    "2025": {
+     "total": 224966,
+     "carburants": {
+      "Hybride non rechargeable": 17950,
+      "Diesel": 110928,
+      "Électrique": 6342,
+      "Essence": 80818,
+      "Autre": 3157,
+      "Hybride rechargeable": 5771
+     }
+    }
+   }
+  },
+  "60": {
+   "code": "60",
+   "region": "32",
+   "neufs": {
+    "2024": {
+     "total": 32318,
+     "carburants": {
+      "Diesel": 1756,
+      "Électrique": 3607,
+      "Essence": 14675,
+      "Hybride non rechargeable": 9863,
+      "Autre": 692,
+      "Hybride rechargeable": 1725
+     }
+    },
+    "2025": {
+     "total": 34848,
+     "carburants": {
+      "Diesel": 1170,
+      "Électrique": 4719,
+      "Essence": 13168,
+      "Hybride non rechargeable": 13036,
+      "Autre": 846,
+      "Hybride rechargeable": 1909
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 77684,
+     "carburants": {
+      "Hybride non rechargeable": 5167,
+      "Diesel": 40129,
+      "Électrique": 1411,
+      "Essence": 28760,
+      "Autre": 450,
+      "Hybride rechargeable": 1767
+     }
+    },
+    "2025": {
+     "total": 79845,
+     "carburants": {
+      "Hybride non rechargeable": 7206,
+      "Diesel": 38828,
+      "Électrique": 2407,
+      "Essence": 28527,
+      "Autre": 625,
+      "Hybride rechargeable": 2252
+     }
+    }
+   }
+  },
+  "61": {
+   "code": "61",
+   "region": "28",
+   "neufs": {
+    "2024": {
+     "total": 5632,
+     "carburants": {
+      "Diesel": 721,
+      "Électrique": 669,
+      "Hybride non rechargeable": 2013,
+      "Essence": 1693,
+      "Autre": 230,
+      "Hybride rechargeable": 306
+     }
+    },
+    "2025": {
+     "total": 4181,
+     "carburants": {
+      "Diesel": 277,
+      "Électrique": 741,
+      "Hybride non rechargeable": 1878,
+      "Essence": 833,
+      "Autre": 206,
+      "Hybride rechargeable": 246
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 24492,
+     "carburants": {
+      "Hybride non rechargeable": 1339,
+      "Diesel": 13935,
+      "Électrique": 335,
+      "Essence": 8291,
+      "Autre": 182,
+      "Hybride rechargeable": 410
+     }
+    },
+    "2025": {
+     "total": 23650,
+     "carburants": {
+      "Hybride non rechargeable": 1606,
+      "Diesel": 12816,
+      "Électrique": 491,
+      "Essence": 8039,
+      "Autre": 200,
+      "Hybride rechargeable": 498
+     }
+    }
+   }
+  },
+  "62": {
+   "code": "62",
+   "region": "32",
+   "neufs": {
+    "2024": {
+     "total": 33867,
+     "carburants": {
+      "Diesel": 2425,
+      "Électrique": 6638,
+      "Hybride non rechargeable": 10752,
+      "Essence": 10130,
+      "Autre": 1967,
+      "Hybride rechargeable": 1955
+     }
+    },
+    "2025": {
+     "total": 31788,
+     "carburants": {
+      "Diesel": 1336,
+      "Électrique": 6696,
+      "Hybride non rechargeable": 13118,
+      "Essence": 7197,
+      "Autre": 1820,
+      "Hybride rechargeable": 1621
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 128680,
+     "carburants": {
+      "Hybride non rechargeable": 7207,
+      "Diesel": 68020,
+      "Électrique": 2620,
+      "Essence": 47333,
+      "Autre": 1101,
+      "Hybride rechargeable": 2399
+     }
+    },
+    "2025": {
+     "total": 128386,
+     "carburants": {
+      "Hybride non rechargeable": 9861,
+      "Diesel": 63744,
+      "Électrique": 3926,
+      "Essence": 46080,
+      "Autre": 1568,
+      "Hybride rechargeable": 3207
+     }
+    }
+   }
+  },
+  "63": {
+   "code": "63",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 14769,
+     "carburants": {
+      "Diesel": 1104,
+      "Électrique": 2807,
+      "Hybride non rechargeable": 5081,
+      "Essence": 4125,
+      "Autre": 577,
+      "Hybride rechargeable": 1075
+     }
+    },
+    "2025": {
+     "total": 13223,
+     "carburants": {
+      "Diesel": 674,
+      "Électrique": 2743,
+      "Hybride non rechargeable": 5423,
+      "Essence": 2957,
+      "Autre": 582,
+      "Hybride rechargeable": 844
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 57851,
+     "carburants": {
+      "Hybride non rechargeable": 3231,
+      "Diesel": 28573,
+      "Électrique": 1426,
+      "Essence": 23081,
+      "Autre": 438,
+      "Hybride rechargeable": 1102
+     }
+    },
+    "2025": {
+     "total": 59689,
+     "carburants": {
+      "Hybride non rechargeable": 4545,
+      "Diesel": 27879,
+      "Électrique": 1885,
+      "Essence": 23419,
+      "Autre": 512,
+      "Hybride rechargeable": 1449
+     }
+    }
+   }
+  },
+  "64": {
+   "code": "64",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 17716,
+     "carburants": {
+      "Diesel": 1270,
+      "Hybride non rechargeable": 6284,
+      "Essence": 5645,
+      "Hybride rechargeable": 1181,
+      "Électrique": 2711,
+      "Autre": 625
+     }
+    },
+    "2025": {
+     "total": 17177,
+     "carburants": {
+      "Diesel": 784,
+      "Hybride non rechargeable": 7632,
+      "Essence": 4264,
+      "Hybride rechargeable": 904,
+      "Électrique": 2972,
+      "Autre": 621
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 59465,
+     "carburants": {
+      "Hybride non rechargeable": 4005,
+      "Diesel": 28332,
+      "Électrique": 1304,
+      "Essence": 24060,
+      "Autre": 490,
+      "Hybride rechargeable": 1274
+     }
+    },
+    "2025": {
+     "total": 61693,
+     "carburants": {
+      "Hybride non rechargeable": 5627,
+      "Diesel": 27283,
+      "Électrique": 1905,
+      "Essence": 24522,
+      "Autre": 677,
+      "Hybride rechargeable": 1679
+     }
+    }
+   }
+  },
+  "65": {
+   "code": "65",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 4903,
+     "carburants": {
+      "Diesel": 463,
+      "Électrique": 682,
+      "Hybride non rechargeable": 1660,
+      "Essence": 1579,
+      "Autre": 204,
+      "Hybride rechargeable": 315
+     }
+    },
+    "2025": {
+     "total": 4206,
+     "carburants": {
+      "Diesel": 301,
+      "Électrique": 708,
+      "Hybride non rechargeable": 1788,
+      "Essence": 1057,
+      "Autre": 173,
+      "Hybride rechargeable": 179
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 19719,
+     "carburants": {
+      "Hybride non rechargeable": 1083,
+      "Diesel": 10538,
+      "Électrique": 327,
+      "Essence": 7268,
+      "Autre": 157,
+      "Hybride rechargeable": 346
+     }
+    },
+    "2025": {
+     "total": 20310,
+     "carburants": {
+      "Hybride non rechargeable": 1478,
+      "Diesel": 10319,
+      "Électrique": 484,
+      "Essence": 7345,
+      "Autre": 220,
+      "Hybride rechargeable": 464
+     }
+    }
+   }
+  },
+  "66": {
+   "code": "66",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 11592,
+     "carburants": {
+      "Diesel": 807,
+      "Électrique": 1902,
+      "Hybride non rechargeable": 3700,
+      "Essence": 3833,
+      "Autre": 368,
+      "Hybride rechargeable": 982
+     }
+    },
+    "2025": {
+     "total": 11573,
+     "carburants": {
+      "Diesel": 496,
+      "Électrique": 1994,
+      "Hybride non rechargeable": 5113,
+      "Essence": 2699,
+      "Autre": 388,
+      "Hybride rechargeable": 883
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 46535,
+     "carburants": {
+      "Hybride non rechargeable": 2542,
+      "Diesel": 23291,
+      "Électrique": 1161,
+      "Essence": 18058,
+      "Autre": 285,
+      "Hybride rechargeable": 1198
+     }
+    },
+    "2025": {
+     "total": 48090,
+     "carburants": {
+      "Hybride non rechargeable": 3493,
+      "Diesel": 23030,
+      "Électrique": 1678,
+      "Essence": 18109,
+      "Autre": 374,
+      "Hybride rechargeable": 1406
+     }
+    }
+   }
+  },
+  "67": {
+   "code": "67",
+   "region": "44",
+   "neufs": {
+    "2024": {
+     "total": 27441,
+     "carburants": {
+      "Diesel": 1566,
+      "Électrique": 5676,
+      "Hybride non rechargeable": 9673,
+      "Essence": 7221,
+      "Autre": 825,
+      "Hybride rechargeable": 2480
+     }
+    },
+    "2025": {
+     "total": 24801,
+     "carburants": {
+      "Diesel": 1106,
+      "Électrique": 5678,
+      "Hybride non rechargeable": 11034,
+      "Essence": 4709,
+      "Autre": 690,
+      "Hybride rechargeable": 1584
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 91976,
+     "carburants": {
+      "Hybride non rechargeable": 6508,
+      "Diesel": 34440,
+      "Électrique": 2369,
+      "Essence": 45120,
+      "Autre": 622,
+      "Hybride rechargeable": 2917
+     }
+    },
+    "2025": {
+     "total": 90374,
+     "carburants": {
+      "Hybride non rechargeable": 7860,
+      "Diesel": 33939,
+      "Électrique": 3190,
+      "Essence": 41340,
+      "Autre": 706,
+      "Hybride rechargeable": 3339
+     }
+    }
+   }
+  },
+  "68": {
+   "code": "68",
+   "region": "44",
+   "neufs": {
+    "2024": {
+     "total": 17770,
+     "carburants": {
+      "Diesel": 1204,
+      "Électrique": 3939,
+      "Hybride non rechargeable": 5510,
+      "Essence": 5018,
+      "Hybride rechargeable": 1603,
+      "Autre": 496
+     }
+    },
+    "2025": {
+     "total": 16418,
+     "carburants": {
+      "Diesel": 734,
+      "Électrique": 3835,
+      "Hybride non rechargeable": 6875,
+      "Essence": 3410,
+      "Hybride rechargeable": 1173,
+      "Autre": 391
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 67102,
+     "carburants": {
+      "Hybride non rechargeable": 3433,
+      "Diesel": 31372,
+      "Électrique": 1603,
+      "Essence": 28597,
+      "Autre": 302,
+      "Hybride rechargeable": 1795
+     }
+    },
+    "2025": {
+     "total": 69239,
+     "carburants": {
+      "Hybride non rechargeable": 4945,
+      "Diesel": 30669,
+      "Électrique": 2433,
+      "Essence": 28428,
+      "Autre": 439,
+      "Hybride rechargeable": 2325
+     }
+    }
+   }
+  },
+  "69": {
+   "code": "69",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 55135,
+     "carburants": {
+      "Diesel": 3639,
+      "Électrique": 9725,
+      "Hybride non rechargeable": 20611,
+      "Essence": 14111,
+      "Autre": 1134,
+      "Hybride rechargeable": 5915
+     }
+    },
+    "2025": {
+     "total": 50294,
+     "carburants": {
+      "Diesel": 2253,
+      "Électrique": 11499,
+      "Hybride non rechargeable": 21889,
+      "Essence": 8692,
+      "Autre": 1392,
+      "Hybride rechargeable": 4569
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 138721,
+     "carburants": {
+      "Hybride non rechargeable": 10364,
+      "Diesel": 55953,
+      "Électrique": 4350,
+      "Essence": 62163,
+      "Autre": 1087,
+      "Hybride rechargeable": 4804
+     }
+    },
+    "2025": {
+     "total": 139747,
+     "carburants": {
+      "Hybride non rechargeable": 13883,
+      "Diesel": 53518,
+      "Électrique": 5208,
+      "Essence": 60251,
+      "Autre": 1342,
+      "Hybride rechargeable": 5545
+     }
+    }
+   }
+  },
+  "70": {
+   "code": "70",
+   "region": "27",
+   "neufs": {
+    "2024": {
+     "total": 4009,
+     "carburants": {
+      "Diesel": 399,
+      "Électrique": 602,
+      "Hybride non rechargeable": 1238,
+      "Essence": 1356,
+      "Autre": 167,
+      "Hybride rechargeable": 247
+     }
+    },
+    "2025": {
+     "total": 3735,
+     "carburants": {
+      "Diesel": 191,
+      "Électrique": 633,
+      "Hybride non rechargeable": 1590,
+      "Essence": 977,
+      "Autre": 171,
+      "Hybride rechargeable": 173
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 21672,
+     "carburants": {
+      "Hybride non rechargeable": 851,
+      "Diesel": 12189,
+      "Électrique": 296,
+      "Essence": 7813,
+      "Autre": 128,
+      "Hybride rechargeable": 395
+     }
+    },
+    "2025": {
+     "total": 21865,
+     "carburants": {
+      "Hybride non rechargeable": 1303,
+      "Diesel": 11894,
+      "Électrique": 465,
+      "Essence": 7553,
+      "Autre": 200,
+      "Hybride rechargeable": 450
+     }
+    }
+   }
+  },
+  "71": {
+   "code": "71",
+   "region": "27",
+   "neufs": {
+    "2024": {
+     "total": 11165,
+     "carburants": {
+      "Diesel": 915,
+      "Hybride non rechargeable": 3806,
+      "Essence": 3414,
+      "Électrique": 1829,
+      "Autre": 409,
+      "Hybride rechargeable": 792
+     }
+    },
+    "2025": {
+     "total": 10546,
+     "carburants": {
+      "Diesel": 533,
+      "Hybride non rechargeable": 4457,
+      "Essence": 2389,
+      "Électrique": 1968,
+      "Autre": 552,
+      "Hybride rechargeable": 647
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 47114,
+     "carburants": {
+      "Hybride non rechargeable": 2467,
+      "Diesel": 24597,
+      "Électrique": 880,
+      "Essence": 17997,
+      "Autre": 290,
+      "Hybride rechargeable": 883
+     }
+    },
+    "2025": {
+     "total": 47649,
+     "carburants": {
+      "Hybride non rechargeable": 3653,
+      "Diesel": 23359,
+      "Électrique": 1309,
+      "Essence": 17657,
+      "Autre": 485,
+      "Hybride rechargeable": 1186
+     }
+    }
+   }
+  },
+  "72": {
+   "code": "72",
+   "region": "52",
+   "neufs": {
+    "2024": {
+     "total": 11535,
+     "carburants": {
+      "Diesel": 955,
+      "Électrique": 1972,
+      "Hybride non rechargeable": 4066,
+      "Essence": 3381,
+      "Autre": 535,
+      "Hybride rechargeable": 626
+     }
+    },
+    "2025": {
+     "total": 10846,
+     "carburants": {
+      "Diesel": 554,
+      "Électrique": 2065,
+      "Hybride non rechargeable": 4524,
+      "Essence": 2654,
+      "Autre": 499,
+      "Hybride rechargeable": 550
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 45034,
+     "carburants": {
+      "Hybride non rechargeable": 2468,
+      "Diesel": 22945,
+      "Électrique": 835,
+      "Essence": 17675,
+      "Autre": 325,
+      "Hybride rechargeable": 786
+     }
+    },
+    "2025": {
+     "total": 46289,
+     "carburants": {
+      "Hybride non rechargeable": 3719,
+      "Diesel": 22609,
+      "Électrique": 1169,
+      "Essence": 17243,
+      "Autre": 441,
+      "Hybride rechargeable": 1108
+     }
+    }
+   }
+  },
+  "73": {
+   "code": "73",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 13829,
+     "carburants": {
+      "Diesel": 1474,
+      "Essence": 4403,
+      "Électrique": 2133,
+      "Hybride non rechargeable": 4405,
+      "Autre": 258,
+      "Hybride rechargeable": 1156
+     }
+    },
+    "2025": {
+     "total": 12181,
+     "carburants": {
+      "Diesel": 762,
+      "Essence": 3294,
+      "Électrique": 2282,
+      "Hybride non rechargeable": 4686,
+      "Autre": 270,
+      "Hybride rechargeable": 887
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 39704,
+     "carburants": {
+      "Hybride non rechargeable": 2604,
+      "Diesel": 17751,
+      "Électrique": 1010,
+      "Essence": 17046,
+      "Autre": 253,
+      "Hybride rechargeable": 1040
+     }
+    },
+    "2025": {
+     "total": 41417,
+     "carburants": {
+      "Hybride non rechargeable": 3701,
+      "Diesel": 17206,
+      "Électrique": 1464,
+      "Essence": 17348,
+      "Autre": 352,
+      "Hybride rechargeable": 1346
+     }
+    }
+   }
+  },
+  "74": {
+   "code": "74",
+   "region": "84",
+   "neufs": {
+    "2024": {
+     "total": 24573,
+     "carburants": {
+      "Diesel": 2025,
+      "Électrique": 4082,
+      "Hybride non rechargeable": 9045,
+      "Essence": 6500,
+      "Autre": 650,
+      "Hybride rechargeable": 2271
+     }
+    },
+    "2025": {
+     "total": 22016,
+     "carburants": {
+      "Diesel": 1097,
+      "Électrique": 4414,
+      "Hybride non rechargeable": 9944,
+      "Essence": 4293,
+      "Autre": 587,
+      "Hybride rechargeable": 1681
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 83464,
+     "carburants": {
+      "Hybride non rechargeable": 6872,
+      "Diesel": 32421,
+      "Électrique": 2415,
+      "Essence": 38664,
+      "Autre": 449,
+      "Hybride rechargeable": 2643
+     }
+    },
+    "2025": {
+     "total": 85453,
+     "carburants": {
+      "Hybride non rechargeable": 9164,
+      "Diesel": 30710,
+      "Électrique": 3181,
+      "Essence": 38234,
+      "Autre": 654,
+      "Hybride rechargeable": 3510
+     }
+    }
+   }
+  },
+  "75": {
+   "code": "75",
+   "region": "11",
+   "neufs": {
+    "2024": {
+     "total": 82189,
+     "carburants": {
+      "Diesel": 5467,
+      "Électrique": 7999,
+      "Hybride non rechargeable": 29816,
+      "Essence": 24099,
+      "Autre": 856,
+      "Hybride rechargeable": 13952
+     }
+    },
+    "2025": {
+     "total": 104079,
+     "carburants": {
+      "Diesel": 6780,
+      "Électrique": 13299,
+      "Hybride non rechargeable": 48262,
+      "Essence": 23517,
+      "Autre": 2402,
+      "Hybride rechargeable": 9819
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 56769,
+     "carburants": {
+      "Hybride non rechargeable": 7403,
+      "Diesel": 13256,
+      "Électrique": 3312,
+      "Essence": 28217,
+      "Autre": 280,
+      "Hybride rechargeable": 4301
+     }
+    },
+    "2025": {
+     "total": 57870,
+     "carburants": {
+      "Hybride non rechargeable": 9861,
+      "Diesel": 12668,
+      "Électrique": 3440,
+      "Essence": 26299,
+      "Autre": 335,
+      "Hybride rechargeable": 5267
+     }
+    }
+   }
+  },
+  "76": {
+   "code": "76",
+   "region": "28",
+   "neufs": {
+    "2024": {
+     "total": 54510,
+     "carburants": {
+      "Diesel": 3687,
+      "Électrique": 5318,
+      "Hybride non rechargeable": 18248,
+      "Essence": 22009,
+      "Autre": 2080,
+      "Hybride rechargeable": 3168
+     }
+    },
+    "2025": {
+     "total": 38203,
+     "carburants": {
+      "Diesel": 1736,
+      "Électrique": 6186,
+      "Hybride non rechargeable": 15587,
+      "Essence": 10907,
+      "Autre": 2179,
+      "Hybride rechargeable": 1608
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 105533,
+     "carburants": {
+      "Hybride non rechargeable": 6048,
+      "Diesel": 48865,
+      "Électrique": 2356,
+      "Essence": 45244,
+      "Autre": 730,
+      "Hybride rechargeable": 2290
+     }
+    },
+    "2025": {
+     "total": 102193,
+     "carburants": {
+      "Hybride non rechargeable": 8357,
+      "Diesel": 44709,
+      "Électrique": 3384,
+      "Essence": 42124,
+      "Autre": 973,
+      "Hybride rechargeable": 2646
+     }
+    }
+   }
+  },
+  "77": {
+   "code": "77",
+   "region": "11",
+   "neufs": {
+    "2024": {
+     "total": 33485,
+     "carburants": {
+      "Diesel": 2288,
+      "Électrique": 5897,
+      "Hybride non rechargeable": 12050,
+      "Essence": 9697,
+      "Hybride rechargeable": 2631,
+      "Autre": 922
+     }
+    },
+    "2025": {
+     "total": 33230,
+     "carburants": {
+      "Diesel": 1045,
+      "Électrique": 6260,
+      "Hybride non rechargeable": 15433,
+      "Essence": 7436,
+      "Hybride rechargeable": 2260,
+      "Autre": 796
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 117124,
+     "carburants": {
+      "Hybride non rechargeable": 9901,
+      "Diesel": 50179,
+      "Électrique": 2997,
+      "Essence": 49696,
+      "Autre": 780,
+      "Hybride rechargeable": 3571
+     }
+    },
+    "2025": {
+     "total": 120453,
+     "carburants": {
+      "Hybride non rechargeable": 13254,
+      "Diesel": 48610,
+      "Électrique": 4140,
+      "Essence": 49174,
+      "Autre": 935,
+      "Hybride rechargeable": 4340
+     }
+    }
+   }
+  },
+  "78": {
+   "code": "78",
+   "region": "11",
+   "neufs": {
+    "2024": {
+     "total": 63599,
+     "carburants": {
+      "Diesel": 4013,
+      "Électrique": 10005,
+      "Hybride non rechargeable": 23796,
+      "Essence": 18628,
+      "Hybride rechargeable": 5706,
+      "Autre": 1451
+     }
+    },
+    "2025": {
+     "total": 75224,
+     "carburants": {
+      "Diesel": 4428,
+      "Électrique": 14904,
+      "Hybride non rechargeable": 35035,
+      "Essence": 15561,
+      "Hybride rechargeable": 4153,
+      "Autre": 1143
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 136399,
+     "carburants": {
+      "Hybride non rechargeable": 12782,
+      "Diesel": 40280,
+      "Électrique": 10620,
+      "Essence": 62046,
+      "Autre": 670,
+      "Hybride rechargeable": 10001
+     }
+    },
+    "2025": {
+     "total": 105597,
+     "carburants": {
+      "Hybride non rechargeable": 13795,
+      "Diesel": 36204,
+      "Électrique": 4603,
+      "Essence": 45520,
+      "Autre": 878,
+      "Hybride rechargeable": 4597
+     }
+    }
+   }
+  },
+  "79": {
+   "code": "79",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 6422,
+     "carburants": {
+      "Diesel": 548,
+      "Électrique": 1200,
+      "Hybride non rechargeable": 2200,
+      "Essence": 1812,
+      "Autre": 216,
+      "Hybride rechargeable": 446
+     }
+    },
+    "2025": {
+     "total": 6272,
+     "carburants": {
+      "Diesel": 330,
+      "Électrique": 1157,
+      "Hybride non rechargeable": 2837,
+      "Essence": 1295,
+      "Autre": 240,
+      "Hybride rechargeable": 413
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 33450,
+     "carburants": {
+      "Hybride non rechargeable": 1934,
+      "Diesel": 18279,
+      "Électrique": 577,
+      "Essence": 11839,
+      "Hybride rechargeable": 625,
+      "Autre": 196
+     }
+    },
+    "2025": {
+     "total": 33464,
+     "carburants": {
+      "Hybride non rechargeable": 2866,
+      "Diesel": 17247,
+      "Électrique": 789,
+      "Essence": 11595,
+      "Hybride rechargeable": 765,
+      "Autre": 202
+     }
+    }
+   }
+  },
+  "80": {
+   "code": "80",
+   "region": "32",
+   "neufs": {
+    "2024": {
+     "total": 23264,
+     "carburants": {
+      "Diesel": 2741,
+      "Hybride non rechargeable": 7047,
+      "Essence": 9483,
+      "Hybride rechargeable": 1696,
+      "Électrique": 1725,
+      "Autre": 572
+     }
+    },
+    "2025": {
+     "total": 16772,
+     "carburants": {
+      "Diesel": 999,
+      "Hybride non rechargeable": 8058,
+      "Essence": 4523,
+      "Hybride rechargeable": 579,
+      "Électrique": 2200,
+      "Autre": 413
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 49329,
+     "carburants": {
+      "Hybride non rechargeable": 2634,
+      "Diesel": 26751,
+      "Électrique": 716,
+      "Essence": 18123,
+      "Autre": 261,
+      "Hybride rechargeable": 844
+     }
+    },
+    "2025": {
+     "total": 51442,
+     "carburants": {
+      "Hybride non rechargeable": 3918,
+      "Diesel": 25804,
+      "Électrique": 1233,
+      "Essence": 18934,
+      "Autre": 436,
+      "Hybride rechargeable": 1117
+     }
+    }
+   }
+  },
+  "81": {
+   "code": "81",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 8473,
+     "carburants": {
+      "Hybride non rechargeable": 2838,
+      "Diesel": 722,
+      "Électrique": 1966,
+      "Essence": 2140,
+      "Hybride rechargeable": 564,
+      "Autre": 243
+     }
+    },
+    "2025": {
+     "total": 8013,
+     "carburants": {
+      "Hybride non rechargeable": 3398,
+      "Diesel": 457,
+      "Électrique": 1728,
+      "Essence": 1622,
+      "Hybride rechargeable": 519,
+      "Autre": 289
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 34811,
+     "carburants": {
+      "Hybride non rechargeable": 1911,
+      "Diesel": 18460,
+      "Électrique": 842,
+      "Essence": 12706,
+      "Autre": 249,
+      "Hybride rechargeable": 643
+     }
+    },
+    "2025": {
+     "total": 35725,
+     "carburants": {
+      "Hybride non rechargeable": 2799,
+      "Diesel": 17928,
+      "Électrique": 1185,
+      "Essence": 12622,
+      "Autre": 376,
+      "Hybride rechargeable": 815
+     }
+    }
+   }
+  },
+  "82": {
+   "code": "82",
+   "region": "76",
+   "neufs": {
+    "2024": {
+     "total": 5024,
+     "carburants": {
+      "Électrique": 1227,
+      "Hybride non rechargeable": 1530,
+      "Essence": 1288,
+      "Diesel": 461,
+      "Autre": 183,
+      "Hybride rechargeable": 335
+     }
+    },
+    "2025": {
+     "total": 4580,
+     "carburants": {
+      "Électrique": 1218,
+      "Hybride non rechargeable": 1793,
+      "Essence": 839,
+      "Diesel": 269,
+      "Autre": 161,
+      "Hybride rechargeable": 300
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 25940,
+     "carburants": {
+      "Hybride non rechargeable": 1319,
+      "Diesel": 14600,
+      "Électrique": 604,
+      "Essence": 8687,
+      "Autre": 219,
+      "Hybride rechargeable": 511
+     }
+    },
+    "2025": {
+     "total": 27014,
+     "carburants": {
+      "Hybride non rechargeable": 1918,
+      "Diesel": 14444,
+      "Électrique": 860,
+      "Essence": 8819,
+      "Autre": 258,
+      "Hybride rechargeable": 715
+     }
+    }
+   }
+  },
+  "83": {
+   "code": "83",
+   "region": "93",
+   "neufs": {
+    "2024": {
+     "total": 30869,
+     "carburants": {
+      "Diesel": 1295,
+      "Électrique": 6123,
+      "Hybride non rechargeable": 10325,
+      "Essence": 9122,
+      "Autre": 1329,
+      "Hybride rechargeable": 2675
+     }
+    },
+    "2025": {
+     "total": 29721,
+     "carburants": {
+      "Diesel": 890,
+      "Électrique": 6322,
+      "Hybride non rechargeable": 12139,
+      "Essence": 6822,
+      "Autre": 1331,
+      "Hybride rechargeable": 2217
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 103989,
+     "carburants": {
+      "Hybride non rechargeable": 7209,
+      "Diesel": 40764,
+      "Électrique": 2799,
+      "Essence": 49492,
+      "Autre": 773,
+      "Hybride rechargeable": 2952
+     }
+    },
+    "2025": {
+     "total": 107163,
+     "carburants": {
+      "Hybride non rechargeable": 9545,
+      "Diesel": 39122,
+      "Électrique": 3914,
+      "Essence": 49842,
+      "Autre": 1058,
+      "Hybride rechargeable": 3682
+     }
+    }
+   }
+  },
+  "84": {
+   "code": "84",
+   "region": "93",
+   "neufs": {
+    "2024": {
+     "total": 14737,
+     "carburants": {
+      "Diesel": 900,
+      "Électrique": 3066,
+      "Hybride non rechargeable": 4767,
+      "Essence": 3912,
+      "Hybride rechargeable": 1327,
+      "Autre": 765
+     }
+    },
+    "2025": {
+     "total": 13915,
+     "carburants": {
+      "Diesel": 596,
+      "Électrique": 3172,
+      "Hybride non rechargeable": 5439,
+      "Essence": 2889,
+      "Hybride rechargeable": 1150,
+      "Autre": 669
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 54124,
+     "carburants": {
+      "Hybride non rechargeable": 3021,
+      "Diesel": 27311,
+      "Électrique": 1296,
+      "Essence": 20835,
+      "Autre": 390,
+      "Hybride rechargeable": 1271
+     }
+    },
+    "2025": {
+     "total": 55814,
+     "carburants": {
+      "Hybride non rechargeable": 3982,
+      "Diesel": 27237,
+      "Électrique": 1876,
+      "Essence": 20438,
+      "Autre": 510,
+      "Hybride rechargeable": 1771
+     }
+    }
+   }
+  },
+  "85": {
+   "code": "85",
+   "region": "52",
+   "neufs": {
+    "2024": {
+     "total": 17172,
+     "carburants": {
+      "Diesel": 1874,
+      "Électrique": 3110,
+      "Hybride non rechargeable": 6315,
+      "Essence": 4303,
+      "Autre": 562,
+      "Hybride rechargeable": 1008
+     }
+    },
+    "2025": {
+     "total": 15505,
+     "carburants": {
+      "Diesel": 845,
+      "Électrique": 3212,
+      "Hybride non rechargeable": 7181,
+      "Essence": 2897,
+      "Autre": 583,
+      "Hybride rechargeable": 787
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 64455,
+     "carburants": {
+      "Hybride non rechargeable": 4195,
+      "Diesel": 33377,
+      "Électrique": 1461,
+      "Essence": 23706,
+      "Autre": 453,
+      "Hybride rechargeable": 1263
+     }
+    },
+    "2025": {
+     "total": 66130,
+     "carburants": {
+      "Hybride non rechargeable": 6168,
+      "Diesel": 31597,
+      "Électrique": 2136,
+      "Essence": 23997,
+      "Autre": 583,
+      "Hybride rechargeable": 1649
+     }
+    }
+   }
+  },
+  "86": {
+   "code": "86",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 14230,
+     "carburants": {
+      "Diesel": 1191,
+      "Hybride non rechargeable": 5094,
+      "Électrique": 1650,
+      "Essence": 5456,
+      "Autre": 286,
+      "Hybride rechargeable": 553
+     }
+    },
+    "2025": {
+     "total": 11138,
+     "carburants": {
+      "Diesel": 740,
+      "Hybride non rechargeable": 5552,
+      "Électrique": 1928,
+      "Essence": 2259,
+      "Autre": 247,
+      "Hybride rechargeable": 412
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 36729,
+     "carburants": {
+      "Hybride non rechargeable": 2215,
+      "Diesel": 18833,
+      "Électrique": 800,
+      "Essence": 14009,
+      "Autre": 237,
+      "Hybride rechargeable": 635
+     }
+    },
+    "2025": {
+     "total": 37209,
+     "carburants": {
+      "Hybride non rechargeable": 3091,
+      "Diesel": 17911,
+      "Électrique": 1312,
+      "Essence": 13683,
+      "Autre": 328,
+      "Hybride rechargeable": 884
+     }
+    }
+   }
+  },
+  "87": {
+   "code": "87",
+   "region": "75",
+   "neufs": {
+    "2024": {
+     "total": 8775,
+     "carburants": {
+      "Diesel": 686,
+      "Électrique": 1417,
+      "Hybride non rechargeable": 3137,
+      "Essence": 2718,
+      "Autre": 236,
+      "Hybride rechargeable": 581
+     }
+    },
+    "2025": {
+     "total": 7573,
+     "carburants": {
+      "Diesel": 295,
+      "Électrique": 1604,
+      "Hybride non rechargeable": 3428,
+      "Essence": 1622,
+      "Autre": 227,
+      "Hybride rechargeable": 397
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 33154,
+     "carburants": {
+      "Hybride non rechargeable": 2098,
+      "Diesel": 16430,
+      "Électrique": 667,
+      "Essence": 13203,
+      "Autre": 202,
+      "Hybride rechargeable": 554
+     }
+    },
+    "2025": {
+     "total": 33596,
+     "carburants": {
+      "Hybride non rechargeable": 2941,
+      "Diesel": 15702,
+      "Électrique": 868,
+      "Essence": 13076,
+      "Autre": 252,
+      "Hybride rechargeable": 757
+     }
+    }
+   }
+  },
+  "88": {
+   "code": "88",
+   "region": "44",
+   "neufs": {
+    "2024": {
+     "total": 7955,
+     "carburants": {
+      "Diesel": 786,
+      "Hybride non rechargeable": 2508,
+      "Essence": 2470,
+      "Électrique": 1287,
+      "Autre": 369,
+      "Hybride rechargeable": 535
+     }
+    },
+    "2025": {
+     "total": 7225,
+     "carburants": {
+      "Diesel": 431,
+      "Hybride non rechargeable": 3194,
+      "Essence": 1469,
+      "Électrique": 1340,
+      "Autre": 377,
+      "Hybride rechargeable": 414
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 33135,
+     "carburants": {
+      "Hybride non rechargeable": 1695,
+      "Diesel": 17799,
+      "Électrique": 606,
+      "Essence": 12117,
+      "Autre": 289,
+      "Hybride rechargeable": 629
+     }
+    },
+    "2025": {
+     "total": 32891,
+     "carburants": {
+      "Hybride non rechargeable": 2413,
+      "Diesel": 16552,
+      "Électrique": 831,
+      "Essence": 11877,
+      "Autre": 413,
+      "Hybride rechargeable": 805
+     }
+    }
+   }
+  },
+  "89": {
+   "code": "89",
+   "region": "27",
+   "neufs": {
+    "2024": {
+     "total": 6348,
+     "carburants": {
+      "Diesel": 672,
+      "Électrique": 1133,
+      "Hybride non rechargeable": 1992,
+      "Essence": 1921,
+      "Autre": 203,
+      "Hybride rechargeable": 427
+     }
+    },
+    "2025": {
+     "total": 5682,
+     "carburants": {
+      "Diesel": 431,
+      "Électrique": 1138,
+      "Hybride non rechargeable": 2331,
+      "Essence": 1233,
+      "Autre": 202,
+      "Hybride rechargeable": 347
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 28829,
+     "carburants": {
+      "Hybride non rechargeable": 1555,
+      "Diesel": 15582,
+      "Électrique": 499,
+      "Essence": 10476,
+      "Autre": 215,
+      "Hybride rechargeable": 502
+     }
+    },
+    "2025": {
+     "total": 29431,
+     "carburants": {
+      "Hybride non rechargeable": 2176,
+      "Diesel": 15214,
+      "Électrique": 712,
+      "Essence": 10461,
+      "Autre": 255,
+      "Hybride rechargeable": 613
+     }
+    }
+   }
+  },
+  "90": {
+   "code": "90",
+   "region": "27",
+   "neufs": {
+    "2024": {
+     "total": 2951,
+     "carburants": {
+      "Hybride non rechargeable": 1009,
+      "Essence": 934,
+      "Diesel": 203,
+      "Électrique": 479,
+      "Autre": 113,
+      "Hybride rechargeable": 213
+     }
+    },
+    "2025": {
+     "total": 2656,
+     "carburants": {
+      "Hybride non rechargeable": 1133,
+      "Essence": 631,
+      "Diesel": 154,
+      "Électrique": 482,
+      "Autre": 81,
+      "Hybride rechargeable": 175
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 12296,
+     "carburants": {
+      "Hybride non rechargeable": 526,
+      "Diesel": 6343,
+      "Électrique": 209,
+      "Essence": 4905,
+      "Autre": 68,
+      "Hybride rechargeable": 245
+     }
+    },
+    "2025": {
+     "total": 12015,
+     "carburants": {
+      "Hybride non rechargeable": 784,
+      "Diesel": 5845,
+      "Électrique": 308,
+      "Essence": 4665,
+      "Autre": 116,
+      "Hybride rechargeable": 297
+     }
+    }
+   }
+  },
+  "91": {
+   "code": "91",
+   "region": "11",
+   "neufs": {
+    "2024": {
+     "total": 32482,
+     "carburants": {
+      "Hybride non rechargeable": 13030,
+      "Diesel": 1532,
+      "Électrique": 5331,
+      "Essence": 8906,
+      "Hybride rechargeable": 2836,
+      "Autre": 847
+     }
+    },
+    "2025": {
+     "total": 27694,
+     "carburants": {
+      "Hybride non rechargeable": 13479,
+      "Diesel": 828,
+      "Électrique": 5548,
+      "Essence": 4937,
+      "Hybride rechargeable": 2178,
+      "Autre": 724
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 99140,
+     "carburants": {
+      "Hybride non rechargeable": 9785,
+      "Diesel": 39046,
+      "Électrique": 2508,
+      "Essence": 43948,
+      "Autre": 777,
+      "Hybride rechargeable": 3076
+     }
+    },
+    "2025": {
+     "total": 101625,
+     "carburants": {
+      "Hybride non rechargeable": 12410,
+      "Diesel": 37457,
+      "Électrique": 3515,
+      "Essence": 43323,
+      "Autre": 944,
+      "Hybride rechargeable": 3976
+     }
+    }
+   }
+  },
+  "92": {
+   "code": "92",
+   "region": "11",
+   "neufs": {
+    "2024": {
+     "total": 79600,
+     "carburants": {
+      "Diesel": 1955,
+      "Électrique": 16237,
+      "Hybride non rechargeable": 32258,
+      "Essence": 16536,
+      "Hybride rechargeable": 12144,
+      "Autre": 470
+     }
+    },
+    "2025": {
+     "total": 71838,
+     "carburants": {
+      "Diesel": 1679,
+      "Électrique": 22161,
+      "Hybride non rechargeable": 34013,
+      "Essence": 6183,
+      "Hybride rechargeable": 7323,
+      "Autre": 479
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 74670,
+     "carburants": {
+      "Hybride non rechargeable": 10290,
+      "Diesel": 19718,
+      "Électrique": 2875,
+      "Essence": 37311,
+      "Autre": 403,
+      "Hybride rechargeable": 4073
+     }
+    },
+    "2025": {
+     "total": 74415,
+     "carburants": {
+      "Hybride non rechargeable": 12572,
+      "Diesel": 18251,
+      "Électrique": 3783,
+      "Essence": 34426,
+      "Autre": 456,
+      "Hybride rechargeable": 4927
+     }
+    }
+   }
+  },
+  "93": {
+   "code": "93",
+   "region": "11",
+   "neufs": {
+    "2024": {
+     "total": 22414,
+     "carburants": {
+      "Hybride non rechargeable": 9066,
+      "Diesel": 1119,
+      "Essence": 4836,
+      "Hybride rechargeable": 2396,
+      "Électrique": 4629,
+      "Autre": 368
+     }
+    },
+    "2025": {
+     "total": 20598,
+     "carburants": {
+      "Hybride non rechargeable": 9005,
+      "Diesel": 839,
+      "Essence": 3087,
+      "Hybride rechargeable": 1725,
+      "Électrique": 5544,
+      "Autre": 398
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 99353,
+     "carburants": {
+      "Hybride non rechargeable": 11216,
+      "Diesel": 45842,
+      "Électrique": 1676,
+      "Essence": 37187,
+      "Autre": 482,
+      "Hybride rechargeable": 2950
+     }
+    },
+    "2025": {
+     "total": 101036,
+     "carburants": {
+      "Hybride non rechargeable": 13360,
+      "Diesel": 44085,
+      "Électrique": 2439,
+      "Essence": 36895,
+      "Autre": 574,
+      "Hybride rechargeable": 3683
+     }
+    }
+   }
+  },
+  "94": {
+   "code": "94",
+   "region": "11",
+   "neufs": {
+    "2024": {
+     "total": 24186,
+     "carburants": {
+      "Diesel": 936,
+      "Électrique": 3707,
+      "Hybride non rechargeable": 10409,
+      "Essence": 5789,
+      "Hybride rechargeable": 2892,
+      "Autre": 453
+     }
+    },
+    "2025": {
+     "total": 21075,
+     "carburants": {
+      "Diesel": 586,
+      "Électrique": 4364,
+      "Hybride non rechargeable": 10732,
+      "Essence": 3111,
+      "Hybride rechargeable": 1868,
+      "Autre": 414
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 74048,
+     "carburants": {
+      "Hybride non rechargeable": 8510,
+      "Diesel": 25407,
+      "Électrique": 1809,
+      "Essence": 35063,
+      "Autre": 441,
+      "Hybride rechargeable": 2818
+     }
+    },
+    "2025": {
+     "total": 76085,
+     "carburants": {
+      "Hybride non rechargeable": 10784,
+      "Diesel": 24498,
+      "Électrique": 2560,
+      "Essence": 34369,
+      "Autre": 555,
+      "Hybride rechargeable": 3319
+     }
+    }
+   }
+  },
+  "95": {
+   "code": "95",
+   "region": "11",
+   "neufs": {
+    "2024": {
+     "total": 25457,
+     "carburants": {
+      "Diesel": 1092,
+      "Électrique": 4006,
+      "Hybride non rechargeable": 9645,
+      "Essence": 6617,
+      "Hybride rechargeable": 3504,
+      "Autre": 593
+     }
+    },
+    "2025": {
+     "total": 23653,
+     "carburants": {
+      "Diesel": 808,
+      "Électrique": 5207,
+      "Hybride non rechargeable": 9941,
+      "Essence": 5045,
+      "Hybride rechargeable": 2141,
+      "Autre": 511
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 95523,
+     "carburants": {
+      "Hybride non rechargeable": 9555,
+      "Diesel": 40727,
+      "Électrique": 2117,
+      "Essence": 39586,
+      "Autre": 512,
+      "Hybride rechargeable": 3026
+     }
+    },
+    "2025": {
+     "total": 98743,
+     "carburants": {
+      "Hybride non rechargeable": 12148,
+      "Diesel": 39832,
+      "Électrique": 2910,
+      "Essence": 39369,
+      "Autre": 599,
+      "Hybride rechargeable": 3885
+     }
+    }
+   }
+  },
+  "971": {
+   "code": "971",
+   "region": "01",
+   "neufs": {
+    "2024": {
+     "total": 13962,
+     "carburants": {
+      "Hybride non rechargeable": 4313,
+      "Diesel": 1107,
+      "Électrique": 844,
+      "Essence": 7114,
+      "Autre": 43,
+      "Hybride rechargeable": 541
+     }
+    },
+    "2025": {
+     "total": 12265,
+     "carburants": {
+      "Hybride non rechargeable": 5825,
+      "Diesel": 589,
+      "Électrique": 718,
+      "Essence": 4853,
+      "Autre": 46,
+      "Hybride rechargeable": 234
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 21936,
+     "carburants": {
+      "Hybride non rechargeable": 1248,
+      "Diesel": 8270,
+      "Électrique": 335,
+      "Essence": 11853,
+      "Hybride rechargeable": 222,
+      "Autre": 8
+     }
+    },
+    "2025": {
+     "total": 22807,
+     "carburants": {
+      "Hybride non rechargeable": 1706,
+      "Diesel": 8032,
+      "Électrique": 421,
+      "Essence": 12303,
+      "Hybride rechargeable": 331,
+      "Autre": 14
+     }
+    }
+   }
+  },
+  "972": {
+   "code": "972",
+   "region": "02",
+   "neufs": {
+    "2024": {
+     "total": 12874,
+     "carburants": {
+      "Diesel": 677,
+      "Essence": 7981,
+      "Hybride non rechargeable": 3111,
+      "Électrique": 627,
+      "Hybride rechargeable": 440,
+      "Autre": 38
+     }
+    },
+    "2025": {
+     "total": 12855,
+     "carburants": {
+      "Diesel": 310,
+      "Essence": 6287,
+      "Hybride non rechargeable": 5175,
+      "Électrique": 759,
+      "Hybride rechargeable": 294,
+      "Autre": 30
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 22161,
+     "carburants": {
+      "Hybride non rechargeable": 941,
+      "Diesel": 8093,
+      "Électrique": 293,
+      "Essence": 12665,
+      "Hybride rechargeable": 162,
+      "Autre": 7
+     }
+    },
+    "2025": {
+     "total": 23339,
+     "carburants": {
+      "Hybride non rechargeable": 1328,
+      "Diesel": 7918,
+      "Électrique": 358,
+      "Essence": 13399,
+      "Hybride rechargeable": 326,
+      "Autre": 10
+     }
+    }
+   }
+  },
+  "973": {
+   "code": "973",
+   "region": "03",
+   "neufs": {
+    "2024": {
+     "total": 5115,
+     "carburants": {
+      "Diesel": 522,
+      "Essence": 2936,
+      "Hybride non rechargeable": 1404,
+      "Électrique": 132,
+      "Autre": 1,
+      "Hybride rechargeable": 120
+     }
+    },
+    "2025": {
+     "total": 4816,
+     "carburants": {
+      "Diesel": 179,
+      "Essence": 1861,
+      "Hybride non rechargeable": 2512,
+      "Électrique": 120,
+      "Autre": 0,
+      "Hybride rechargeable": 144
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 9536,
+     "carburants": {
+      "Hybride non rechargeable": 512,
+      "Diesel": 4047,
+      "Électrique": 60,
+      "Essence": 4841,
+      "Hybride rechargeable": 74,
+      "Autre": 2
+     }
+    },
+    "2025": {
+     "total": 10160,
+     "carburants": {
+      "Hybride non rechargeable": 783,
+      "Diesel": 3953,
+      "Électrique": 80,
+      "Essence": 5218,
+      "Hybride rechargeable": 122,
+      "Autre": 4
+     }
+    }
+   }
+  },
+  "974": {
+   "code": "974",
+   "region": "04",
+   "neufs": {
+    "2024": {
+     "total": 24740,
+     "carburants": {
+      "Diesel": 3462,
+      "Électrique": 2832,
+      "Essence": 9059,
+      "Hybride rechargeable": 986,
+      "Hybride non rechargeable": 7934,
+      "Autre": 467
+     }
+    },
+    "2025": {
+     "total": 26463,
+     "carburants": {
+      "Diesel": 2579,
+      "Électrique": 2350,
+      "Essence": 8064,
+      "Hybride rechargeable": 528,
+      "Hybride non rechargeable": 12347,
+      "Autre": 595
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 64202,
+     "carburants": {
+      "Hybride non rechargeable": 3693,
+      "Diesel": 34092,
+      "Électrique": 1516,
+      "Essence": 24261,
+      "Hybride rechargeable": 631,
+      "Autre": 9
+     }
+    },
+    "2025": {
+     "total": 64323,
+     "carburants": {
+      "Hybride non rechargeable": 4803,
+      "Diesel": 32123,
+      "Électrique": 2097,
+      "Essence": 24408,
+      "Hybride rechargeable": 885,
+      "Autre": 7
+     }
+    }
+   }
+  },
+  "976": {
+   "code": "976",
+   "region": "06",
+   "neufs": {
+    "2024": {
+     "total": 1970,
+     "carburants": {
+      "Hybride non rechargeable": 756,
+      "Diesel": 237,
+      "Essence": 918,
+      "Électrique": 40,
+      "Autre": 8,
+      "Hybride rechargeable": 11
+     }
+    },
+    "2025": {
+     "total": 2279,
+     "carburants": {
+      "Hybride non rechargeable": 1345,
+      "Diesel": 76,
+      "Essence": 786,
+      "Électrique": 53,
+      "Autre": 10,
+      "Hybride rechargeable": 9
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 3941,
+     "carburants": {
+      "Diesel": 2068,
+      "Essence": 1652,
+      "Hybride non rechargeable": 195,
+      "Autre": 9,
+      "Hybride rechargeable": 12,
+      "Électrique": 5
+     }
+    },
+    "2025": {
+     "total": 4292,
+     "carburants": {
+      "Diesel": 2130,
+      "Essence": 1798,
+      "Hybride non rechargeable": 290,
+      "Autre": 27,
+      "Hybride rechargeable": 35,
+      "Électrique": 12
+     }
+    }
+   }
+  }
+ },
+ "villes": {
+  "06088": {
+   "code": "06088",
+   "neufs": {
+    "2024": {
+     "total": 7899,
+     "carburants": {
+      "Hybride non rechargeable": 2651,
+      "Diesel": 401,
+      "Électrique": 1522,
+      "Essence": 2271,
+      "Autre": 163,
+      "Hybride rechargeable": 891
+     }
+    },
+    "2025": {
+     "total": 7790,
+     "carburants": {
+      "Hybride non rechargeable": 2987,
+      "Diesel": 317,
+      "Électrique": 1787,
+      "Essence": 1875,
+      "Autre": 196,
+      "Hybride rechargeable": 628
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 22829,
+     "carburants": {
+      "Hybride non rechargeable": 2079,
+      "Diesel": 7773,
+      "Électrique": 734,
+      "Essence": 11327,
+      "Autre": 152,
+      "Hybride rechargeable": 764
+     }
+    },
+    "2025": {
+     "total": 23240,
+     "carburants": {
+      "Hybride non rechargeable": 2347,
+      "Diesel": 7374,
+      "Électrique": 1155,
+      "Essence": 11245,
+      "Autre": 177,
+      "Hybride rechargeable": 942
+     }
+    }
+   }
+  },
+  "13055": {
+   "code": "13055",
+   "neufs": {
+    "2024": {
+     "total": 17388,
+     "carburants": {
+      "Hybride non rechargeable": 5676,
+      "Diesel": 888,
+      "Électrique": 3467,
+      "Essence": 4990,
+      "Autre": 423,
+      "Hybride rechargeable": 1944
+     }
+    },
+    "2025": {
+     "total": 16245,
+     "carburants": {
+      "Hybride non rechargeable": 6449,
+      "Diesel": 526,
+      "Électrique": 3949,
+      "Essence": 3672,
+      "Autre": 335,
+      "Hybride rechargeable": 1314
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 59720,
+     "carburants": {
+      "Hybride non rechargeable": 3924,
+      "Diesel": 26149,
+      "Électrique": 1403,
+      "Essence": 26478,
+      "Autre": 414,
+      "Hybride rechargeable": 1352
+     }
+    },
+    "2025": {
+     "total": 60758,
+     "carburants": {
+      "Hybride non rechargeable": 4823,
+      "Diesel": 25547,
+      "Électrique": 1994,
+      "Essence": 26123,
+      "Autre": 527,
+      "Hybride rechargeable": 1744
+     }
+    }
+   }
+  },
+  "14118": {
+   "code": "14118",
+   "neufs": {
+    "2024": {
+     "total": 2220,
+     "carburants": {
+      "Hybride non rechargeable": 678,
+      "Diesel": 240,
+      "Électrique": 299,
+      "Essence": 731,
+      "Autre": 134,
+      "Hybride rechargeable": 138
+     }
+    },
+    "2025": {
+     "total": 2086,
+     "carburants": {
+      "Hybride non rechargeable": 833,
+      "Diesel": 119,
+      "Électrique": 330,
+      "Essence": 643,
+      "Autre": 72,
+      "Hybride rechargeable": 89
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 7350,
+     "carburants": {
+      "Hybride non rechargeable": 477,
+      "Diesel": 3138,
+      "Électrique": 153,
+      "Essence": 3376,
+      "Autre": 50,
+      "Hybride rechargeable": 156
+     }
+    },
+    "2025": {
+     "total": 6960,
+     "carburants": {
+      "Hybride non rechargeable": 580,
+      "Diesel": 2710,
+      "Électrique": 180,
+      "Essence": 3269,
+      "Autre": 71,
+      "Hybride rechargeable": 150
+     }
+    }
+   }
+  },
+  "18033": {
+   "code": "18033",
+   "neufs": {
+    "2024": {
+     "total": 1043,
+     "carburants": {
+      "Hybride non rechargeable": 341,
+      "Diesel": 98,
+      "Électrique": 114,
+      "Essence": 399,
+      "Autre": 21,
+      "Hybride rechargeable": 70
+     }
+    },
+    "2025": {
+     "total": 1105,
+     "carburants": {
+      "Hybride non rechargeable": 499,
+      "Diesel": 59,
+      "Électrique": 181,
+      "Essence": 284,
+      "Autre": 36,
+      "Hybride rechargeable": 46
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 5027,
+     "carburants": {
+      "Hybride non rechargeable": 350,
+      "Diesel": 2353,
+      "Électrique": 80,
+      "Essence": 2118,
+      "Autre": 14,
+      "Hybride rechargeable": 112
+     }
+    },
+    "2025": {
+     "total": 5125,
+     "carburants": {
+      "Hybride non rechargeable": 409,
+      "Diesel": 2289,
+      "Électrique": 119,
+      "Essence": 2159,
+      "Autre": 27,
+      "Hybride rechargeable": 122
+     }
+    }
+   }
+  },
+  "21231": {
+   "code": "21231",
+   "neufs": {
+    "2024": {
+     "total": 3650,
+     "carburants": {
+      "Hybride non rechargeable": 1372,
+      "Diesel": 248,
+      "Électrique": 456,
+      "Essence": 1198,
+      "Autre": 113,
+      "Hybride rechargeable": 263
+     }
+    },
+    "2025": {
+     "total": 3271,
+     "carburants": {
+      "Hybride non rechargeable": 1374,
+      "Diesel": 135,
+      "Électrique": 689,
+      "Essence": 798,
+      "Autre": 91,
+      "Hybride rechargeable": 184
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 9748,
+     "carburants": {
+      "Hybride non rechargeable": 677,
+      "Diesel": 4118,
+      "Électrique": 143,
+      "Essence": 4517,
+      "Autre": 86,
+      "Hybride rechargeable": 207
+     }
+    },
+    "2025": {
+     "total": 9996,
+     "carburants": {
+      "Hybride non rechargeable": 986,
+      "Diesel": 3992,
+      "Électrique": 237,
+      "Essence": 4444,
+      "Autre": 105,
+      "Hybride rechargeable": 232
+     }
+    }
+   }
+  },
+  "22278": {
+   "code": "22278",
+   "neufs": {
+    "2024": {
+     "total": 1412,
+     "carburants": {
+      "Hybride non rechargeable": 499,
+      "Diesel": 149,
+      "Électrique": 219,
+      "Essence": 351,
+      "Autre": 62,
+      "Hybride rechargeable": 132
+     }
+    },
+    "2025": {
+     "total": 1496,
+     "carburants": {
+      "Hybride non rechargeable": 585,
+      "Diesel": 80,
+      "Électrique": 252,
+      "Essence": 380,
+      "Autre": 60,
+      "Hybride rechargeable": 139
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 3440,
+     "carburants": {
+      "Hybride non rechargeable": 177,
+      "Diesel": 1757,
+      "Électrique": 72,
+      "Essence": 1342,
+      "Autre": 38,
+      "Hybride rechargeable": 54
+     }
+    },
+    "2025": {
+     "total": 3400,
+     "carburants": {
+      "Hybride non rechargeable": 197,
+      "Diesel": 1672,
+      "Électrique": 90,
+      "Essence": 1328,
+      "Autre": 46,
+      "Hybride rechargeable": 67
+     }
+    }
+   }
+  },
+  "25056": {
+   "code": "25056",
+   "neufs": {
+    "2024": {
+     "total": 3636,
+     "carburants": {
+      "Hybride non rechargeable": 1077,
+      "Diesel": 363,
+      "Électrique": 384,
+      "Essence": 1433,
+      "Autre": 63,
+      "Hybride rechargeable": 316
+     }
+    },
+    "2025": {
+     "total": 3247,
+     "carburants": {
+      "Hybride non rechargeable": 1290,
+      "Diesel": 217,
+      "Électrique": 511,
+      "Essence": 944,
+      "Autre": 54,
+      "Hybride rechargeable": 231
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 8241,
+     "carburants": {
+      "Hybride non rechargeable": 429,
+      "Diesel": 4152,
+      "Électrique": 121,
+      "Essence": 3328,
+      "Autre": 55,
+      "Hybride rechargeable": 156
+     }
+    },
+    "2025": {
+     "total": 8268,
+     "carburants": {
+      "Hybride non rechargeable": 605,
+      "Diesel": 3881,
+      "Électrique": 172,
+      "Essence": 3358,
+      "Autre": 67,
+      "Hybride rechargeable": 185
+     }
+    }
+   }
+  },
+  "27229": {
+   "code": "27229",
+   "neufs": {
+    "2024": {
+     "total": 4003,
+     "carburants": {
+      "Hybride non rechargeable": 1021,
+      "Diesel": 150,
+      "Électrique": 193,
+      "Essence": 2398,
+      "Autre": 58,
+      "Hybride rechargeable": 183
+     }
+    },
+    "2025": {
+     "total": 1691,
+     "carburants": {
+      "Hybride non rechargeable": 692,
+      "Diesel": 106,
+      "Électrique": 245,
+      "Essence": 507,
+      "Autre": 32,
+      "Hybride rechargeable": 109
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 4409,
+     "carburants": {
+      "Hybride non rechargeable": 340,
+      "Diesel": 2031,
+      "Électrique": 69,
+      "Essence": 1848,
+      "Autre": 21,
+      "Hybride rechargeable": 100
+     }
+    },
+    "2025": {
+     "total": 3996,
+     "carburants": {
+      "Hybride non rechargeable": 323,
+      "Diesel": 1897,
+      "Électrique": 108,
+      "Essence": 1543,
+      "Autre": 32,
+      "Hybride rechargeable": 93
+     }
+    }
+   }
+  },
+  "29019": {
+   "code": "29019",
+   "neufs": {
+    "2024": {
+     "total": 3284,
+     "carburants": {
+      "Hybride non rechargeable": 1084,
+      "Diesel": 232,
+      "Électrique": 444,
+      "Essence": 1194,
+      "Autre": 104,
+      "Hybride rechargeable": 226
+     }
+    },
+    "2025": {
+     "total": 2656,
+     "carburants": {
+      "Hybride non rechargeable": 1144,
+      "Diesel": 89,
+      "Électrique": 460,
+      "Essence": 682,
+      "Autre": 93,
+      "Hybride rechargeable": 188
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 9107,
+     "carburants": {
+      "Hybride non rechargeable": 592,
+      "Diesel": 4077,
+      "Électrique": 156,
+      "Essence": 4046,
+      "Autre": 59,
+      "Hybride rechargeable": 177
+     }
+    },
+    "2025": {
+     "total": 9309,
+     "carburants": {
+      "Hybride non rechargeable": 885,
+      "Diesel": 3776,
+      "Électrique": 270,
+      "Essence": 4121,
+      "Autre": 74,
+      "Hybride rechargeable": 183
+     }
+    }
+   }
+  },
+  "2A004": {
+   "code": "2A004",
+   "neufs": {
+    "2024": {
+     "total": 6003,
+     "carburants": {
+      "Hybride non rechargeable": 1494,
+      "Diesel": 297,
+      "Électrique": 294,
+      "Essence": 3261,
+      "Autre": 427,
+      "Hybride rechargeable": 230
+     }
+    },
+    "2025": {
+     "total": 6770,
+     "carburants": {
+      "Hybride non rechargeable": 2867,
+      "Diesel": 336,
+      "Électrique": 455,
+      "Essence": 2543,
+      "Autre": 401,
+      "Hybride rechargeable": 168
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 5426,
+     "carburants": {
+      "Hybride non rechargeable": 860,
+      "Diesel": 1566,
+      "Électrique": 106,
+      "Essence": 2757,
+      "Autre": 5,
+      "Hybride rechargeable": 132
+     }
+    },
+    "2025": {
+     "total": 4807,
+     "carburants": {
+      "Hybride non rechargeable": 499,
+      "Diesel": 1413,
+      "Électrique": 150,
+      "Essence": 2615,
+      "Autre": 13,
+      "Hybride rechargeable": 117
+     }
+    }
+   }
+  },
+  "2B033": {
+   "code": "2B033",
+   "neufs": {
+    "2024": {
+     "total": 1036,
+     "carburants": {
+      "Hybride non rechargeable": 318,
+      "Diesel": 58,
+      "Électrique": 175,
+      "Essence": 389,
+      "Autre": 5,
+      "Hybride rechargeable": 91
+     }
+    },
+    "2025": {
+     "total": 1067,
+     "carburants": {
+      "Hybride non rechargeable": 438,
+      "Diesel": 53,
+      "Électrique": 144,
+      "Essence": 374,
+      "Autre": 0,
+      "Hybride rechargeable": 58
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 2783,
+     "carburants": {
+      "Hybride non rechargeable": 169,
+      "Diesel": 1104,
+      "Électrique": 46,
+      "Essence": 1400,
+      "Autre": 5,
+      "Hybride rechargeable": 59
+     }
+    },
+    "2025": {
+     "total": 2819,
+     "carburants": {
+      "Hybride non rechargeable": 217,
+      "Diesel": 1037,
+      "Électrique": 70,
+      "Essence": 1410,
+      "Autre": 11,
+      "Hybride rechargeable": 74
+     }
+    }
+   }
+  },
+  "30189": {
+   "code": "30189",
+   "neufs": {
+    "2024": {
+     "total": 4788,
+     "carburants": {
+      "Hybride non rechargeable": 1519,
+      "Diesel": 354,
+      "Électrique": 888,
+      "Essence": 1398,
+      "Autre": 143,
+      "Hybride rechargeable": 486
+     }
+    },
+    "2025": {
+     "total": 4299,
+     "carburants": {
+      "Hybride non rechargeable": 1682,
+      "Diesel": 188,
+      "Électrique": 1122,
+      "Essence": 827,
+      "Autre": 148,
+      "Hybride rechargeable": 332
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 12669,
+     "carburants": {
+      "Hybride non rechargeable": 725,
+      "Diesel": 6826,
+      "Électrique": 349,
+      "Essence": 4411,
+      "Autre": 86,
+      "Hybride rechargeable": 272
+     }
+    },
+    "2025": {
+     "total": 12742,
+     "carburants": {
+      "Hybride non rechargeable": 880,
+      "Diesel": 6667,
+      "Électrique": 444,
+      "Essence": 4267,
+      "Autre": 118,
+      "Hybride rechargeable": 366
+     }
+    }
+   }
+  },
+  "31555": {
+   "code": "31555",
+   "neufs": {
+    "2024": {
+     "total": 11297,
+     "carburants": {
+      "Hybride non rechargeable": 3976,
+      "Diesel": 736,
+      "Électrique": 2068,
+      "Essence": 3066,
+      "Autre": 236,
+      "Hybride rechargeable": 1215
+     }
+    },
+    "2025": {
+     "total": 11070,
+     "carburants": {
+      "Hybride non rechargeable": 4832,
+      "Diesel": 474,
+      "Électrique": 2483,
+      "Essence": 2207,
+      "Autre": 243,
+      "Hybride rechargeable": 831
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 32822,
+     "carburants": {
+      "Hybride non rechargeable": 2265,
+      "Diesel": 13934,
+      "Électrique": 807,
+      "Essence": 14830,
+      "Autre": 294,
+      "Hybride rechargeable": 692
+     }
+    },
+    "2025": {
+     "total": 32784,
+     "carburants": {
+      "Hybride non rechargeable": 3045,
+      "Diesel": 13760,
+      "Électrique": 953,
+      "Essence": 13857,
+      "Autre": 345,
+      "Hybride rechargeable": 824
+     }
+    }
+   }
+  },
+  "33063": {
+   "code": "33063",
+   "neufs": {
+    "2024": {
+     "total": 4785,
+     "carburants": {
+      "Hybride non rechargeable": 1658,
+      "Diesel": 369,
+      "Électrique": 711,
+      "Essence": 1455,
+      "Autre": 129,
+      "Hybride rechargeable": 463
+     }
+    },
+    "2025": {
+     "total": 4196,
+     "carburants": {
+      "Hybride non rechargeable": 1887,
+      "Diesel": 169,
+      "Électrique": 745,
+      "Essence": 948,
+      "Autre": 90,
+      "Hybride rechargeable": 357
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 14593,
+     "carburants": {
+      "Hybride non rechargeable": 1172,
+      "Diesel": 5294,
+      "Électrique": 321,
+      "Essence": 7222,
+      "Autre": 118,
+      "Hybride rechargeable": 466
+     }
+    },
+    "2025": {
+     "total": 14797,
+     "carburants": {
+      "Hybride non rechargeable": 1587,
+      "Diesel": 4983,
+      "Électrique": 447,
+      "Essence": 7065,
+      "Autre": 161,
+      "Hybride rechargeable": 554
+     }
+    }
+   }
+  },
+  "34172": {
+   "code": "34172",
+   "neufs": {
+    "2024": {
+     "total": 5772,
+     "carburants": {
+      "Hybride non rechargeable": 1868,
+      "Diesel": 279,
+      "Électrique": 958,
+      "Essence": 1780,
+      "Autre": 156,
+      "Hybride rechargeable": 731
+     }
+    },
+    "2025": {
+     "total": 5884,
+     "carburants": {
+      "Hybride non rechargeable": 2064,
+      "Diesel": 201,
+      "Électrique": 1302,
+      "Essence": 1502,
+      "Autre": 168,
+      "Hybride rechargeable": 647
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 19599,
+     "carburants": {
+      "Hybride non rechargeable": 1326,
+      "Diesel": 8582,
+      "Électrique": 457,
+      "Essence": 8653,
+      "Autre": 139,
+      "Hybride rechargeable": 442
+     }
+    },
+    "2025": {
+     "total": 19689,
+     "carburants": {
+      "Hybride non rechargeable": 1677,
+      "Diesel": 8485,
+      "Électrique": 568,
+      "Essence": 8242,
+      "Autre": 175,
+      "Hybride rechargeable": 542
+     }
+    }
+   }
+  },
+  "35238": {
+   "code": "35238",
+   "neufs": {
+    "2024": {
+     "total": 3705,
+     "carburants": {
+      "Hybride non rechargeable": 1240,
+      "Diesel": 263,
+      "Électrique": 512,
+      "Essence": 1334,
+      "Autre": 105,
+      "Hybride rechargeable": 251
+     }
+    },
+    "2025": {
+     "total": 3562,
+     "carburants": {
+      "Hybride non rechargeable": 1451,
+      "Diesel": 148,
+      "Électrique": 791,
+      "Essence": 934,
+      "Autre": 72,
+      "Hybride rechargeable": 166
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 12146,
+     "carburants": {
+      "Hybride non rechargeable": 795,
+      "Diesel": 5675,
+      "Électrique": 219,
+      "Essence": 5164,
+      "Autre": 83,
+      "Hybride rechargeable": 210
+     }
+    },
+    "2025": {
+     "total": 12082,
+     "carburants": {
+      "Hybride non rechargeable": 1076,
+      "Diesel": 5415,
+      "Électrique": 282,
+      "Essence": 4923,
+      "Autre": 115,
+      "Hybride rechargeable": 271
+     }
+    }
+   }
+  },
+  "37261": {
+   "code": "37261",
+   "neufs": {
+    "2024": {
+     "total": 2631,
+     "carburants": {
+      "Hybride non rechargeable": 735,
+      "Diesel": 192,
+      "Électrique": 505,
+      "Essence": 874,
+      "Autre": 49,
+      "Hybride rechargeable": 276
+     }
+    },
+    "2025": {
+     "total": 2375,
+     "carburants": {
+      "Hybride non rechargeable": 933,
+      "Diesel": 131,
+      "Électrique": 431,
+      "Essence": 657,
+      "Autre": 82,
+      "Hybride rechargeable": 141
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 8856,
+     "carburants": {
+      "Hybride non rechargeable": 490,
+      "Diesel": 3750,
+      "Électrique": 153,
+      "Essence": 4265,
+      "Autre": 70,
+      "Hybride rechargeable": 128
+     }
+    },
+    "2025": {
+     "total": 8914,
+     "carburants": {
+      "Hybride non rechargeable": 786,
+      "Diesel": 3514,
+      "Électrique": 195,
+      "Essence": 4137,
+      "Autre": 92,
+      "Hybride rechargeable": 190
+     }
+    }
+   }
+  },
+  "38185": {
+   "code": "38185",
+   "neufs": {
+    "2024": {
+     "total": 2298,
+     "carburants": {
+      "Hybride non rechargeable": 818,
+      "Diesel": 146,
+      "Électrique": 378,
+      "Essence": 669,
+      "Autre": 112,
+      "Hybride rechargeable": 175
+     }
+    },
+    "2025": {
+     "total": 2092,
+     "carburants": {
+      "Hybride non rechargeable": 865,
+      "Diesel": 77,
+      "Électrique": 450,
+      "Essence": 450,
+      "Autre": 97,
+      "Hybride rechargeable": 153
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 8499,
+     "carburants": {
+      "Hybride non rechargeable": 463,
+      "Diesel": 3623,
+      "Électrique": 107,
+      "Essence": 4033,
+      "Autre": 100,
+      "Hybride rechargeable": 173
+     }
+    },
+    "2025": {
+     "total": 8862,
+     "carburants": {
+      "Hybride non rechargeable": 688,
+      "Diesel": 3491,
+      "Électrique": 218,
+      "Essence": 4118,
+      "Autre": 145,
+      "Hybride rechargeable": 202
+     }
+    }
+   }
+  },
+  "41018": {
+   "code": "41018",
+   "neufs": {
+    "2024": {
+     "total": 1354,
+     "carburants": {
+      "Hybride non rechargeable": 472,
+      "Diesel": 124,
+      "Électrique": 192,
+      "Essence": 422,
+      "Autre": 41,
+      "Hybride rechargeable": 103
+     }
+    },
+    "2025": {
+     "total": 1162,
+     "carburants": {
+      "Hybride non rechargeable": 431,
+      "Diesel": 60,
+      "Électrique": 186,
+      "Essence": 369,
+      "Autre": 33,
+      "Hybride rechargeable": 83
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 3828,
+     "carburants": {
+      "Hybride non rechargeable": 175,
+      "Diesel": 2114,
+      "Électrique": 62,
+      "Essence": 1395,
+      "Autre": 17,
+      "Hybride rechargeable": 65
+     }
+    },
+    "2025": {
+     "total": 3928,
+     "carburants": {
+      "Hybride non rechargeable": 269,
+      "Diesel": 2062,
+      "Électrique": 69,
+      "Essence": 1433,
+      "Autre": 35,
+      "Hybride rechargeable": 60
+     }
+    }
+   }
+  },
+  "42218": {
+   "code": "42218",
+   "neufs": {
+    "2024": {
+     "total": 3826,
+     "carburants": {
+      "Hybride non rechargeable": 1281,
+      "Diesel": 280,
+      "Électrique": 543,
+      "Essence": 1196,
+      "Autre": 116,
+      "Hybride rechargeable": 410
+     }
+    },
+    "2025": {
+     "total": 3556,
+     "carburants": {
+      "Hybride non rechargeable": 1459,
+      "Diesel": 163,
+      "Électrique": 586,
+      "Essence": 910,
+      "Autre": 157,
+      "Hybride rechargeable": 281
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 13160,
+     "carburants": {
+      "Hybride non rechargeable": 619,
+      "Diesel": 7287,
+      "Électrique": 251,
+      "Essence": 4683,
+      "Autre": 105,
+      "Hybride rechargeable": 215
+     }
+    },
+    "2025": {
+     "total": 13149,
+     "carburants": {
+      "Hybride non rechargeable": 737,
+      "Diesel": 7151,
+      "Électrique": 253,
+      "Essence": 4643,
+      "Autre": 107,
+      "Hybride rechargeable": 258
+     }
+    }
+   }
+  },
+  "44109": {
+   "code": "44109",
+   "neufs": {
+    "2024": {
+     "total": 4865,
+     "carburants": {
+      "Hybride non rechargeable": 1881,
+      "Diesel": 363,
+      "Électrique": 832,
+      "Essence": 1332,
+      "Autre": 122,
+      "Hybride rechargeable": 335
+     }
+    },
+    "2025": {
+     "total": 4614,
+     "carburants": {
+      "Hybride non rechargeable": 2249,
+      "Diesel": 149,
+      "Électrique": 1087,
+      "Essence": 811,
+      "Autre": 115,
+      "Hybride rechargeable": 203
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 18181,
+     "carburants": {
+      "Hybride non rechargeable": 1241,
+      "Diesel": 7909,
+      "Électrique": 392,
+      "Essence": 8143,
+      "Autre": 149,
+      "Hybride rechargeable": 347
+     }
+    },
+    "2025": {
+     "total": 18504,
+     "carburants": {
+      "Hybride non rechargeable": 1695,
+      "Diesel": 7842,
+      "Électrique": 530,
+      "Essence": 7801,
+      "Autre": 185,
+      "Hybride rechargeable": 451
+     }
+    }
+   }
+  },
+  "45234": {
+   "code": "45234",
+   "neufs": {
+    "2024": {
+     "total": 2259,
+     "carburants": {
+      "Hybride non rechargeable": 848,
+      "Diesel": 144,
+      "Électrique": 341,
+      "Essence": 638,
+      "Autre": 49,
+      "Hybride rechargeable": 239
+     }
+    },
+    "2025": {
+     "total": 2361,
+     "carburants": {
+      "Hybride non rechargeable": 1060,
+      "Diesel": 71,
+      "Électrique": 458,
+      "Essence": 534,
+      "Autre": 49,
+      "Hybride rechargeable": 189
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 8066,
+     "carburants": {
+      "Hybride non rechargeable": 511,
+      "Diesel": 3972,
+      "Électrique": 187,
+      "Essence": 3197,
+      "Autre": 44,
+      "Hybride rechargeable": 155
+     }
+    },
+    "2025": {
+     "total": 8355,
+     "carburants": {
+      "Hybride non rechargeable": 698,
+      "Diesel": 3932,
+      "Électrique": 210,
+      "Essence": 3242,
+      "Autre": 49,
+      "Hybride rechargeable": 224
+     }
+    }
+   }
+  },
+  "49007": {
+   "code": "49007",
+   "neufs": {
+    "2024": {
+     "total": 3485,
+     "carburants": {
+      "Hybride non rechargeable": 1342,
+      "Diesel": 217,
+      "Électrique": 505,
+      "Essence": 1137,
+      "Autre": 77,
+      "Hybride rechargeable": 207
+     }
+    },
+    "2025": {
+     "total": 3545,
+     "carburants": {
+      "Hybride non rechargeable": 1534,
+      "Diesel": 129,
+      "Électrique": 705,
+      "Essence": 912,
+      "Autre": 72,
+      "Hybride rechargeable": 193
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 9608,
+     "carburants": {
+      "Hybride non rechargeable": 613,
+      "Diesel": 4408,
+      "Électrique": 218,
+      "Essence": 4107,
+      "Autre": 71,
+      "Hybride rechargeable": 191
+     }
+    },
+    "2025": {
+     "total": 10151,
+     "carburants": {
+      "Hybride non rechargeable": 912,
+      "Diesel": 4411,
+      "Électrique": 275,
+      "Essence": 4250,
+      "Autre": 86,
+      "Hybride rechargeable": 217
+     }
+    }
+   }
+  },
+  "50129": {
+   "code": "50129",
+   "neufs": {
+    "2024": {
+     "total": 2186,
+     "carburants": {
+      "Hybride non rechargeable": 892,
+      "Diesel": 108,
+      "Électrique": 341,
+      "Essence": 623,
+      "Autre": 83,
+      "Hybride rechargeable": 139
+     }
+    },
+    "2025": {
+     "total": 1781,
+     "carburants": {
+      "Hybride non rechargeable": 841,
+      "Diesel": 67,
+      "Électrique": 351,
+      "Essence": 326,
+      "Autre": 80,
+      "Hybride rechargeable": 116
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 5991,
+     "carburants": {
+      "Hybride non rechargeable": 442,
+      "Diesel": 2563,
+      "Électrique": 156,
+      "Essence": 2652,
+      "Autre": 64,
+      "Hybride rechargeable": 114
+     }
+    },
+    "2025": {
+     "total": 5731,
+     "carburants": {
+      "Hybride non rechargeable": 563,
+      "Diesel": 2375,
+      "Électrique": 215,
+      "Essence": 2354,
+      "Autre": 64,
+      "Hybride rechargeable": 160
+     }
+    }
+   }
+  },
+  "51454": {
+   "code": "51454",
+   "neufs": {
+    "2024": {
+     "total": 4450,
+     "carburants": {
+      "Hybride non rechargeable": 1525,
+      "Diesel": 421,
+      "Électrique": 598,
+      "Essence": 1371,
+      "Autre": 105,
+      "Hybride rechargeable": 430
+     }
+    },
+    "2025": {
+     "total": 4237,
+     "carburants": {
+      "Hybride non rechargeable": 1782,
+      "Diesel": 266,
+      "Électrique": 765,
+      "Essence": 958,
+      "Autre": 136,
+      "Hybride rechargeable": 330
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 12789,
+     "carburants": {
+      "Hybride non rechargeable": 779,
+      "Diesel": 5934,
+      "Électrique": 237,
+      "Essence": 5484,
+      "Autre": 75,
+      "Hybride rechargeable": 280
+     }
+    },
+    "2025": {
+     "total": 12645,
+     "carburants": {
+      "Hybride non rechargeable": 1039,
+      "Diesel": 5652,
+      "Électrique": 313,
+      "Essence": 5275,
+      "Autre": 85,
+      "Hybride rechargeable": 281
+     }
+    }
+   }
+  },
+  "56121": {
+   "code": "56121",
+   "neufs": {
+    "2024": {
+     "total": 922,
+     "carburants": {
+      "Hybride non rechargeable": 327,
+      "Diesel": 108,
+      "Électrique": 158,
+      "Essence": 245,
+      "Autre": 33,
+      "Hybride rechargeable": 51
+     }
+    },
+    "2025": {
+     "total": 836,
+     "carburants": {
+      "Hybride non rechargeable": 361,
+      "Diesel": 25,
+      "Électrique": 145,
+      "Essence": 233,
+      "Autre": 40,
+      "Hybride rechargeable": 32
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 4121,
+     "carburants": {
+      "Hybride non rechargeable": 246,
+      "Diesel": 1906,
+      "Électrique": 72,
+      "Essence": 1791,
+      "Autre": 30,
+      "Hybride rechargeable": 76
+     }
+    },
+    "2025": {
+     "total": 4149,
+     "carburants": {
+      "Hybride non rechargeable": 322,
+      "Diesel": 1824,
+      "Électrique": 89,
+      "Essence": 1783,
+      "Autre": 32,
+      "Hybride rechargeable": 99
+     }
+    }
+   }
+  },
+  "57463": {
+   "code": "57463",
+   "neufs": {
+    "2024": {
+     "total": 3688,
+     "carburants": {
+      "Hybride non rechargeable": 1260,
+      "Diesel": 321,
+      "Électrique": 536,
+      "Essence": 1184,
+      "Autre": 51,
+      "Hybride rechargeable": 336
+     }
+    },
+    "2025": {
+     "total": 3470,
+     "carburants": {
+      "Hybride non rechargeable": 1616,
+      "Diesel": 179,
+      "Électrique": 550,
+      "Essence": 831,
+      "Autre": 53,
+      "Hybride rechargeable": 241
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 9533,
+     "carburants": {
+      "Hybride non rechargeable": 513,
+      "Diesel": 5105,
+      "Électrique": 174,
+      "Essence": 3482,
+      "Autre": 56,
+      "Hybride rechargeable": 203
+     }
+    },
+    "2025": {
+     "total": 9464,
+     "carburants": {
+      "Hybride non rechargeable": 716,
+      "Diesel": 4668,
+      "Électrique": 227,
+      "Essence": 3521,
+      "Autre": 59,
+      "Hybride rechargeable": 273
+     }
+    }
+   }
+  },
+  "59350": {
+   "code": "59350",
+   "neufs": {
+    "2024": {
+     "total": 5556,
+     "carburants": {
+      "Hybride non rechargeable": 1616,
+      "Diesel": 748,
+      "Électrique": 791,
+      "Essence": 1740,
+      "Autre": 150,
+      "Hybride rechargeable": 511
+     }
+    },
+    "2025": {
+     "total": 5305,
+     "carburants": {
+      "Hybride non rechargeable": 1861,
+      "Diesel": 394,
+      "Électrique": 1559,
+      "Essence": 1008,
+      "Autre": 121,
+      "Hybride rechargeable": 362
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 15039,
+     "carburants": {
+      "Hybride non rechargeable": 1053,
+      "Diesel": 7243,
+      "Électrique": 216,
+      "Essence": 6093,
+      "Autre": 139,
+      "Hybride rechargeable": 295
+     }
+    },
+    "2025": {
+     "total": 14874,
+     "carburants": {
+      "Hybride non rechargeable": 1351,
+      "Diesel": 6703,
+      "Électrique": 354,
+      "Essence": 5936,
+      "Autre": 175,
+      "Hybride rechargeable": 355
+     }
+    }
+   }
+  },
+  "60057": {
+   "code": "60057",
+   "neufs": {
+    "2024": {
+     "total": 1692,
+     "carburants": {
+      "Hybride non rechargeable": 582,
+      "Diesel": 162,
+      "Électrique": 209,
+      "Essence": 491,
+      "Autre": 38,
+      "Hybride rechargeable": 210
+     }
+    },
+    "2025": {
+     "total": 1657,
+     "carburants": {
+      "Hybride non rechargeable": 655,
+      "Diesel": 102,
+      "Électrique": 299,
+      "Essence": 366,
+      "Autre": 33,
+      "Hybride rechargeable": 202
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 5229,
+     "carburants": {
+      "Hybride non rechargeable": 296,
+      "Diesel": 2744,
+      "Électrique": 92,
+      "Essence": 1932,
+      "Autre": 37,
+      "Hybride rechargeable": 128
+     }
+    },
+    "2025": {
+     "total": 5449,
+     "carburants": {
+      "Hybride non rechargeable": 470,
+      "Diesel": 2546,
+      "Électrique": 259,
+      "Essence": 1904,
+      "Autre": 41,
+      "Hybride rechargeable": 229
+     }
+    }
+   }
+  },
+  "62193": {
+   "code": "62193",
+   "neufs": {
+    "2024": {
+     "total": 1260,
+     "carburants": {
+      "Hybride non rechargeable": 350,
+      "Diesel": 92,
+      "Électrique": 193,
+      "Essence": 474,
+      "Autre": 77,
+      "Hybride rechargeable": 74
+     }
+    },
+    "2025": {
+     "total": 1137,
+     "carburants": {
+      "Hybride non rechargeable": 436,
+      "Diesel": 68,
+      "Électrique": 200,
+      "Essence": 324,
+      "Autre": 56,
+      "Hybride rechargeable": 53
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 5339,
+     "carburants": {
+      "Hybride non rechargeable": 214,
+      "Diesel": 2946,
+      "Électrique": 83,
+      "Essence": 1996,
+      "Autre": 41,
+      "Hybride rechargeable": 59
+     }
+    },
+    "2025": {
+     "total": 5261,
+     "carburants": {
+      "Hybride non rechargeable": 287,
+      "Diesel": 2742,
+      "Électrique": 135,
+      "Essence": 1968,
+      "Autre": 60,
+      "Hybride rechargeable": 69
+     }
+    }
+   }
+  },
+  "63113": {
+   "code": "63113",
+   "neufs": {
+    "2024": {
+     "total": 3537,
+     "carburants": {
+      "Hybride non rechargeable": 1278,
+      "Diesel": 220,
+      "Électrique": 492,
+      "Essence": 1154,
+      "Autre": 115,
+      "Hybride rechargeable": 278
+     }
+    },
+    "2025": {
+     "total": 3052,
+     "carburants": {
+      "Hybride non rechargeable": 1320,
+      "Diesel": 116,
+      "Électrique": 604,
+      "Essence": 723,
+      "Autre": 98,
+      "Hybride rechargeable": 191
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 10007,
+     "carburants": {
+      "Hybride non rechargeable": 576,
+      "Diesel": 4729,
+      "Électrique": 228,
+      "Essence": 4229,
+      "Autre": 72,
+      "Hybride rechargeable": 173
+     }
+    },
+    "2025": {
+     "total": 10473,
+     "carburants": {
+      "Hybride non rechargeable": 817,
+      "Diesel": 4726,
+      "Électrique": 253,
+      "Essence": 4356,
+      "Autre": 83,
+      "Hybride rechargeable": 238
+     }
+    }
+   }
+  },
+  "64445": {
+   "code": "64445",
+   "neufs": {
+    "2024": {
+     "total": 1632,
+     "carburants": {
+      "Hybride non rechargeable": 557,
+      "Diesel": 116,
+      "Électrique": 177,
+      "Essence": 606,
+      "Autre": 79,
+      "Hybride rechargeable": 97
+     }
+    },
+    "2025": {
+     "total": 1551,
+     "carburants": {
+      "Hybride non rechargeable": 690,
+      "Diesel": 62,
+      "Électrique": 222,
+      "Essence": 437,
+      "Autre": 89,
+      "Hybride rechargeable": 51
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 5983,
+     "carburants": {
+      "Hybride non rechargeable": 409,
+      "Diesel": 2823,
+      "Électrique": 85,
+      "Essence": 2478,
+      "Autre": 65,
+      "Hybride rechargeable": 123
+     }
+    },
+    "2025": {
+     "total": 6292,
+     "carburants": {
+      "Hybride non rechargeable": 566,
+      "Diesel": 2861,
+      "Électrique": 134,
+      "Essence": 2533,
+      "Autre": 80,
+      "Hybride rechargeable": 118
+     }
+    }
+   }
+  },
+  "66136": {
+   "code": "66136",
+   "neufs": {
+    "2024": {
+     "total": 4447,
+     "carburants": {
+      "Hybride non rechargeable": 1299,
+      "Diesel": 327,
+      "Électrique": 486,
+      "Essence": 1700,
+      "Autre": 100,
+      "Hybride rechargeable": 535
+     }
+    },
+    "2025": {
+     "total": 4471,
+     "carburants": {
+      "Hybride non rechargeable": 2085,
+      "Diesel": 200,
+      "Électrique": 622,
+      "Essence": 1116,
+      "Autre": 73,
+      "Hybride rechargeable": 375
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 11705,
+     "carburants": {
+      "Hybride non rechargeable": 502,
+      "Diesel": 6284,
+      "Électrique": 409,
+      "Essence": 4143,
+      "Autre": 68,
+      "Hybride rechargeable": 299
+     }
+    },
+    "2025": {
+     "total": 11807,
+     "carburants": {
+      "Hybride non rechargeable": 745,
+      "Diesel": 6106,
+      "Électrique": 495,
+      "Essence": 4058,
+      "Autre": 85,
+      "Hybride rechargeable": 318
+     }
+    }
+   }
+  },
+  "67482": {
+   "code": "67482",
+   "neufs": {
+    "2024": {
+     "total": 5047,
+     "carburants": {
+      "Hybride non rechargeable": 1943,
+      "Diesel": 219,
+      "Électrique": 948,
+      "Essence": 1262,
+      "Autre": 132,
+      "Hybride rechargeable": 543
+     }
+    },
+    "2025": {
+     "total": 4594,
+     "carburants": {
+      "Hybride non rechargeable": 2184,
+      "Diesel": 168,
+      "Électrique": 801,
+      "Essence": 1056,
+      "Autre": 104,
+      "Hybride rechargeable": 281
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 18338,
+     "carburants": {
+      "Hybride non rechargeable": 1413,
+      "Diesel": 6701,
+      "Électrique": 335,
+      "Essence": 9157,
+      "Autre": 181,
+      "Hybride rechargeable": 551
+     }
+    },
+    "2025": {
+     "total": 17065,
+     "carburants": {
+      "Hybride non rechargeable": 1411,
+      "Diesel": 6619,
+      "Électrique": 357,
+      "Essence": 8041,
+      "Autre": 139,
+      "Hybride rechargeable": 498
+     }
+    }
+   }
+  },
+  "68224": {
+   "code": "68224",
+   "neufs": {
+    "2024": {
+     "total": 1780,
+     "carburants": {
+      "Hybride non rechargeable": 551,
+      "Diesel": 104,
+      "Électrique": 352,
+      "Essence": 545,
+      "Autre": 69,
+      "Hybride rechargeable": 159
+     }
+    },
+    "2025": {
+     "total": 1535,
+     "carburants": {
+      "Hybride non rechargeable": 646,
+      "Diesel": 78,
+      "Électrique": 293,
+      "Essence": 376,
+      "Autre": 31,
+      "Hybride rechargeable": 111
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 9155,
+     "carburants": {
+      "Hybride non rechargeable": 288,
+      "Diesel": 5394,
+      "Électrique": 113,
+      "Essence": 3191,
+      "Autre": 41,
+      "Hybride rechargeable": 128
+     }
+    },
+    "2025": {
+     "total": 9273,
+     "carburants": {
+      "Hybride non rechargeable": 335,
+      "Diesel": 5235,
+      "Électrique": 135,
+      "Essence": 3325,
+      "Autre": 52,
+      "Hybride rechargeable": 191
+     }
+    }
+   }
+  },
+  "69123": {
+   "code": "69123",
+   "neufs": {
+    "2024": {
+     "total": 14059,
+     "carburants": {
+      "Hybride non rechargeable": 5766,
+      "Diesel": 733,
+      "Électrique": 2215,
+      "Essence": 3536,
+      "Autre": 211,
+      "Hybride rechargeable": 1598
+     }
+    },
+    "2025": {
+     "total": 11353,
+     "carburants": {
+      "Hybride non rechargeable": 5137,
+      "Diesel": 289,
+      "Électrique": 2684,
+      "Essence": 2009,
+      "Autre": 245,
+      "Hybride rechargeable": 989
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 25831,
+     "carburants": {
+      "Hybride non rechargeable": 2247,
+      "Diesel": 8370,
+      "Électrique": 655,
+      "Essence": 13351,
+      "Autre": 229,
+      "Hybride rechargeable": 979
+     }
+    },
+    "2025": {
+     "total": 25158,
+     "carburants": {
+      "Hybride non rechargeable": 2777,
+      "Diesel": 7943,
+      "Électrique": 718,
+      "Essence": 12374,
+      "Autre": 308,
+      "Hybride rechargeable": 1038
+     }
+    }
+   }
+  },
+  "71076": {
+   "code": "71076",
+   "neufs": {
+    "2024": {
+     "total": 1266,
+     "carburants": {
+      "Hybride non rechargeable": 396,
+      "Diesel": 128,
+      "Électrique": 125,
+      "Essence": 385,
+      "Autre": 110,
+      "Hybride rechargeable": 122
+     }
+    },
+    "2025": {
+     "total": 1227,
+     "carburants": {
+      "Hybride non rechargeable": 491,
+      "Diesel": 67,
+      "Électrique": 198,
+      "Essence": 259,
+      "Autre": 143,
+      "Hybride rechargeable": 69
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 3189,
+     "carburants": {
+      "Hybride non rechargeable": 160,
+      "Diesel": 1645,
+      "Électrique": 51,
+      "Essence": 1263,
+      "Autre": 19,
+      "Hybride rechargeable": 51
+     }
+    },
+    "2025": {
+     "total": 3223,
+     "carburants": {
+      "Hybride non rechargeable": 224,
+      "Diesel": 1533,
+      "Électrique": 77,
+      "Essence": 1278,
+      "Autre": 36,
+      "Hybride rechargeable": 75
+     }
+    }
+   }
+  },
+  "72181": {
+   "code": "72181",
+   "neufs": {
+    "2024": {
+     "total": 4490,
+     "carburants": {
+      "Hybride non rechargeable": 1475,
+      "Diesel": 306,
+      "Électrique": 453,
+      "Essence": 1774,
+      "Autre": 154,
+      "Hybride rechargeable": 328
+     }
+    },
+    "2025": {
+     "total": 4100,
+     "carburants": {
+      "Hybride non rechargeable": 1642,
+      "Diesel": 216,
+      "Électrique": 661,
+      "Essence": 1185,
+      "Autre": 151,
+      "Hybride rechargeable": 245
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 9427,
+     "carburants": {
+      "Hybride non rechargeable": 618,
+      "Diesel": 4165,
+      "Électrique": 171,
+      "Essence": 4246,
+      "Autre": 83,
+      "Hybride rechargeable": 144
+     }
+    },
+    "2025": {
+     "total": 9906,
+     "carburants": {
+      "Hybride non rechargeable": 896,
+      "Diesel": 4176,
+      "Électrique": 248,
+      "Essence": 4240,
+      "Autre": 98,
+      "Hybride rechargeable": 248
+     }
+    }
+   }
+  },
+  "75056": {
+   "code": "75056",
+   "neufs": {
+    "2024": {
+     "total": 82188,
+     "carburants": {
+      "Hybride non rechargeable": 29816,
+      "Diesel": 5467,
+      "Électrique": 7999,
+      "Essence": 24098,
+      "Autre": 856,
+      "Hybride rechargeable": 13952
+     }
+    },
+    "2025": {
+     "total": 104079,
+     "carburants": {
+      "Hybride non rechargeable": 48262,
+      "Diesel": 6780,
+      "Électrique": 13299,
+      "Essence": 23517,
+      "Autre": 2402,
+      "Hybride rechargeable": 9819
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 56768,
+     "carburants": {
+      "Hybride non rechargeable": 7403,
+      "Diesel": 13256,
+      "Électrique": 3312,
+      "Essence": 28217,
+      "Autre": 280,
+      "Hybride rechargeable": 4300
+     }
+    },
+    "2025": {
+     "total": 57868,
+     "carburants": {
+      "Hybride non rechargeable": 9861,
+      "Diesel": 12667,
+      "Électrique": 3440,
+      "Essence": 26298,
+      "Autre": 335,
+      "Hybride rechargeable": 5267
+     }
+    }
+   }
+  },
+  "76351": {
+   "code": "76351",
+   "neufs": {
+    "2024": {
+     "total": 4207,
+     "carburants": {
+      "Hybride non rechargeable": 1471,
+      "Diesel": 263,
+      "Électrique": 518,
+      "Essence": 1399,
+      "Autre": 206,
+      "Hybride rechargeable": 350
+     }
+    },
+    "2025": {
+     "total": 3902,
+     "carburants": {
+      "Hybride non rechargeable": 1675,
+      "Diesel": 144,
+      "Électrique": 683,
+      "Essence": 931,
+      "Autre": 203,
+      "Hybride rechargeable": 266
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 11994,
+     "carburants": {
+      "Hybride non rechargeable": 655,
+      "Diesel": 5702,
+      "Électrique": 182,
+      "Essence": 5177,
+      "Autre": 83,
+      "Hybride rechargeable": 195
+     }
+    },
+    "2025": {
+     "total": 11591,
+     "carburants": {
+      "Hybride non rechargeable": 850,
+      "Diesel": 5127,
+      "Électrique": 309,
+      "Essence": 4930,
+      "Autre": 123,
+      "Hybride rechargeable": 252
+     }
+    }
+   }
+  },
+  "80021": {
+   "code": "80021",
+   "neufs": {
+    "2024": {
+     "total": 12736,
+     "carburants": {
+      "Hybride non rechargeable": 3960,
+      "Diesel": 1002,
+      "Électrique": 344,
+      "Essence": 6583,
+      "Autre": 211,
+      "Hybride rechargeable": 636
+     }
+    },
+    "2025": {
+     "total": 7522,
+     "carburants": {
+      "Hybride non rechargeable": 3915,
+      "Diesel": 334,
+      "Électrique": 644,
+      "Essence": 2426,
+      "Autre": 64,
+      "Hybride rechargeable": 139
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 10222,
+     "carburants": {
+      "Hybride non rechargeable": 559,
+      "Diesel": 5070,
+      "Électrique": 120,
+      "Essence": 4283,
+      "Autre": 53,
+      "Hybride rechargeable": 137
+     }
+    },
+    "2025": {
+     "total": 11608,
+     "carburants": {
+      "Hybride non rechargeable": 867,
+      "Diesel": 4951,
+      "Électrique": 187,
+      "Essence": 5199,
+      "Autre": 146,
+      "Hybride rechargeable": 258
+     }
+    }
+   }
+  },
+  "83137": {
+   "code": "83137",
+   "neufs": {
+    "2024": {
+     "total": 3949,
+     "carburants": {
+      "Hybride non rechargeable": 1517,
+      "Diesel": 140,
+      "Électrique": 443,
+      "Essence": 1480,
+      "Autre": 170,
+      "Hybride rechargeable": 199
+     }
+    },
+    "2025": {
+     "total": 3701,
+     "carburants": {
+      "Hybride non rechargeable": 1756,
+      "Diesel": 75,
+      "Électrique": 498,
+      "Essence": 1022,
+      "Autre": 168,
+      "Hybride rechargeable": 182
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 12368,
+     "carburants": {
+      "Hybride non rechargeable": 790,
+      "Diesel": 5060,
+      "Électrique": 228,
+      "Essence": 5970,
+      "Autre": 97,
+      "Hybride rechargeable": 223
+     }
+    },
+    "2025": {
+     "total": 12666,
+     "carburants": {
+      "Hybride non rechargeable": 1018,
+      "Diesel": 4843,
+      "Électrique": 317,
+      "Essence": 6088,
+      "Autre": 131,
+      "Hybride rechargeable": 269
+     }
+    }
+   }
+  },
+  "84007": {
+   "code": "84007",
+   "neufs": {
+    "2024": {
+     "total": 3288,
+     "carburants": {
+      "Hybride non rechargeable": 1029,
+      "Diesel": 198,
+      "Électrique": 508,
+      "Essence": 957,
+      "Autre": 210,
+      "Hybride rechargeable": 386
+     }
+    },
+    "2025": {
+     "total": 3042,
+     "carburants": {
+      "Hybride non rechargeable": 1161,
+      "Diesel": 162,
+      "Électrique": 609,
+      "Essence": 682,
+      "Autre": 138,
+      "Hybride rechargeable": 290
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 8038,
+     "carburants": {
+      "Hybride non rechargeable": 378,
+      "Diesel": 4711,
+      "Électrique": 155,
+      "Essence": 2592,
+      "Autre": 57,
+      "Hybride rechargeable": 145
+     }
+    },
+    "2025": {
+     "total": 8432,
+     "carburants": {
+      "Hybride non rechargeable": 481,
+      "Diesel": 4813,
+      "Électrique": 196,
+      "Essence": 2661,
+      "Autre": 83,
+      "Hybride rechargeable": 198
+     }
+    }
+   }
+  },
+  "85191": {
+   "code": "85191",
+   "neufs": {
+    "2024": {
+     "total": 1887,
+     "carburants": {
+      "Hybride non rechargeable": 619,
+      "Diesel": 213,
+      "Électrique": 269,
+      "Essence": 647,
+      "Autre": 44,
+      "Hybride rechargeable": 95
+     }
+    },
+    "2025": {
+     "total": 1735,
+     "carburants": {
+      "Hybride non rechargeable": 762,
+      "Diesel": 98,
+      "Électrique": 326,
+      "Essence": 432,
+      "Autre": 50,
+      "Hybride rechargeable": 67
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 4727,
+     "carburants": {
+      "Hybride non rechargeable": 347,
+      "Diesel": 2352,
+      "Électrique": 110,
+      "Essence": 1791,
+      "Autre": 34,
+      "Hybride rechargeable": 93
+     }
+    },
+    "2025": {
+     "total": 4634,
+     "carburants": {
+      "Hybride non rechargeable": 378,
+      "Diesel": 2139,
+      "Électrique": 159,
+      "Essence": 1833,
+      "Autre": 37,
+      "Hybride rechargeable": 88
+     }
+    }
+   }
+  },
+  "86194": {
+   "code": "86194",
+   "neufs": {
+    "2024": {
+     "total": 6149,
+     "carburants": {
+      "Hybride non rechargeable": 2423,
+      "Diesel": 537,
+      "Électrique": 287,
+      "Essence": 2609,
+      "Autre": 72,
+      "Hybride rechargeable": 221
+     }
+    },
+    "2025": {
+     "total": 2920,
+     "carburants": {
+      "Hybride non rechargeable": 1556,
+      "Diesel": 99,
+      "Électrique": 428,
+      "Essence": 681,
+      "Autre": 33,
+      "Hybride rechargeable": 123
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 5735,
+     "carburants": {
+      "Hybride non rechargeable": 339,
+      "Diesel": 2691,
+      "Électrique": 77,
+      "Essence": 2509,
+      "Autre": 40,
+      "Hybride rechargeable": 79
+     }
+    },
+    "2025": {
+     "total": 5895,
+     "carburants": {
+      "Hybride non rechargeable": 450,
+      "Diesel": 2675,
+      "Électrique": 153,
+      "Essence": 2454,
+      "Autre": 59,
+      "Hybride rechargeable": 104
+     }
+    }
+   }
+  },
+  "87085": {
+   "code": "87085",
+   "neufs": {
+    "2024": {
+     "total": 4569,
+     "carburants": {
+      "Hybride non rechargeable": 1682,
+      "Diesel": 333,
+      "Électrique": 515,
+      "Essence": 1590,
+      "Autre": 67,
+      "Hybride rechargeable": 382
+     }
+    },
+    "2025": {
+     "total": 3574,
+     "carburants": {
+      "Hybride non rechargeable": 1635,
+      "Diesel": 127,
+      "Électrique": 791,
+      "Essence": 738,
+      "Autre": 66,
+      "Hybride rechargeable": 217
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 10325,
+     "carburants": {
+      "Hybride non rechargeable": 661,
+      "Diesel": 4898,
+      "Électrique": 165,
+      "Essence": 4360,
+      "Autre": 72,
+      "Hybride rechargeable": 169
+     }
+    },
+    "2025": {
+     "total": 10465,
+     "carburants": {
+      "Hybride non rechargeable": 849,
+      "Diesel": 4710,
+      "Électrique": 223,
+      "Essence": 4383,
+      "Autre": 76,
+      "Hybride rechargeable": 224
+     }
+    }
+   }
+  },
+  "90010": {
+   "code": "90010",
+   "neufs": {
+    "2024": {
+     "total": 915,
+     "carburants": {
+      "Hybride non rechargeable": 284,
+      "Diesel": 52,
+      "Électrique": 121,
+      "Essence": 346,
+      "Autre": 26,
+      "Hybride rechargeable": 86
+     }
+    },
+    "2025": {
+     "total": 809,
+     "carburants": {
+      "Hybride non rechargeable": 294,
+      "Diesel": 43,
+      "Électrique": 117,
+      "Essence": 248,
+      "Autre": 15,
+      "Hybride rechargeable": 92
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 3578,
+     "carburants": {
+      "Hybride non rechargeable": 133,
+      "Diesel": 1995,
+      "Électrique": 38,
+      "Essence": 1339,
+      "Autre": 19,
+      "Hybride rechargeable": 54
+     }
+    },
+    "2025": {
+     "total": 3457,
+     "carburants": {
+      "Hybride non rechargeable": 162,
+      "Diesel": 1869,
+      "Électrique": 48,
+      "Essence": 1290,
+      "Autre": 25,
+      "Hybride rechargeable": 63
+     }
+    }
+   }
+  },
+  "92012": {
+   "code": "92012",
+   "neufs": {
+    "2024": {
+     "total": 9057,
+     "carburants": {
+      "Hybride non rechargeable": 4693,
+      "Diesel": 187,
+      "Électrique": 1797,
+      "Essence": 1437,
+      "Autre": 64,
+      "Hybride rechargeable": 879
+     }
+    },
+    "2025": {
+     "total": 9847,
+     "carburants": {
+      "Hybride non rechargeable": 5501,
+      "Diesel": 187,
+      "Électrique": 2575,
+      "Essence": 492,
+      "Autre": 87,
+      "Hybride rechargeable": 1005
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 4598,
+     "carburants": {
+      "Hybride non rechargeable": 748,
+      "Diesel": 876,
+      "Électrique": 250,
+      "Essence": 2334,
+      "Autre": 22,
+      "Hybride rechargeable": 368
+     }
+    },
+    "2025": {
+     "total": 4433,
+     "carburants": {
+      "Hybride non rechargeable": 774,
+      "Diesel": 772,
+      "Électrique": 262,
+      "Essence": 2215,
+      "Autre": 23,
+      "Hybride rechargeable": 387
+     }
+    }
+   }
+  },
+  "93066": {
+   "code": "93066",
+   "neufs": {
+    "2024": {
+     "total": 2707,
+     "carburants": {
+      "Hybride non rechargeable": 1214,
+      "Diesel": 152,
+      "Électrique": 531,
+      "Essence": 529,
+      "Autre": 24,
+      "Hybride rechargeable": 257
+     }
+    },
+    "2025": {
+     "total": 2410,
+     "carburants": {
+      "Hybride non rechargeable": 1057,
+      "Diesel": 96,
+      "Électrique": 506,
+      "Essence": 506,
+      "Autre": 104,
+      "Hybride rechargeable": 141
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 7322,
+     "carburants": {
+      "Hybride non rechargeable": 879,
+      "Diesel": 3627,
+      "Électrique": 124,
+      "Essence": 2463,
+      "Autre": 46,
+      "Hybride rechargeable": 183
+     }
+    },
+    "2025": {
+     "total": 7400,
+     "carburants": {
+      "Hybride non rechargeable": 983,
+      "Diesel": 3397,
+      "Électrique": 280,
+      "Essence": 2442,
+      "Autre": 39,
+      "Hybride rechargeable": 259
+     }
+    }
+   }
+  },
+  "95018": {
+   "code": "95018",
+   "neufs": {
+    "2024": {
+     "total": 1210,
+     "carburants": {
+      "Hybride non rechargeable": 546,
+      "Diesel": 45,
+      "Électrique": 185,
+      "Essence": 281,
+      "Autre": 27,
+      "Hybride rechargeable": 126
+     }
+    },
+    "2025": {
+     "total": 1146,
+     "carburants": {
+      "Hybride non rechargeable": 575,
+      "Diesel": 28,
+      "Électrique": 210,
+      "Essence": 180,
+      "Autre": 21,
+      "Hybride rechargeable": 132
+     }
+    }
+   },
+   "occasions": {
+    "2024": {
+     "total": 7910,
+     "carburants": {
+      "Hybride non rechargeable": 763,
+      "Diesel": 3862,
+      "Électrique": 129,
+      "Essence": 2899,
+      "Autre": 31,
+      "Hybride rechargeable": 226
+     }
+    },
+    "2025": {
+     "total": 8087,
+     "carburants": {
+      "Hybride non rechargeable": 890,
+      "Diesel": 3797,
+      "Électrique": 167,
+      "Essence": 2906,
+      "Autre": 39,
+      "Hybride rechargeable": 288
+     }
+    }
+   }
+  }
+ }
+}

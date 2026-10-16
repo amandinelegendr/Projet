@@ -1,0 +1,1378 @@
+{
+ "source": "Insee, API Melodi : populations de référence, Filosofi, recensement de la population",
+ "millesimes": {
+  "population": "2023",
+  "revenu_median": "2023",
+  "menages_motorises": "2023"
+ },
+ "definitions": {
+  "population": "Population municipale (population légale)",
+  "revenu_median": "Revenu disponible médian annuel par unité de consommation (niveau de vie médian), en euros",
+  "menages_motorises": "Part des ménages disposant d'au moins une voiture, en %"
+ },
+ "mise_a_jour": "2026-10-16",
+ "source_villes": "API Découpage administratif (geo.api.gouv.fr) ; 4 communes les plus peuplées par région, une par département au plus",
+ "departements": {
+  "01": {
+   "code": "01",
+   "nom": "Ain",
+   "region": "84",
+   "population": 679344,
+   "revenu_median": 27990,
+   "menages_motorises": 91.6
+  },
+  "02": {
+   "code": "02",
+   "nom": "Aisne",
+   "region": "32",
+   "population": 523342,
+   "revenu_median": 23360,
+   "menages_motorises": 84.0
+  },
+  "03": {
+   "code": "03",
+   "nom": "Allier",
+   "region": "84",
+   "population": 333298,
+   "revenu_median": 24430,
+   "menages_motorises": 85.8
+  },
+  "04": {
+   "code": "04",
+   "nom": "Alpes-de-Haute-Provence",
+   "region": "93",
+   "population": 168054,
+   "revenu_median": 24240,
+   "menages_motorises": 88.8
+  },
+  "05": {
+   "code": "05",
+   "nom": "Hautes-Alpes",
+   "region": "93",
+   "population": 143467,
+   "revenu_median": 25060,
+   "menages_motorises": 89.0
+  },
+  "06": {
+   "code": "06",
+   "nom": "Alpes-Maritimes",
+   "region": "93",
+   "population": 1128418,
+   "revenu_median": 26380,
+   "menages_motorises": 77.0
+  },
+  "07": {
+   "code": "07",
+   "nom": "Ardèche",
+   "region": "84",
+   "population": 334231,
+   "revenu_median": 24820,
+   "menages_motorises": 90.9
+  },
+  "08": {
+   "code": "08",
+   "nom": "Ardennes",
+   "region": "44",
+   "population": 265893,
+   "revenu_median": 23500,
+   "menages_motorises": 84.4
+  },
+  "09": {
+   "code": "09",
+   "nom": "Ariège",
+   "region": "76",
+   "population": 155722,
+   "revenu_median": 23360,
+   "menages_motorises": 88.8
+  },
+  "10": {
+   "code": "10",
+   "nom": "Aube",
+   "region": "44",
+   "population": 310447,
+   "revenu_median": 24130,
+   "menages_motorises": 83.5
+  },
+  "11": {
+   "code": "11",
+   "nom": "Aude",
+   "region": "76",
+   "population": 379648,
+   "revenu_median": 23060,
+   "menages_motorises": 87.1
+  },
+  "12": {
+   "code": "12",
+   "nom": "Aveyron",
+   "region": "76",
+   "population": 279609,
+   "revenu_median": 24780,
+   "menages_motorises": 90.0
+  },
+  "13": {
+   "code": "13",
+   "nom": "Bouches-du-Rhône",
+   "region": "93",
+   "population": 2087658,
+   "revenu_median": 25610,
+   "menages_motorises": 78.9
+  },
+  "14": {
+   "code": "14",
+   "nom": "Calvados",
+   "region": "28",
+   "population": 709441,
+   "revenu_median": 25600,
+   "menages_motorises": 85.8
+  },
+  "15": {
+   "code": "15",
+   "nom": "Cantal",
+   "region": "84",
+   "population": 144196,
+   "revenu_median": 24820,
+   "menages_motorises": 88.5
+  },
+  "16": {
+   "code": "16",
+   "nom": "Charente",
+   "region": "75",
+   "population": 352683,
+   "revenu_median": 24850,
+   "menages_motorises": 88.7
+  },
+  "17": {
+   "code": "17",
+   "nom": "Charente-Maritime",
+   "region": "75",
+   "population": 672279,
+   "revenu_median": 25710,
+   "menages_motorises": 88.8
+  },
+  "18": {
+   "code": "18",
+   "nom": "Cher",
+   "region": "24",
+   "population": 298660,
+   "revenu_median": 24730,
+   "menages_motorises": 87.0
+  },
+  "19": {
+   "code": "19",
+   "nom": "Corrèze",
+   "region": "75",
+   "population": 240826,
+   "revenu_median": 24910,
+   "menages_motorises": 89.2
+  },
+  "21": {
+   "code": "21",
+   "nom": "Côte-d'Or",
+   "region": "27",
+   "population": 540100,
+   "revenu_median": 26560,
+   "menages_motorises": 83.0
+  },
+  "22": {
+   "code": "22",
+   "nom": "Côtes-d'Armor",
+   "region": "53",
+   "population": 611859,
+   "revenu_median": 25590,
+   "menages_motorises": 90.5
+  },
+  "23": {
+   "code": "23",
+   "nom": "Creuse",
+   "region": "75",
+   "population": 115527,
+   "revenu_median": 23210,
+   "menages_motorises": 88.2
+  },
+  "24": {
+   "code": "24",
+   "nom": "Dordogne",
+   "region": "75",
+   "population": 417614,
+   "revenu_median": 24150,
+   "menages_motorises": 89.8
+  },
+  "25": {
+   "code": "25",
+   "nom": "Doubs",
+   "region": "27",
+   "population": 547163,
+   "revenu_median": 27190,
+   "menages_motorises": 86.2
+  },
+  "26": {
+   "code": "26",
+   "nom": "Drôme",
+   "region": "84",
+   "population": 524207,
+   "revenu_median": 25210,
+   "menages_motorises": 88.6
+  },
+  "27": {
+   "code": "27",
+   "nom": "Eure",
+   "region": "28",
+   "population": 602714,
+   "revenu_median": 25520,
+   "menages_motorises": 89.0
+  },
+  "28": {
+   "code": "28",
+   "nom": "Eure-et-Loir",
+   "region": "24",
+   "population": 433129,
+   "revenu_median": 25980,
+   "menages_motorises": 88.3
+  },
+  "29": {
+   "code": "29",
+   "nom": "Finistère",
+   "region": "53",
+   "population": 933455,
+   "revenu_median": 26210,
+   "menages_motorises": 88.3
+  },
+  "2A": {
+   "code": "2A",
+   "nom": "Corse-du-Sud",
+   "region": "94",
+   "population": 168306,
+   "revenu_median": 26050,
+   "menages_motorises": 90.0
+  },
+  "2B": {
+   "code": "2B",
+   "nom": "Haute-Corse",
+   "region": "94",
+   "population": 187180,
+   "revenu_median": 24200,
+   "menages_motorises": 87.7
+  },
+  "30": {
+   "code": "30",
+   "nom": "Gard",
+   "region": "76",
+   "population": 770940,
+   "revenu_median": 23930,
+   "menages_motorises": 87.0
+  },
+  "31": {
+   "code": "31",
+   "nom": "Haute-Garonne",
+   "region": "76",
+   "population": 1471468,
+   "revenu_median": 27040,
+   "menages_motorises": 81.9
+  },
+  "32": {
+   "code": "32",
+   "nom": "Gers",
+   "region": "76",
+   "population": 192645,
+   "revenu_median": 24770,
+   "menages_motorises": 91.4
+  },
+  "33": {
+   "code": "33",
+   "nom": "Gironde",
+   "region": "75",
+   "population": 1690493,
+   "revenu_median": 26820,
+   "menages_motorises": 84.2
+  },
+  "34": {
+   "code": "34",
+   "nom": "Hérault",
+   "region": "76",
+   "population": 1230289,
+   "revenu_median": 24280,
+   "menages_motorises": 82.6
+  },
+  "35": {
+   "code": "35",
+   "nom": "Ille-et-Vilaine",
+   "region": "53",
+   "population": 1120666,
+   "revenu_median": 26670,
+   "menages_motorises": 85.8
+  },
+  "36": {
+   "code": "36",
+   "nom": "Indre",
+   "region": "24",
+   "population": 216069,
+   "revenu_median": 24020,
+   "menages_motorises": 87.3
+  },
+  "37": {
+   "code": "37",
+   "nom": "Indre-et-Loire",
+   "region": "24",
+   "population": 619362,
+   "revenu_median": 25930,
+   "menages_motorises": 84.4
+  },
+  "38": {
+   "code": "38",
+   "nom": "Isère",
+   "region": "84",
+   "population": 1298990,
+   "revenu_median": 27290,
+   "menages_motorises": 85.5
+  },
+  "39": {
+   "code": "39",
+   "nom": "Jura",
+   "region": "27",
+   "population": 257973,
+   "revenu_median": 26090,
+   "menages_motorises": 89.7
+  },
+  "40": {
+   "code": "40",
+   "nom": "Landes",
+   "region": "75",
+   "population": 433570,
+   "revenu_median": 25650,
+   "menages_motorises": 92.4
+  },
+  "41": {
+   "code": "41",
+   "nom": "Loir-et-Cher",
+   "region": "24",
+   "population": 328543,
+   "revenu_median": 25240,
+   "menages_motorises": 88.9
+  },
+  "42": {
+   "code": "42",
+   "nom": "Loire",
+   "region": "84",
+   "population": 774133,
+   "revenu_median": 24800,
+   "menages_motorises": 83.1
+  },
+  "43": {
+   "code": "43",
+   "nom": "Haute-Loire",
+   "region": "84",
+   "population": 228654,
+   "revenu_median": 25140,
+   "menages_motorises": 89.6
+  },
+  "44": {
+   "code": "44",
+   "nom": "Loire-Atlantique",
+   "region": "52",
+   "population": 1487570,
+   "revenu_median": 27150,
+   "menages_motorises": 85.4
+  },
+  "45": {
+   "code": "45",
+   "nom": "Loiret",
+   "region": "24",
+   "population": 691268,
+   "revenu_median": 25800,
+   "menages_motorises": 86.2
+  },
+  "46": {
+   "code": "46",
+   "nom": "Lot",
+   "region": "76",
+   "population": 176473,
+   "revenu_median": 24740,
+   "menages_motorises": 89.9
+  },
+  "47": {
+   "code": "47",
+   "nom": "Lot-et-Garonne",
+   "region": "75",
+   "population": 333602,
+   "revenu_median": 23730,
+   "menages_motorises": 89.3
+  },
+  "48": {
+   "code": "48",
+   "nom": "Lozère",
+   "region": "76",
+   "population": 76486,
+   "revenu_median": 24270,
+   "menages_motorises": 89.5
+  },
+  "49": {
+   "code": "49",
+   "nom": "Maine-et-Loire",
+   "region": "52",
+   "population": 833776,
+   "revenu_median": 25550,
+   "menages_motorises": 87.0
+  },
+  "50": {
+   "code": "50",
+   "nom": "Manche",
+   "region": "28",
+   "population": 497522,
+   "revenu_median": 25430,
+   "menages_motorises": 88.9
+  },
+  "51": {
+   "code": "51",
+   "nom": "Marne",
+   "region": "44",
+   "population": 563076,
+   "revenu_median": 25700,
+   "menages_motorises": 82.7
+  },
+  "52": {
+   "code": "52",
+   "nom": "Haute-Marne",
+   "region": "44",
+   "population": 168331,
+   "revenu_median": 23980,
+   "menages_motorises": 86.4
+  },
+  "53": {
+   "code": "53",
+   "nom": "Mayenne",
+   "region": "52",
+   "population": 305468,
+   "revenu_median": 25140,
+   "menages_motorises": 89.4
+  },
+  "54": {
+   "code": "54",
+   "nom": "Meurthe-et-Moselle",
+   "region": "44",
+   "population": 732236,
+   "revenu_median": 25910,
+   "menages_motorises": 82.2
+  },
+  "55": {
+   "code": "55",
+   "nom": "Meuse",
+   "region": "44",
+   "population": 180290,
+   "revenu_median": 24740,
+   "menages_motorises": 87.3
+  },
+  "56": {
+   "code": "56",
+   "nom": "Morbihan",
+   "region": "53",
+   "population": 783390,
+   "revenu_median": 26250,
+   "menages_motorises": 89.5
+  },
+  "57": {
+   "code": "57",
+   "nom": "Moselle",
+   "region": "44",
+   "population": 1051309,
+   "revenu_median": 26030,
+   "menages_motorises": 86.6
+  },
+  "58": {
+   "code": "58",
+   "nom": "Nièvre",
+   "region": "27",
+   "population": 201417,
+   "revenu_median": 24010,
+   "menages_motorises": 85.7
+  },
+  "59": {
+   "code": "59",
+   "nom": "Nord",
+   "region": "32",
+   "population": 2615635,
+   "revenu_median": 23810,
+   "menages_motorises": 79.1
+  },
+  "60": {
+   "code": "60",
+   "nom": "Oise",
+   "region": "32",
+   "population": 829899,
+   "revenu_median": 25970,
+   "menages_motorises": 87.6
+  },
+  "61": {
+   "code": "61",
+   "nom": "Orne",
+   "region": "28",
+   "population": 275201,
+   "revenu_median": 24110,
+   "menages_motorises": 87.2
+  },
+  "62": {
+   "code": "62",
+   "nom": "Pas-de-Calais",
+   "region": "32",
+   "population": 1457905,
+   "revenu_median": 23260,
+   "menages_motorises": 84.0
+  },
+  "63": {
+   "code": "63",
+   "nom": "Puy-de-Dôme",
+   "region": "84",
+   "population": 664453,
+   "revenu_median": 26040,
+   "menages_motorises": 85.8
+  },
+  "64": {
+   "code": "64",
+   "nom": "Pyrénées-Atlantiques",
+   "region": "75",
+   "population": 706564,
+   "revenu_median": 26300,
+   "menages_motorises": 88.4
+  },
+  "65": {
+   "code": "65",
+   "nom": "Hautes-Pyrénées",
+   "region": "76",
+   "population": 231349,
+   "revenu_median": 24320,
+   "menages_motorises": 88.0
+  },
+  "66": {
+   "code": "66",
+   "nom": "Pyrénées-Orientales",
+   "region": "76",
+   "population": 496855,
+   "revenu_median": 23080,
+   "menages_motorises": 85.6
+  },
+  "67": {
+   "code": "67",
+   "nom": "Bas-Rhin",
+   "region": "44",
+   "population": 1163810,
+   "revenu_median": 26890,
+   "menages_motorises": 81.7
+  },
+  "68": {
+   "code": "68",
+   "nom": "Haut-Rhin",
+   "region": "44",
+   "population": 770738,
+   "revenu_median": 27620,
+   "menages_motorises": 87.3
+  },
+  "69": {
+   "code": "69",
+   "nom": "Rhône",
+   "region": "84",
+   "population": 1914667,
+   "revenu_median": 27500,
+   "menages_motorises": 75.2
+  },
+  "70": {
+   "code": "70",
+   "nom": "Haute-Saône",
+   "region": "27",
+   "population": 233185,
+   "revenu_median": 24750,
+   "menages_motorises": 89.6
+  },
+  "71": {
+   "code": "71",
+   "nom": "Saône-et-Loire",
+   "region": "27",
+   "population": 550310,
+   "revenu_median": 24970,
+   "menages_motorises": 87.8
+  },
+  "72": {
+   "code": "72",
+   "nom": "Sarthe",
+   "region": "52",
+   "population": 566733,
+   "revenu_median": 24990,
+   "menages_motorises": 85.7
+  },
+  "73": {
+   "code": "73",
+   "nom": "Savoie",
+   "region": "84",
+   "population": 448226,
+   "revenu_median": 27910,
+   "menages_motorises": 88.5
+  },
+  "74": {
+   "code": "74",
+   "nom": "Haute-Savoie",
+   "region": "84",
+   "population": 861158,
+   "revenu_median": 32180,
+   "menages_motorises": 89.9
+  },
+  "75": {
+   "code": "75",
+   "nom": "Paris",
+   "region": "11",
+   "population": 2103778,
+   "revenu_median": 33650,
+   "menages_motorises": 31.2
+  },
+  "76": {
+   "code": "76",
+   "nom": "Seine-Maritime",
+   "region": "28",
+   "population": 1260964,
+   "revenu_median": 24940,
+   "menages_motorises": 80.4
+  },
+  "77": {
+   "code": "77",
+   "nom": "Seine-et-Marne",
+   "region": "11",
+   "population": 1468108,
+   "revenu_median": 27480,
+   "menages_motorises": 84.9
+  },
+  "78": {
+   "code": "78",
+   "nom": "Yvelines",
+   "region": "11",
+   "population": 1485086,
+   "revenu_median": 31520,
+   "menages_motorises": 83.2
+  },
+  "79": {
+   "code": "79",
+   "nom": "Deux-Sèvres",
+   "region": "75",
+   "population": 375229,
+   "revenu_median": 25080,
+   "menages_motorises": 90.4
+  },
+  "80": {
+   "code": "80",
+   "nom": "Somme",
+   "region": "32",
+   "population": 565413,
+   "revenu_median": 24200,
+   "menages_motorises": 82.8
+  },
+  "81": {
+   "code": "81",
+   "nom": "Tarn",
+   "region": "76",
+   "population": 397352,
+   "revenu_median": 24420,
+   "menages_motorises": 88.9
+  },
+  "82": {
+   "code": "82",
+   "nom": "Tarn-et-Garonne",
+   "region": "76",
+   "population": 265817,
+   "revenu_median": 24350,
+   "menages_motorises": 90.9
+  },
+  "83": {
+   "code": "83",
+   "nom": "Var",
+   "region": "93",
+   "population": 1119307,
+   "revenu_median": 25940,
+   "menages_motorises": 86.7
+  },
+  "84": {
+   "code": "84",
+   "nom": "Vaucluse",
+   "region": "93",
+   "population": 572056,
+   "revenu_median": 23840,
+   "menages_motorises": 87.4
+  },
+  "85": {
+   "code": "85",
+   "nom": "Vendée",
+   "region": "52",
+   "population": 713609,
+   "revenu_median": 25850,
+   "menages_motorises": 92.4
+  },
+  "86": {
+   "code": "86",
+   "nom": "Vienne",
+   "region": "75",
+   "population": 438897,
+   "revenu_median": 24940,
+   "menages_motorises": 86.3
+  },
+  "87": {
+   "code": "87",
+   "nom": "Haute-Vienne",
+   "region": "75",
+   "population": 373167,
+   "revenu_median": 24740,
+   "menages_motorises": 84.8
+  },
+  "88": {
+   "code": "88",
+   "nom": "Vosges",
+   "region": "44",
+   "population": 357248,
+   "revenu_median": 24320,
+   "menages_motorises": 87.1
+  },
+  "89": {
+   "code": "89",
+   "nom": "Yonne",
+   "region": "27",
+   "population": 332267,
+   "revenu_median": 24590,
+   "menages_motorises": 86.9
+  },
+  "90": {
+   "code": "90",
+   "nom": "Territoire de Belfort",
+   "region": "27",
+   "population": 140255,
+   "revenu_median": 25910,
+   "menages_motorises": 83.8
+  },
+  "91": {
+   "code": "91",
+   "nom": "Essonne",
+   "region": "11",
+   "population": 1338485,
+   "revenu_median": 27940,
+   "menages_motorises": 82.7
+  },
+  "92": {
+   "code": "92",
+   "nom": "Hauts-de-Seine",
+   "region": "11",
+   "population": 1654712,
+   "revenu_median": 33790,
+   "menages_motorises": 62.2
+  },
+  "93": {
+   "code": "93",
+   "nom": "Seine-Saint-Denis",
+   "region": "11",
+   "population": 1704316,
+   "revenu_median": 21250,
+   "menages_motorises": 60.3
+  },
+  "94": {
+   "code": "94",
+   "nom": "Val-de-Marne",
+   "region": "11",
+   "population": 1426929,
+   "revenu_median": 27250,
+   "menages_motorises": 65.3
+  },
+  "95": {
+   "code": "95",
+   "nom": "Val-d'Oise",
+   "region": "11",
+   "population": 1281653,
+   "revenu_median": 25890,
+   "menages_motorises": 79.8
+  },
+  "971": {
+   "code": "971",
+   "nom": "Guadeloupe",
+   "region": "01",
+   "population": 384160,
+   "revenu_median": null,
+   "menages_motorises": 72.2
+  },
+  "972": {
+   "code": "972",
+   "nom": "Martinique",
+   "region": "02",
+   "population": 360630,
+   "revenu_median": null,
+   "menages_motorises": 75.3
+  },
+  "973": {
+   "code": "973",
+   "nom": "Guyane",
+   "region": "03",
+   "population": 293996,
+   "revenu_median": null,
+   "menages_motorises": 58.2
+  },
+  "974": {
+   "code": "974",
+   "nom": "La Réunion",
+   "region": "04",
+   "population": 889679,
+   "revenu_median": 19110,
+   "menages_motorises": 74.8
+  },
+  "976": {
+   "code": "976",
+   "nom": "Mayotte",
+   "region": "06",
+   "population": 310563,
+   "revenu_median": null,
+   "menages_motorises": null,
+   "note_population": "Estimation de population au 1er janvier 2023 (pas de population légale publiée)"
+  }
+ },
+ "villes": {
+  "75056": {
+   "code": "75056",
+   "nom": "Paris",
+   "dep": "75",
+   "region": "11",
+   "lon": 2.347,
+   "lat": 48.8589,
+   "population": 2103778,
+   "revenu_median": 33650,
+   "menages_motorises": 31.2
+  },
+  "93066": {
+   "code": "93066",
+   "nom": "Saint-Denis",
+   "dep": "93",
+   "region": "11",
+   "lon": 2.3657,
+   "lat": 48.9378,
+   "population": 149077,
+   "revenu_median": 18130,
+   "menages_motorises": 47.2
+  },
+  "92012": {
+   "code": "92012",
+   "nom": "Boulogne-Billancourt",
+   "dep": "92",
+   "region": "11",
+   "lon": 2.2429,
+   "lat": 48.8375,
+   "population": 119019,
+   "revenu_median": 40000,
+   "menages_motorises": 57.0
+  },
+  "95018": {
+   "code": "95018",
+   "nom": "Argenteuil",
+   "dep": "95",
+   "region": "11",
+   "lon": 2.2478,
+   "lat": 48.9501,
+   "population": 106130,
+   "revenu_median": 21300,
+   "menages_motorises": 67.4
+  },
+  "69123": {
+   "code": "69123",
+   "nom": "Lyon",
+   "dep": "69",
+   "region": "84",
+   "lon": 4.8351,
+   "lat": 45.758,
+   "population": 519127,
+   "revenu_median": 28290,
+   "menages_motorises": 58.3
+  },
+  "42218": {
+   "code": "42218",
+   "nom": "Saint-Étienne",
+   "dep": "42",
+   "region": "84",
+   "lon": 4.3665,
+   "lat": 45.4241,
+   "population": 173136,
+   "revenu_median": 20880,
+   "menages_motorises": 66.4
+  },
+  "38185": {
+   "code": "38185",
+   "nom": "Grenoble",
+   "dep": "38",
+   "region": "84",
+   "lon": 5.7155,
+   "lat": 45.1842,
+   "population": 156140,
+   "revenu_median": 24270,
+   "menages_motorises": 59.9
+  },
+  "63113": {
+   "code": "63113",
+   "nom": "Clermont-Ferrand",
+   "dep": "63",
+   "region": "84",
+   "lon": 3.1127,
+   "lat": 45.787,
+   "population": 146351,
+   "revenu_median": 22640,
+   "menages_motorises": 70.7
+  },
+  "59350": {
+   "code": "59350",
+   "nom": "Lille",
+   "dep": "59",
+   "region": "32",
+   "lon": 3.0468,
+   "lat": 50.6311,
+   "population": 238246,
+   "revenu_median": 22470,
+   "menages_motorises": 54.8
+  },
+  "80021": {
+   "code": "80021",
+   "nom": "Amiens",
+   "dep": "80",
+   "region": "32",
+   "lon": 2.2847,
+   "lat": 49.8987,
+   "population": 136449,
+   "revenu_median": 21400,
+   "menages_motorises": 67.0
+  },
+  "62193": {
+   "code": "62193",
+   "nom": "Calais",
+   "dep": "62",
+   "region": "32",
+   "lon": 1.869,
+   "lat": 50.9523,
+   "population": 67571,
+   "revenu_median": 20270,
+   "menages_motorises": 71.6
+  },
+  "60057": {
+   "code": "60057",
+   "nom": "Beauvais",
+   "dep": "60",
+   "region": "32",
+   "lon": 2.0877,
+   "lat": 49.4425,
+   "population": 55550,
+   "revenu_median": 21400,
+   "menages_motorises": 75.8
+  },
+  "33063": {
+   "code": "33063",
+   "nom": "Bordeaux",
+   "dep": "33",
+   "region": "75",
+   "lon": -0.5848,
+   "lat": 44.8624,
+   "population": 267991,
+   "revenu_median": 27590,
+   "menages_motorises": 62.4
+  },
+  "87085": {
+   "code": "87085",
+   "nom": "Limoges",
+   "dep": "87",
+   "region": "75",
+   "lon": 1.226,
+   "lat": 45.8567,
+   "population": 129937,
+   "revenu_median": 22690,
+   "menages_motorises": 73.6
+  },
+  "86194": {
+   "code": "86194",
+   "nom": "Poitiers",
+   "dep": "86",
+   "region": "75",
+   "lon": 0.3715,
+   "lat": 46.5846,
+   "population": 89916,
+   "revenu_median": 22350,
+   "menages_motorises": 69.9
+  },
+  "64445": {
+   "code": "64445",
+   "nom": "Pau",
+   "dep": "64",
+   "region": "75",
+   "lon": -0.3435,
+   "lat": 43.3219,
+   "population": 80441,
+   "revenu_median": 23320,
+   "menages_motorises": 75.0
+  },
+  "31555": {
+   "code": "31555",
+   "nom": "Toulouse",
+   "dep": "31",
+   "region": "76",
+   "lon": 1.4328,
+   "lat": 43.6007,
+   "population": 514819,
+   "revenu_median": 24500,
+   "menages_motorises": 66.9
+  },
+  "34172": {
+   "code": "34172",
+   "nom": "Montpellier",
+   "dep": "34",
+   "region": "76",
+   "lon": 3.8742,
+   "lat": 43.61,
+   "population": 310240,
+   "revenu_median": 21440,
+   "menages_motorises": 67.9
+  },
+  "30189": {
+   "code": "30189",
+   "nom": "Nîmes",
+   "dep": "30",
+   "region": "76",
+   "lon": 4.3429,
+   "lat": 43.8322,
+   "population": 151839,
+   "revenu_median": 20830,
+   "menages_motorises": 74.9
+  },
+  "66136": {
+   "code": "66136",
+   "nom": "Perpignan",
+   "dep": "66",
+   "region": "76",
+   "lon": 2.9045,
+   "lat": 42.699,
+   "population": 121616,
+   "revenu_median": 19110,
+   "menages_motorises": 74.4
+  },
+  "13055": {
+   "code": "13055",
+   "nom": "Marseille",
+   "dep": "13",
+   "region": "93",
+   "lon": 5.3806,
+   "lat": 43.2803,
+   "population": 886040,
+   "revenu_median": 22860,
+   "menages_motorises": 66.9
+  },
+  "06088": {
+   "code": "06088",
+   "nom": "Nice",
+   "dep": "06",
+   "region": "93",
+   "lon": 7.2528,
+   "lat": 43.7032,
+   "population": 357737,
+   "revenu_median": 24080,
+   "menages_motorises": 62.4
+  },
+  "83137": {
+   "code": "83137",
+   "nom": "Toulon",
+   "dep": "83",
+   "region": "93",
+   "lon": 5.9334,
+   "lat": 43.1364,
+   "population": 179116,
+   "revenu_median": 23270,
+   "menages_motorises": 74.3
+  },
+  "84007": {
+   "code": "84007",
+   "nom": "Avignon",
+   "dep": "84",
+   "region": "93",
+   "lon": 4.8333,
+   "lat": 43.9416,
+   "population": 92188,
+   "revenu_median": 19500,
+   "menages_motorises": 73.9
+  },
+  "67482": {
+   "code": "67482",
+   "nom": "Strasbourg",
+   "dep": "67",
+   "region": "44",
+   "lon": 7.7621,
+   "lat": 48.5691,
+   "population": 293771,
+   "revenu_median": 21980,
+   "menages_motorises": 60.2
+  },
+  "51454": {
+   "code": "51454",
+   "nom": "Reims",
+   "dep": "51",
+   "region": "44",
+   "lon": 4.0551,
+   "lat": 49.2535,
+   "population": 177674,
+   "revenu_median": 22410,
+   "menages_motorises": 71.2
+  },
+  "57463": {
+   "code": "57463",
+   "nom": "Metz",
+   "dep": "57",
+   "region": "44",
+   "lon": 6.1962,
+   "lat": 49.1048,
+   "population": 122572,
+   "revenu_median": 23070,
+   "menages_motorises": 71.2
+  },
+  "68224": {
+   "code": "68224",
+   "nom": "Mulhouse",
+   "dep": "68",
+   "region": "44",
+   "lon": 7.3255,
+   "lat": 47.7526,
+   "population": 104978,
+   "revenu_median": 18680,
+   "menages_motorises": 68.7
+  },
+  "44109": {
+   "code": "44109",
+   "nom": "Nantes",
+   "dep": "44",
+   "region": "52",
+   "lon": -1.5603,
+   "lat": 47.2382,
+   "population": 327734,
+   "revenu_median": 26720,
+   "menages_motorises": 68.4
+  },
+  "49007": {
+   "code": "49007",
+   "nom": "Angers",
+   "dep": "49",
+   "region": "52",
+   "lon": -0.5629,
+   "lat": 47.4819,
+   "population": 159022,
+   "revenu_median": 23930,
+   "menages_motorises": 71.7
+  },
+  "72181": {
+   "code": "72181",
+   "nom": "Le Mans",
+   "dep": "72",
+   "region": "52",
+   "lon": 0.1957,
+   "lat": 47.9819,
+   "population": 146249,
+   "revenu_median": 23610,
+   "menages_motorises": 73.8
+  },
+  "85191": {
+   "code": "85191",
+   "nom": "La Roche-sur-Yon",
+   "dep": "85",
+   "region": "52",
+   "lon": -1.4162,
+   "lat": 46.6659,
+   "population": 54849,
+   "revenu_median": 25090,
+   "menages_motorises": 84.5
+  },
+  "76351": {
+   "code": "76351",
+   "nom": "Le Havre",
+   "dep": "76",
+   "region": "28",
+   "lon": 0.1312,
+   "lat": 49.4958,
+   "population": 166687,
+   "revenu_median": 22480,
+   "menages_motorises": 68.8
+  },
+  "14118": {
+   "code": "14118",
+   "nom": "Caen",
+   "dep": "14",
+   "region": "28",
+   "lon": -0.3722,
+   "lat": 49.1846,
+   "population": 109400,
+   "revenu_median": 23650,
+   "menages_motorises": 71.0
+  },
+  "50129": {
+   "code": "50129",
+   "nom": "Cherbourg-en-Cotentin",
+   "dep": "50",
+   "region": "28",
+   "lon": -1.6356,
+   "lat": 49.6277,
+   "population": 78258,
+   "revenu_median": 25450,
+   "menages_motorises": 79.9
+  },
+  "27229": {
+   "code": "27229",
+   "nom": "Évreux",
+   "dep": "27",
+   "region": "28",
+   "lon": 1.1406,
+   "lat": 49.018,
+   "population": 49360,
+   "revenu_median": 20290,
+   "menages_motorises": 74.8
+  },
+  "35238": {
+   "code": "35238",
+   "nom": "Rennes",
+   "dep": "35",
+   "region": "53",
+   "lon": -1.6884,
+   "lat": 48.1159,
+   "population": 230890,
+   "revenu_median": 25100,
+   "menages_motorises": 68.1
+  },
+  "29019": {
+   "code": "29019",
+   "nom": "Brest",
+   "dep": "29",
+   "region": "53",
+   "lon": -4.4996,
+   "lat": 48.4085,
+   "population": 142346,
+   "revenu_median": 24030,
+   "menages_motorises": 73.3
+  },
+  "56121": {
+   "code": "56121",
+   "nom": "Lorient",
+   "dep": "56",
+   "region": "53",
+   "lon": -3.3799,
+   "lat": 47.7494,
+   "population": 58329,
+   "revenu_median": 23810,
+   "menages_motorises": 74.0
+  },
+  "22278": {
+   "code": "22278",
+   "nom": "Saint-Brieuc",
+   "dep": "22",
+   "region": "53",
+   "lon": -2.7657,
+   "lat": 48.5108,
+   "population": 44364,
+   "revenu_median": 23440,
+   "menages_motorises": 78.2
+  },
+  "21231": {
+   "code": "21231",
+   "nom": "Dijon",
+   "dep": "21",
+   "region": "27",
+   "lon": 5.0322,
+   "lat": 47.3319,
+   "population": 161830,
+   "revenu_median": 25140,
+   "menages_motorises": 69.9
+  },
+  "25056": {
+   "code": "25056",
+   "nom": "Besançon",
+   "dep": "25",
+   "region": "27",
+   "lon": 6.0123,
+   "lat": 47.2602,
+   "population": 118489,
+   "revenu_median": 23240,
+   "menages_motorises": 71.5
+  },
+  "90010": {
+   "code": "90010",
+   "nom": "Belfort",
+   "dep": "90",
+   "region": "27",
+   "lon": 6.841,
+   "lat": 47.6458,
+   "population": 45912,
+   "revenu_median": 20930,
+   "menages_motorises": 70.3
+  },
+  "71076": {
+   "code": "71076",
+   "nom": "Chalon-sur-Saône",
+   "dep": "71",
+   "region": "27",
+   "lon": 4.8509,
+   "lat": 46.7896,
+   "population": 45102,
+   "revenu_median": 21780,
+   "menages_motorises": 74.3
+  },
+  "37261": {
+   "code": "37261",
+   "nom": "Tours",
+   "dep": "37",
+   "region": "24",
+   "lon": 0.6949,
+   "lat": 47.3943,
+   "population": 139259,
+   "revenu_median": 23390,
+   "menages_motorises": 68.0
+  },
+  "45234": {
+   "code": "45234",
+   "nom": "Orléans",
+   "dep": "45",
+   "region": "24",
+   "lon": 1.9122,
+   "lat": 47.8734,
+   "population": 116357,
+   "revenu_median": 23630,
+   "menages_motorises": 70.5
+  },
+  "18033": {
+   "code": "18033",
+   "nom": "Bourges",
+   "dep": "18",
+   "region": "24",
+   "lon": 2.3983,
+   "lat": 47.078,
+   "population": 64186,
+   "revenu_median": 24230,
+   "menages_motorises": 79.0
+  },
+  "41018": {
+   "code": "41018",
+   "nom": "Blois",
+   "dep": "41",
+   "region": "24",
+   "lon": 1.3049,
+   "lat": 47.5813,
+   "population": 47219,
+   "revenu_median": 21640,
+   "menages_motorises": 75.8
+  },
+  "2A004": {
+   "code": "2A004",
+   "nom": "Ajaccio",
+   "dep": "2A",
+   "region": "94",
+   "lon": 8.7058,
+   "lat": 41.9228,
+   "population": 76320,
+   "revenu_median": 25880,
+   "menages_motorises": 86.8
+  },
+  "2B033": {
+   "code": "2B033",
+   "nom": "Bastia",
+   "dep": "2B",
+   "region": "94",
+   "lon": 9.424,
+   "lat": 42.6861,
+   "population": 46867,
+   "revenu_median": 22880,
+   "menages_motorises": 80.3
+  }
+ }
+}
