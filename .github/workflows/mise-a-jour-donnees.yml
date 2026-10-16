@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "0 6 * * 1" # chaque lundi à 6 h UTC
   workflow_dispatch: # lancement manuel depuis l'onglet Actions
+  push: # et à chaque modification des scripts
+    branches: [main]
+    paths: ["scripts/**", ".github/workflows/**"]
 
 permissions:
   contents: write
@@ -18,11 +21,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Extraire les immatriculations par région
+      - name: Extraire les données de référence Insee (et choisir les grandes villes)
+        run: python scripts/extraction_insee.py
+
+      - name: Extraire les immatriculations (régions, départements, villes)
         run: python scripts/extraction_immatriculations.py
 
-      - name: Extraire les données de référence Insee
-        run: python scripts/extraction_insee.py
+      - name: Vérifier la cohérence des données
+        run: python scripts/verifier_donnees.py
 
       - name: Enregistrer les nouvelles données
         run: |

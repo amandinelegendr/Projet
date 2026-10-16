@@ -5,7 +5,8 @@ des véhicules routiers, diffusé par l'API DiDo. Les communes sont rattachées
 aux régions grâce au code officiel géographique de l'INSEE (code département).
 
 Le script garde automatiquement les deux dernières années disponibles et écrit
-le résultat dans docs/data/immatriculations_regions.json, lu par le site.
+docs/data/immatriculations_regions.json et docs/data/immatriculations_territoires.json
+(départements et grandes villes choisies par extraction_insee.py), lus par le site.
 
 Utilisation : python scripts/extraction_immatriculations.py
 (aucune dépendance externe, aucune clé d'API nécessaire)
@@ -21,7 +22,10 @@ from pathlib import Path
 
 API = "https://data.statistiques.developpement-durable.gouv.fr/dido/api/v1"
 DATASET = "682c30aad455a8571c7d00fe"
-SORTIE = Path(__file__).resolve().parent.parent / "docs" / "data" / "immatriculations_regions.json"
+DONNEES = Path(__file__).resolve().parent.parent / "docs" / "data"
+SORTIE = DONNEES / "immatriculations_regions.json"
+SORTIE_TERRITOIRES = DONNEES / "immatriculations_territoires.json"
+TERRITOIRES_INSEE = DONNEES / "insee_territoires.json"
 
 # Régions (code INSEE) et départements qui les composent
 REGIONS = {
@@ -62,35 +66,46 @@ def lire_json(url):
         return json.load(reponse)
 
 
+def departement_de(code_commune):
+    return code_commune[:3] if code_commune.startswith("97") else code_commune[:2]
+
+
 def region_de(code_commune):
-    dep = code_commune[:3] if code_commune.startswith("97") else code_commune[:2]
-    return DEP_VERS_REGION.get(dep)
+    return DEP_VERS_REGION.get(departement_de(code_commune))
 
 
-def extraire(fichier, millesime, annees):
-    """Télécharge un fichier DiDo filtré sur les VP et l'agrège par région."""
+def ajouter(totaux, cle, annee, famille, n):
+    par_annee = totaux.setdefault(cle, {}).setdefault(str(annee), {"total": 0, "carburants": {}})
+    par_annee["total"] += n
+    par_annee["carburants"][famille] = par_annee["carburants"].get(famille, 0) + n
+
+
+def extraire(fichier, millesime, annees, villes):
+    """Télécharge un fichier DiDo filtré sur les VP et l'agrège par région, département et grande ville."""
     colonnes = ["COMMUNE_CODE", "CARBURANT"] + [f"IMMAT_{a}" for a in annees]
     url = (
         f"{API}/datafiles/{fichier['rid']}/csv?millesime={millesime}"
         "&withColumnName=true&withColumnDescription=false&withColumnUnit=false"
         f"&columns={','.join(colonnes)}&GROUPE=eq:VP"
     )
-    totaux = {}
+    totaux, par_dep, par_ville = {}, {}, {}
     hors_region = {a: 0 for a in annees}
     with urllib.request.urlopen(url, timeout=600) as reponse:
         lecteur = csv.DictReader(io.TextIOWrapper(reponse, encoding="utf-8"), delimiter=";")
         for ligne in lecteur:
-            region = region_de(ligne["COMMUNE_CODE"])
+            commune = ligne["COMMUNE_CODE"]
+            region = region_de(commune)
             famille = FAMILLES.get(ligne["CARBURANT"], "Autre")
             for a in annees:
                 n = int(ligne[f"IMMAT_{a}"] or 0)
                 if region is None:
                     hors_region[a] += n
                     continue
-                par_annee = totaux.setdefault(region, {}).setdefault(str(a), {"total": 0, "carburants": {}})
-                par_annee["total"] += n
-                par_annee["carburants"][famille] = par_annee["carburants"].get(famille, 0) + n
-    return totaux, hors_region
+                ajouter(totaux, region, a, famille, n)
+                ajouter(par_dep, departement_de(commune), a, famille, n)
+                if commune in villes:
+                    ajouter(par_ville, commune, a, famille, n)
+    return totaux, par_dep, par_ville, hors_region
 
 
 def main():
@@ -107,13 +122,23 @@ def main():
     )
     annees = sorted(int(m.group(1)) for c in exemple["data"][0] if (m := re.fullmatch(r"IMMAT_(\d{4})", c)))[-2:]
 
+    # Grandes villes choisies par scripts/extraction_insee.py (à lancer avant ce script)
+    villes = set()
+    if TERRITOIRES_INSEE.exists():
+        villes = set(json.loads(TERRITOIRES_INSEE.read_text(encoding="utf-8"))["villes"])
+
     regions = {code: {"code": code, "nom": nom} for code, (nom, _) in REGIONS.items()}
+    departements, grandes_villes = {}, {}
     non_localises = {}
     for type_vente in ("neufs", "occasions"):
-        totaux, hors_region = extraire(fichiers[type_vente], millesime, annees)
+        totaux, par_dep, par_ville, hors_region = extraire(fichiers[type_vente], millesime, annees, villes)
         non_localises[type_vente] = {str(a): n for a, n in hors_region.items()}
         for code, valeurs in totaux.items():
             regions[code][type_vente] = valeurs
+        for code, valeurs in par_dep.items():
+            departements.setdefault(code, {"code": code, "region": DEP_VERS_REGION[code]})[type_vente] = valeurs
+        for code, valeurs in par_ville.items():
+            grandes_villes.setdefault(code, {"code": code})[type_vente] = valeurs
 
     resultat = {
         "titre": "Immatriculations de voitures particulières par région",
@@ -127,6 +152,14 @@ def main():
     }
     SORTIE.parent.mkdir(parents=True, exist_ok=True)
     SORTIE.write_text(json.dumps(resultat, ensure_ascii=False, indent=1), encoding="utf-8")
+    SORTIE_TERRITOIRES.write_text(json.dumps({
+        "titre": "Immatriculations de voitures particulières par département et grande ville",
+        "millesime": millesime,
+        "mise_a_jour": resultat["mise_a_jour"],
+        "annees": annees,
+        "departements": departements,
+        "villes": grandes_villes,
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"{SORTIE} écrit : années {annees}, millésime {millesime}")
 
 
