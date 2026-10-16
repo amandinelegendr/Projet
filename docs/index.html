@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ventes de voitures par région</title>
-<meta name="description" content="Répartition régionale des immatriculations de voitures particulières neuves et d'occasion en France sur les deux dernières années.">
+<meta name="description" content="Répartition régionale, départementale et par grande ville des immatriculations de voitures particulières neuves et d'occasion en France sur les deux dernières années.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #f6f7f9;
   --surface: #ffffff;
+  --soft: #f8fafc;
   --text: #16181d;
   --muted: #5d6470;
   --line: #e3e6eb;
@@ -20,6 +21,7 @@
   --hover: #16181d;
   --pos: #1e7f4f;
   --neg: #b3362c;
+  --trend: #6b7280;
   --shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .08);
   /* Échelle séquentielle (volumes) */
   --s0: #e8f0fb; --s1: #b9d0f0; --s2: #7fa9e0; --s3: #4a7fcc; --s4: #2257a8; --s5: #123a78;
@@ -30,8 +32,8 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0f1115; --surface: #171a20; --text: #eceef2; --muted: #9aa2ae; --line: #2a2f38;
-    --accent: #6fa3f0; --map-empty: #232832; --stroke: #0f1115; --hover: #ffffff;
+    --bg: #0f1115; --surface: #171a20; --soft: #1d2129; --text: #eceef2; --muted: #9aa2ae; --line: #2a2f38;
+    --accent: #6fa3f0; --map-empty: #232832; --stroke: #0f1115; --hover: #ffffff; --trend: #9aa2ae;
     --pos: #5cc391; --neg: #f07b6e; --shadow: none;
     --s0: #1a2a44; --s1: #1f3e6e; --s2: #2c5ca0; --s3: #4a82cf; --s4: #7eabea; --s5: #bcd5f7;
     --d0: #c62828; --d1: #f3aaa5; --d2: #ffffff; --d3: #a9c8ef; --d4: #1f5fbf;
@@ -39,8 +41,8 @@
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0f1115; --surface: #171a20; --text: #eceef2; --muted: #9aa2ae; --line: #2a2f38;
-  --accent: #6fa3f0; --map-empty: #232832; --stroke: #0f1115; --hover: #ffffff;
+  --bg: #0f1115; --surface: #171a20; --soft: #1d2129; --text: #eceef2; --muted: #9aa2ae; --line: #2a2f38;
+  --accent: #6fa3f0; --map-empty: #232832; --stroke: #0f1115; --hover: #ffffff; --trend: #9aa2ae;
   --pos: #5cc391; --neg: #f07b6e; --shadow: none;
   --s0: #1a2a44; --s1: #1f3e6e; --s2: #2c5ca0; --s3: #4a82cf; --s4: #7eabea; --s5: #bcd5f7;
   --d0: #c62828; --d1: #f3aaa5; --d2: #ffffff; --d3: #a9c8ef; --d4: #1f5fbf;
@@ -55,7 +57,15 @@ body {
 .wrap { max-width: 1180px; margin: 0 auto; padding: 32px 16px 48px; }
 header h1 { font-size: clamp(24px, 3.2vw, 34px); line-height: 1.15; margin: 0 0 8px; letter-spacing: -.02em; }
 header p { margin: 0; color: var(--muted); max-width: 760px; }
-.controls { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 20px; align-items: center; }
+
+/* Barre de filtres : ligne 1 vue globale, ligne 2 motorisations */
+.controls { margin: 24px 0 20px; }
+.ligne { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 0; }
+.ligne .seg + .seg { margin-left: 16px; padding-left: 0; position: relative; }
+.ligne .seg + .seg::before {
+  content: ""; position: absolute; left: -9px; top: 8px; bottom: 8px; width: 1px; background: var(--line);
+}
+.ligne-carb { margin-top: 12px; }
 .seg { display: inline-flex; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 3px; }
 .seg button {
   border: 0; background: transparent; color: var(--muted); font: inherit; font-weight: 500;
@@ -68,8 +78,8 @@ header p { margin: 0; color: var(--muted); max-width: 760px; }
 .seg-carb { flex-wrap: wrap; }
 .seg-carb button { display: inline-flex; align-items: center; gap: 6px; }
 .seg-carb button i { width: 9px; height: 9px; border-radius: 3px; display: block; }
-.fuel .off, .stack .off { opacity: .35; }
-.fuel .on { font-weight: 600; }
+.seg.petit button { padding: 4px 10px; font-size: 13px; }
+
 .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 20px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
 .kpi { padding: 16px 18px; }
@@ -81,12 +91,26 @@ header p { margin: 0; color: var(--muted); max-width: 760px; }
 .panel { padding: 18px 20px; }
 .panel h2 { font-size: 16px; margin: 0 0 4px; }
 .panel .hint { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.entete { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+
+/* Carte */
+.retour {
+  display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--surface);
+  color: var(--text); font: inherit; font-size: 13px; font-weight: 500; padding: 5px 12px; border-radius: 8px;
+  cursor: pointer; margin-bottom: 8px;
+}
+.retour:hover { background: var(--soft); }
+.retour[hidden] { display: none; }
 #map { width: 100%; height: auto; display: block; }
-#map path.reg { stroke: var(--stroke); stroke-width: 1.2; cursor: pointer; transition: opacity .15s; }
+#map path.reg { stroke: var(--stroke); stroke-width: 1.2; cursor: pointer; }
 #map.evo path.reg { stroke: #b4b9c2; }
 #map path.reg:hover, #map path.reg.sel { stroke: var(--hover); stroke-width: 2; }
 #map text { font-size: 11px; font-weight: 600; pointer-events: none; paint-order: stroke; stroke-width: 3px; stroke-linejoin: round; }
+#map .ville circle { fill: var(--surface); stroke: var(--hover); stroke-width: 2; cursor: pointer; }
+#map .ville:hover circle, #map .ville.sel circle { fill: var(--hover); }
+#map .ville text { font-size: 12px; font-weight: 700; }
 .drom { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.drom[hidden] { display: none; }
 .drom button {
   border: 1px solid var(--line); border-radius: 10px; padding: 8px 6px; font: inherit; font-size: 12px;
   cursor: pointer; text-align: center; line-height: 1.25;
@@ -96,41 +120,38 @@ header p { margin: 0; color: var(--muted); max-width: 760px; }
 .legend { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
 .legend .bar { display: flex; height: 10px; width: 220px; border-radius: 5px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); }
 .legend .bar span { flex: 1; }
+.legend .pt-ville { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--hover); display: inline-block; }
+
+/* Panneau « Zoom sur un territoire » */
 .detail h3 { margin: 0; font-size: 20px; letter-spacing: -.01em; }
-.detail .big { font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
-.detail .row { display: flex; gap: 22px; flex-wrap: wrap; margin: 6px 0 14px; }
-.detail .row div { font-size: 13px; color: var(--muted); }
-.detail .row strong { display: block; color: var(--text); font-size: 17px; font-variant-numeric: tabular-nums; }
-.detail .row strong.pos { color: var(--pos); } .detail .row strong.neg { color: var(--neg); }
-.stack { display: flex; height: 14px; border-radius: 7px; overflow: hidden; margin: 6px 0 10px; }
-.fuel { display: grid; grid-template-columns: 12px 1fr auto auto; gap: 4px 10px; align-items: center; font-size: 13px; }
+.detail .niveau { color: var(--muted); font-size: 13px; }
+.detail .big { font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.02em; margin: 2px 0 12px; }
+.mini { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.mini div { background: var(--soft); border-radius: 8px; padding: 10px; font-size: 12.5px; color: var(--muted); }
+.mini strong { display: block; color: var(--text); font-size: 17px; font-variant-numeric: tabular-nums; margin-top: 1px; }
+.mini strong.pos { color: var(--pos); } .mini strong.neg { color: var(--neg); }
+.bloc-titre { font-size: 14px; font-weight: 600; margin: 18px 0 6px; }
+.stack { display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin: 4px 0 10px; }
+.fuel { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto minmax(118px, auto); gap: 5px 12px; align-items: center; font-size: 13px; }
 .fuel i { width: 10px; height: 10px; border-radius: 3px; display: block; }
 .fuel .n { font-variant-numeric: tabular-nums; text-align: right; }
-.fuel .p { color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; min-width: 46px; }
-.fuel.ecarts { grid-template-columns: 12px minmax(0, 1fr) auto auto auto; gap: 4px 8px; }
-.badge {
-  font-size: 11px; font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right;
-  padding: 1px 7px; border-radius: 999px; background: var(--bg); color: var(--muted);
-}
-.badge.pos { color: var(--pos); background: color-mix(in srgb, var(--pos) 12%, transparent); }
-.badge.neg { color: var(--neg); background: color-mix(in srgb, var(--neg) 12%, transparent); }
-.profil { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
-.profil .row { margin-bottom: 4px; }
+.fuel .p { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.fuel .p small { font-size: 12px; margin-left: 4px; }
+.fuel .off, .stack .off { opacity: .35; }
+.fuel .on { font-weight: 600; }
+.profil { background: var(--soft); border-radius: 10px; padding: 14px; margin-top: 18px; }
+.profil .bloc-titre { margin-top: 0; }
+.profil .lignes { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.profil .lignes div { font-size: 12.5px; color: var(--muted); }
+.profil strong { display: block; color: var(--text); font-size: 17px; font-variant-numeric: tabular-nums; }
 .profil .ref { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
-.na { color: var(--muted) !important; font-weight: 500; }
-#scatter { width: 100%; height: auto; display: block; }
-#scatter .axis text { fill: var(--muted); font-size: 11px; }
-#scatter .axis path, #scatter .axis line { stroke: var(--line); }
-#scatter .grid line { stroke: var(--line); stroke-dasharray: 2 3; }
-#scatter .titre-axe { fill: var(--muted); font-size: 12px; }
-#scatter .pt { fill: var(--accent); fill-opacity: .85; stroke: var(--surface); stroke-width: 1.5; cursor: pointer; }
-#scatter .pt.sel { fill: var(--hover); }
-#scatter .lab { fill: var(--text); font-size: 11px; font-weight: 600; pointer-events: none; }
-#scatter .tendance { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; opacity: .7; }
+.na { color: var(--muted) !important; font-weight: 500 !important; font-size: 14px !important; }
+
+/* Classement */
 .rank { margin-top: 20px; }
 .rank-list { display: grid; gap: 6px; }
 .rank-row {
-  display: grid; grid-template-columns: 26px minmax(130px, 220px) 1fr 92px 66px; gap: 10px; align-items: center;
+  display: grid; grid-template-columns: 26px minmax(130px, 240px) 1fr 92px 66px; gap: 10px; align-items: center;
   font-size: 13px; padding: 3px 4px; border-radius: 6px; cursor: pointer; border: 0; background: none; color: inherit; font-family: inherit; text-align: left;
 }
 .rank-row:hover, .rank-row.sel { background: var(--bg); }
@@ -138,11 +159,25 @@ header p { margin: 0; color: var(--muted); max-width: 760px; }
 .rank-row .track { display: block; height: 12px; background: var(--map-empty); border-radius: 4px; overflow: hidden; }
 .rank-row .fill { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
 .rank-row .n, .rank-row .e { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Nuage de points */
+#scatter { width: 100%; height: auto; display: block; }
+#scatter .axis text { fill: var(--muted); font-size: 11px; }
+#scatter .axis path, #scatter .axis line { stroke: var(--line); }
+#scatter .grid line { stroke: var(--line); stroke-dasharray: 2 3; }
+#scatter .titre-axe { fill: var(--muted); font-size: 12px; }
+#scatter .bulle { fill: var(--accent); fill-opacity: .7; stroke: var(--surface); stroke-width: 1; cursor: pointer; }
+#scatter .bulle:hover, #scatter .bulle.sel { fill-opacity: .95; stroke: var(--hover); stroke-width: 1.5; }
+#scatter .lab { fill: var(--text); font-size: 11px; font-weight: 600; pointer-events: none; }
+#scatter .tendance { stroke: var(--trend); stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; opacity: .35; }
+
 .tip {
   position: fixed; pointer-events: none; background: var(--surface); color: var(--text); border: 1px solid var(--line);
-  border-radius: 10px; padding: 8px 12px; font-size: 13px; box-shadow: 0 6px 20px rgba(0,0,0,.15); opacity: 0; transition: opacity .1s; z-index: 10;
+  border-radius: 10px; padding: 10px 12px; font-size: 13px; line-height: 1.55; box-shadow: 0 6px 20px rgba(0,0,0,.15);
+  opacity: 0; transition: opacity .1s; z-index: 10; max-width: 280px;
 }
-.tip b { display: block; font-size: 14px; }
+.tip b { display: block; font-size: 14px; margin-bottom: 2px; }
+.tip .k { color: var(--muted); }
 footer { margin-top: 28px; color: var(--muted); font-size: 12.5px; }
 footer a { color: var(--accent); }
 .error { padding: 20px; color: var(--neg); }
@@ -151,10 +186,15 @@ footer a { color: var(--accent); }
   .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
+  .ligne .seg + .seg { margin-left: 0; }
+  .ligne { gap: 8px; }
+  .ligne .seg + .seg::before { display: none; }
   .rank-row { grid-template-columns: 22px minmax(0, 1fr) 80px 56px; }
   .rank-row .track { display: none; }
   .drom { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .kpi .val { font-size: 22px; }
+  .fuel { grid-template-columns: 12px minmax(0, 1fr) auto; }
+  .fuel .n { display: none; }
 }
 </style>
 </head>
@@ -162,43 +202,54 @@ footer a { color: var(--accent); }
 <div class="wrap">
   <header>
     <h1>Où se vendent les voitures en France ?</h1>
-    <p>Répartition par région des immatriculations de voitures particulières sur les deux dernières années disponibles. Une immatriculation correspond à une vente : neuve, ou d'occasion lors d'un changement de propriétaire.</p>
+    <p>Répartition par région, département et grande ville des immatriculations de voitures particulières sur les deux dernières années disponibles. Une immatriculation correspond à une vente : neuve, ou d'occasion lors d'un changement de propriétaire.</p>
   </header>
 
   <div class="controls">
-    <div class="seg" role="group" aria-label="Type de vente" id="seg-type">
-      <button data-v="neufs" aria-pressed="true">Neuves</button>
-      <button data-v="occasions" aria-pressed="false">Occasion</button>
+    <div class="ligne" aria-label="Vue globale">
+      <div class="seg" role="group" aria-label="Type de vente" id="seg-type">
+        <button data-v="neufs" aria-pressed="true">Neuves</button>
+        <button data-v="occasions" aria-pressed="false">Occasion</button>
+      </div>
+      <div class="seg" role="group" aria-label="Période" id="seg-annee"></div>
+      <div class="seg" role="group" aria-label="Mode de calcul" id="seg-norm">
+        <button data-v="volume" aria-pressed="true">Volume total</button>
+        <button data-v="hab" aria-pressed="false">Pour 1 000 hab.</button>
+      </div>
     </div>
-    <div class="seg" role="group" aria-label="Période" id="seg-annee"></div>
-    <div class="seg" role="group" aria-label="Mode de calcul" id="seg-norm">
-      <button data-v="volume" aria-pressed="true">Volume total</button>
-      <button data-v="hab" aria-pressed="false">Pour 1 000 habitants</button>
+    <div class="ligne ligne-carb">
+      <div class="seg seg-carb" role="group" aria-label="Motorisation" id="seg-carb"></div>
     </div>
-    <div class="seg seg-carb" role="group" aria-label="Motorisation" id="seg-carb"></div>
   </div>
 
   <section class="kpis" id="kpis" aria-live="polite"></section>
 
   <div class="main">
     <section class="card panel">
+      <button class="retour" id="retour" hidden>← Retour à la vue nationale</button>
       <h2 id="map-title">Carte</h2>
-      <p class="hint">Survolez une région pour voir son chiffre, cliquez pour le détail.</p>
-      <svg id="map" role="img" aria-label="Carte des régions de France"></svg>
+      <p class="hint" id="map-hint"></p>
+      <svg id="map" role="img" aria-label="Carte de France"></svg>
       <div class="drom" id="drom"></div>
       <div class="legend" id="legend"></div>
     </section>
-    <section class="card panel detail" id="detail"></section>
+    <section class="card panel detail" id="detail" aria-live="polite"></section>
   </div>
 
   <section class="card panel rank">
     <h2 id="rank-title">Classement des régions</h2>
-    <p class="hint">Volume de ventes et évolution par rapport à l'année précédente.</p>
+    <p class="hint" id="rank-hint">Volume de ventes et évolution par rapport à l'année précédente.</p>
     <div class="rank-list" id="rank"></div>
   </section>
 
   <section class="card panel rank">
-    <h2>Corrélation : Revenu médian &amp; Électrification du parc</h2>
+    <div class="entete">
+      <h2>Corrélation : Revenu médian &amp; Électrification</h2>
+      <div class="seg petit" role="group" aria-label="Territoires représentés" id="seg-nuage">
+        <button data-v="metro" aria-pressed="true">Métropole uniquement</button>
+        <button data-v="france" aria-pressed="false">France entière</button>
+      </div>
+    </div>
     <p class="hint" id="scatter-hint"></p>
     <svg id="scatter" role="img" aria-label="Nuage de points revenu médian et part des voitures électriques"></svg>
     <p class="hint" id="scatter-note" style="margin-top:8px"></p>
@@ -225,106 +276,139 @@ const nb = n => fmt(Math.round(n)).replace(/,/g, " ");
 const dec = (x, d = 1) => x.toFixed(d).replace(".", ",");
 const pct = (x, d = 1) => dec(x * 100, d) + " %";
 const evo = x => (x > 0 ? "+" : x < 0 ? "−" : "") + dec(Math.abs(x * 100)) + " %";
-const pts = x => (x > 0 ? "+" : x < 0 ? "−" : "") + dec(Math.abs(x * 100)) + " pt";
 const eur = x => nb(x) + " €";
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
-const state = { type: "neufs", periode: null, sel: "11", carb: "tous", norm: "volume" };
-let DATA, GEO, INSEE, Y0, Y1;
+// zoom : code de la région affichée en détail (null = vue nationale)
+// sel / survol : clé du territoire affiché dans le panneau ("R:84", "D:69", "V:69123")
+const state = { type: "neufs", periode: null, carb: "tous", norm: "volume", zoom: null, sel: "R:11", survol: null, nuage: "metro" };
+let INSEE, GEO_REG, GEO_DEP, Y0, Y1, FRANCE_POP;
+const T = new Map(); // tous les territoires, par clé
 
-// Données Insee de la région (population, revenu médian, ménages motorisés)
-function insee(r) { return INSEE.regions[r.code] ?? {}; }
-function abrev(r) { return insee(r).abrev ?? r.nom; }
+/* ---------- Territoires ---------- */
+function charger(reg, ter, insReg, insTer) {
+  for (const r of reg.regions) {
+    T.set("R:" + r.code, { ...r, cle: "R:" + r.code, niveau: "region", insee: insReg.regions[r.code] ?? {} });
+  }
+  for (const [code, d] of Object.entries(ter.departements)) {
+    const i = insTer.departements[code] ?? {};
+    T.set("D:" + code, { ...d, cle: "D:" + code, niveau: "dep", nom: i.nom ?? code, insee: i });
+  }
+  for (const [code, v] of Object.entries(ter.villes)) {
+    const i = insTer.villes[code];
+    if (!i) continue;
+    T.set("V:" + code, { ...v, cle: "V:" + code, niveau: "ville", nom: i.nom, dep: i.dep, region: i.region,
+      lon: i.lon, lat: i.lat, insee: i });
+  }
+}
+const regions = () => [...T.values()].filter(t => t.niveau === "region");
+const depsDe = code => [...T.values()].filter(t => t.niveau === "dep" && t.region === code);
+const villesDe = code => [...T.values()].filter(t => t.niveau === "ville" && t.region === code);
+const abrev = t => t.insee.abrev ?? t.nom;
+// Territoires comparés à l'écran : régions en vue nationale, départements de la région zoomée sinon
+const vue = () => state.zoom ? depsDe(state.zoom) : regions();
+const parent = t => t.niveau === "region" ? null : T.get("R:" + t.region);
+
+/* ---------- Mesures ---------- */
 // Toutes motorisations confondues
-function total(r, type, annee) { return r[type]?.[annee]?.total ?? 0; }
+function total(t, type, annee) { return t[type]?.[annee]?.total ?? 0; }
 // Selon le filtre de motorisation choisi
-function valeur(r, type, annee) {
-  return state.carb === "tous" ? total(r, type, annee) : r[type]?.[annee]?.carburants?.[state.carb] ?? 0;
+function valeur(t, type, annee) {
+  return state.carb === "tous" ? total(t, type, annee) : t[type]?.[annee]?.carburants?.[state.carb] ?? 0;
+}
+function pour1000(t, type, annee) {
+  const pop = t.insee.population;
+  return pop ? valeur(t, type, annee) / pop * 1000 : 0;
 }
 // Selon le filtre de motorisation et le mode de calcul (volume ou pour 1 000 habitants)
-function indicateur(r, type, annee) {
-  const v = valeur(r, type, annee);
-  if (state.norm === "volume") return v;
-  const pop = insee(r).population;
-  return pop ? v / pop * 1000 : 0;
-}
+function indicateur(t, type, annee) { return state.norm === "volume" ? valeur(t, type, annee) : pour1000(t, type, annee); }
 const parHab = () => state.norm === "hab";
 const fmtInd = v => parHab() ? dec(v) : nb(v);
 const uniteInd = () => parHab() ? "ventes pour 1 000 hab." : "voitures vendues";
-function libCarb() { return state.carb === "tous" ? "" : ` · ${state.carb}`; }
-function libNorm() { return parHab() ? " · pour 1 000 hab." : ""; }
-function evolution(r, type) {
-  const a = valeur(r, type, Y0), b = valeur(r, type, Y1);
+const libCarb = () => state.carb === "tous" ? "" : ` · ${state.carb}`;
+const libNorm = () => parHab() ? " · pour 1 000 hab." : "";
+const libType = () => state.type === "neufs" ? "neuves" : "d'occasion";
+function evolution(t, type) {
+  const a = valeur(t, type, Y0), b = valeur(t, type, Y1);
   return a ? b / a - 1 : 0;
 }
-function anneeVue() { return state.periode === "evo" ? Y1 : state.periode; }
-function mesure(r) { return state.periode === "evo" ? evolution(r, state.type) : indicateur(r, state.type, state.periode); }
-// Part de chaque motorisation au niveau national
-function partsNationales(type, annee) {
-  const tot = d3.sum(DATA.regions, r => total(r, type, annee));
-  return Object.fromEntries(FUELS.map(([k]) =>
-    [k, d3.sum(DATA.regions, r => r[type]?.[annee]?.carburants?.[k] ?? 0) / tot]));
+const anneeVue = () => state.periode === "evo" ? Y1 : state.periode;
+const mesure = t => state.periode === "evo" ? evolution(t, state.type) : indicateur(t, state.type, state.periode);
+function partsMotorisation(liste, type, annee) {
+  const tot = d3.sum(liste, t => total(t, type, annee));
+  return Object.fromEntries(FUELS.map(([k]) => [k, d3.sum(liste, t => t[type]?.[annee]?.carburants?.[k] ?? 0) / tot]));
 }
 
-function echelle() {
-  const vals = DATA.regions.map(mesure);
+function echelle(liste) {
+  const vals = liste.map(mesure);
   if (state.periode === "evo") {
     const m = Math.max(0.05, d3.max(vals, v => Math.abs(v)));
     const cols = ["--d0", "--d1", "--d2", "--d3", "--d4"].map(css);
     return { f: d3.scaleQuantize().domain([-m, m]).range(cols), cols, min: -m, max: m, lab: evo };
   }
   const cols = ["--s0", "--s1", "--s2", "--s3", "--s4", "--s5"].map(css);
-  const f = d3.scaleQuantile().domain(vals).range(cols);
-  return { f, cols, min: d3.min(vals), max: d3.max(vals), lab: fmtInd };
+  return { f: d3.scaleQuantile().domain(vals).range(cols), cols, min: d3.min(vals), max: d3.max(vals), lab: fmtInd };
 }
 
-function regionParCode(c) { return DATA.regions.find(r => r.code === c); }
+/* ---------- Navigation ---------- */
+function zoomer(codeRegion) {
+  // Seules les régions de métropole ont un découpage départemental sur la carte
+  state.zoom = DROM.includes(codeRegion) ? null : codeRegion;
+  state.sel = "R:" + codeRegion; state.survol = null;
+  rendre();
+}
+function retourNational() { state.sel = "R:" + state.zoom; state.zoom = null; state.survol = null; rendre(); }
+function selectionner(cle) { state.sel = cle; state.survol = null; rendre(); }
+function survoler(cle) { if (state.survol !== cle) { state.survol = cle; rendreDetail(); } }
 
+/* ---------- Contrôles ---------- */
 function rendreControles() {
-  const seg = document.getElementById("seg-annee");
-  seg.innerHTML = [Y0, Y1].map(a => `<button data-v="${a}">${a}</button>`).join("") +
-    `<button data-v="evo">Évolution ${Y0}→${Y1}</button>`;
+  document.getElementById("seg-annee").innerHTML = [Y0, Y1].map(a => `<button data-v="${a}">${a}</button>`).join("") +
+    `<button data-v="evo">Évolution</button>`;
   document.getElementById("seg-carb").innerHTML = `<button data-v="tous">Toutes motorisations</button>` +
     FUELS.map(([k, c]) => `<button data-v="${k}"><i style="background:var(${c})"></i>${k}</button>`).join("");
-  for (const g of ["seg-type", "seg-annee", "seg-carb", "seg-norm"]) {
-    document.getElementById(g).addEventListener("click", e => {
+  const actions = {
+    "seg-type": v => state.type = v,
+    "seg-annee": v => state.periode = v === "evo" ? "evo" : +v,
+    "seg-norm": v => state.norm = v,
+    "seg-carb": v => state.carb = v,
+    "seg-nuage": v => state.nuage = v,
+  };
+  for (const [id, f] of Object.entries(actions)) {
+    document.getElementById(id).addEventListener("click", e => {
       const b = e.target.closest("button"); if (!b) return;
-      if (g === "seg-type") state.type = b.dataset.v;
-      else if (g === "seg-carb") state.carb = b.dataset.v;
-      else if (g === "seg-norm") state.norm = b.dataset.v;
-      else state.periode = b.dataset.v === "evo" ? "evo" : +b.dataset.v;
-      rendre();
+      f(b.dataset.v); rendre();
     });
   }
+  document.getElementById("retour").onclick = retourNational;
+  addEventListener("keydown", e => { if (e.key === "Escape" && state.zoom) retourNational(); });
 }
 
 function syncBoutons() {
-  document.querySelectorAll("#seg-type button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === state.type));
-  document.querySelectorAll("#seg-annee button").forEach(b =>
-    b.setAttribute("aria-pressed", String(b.dataset.v === String(state.periode))));
-  document.querySelectorAll("#seg-carb button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === state.carb));
-  document.querySelectorAll("#seg-norm button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === state.norm));
+  const marquer = (id, v) => document.querySelectorAll(`#${id} button`).forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === String(v))));
+  marquer("seg-type", state.type); marquer("seg-annee", state.periode); marquer("seg-norm", state.norm);
+  marquer("seg-carb", state.carb); marquer("seg-nuage", state.nuage);
 }
 
+/* ---------- Chiffres clés (France entière) ---------- */
 function rendreKpis() {
-  const t = state.type, an = anneeVue();
-  const tot = a => d3.sum(DATA.regions, r => valeur(r, t, a));
-  const T = tot(an);
-  const popFr = INSEE.france.population;
-  const tous = d3.sum(DATA.regions, r => total(r, t, an));
+  const t = state.type, an = anneeVue(), R = regions();
+  const tot = a => d3.sum(R, r => valeur(r, t, a));
+  const V = tot(an);
+  const tous = d3.sum(R, r => total(r, t, an));
   const partLib = state.carb === "tous" ? "l'électrique" : state.carb.toLowerCase();
-  const part = state.carb === "tous" ? d3.sum(DATA.regions, r => r[t]?.[an]?.carburants?.["Électrique"] ?? 0) : T;
-  const tri = [...DATA.regions].sort((a, b) => indicateur(b, t, an) - indicateur(a, t, an));
-  const prog = [...DATA.regions].sort((a, b) => evolution(b, t) - evolution(a, t))[0];
-  const ev = an === Y1 ? T / tot(Y0) - 1 : null;
+  const part = state.carb === "tous" ? d3.sum(R, r => r[t]?.[an]?.carburants?.["Électrique"] ?? 0) : V;
+  const tri = [...R].sort((a, b) => indicateur(b, t, an) - indicateur(a, t, an));
+  const prog = [...R].sort((a, b) => evolution(b, t) - evolution(a, t))[0];
+  const ev = an === Y1 ? V / tot(Y0) - 1 : null;
   const evTxt = ev === null ? "France entière" : `<span class="${ev >= 0 ? "pos" : "neg"}">${evo(ev)}</span> vs ${Y0}`;
   document.getElementById("kpis").innerHTML = `
-    <div class="card kpi"><div class="lbl">Ventes ${t === "neufs" ? "de voitures neuves" : "d'occasion"} en ${an}${libCarb()}${libNorm()}</div>
-      <div class="val">${parHab() ? dec(T / popFr * 1000) : nb(T)}</div>
-      <div class="sub">${parHab() ? `${nb(T)} voitures · ` : ""}${evTxt}</div></div>
+    <div class="card kpi"><div class="lbl">Ventes de voitures ${libType()} en ${an}${libCarb()}${libNorm()}</div>
+      <div class="val">${parHab() ? dec(V / FRANCE_POP * 1000) : nb(V)}</div>
+      <div class="sub">${parHab() ? `${nb(V)} voitures · ` : ""}${evTxt}</div></div>
     <div class="card kpi"><div class="lbl">1<sup>re</sup> région en ${an}${parHab() ? " (par habitant)" : ""}</div>
       <div class="val">${abrev(tri[0])}</div>
-      <div class="sub">${tri[0].nom} · ${parHab() ? `${dec(indicateur(tri[0], t, an))} pour 1 000 hab.` : `${pct(valeur(tri[0], t, an) / T)} des ventes`}</div></div>
+      <div class="sub">${tri[0].nom} · ${parHab() ? `${dec(indicateur(tri[0], t, an))} pour 1 000 hab.` : `${pct(valeur(tri[0], t, an) / V)} des ventes`}</div></div>
     <div class="card kpi"><div class="lbl">Part ${state.carb === "tous" ? "de " : "« "}${partLib}${state.carb === "tous" ? "" : " »"} en ${an}</div>
       <div class="val">${pct(part / tous)}</div>
       <div class="sub">${nb(part)} voitures sur ${nb(tous)}</div></div>
@@ -333,130 +417,175 @@ function rendreKpis() {
       <div class="sub">${prog.nom}</div></div>`;
 }
 
-function rendreCarte(sc) {
+/* ---------- Carte (2 niveaux) ---------- */
+function rendreCarte() {
+  const liste = vue(), sc = echelle(liste);
   const svg = d3.select("#map");
   const W = 600, H = 560;
   svg.attr("viewBox", `0 0 ${W} ${H}`).classed("evo", state.periode === "evo");
-  const proj = d3.geoConicConformal().parallels([44, 49]).rotate([-3, 0]).fitSize([W, H - 10], GEO);
-  const path = d3.geoPath(proj);
+  svg.selectAll("*").remove();
   const tip = document.getElementById("tip");
-  const sel = svg.selectAll("g.r").data(GEO.features, f => f.properties.code);
-  const g = sel.enter().append("g").attr("class", "r");
-  g.append("path").attr("class", "reg").attr("d", path)
-    .on("mousemove", (e, f) => montrerTip(e, regionParCode(f.properties.code)))
-    .on("mouseleave", () => tip.style.opacity = 0)
-    .on("click", (e, f) => { state.sel = f.properties.code; rendre(); });
+  const cacher = () => { tip.style.opacity = 0; state.survol = null; rendreDetail(); };
+
+  const zoom = state.zoom;
+  const features = zoom ? GEO_DEP.features.filter(f => T.get("D:" + f.properties.code)?.region === zoom) : GEO_REG.features;
+  const proj = d3.geoConicConformal().parallels([44, 49]).rotate([-3, 0])
+    .fitExtent([[10, 10], [W - 10, H - 10]], { type: "FeatureCollection", features });
+  const path = d3.geoPath(proj);
+  const cleDe = f => (zoom ? "D:" : "R:") + f.properties.code;
+
+  const g = svg.append("g").selectAll("g").data(features).join("g");
+  g.append("path").attr("class", f => "reg" + (cleDe(f) === state.sel ? " sel" : "")).attr("d", path)
+    .attr("fill", f => sc.f(mesure(T.get(cleDe(f)))))
+    .attr("aria-label", f => f.properties.nom)
+    .on("mousemove", (e, f) => { montrerTip(e, T.get(cleDe(f))); if (zoom) survoler(cleDe(f)); })
+    .on("mouseleave", cacher)
+    .on("click", (e, f) => zoom ? selectionner(cleDe(f)) : zoomer(f.properties.code));
   g.append("text").attr("text-anchor", "middle").attr("dy", ".35em")
     .attr("transform", f => {
       const [x, y] = path.centroid(f);
-      return `translate(${x},${y + (f.properties.code === "93" ? 8 : 0)})`;
+      return `translate(${x},${y + (!zoom && f.properties.code === "93" ? 8 : 0)})`;
     })
-    .text(f => INSEE.regions[f.properties.code]?.abrev);
-  const all = svg.selectAll("g.r");
-  all.select("path").attr("fill", f => sc.f(mesure(regionParCode(f.properties.code))))
-    .classed("sel", f => f.properties.code === state.sel)
-    .attr("aria-label", f => f.properties.nom);
-  all.select("text").attr("fill", css("--text")).attr("stroke", css("--surface"));
-  all.filter(f => f.properties.code === state.sel).raise();
+    .attr("fill", css("--text")).attr("stroke", css("--surface"))
+    .text(f => zoom ? f.properties.code : abrev(T.get(cleDe(f))));
+  svg.selectAll("path.sel").each(function () { this.parentNode.parentNode.appendChild(this.parentNode); });
 
+  // Grandes villes de la région zoomée
+  if (zoom) {
+    const villes = villesDe(zoom);
+    const rayon = d3.scaleSqrt().domain([0, d3.max(villes, v => total(v, state.type, anneeVue())) || 1]).range([4, 11]);
+    const gv = svg.append("g").selectAll("g").data(villes).join("g")
+      .attr("class", v => "ville" + (v.cle === state.sel ? " sel" : ""))
+      .attr("transform", v => `translate(${proj([v.lon, v.lat])})`)
+      .on("mousemove", (e, v) => { montrerTip(e, v); survoler(v.cle); })
+      .on("mouseleave", cacher)
+      .on("click", (e, v) => selectionner(v.cle));
+    gv.append("circle").attr("r", v => rayon(total(v, state.type, anneeVue())));
+    gv.append("text").attr("x", v => rayon(total(v, state.type, anneeVue())) + 4).attr("dy", ".35em")
+      .attr("fill", css("--text")).attr("stroke", css("--surface")).text(v => v.nom);
+  }
+
+  // Outre-mer (vue nationale uniquement)
   const drom = document.getElementById("drom");
-  drom.innerHTML = DROM.map(c => {
-    const r = regionParCode(c), v = mesure(r), bg = sc.f(v);
+  drom.hidden = !!zoom;
+  drom.innerHTML = zoom ? "" : DROM.map(c => {
+    const r = T.get("R:" + c), v = mesure(r), bg = sc.f(v);
     const fonce = d3.hsl(bg).l < 0.5;
-    return `<button data-c="${c}" class="${c === state.sel ? "sel" : ""}" style="background:${bg};color:${fonce ? "#fff" : "#16181d"}">
+    return `<button data-c="${c}" class="${r.cle === state.sel ? "sel" : ""}" style="background:${bg};color:${fonce ? "#fff" : "#16181d"}">
       ${r.nom}<b>${state.periode === "evo" ? evo(v) : fmtInd(v)}</b></button>`;
   }).join("");
   drom.querySelectorAll("button").forEach(b => {
-    b.onclick = () => { state.sel = b.dataset.c; rendre(); };
-    b.onmousemove = e => montrerTip(e, regionParCode(b.dataset.c));
+    b.onclick = () => selectionner("R:" + b.dataset.c);
+    b.onmousemove = e => montrerTip(e, T.get("R:" + b.dataset.c));
     b.onmouseleave = () => tip.style.opacity = 0;
   });
 
-  const lg = document.getElementById("legend");
-  lg.innerHTML = `<span>${sc.lab(sc.min)}</span><div class="bar">${sc.cols.map(c => `<span style="background:${c}"></span>`).join("")}</div><span>${sc.lab(sc.max)}</span>
-    <span>${state.periode === "evo" ? "évolution des ventes" : uniteInd()}</span>`;
+  document.getElementById("retour").hidden = !zoom;
+  document.getElementById("legend").innerHTML = `<span>${sc.lab(sc.min)}</span><div class="bar">${sc.cols.map(c => `<span style="background:${c}"></span>`).join("")}</div><span>${sc.lab(sc.max)}</span>
+    <span>${state.periode === "evo" ? "évolution des ventes" : uniteInd()}</span>
+    ${zoom ? `<span style="margin-left:8px"><span class="pt-ville"></span> grande ville (taille selon le volume)</span>` : ""}`;
+  const lieu = zoom ? ` — ${T.get("R:" + zoom).nom}, par département` : "";
   document.getElementById("map-title").textContent = state.periode === "evo"
-    ? `Évolution des ventes ${state.type === "neufs" ? "neuves" : "d'occasion"} entre ${Y0} et ${Y1}${libCarb()}`
-    : `Ventes ${state.type === "neufs" ? "de voitures neuves" : "de voitures d'occasion"} en ${state.periode}${libCarb()}${libNorm()}`;
+    ? `Évolution des ventes ${libType()} entre ${Y0} et ${Y1}${libCarb()}${lieu}`
+    : `Ventes de voitures ${libType()} en ${state.periode}${libCarb()}${libNorm()}${lieu}`;
+  document.getElementById("map-hint").textContent = zoom
+    ? "Survolez un département ou une ville pour le détail. Échap ou le bouton ci-dessus pour revenir."
+    : "Survolez une région pour voir son chiffre, cliquez pour zoomer sur ses départements et grandes villes.";
 }
 
 function placerTip(e, html) {
   const tip = document.getElementById("tip");
   tip.innerHTML = html;
   const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8);
-  tip.style.left = x + "px"; tip.style.top = (e.clientY + 14) + "px"; tip.style.opacity = 1;
+  const y = Math.min(e.clientY + 14, innerHeight - tip.offsetHeight - 8);
+  tip.style.left = x + "px"; tip.style.top = y + "px"; tip.style.opacity = 1;
 }
 
-function montrerTip(e, r) {
-  const t = state.type;
-  const nat = d3.sum(DATA.regions, x => valeur(x, t, Y1));
-  const ev = evolution(r, t);
+function montrerTip(e, terr) {
+  const t = state.type, ev = evolution(terr, t);
   const ligne = a => parHab()
-    ? `${a} : ${dec(indicateur(r, t, a))} pour 1 000 hab. <span style="color:var(--muted)">(${nb(valeur(r, t, a))})</span>`
-    : `${a} : ${nb(valeur(r, t, a))}`;
-  placerTip(e, `<b>${r.nom}</b>${ligne(Y0)}<br>${ligne(Y1)}
-    <br><span class="${ev >= 0 ? "pos" : "neg"}">${evo(ev)}</span> · ${pct(valeur(r, t, Y1) / nat)} du total ${Y1}`);
+    ? `${a} : ${dec(pour1000(terr, t, a))} pour 1 000 hab. <span class="k">(${nb(valeur(terr, t, a))})</span>`
+    : `${a} : ${nb(valeur(terr, t, a))}`;
+  placerTip(e, `<b>${terr.nom}</b>${ligne(Y0)}<br>${ligne(Y1)}<br><span class="${ev >= 0 ? "pos" : "neg"}">${evo(ev)}</span> sur un an`);
 }
 
+/* ---------- Panneau « Zoom sur un territoire » ---------- */
 function rendreDetail() {
-  const r = regionParCode(state.sel), t = state.type, an = anneeVue();
-  const v = valeur(r, t, an), nat = d3.sum(DATA.regions, x => valeur(x, t, an));
-  const ev = evolution(r, t);
-  const carb = r[t]?.[an]?.carburants ?? {};
-  const rt = total(r, t, an);
-  const parts = partsNationales(t, an);
+  const terr = T.get(state.survol ?? state.sel) ?? T.get("R:11");
+  const t = state.type, an = anneeVue();
+  const v = valeur(terr, t, an);
+  const ref = parent(terr);
+  // Part nationale pour une région, part régionale pour un département ou une ville
+  const base = ref ? valeur(ref, t, an) : d3.sum(regions(), r => valeur(r, t, an));
+  const ev = evolution(terr, t);
+  const autre = t === "neufs" ? "occasions" : "neufs";
+  const rt = total(terr, t, an);
+  const carb = terr[t]?.[an]?.carburants ?? {};
+  const parts = partsMotorisation(regions(), t, an);
   const fuels = FUELS.map(([k, c]) => ({ k, c: css(c), n: carb[k] ?? 0 })).filter(f => f.n > 0);
   const etat = k => state.carb === "tous" ? "" : k === state.carb ? "on" : "off";
-  const autre = t === "neufs" ? "occasions" : "neufs";
-  const ins = insee(r), fr = INSEE.france;
   const ecart = f => {
-    const d = f.n / rt - parts[f.k];
-    const cls = Math.abs(d) < 0.0005 ? "" : d > 0 ? "pos" : "neg";
-    return `<span class="badge ${cls} ${etat(f.k)}" title="${pct(f.n / rt)} dans la région contre ${pct(parts[f.k])} en France">${pts(d)} vs France</span>`;
+    const d = (f.n / rt - parts[f.k]) * 100;
+    if (Math.abs(d) < 0.05) return `<small class="k">(= France)</small>`;
+    return `<small class="${d > 0 ? "pos" : "neg"}" title="${pct(parts[f.k])} en France">(${d > 0 ? "↑" : "↓"} ${dec(Math.abs(d))} pt)</small>`;
   };
-  const indisponible = `<strong class="na">non disponible</strong>`;
+  const ins = insee(terr), fr = INSEE.france;
+  const na = `<strong class="na">non disponible</strong>`;
+  const niveau = terr.niveau === "region" ? "Région"
+    : terr.niveau === "dep" ? `Département ${terr.code} · ${ref.nom}`
+    : `Commune · ${T.get("D:" + terr.dep)?.nom ?? terr.dep} (${terr.dep})`;
   document.getElementById("detail").innerHTML = `
-    <h2>Zoom sur une région</h2>
-    <p class="hint">${t === "neufs" ? "Voitures neuves" : "Voitures d'occasion"} · ${an}${libCarb()}</p>
-    <h3>${r.nom}</h3>
+    <h2>Zoom sur un territoire</h2>
+    <p class="hint">Voitures ${libType()} · ${an}${libCarb()}</p>
+    <h3>${terr.nom}</h3>
+    <div class="niveau">${niveau}</div>
     <div class="big">${nb(v)}</div>
-    <div class="row">
-      <div>Part nationale<strong>${pct(v / nat)}</strong></div>
-      <div>Pour 1 000 hab.<strong>${ins.population ? dec(v / ins.population * 1000) : "–"}</strong></div>
+    <div class="mini">
+      <div>Part ${ref ? "régionale" : "nationale"}<strong>${base ? pct(v / base) : "–"}</strong></div>
+      <div>Taux pour 1 000 hab.<strong>${ins.population ? dec(v / ins.population * 1000) : "–"}</strong></div>
       <div>Évolution ${Y0}→${Y1}<strong class="${ev >= 0 ? "pos" : "neg"}">${evo(ev)}</strong></div>
-      <div>${autre === "neufs" ? "Neuves" : "Occasion"} en ${an}<strong>${nb(valeur(r, autre, an))}</strong></div>
+      <div>Ventes ${autre === "occasions" ? "d'occasion" : "neuves"} ${an}<strong>${nb(valeur(terr, autre, an))}</strong></div>
     </div>
-    <h2 style="margin-top:8px">Motorisation</h2>
+    <div class="bloc-titre">Motorisation <span class="hint" style="font-weight:400">· écart à la moyenne nationale</span></div>
     <div class="stack">${fuels.map(f => `<span title="${f.k}" class="${etat(f.k)}" style="background:${f.c};width:${f.n / rt * 100}%"></span>`).join("")}</div>
-    <div class="fuel ecarts">${fuels.map(f => `<i class="${etat(f.k)}" style="background:${f.c}"></i><span class="${etat(f.k)}">${f.k}</span><span class="n ${etat(f.k)}">${nb(f.n)}</span><span class="p ${etat(f.k)}">${pct(f.n / rt)}</span>${ecart(f)}`).join("")}</div>
+    <div class="fuel">${fuels.map(f => `<i class="${etat(f.k)}" style="background:${f.c}"></i><span class="${etat(f.k)}">${f.k}</span><span class="n ${etat(f.k)}">${nb(f.n)}</span><span class="p ${etat(f.k)}">${pct(f.n / rt)} ${ecart(f)}</span>`).join("")}</div>
     <div class="profil">
-      <h2>Profil socio-économique (Insee)</h2>
-      <div class="row">
-        <div>Revenu médian annuel${ins.revenu_median ? `<strong>${eur(ins.revenu_median)}<span class="ref">France métro. : ${eur(fr.revenu_median)}</span></strong>` : indisponible}</div>
-        <div>Ménages équipés d'une voiture${ins.menages_motorises != null ? `<strong>${dec(ins.menages_motorises)} %<span class="ref">France : ${dec(fr.menages_motorises)} %</span></strong>` : indisponible}</div>
-        <div>Population${ins.population ? `<strong>${nb(ins.population)}<span class="ref">${ins.note_population ? "estimation " + INSEE.millesimes.population : "population légale " + INSEE.millesimes.population}</span></strong>` : indisponible}</div>
+      <div class="bloc-titre">Profil socio-économique (Insee)</div>
+      <div class="lignes">
+        <div>Revenu disponible médian${ins.revenu_median ? `<strong>${eur(ins.revenu_median)}<span class="ref">France métro. : ${eur(fr.revenu_median)}</span></strong>` : na}</div>
+        <div>Ménages équipés d'une voiture${ins.menages_motorises != null ? `<strong>${dec(ins.menages_motorises)} %<span class="ref">France : ${dec(fr.menages_motorises)} %</span></strong>` : na}</div>
+        <div>Population${ins.population ? `<strong>${nb(ins.population)}<span class="ref">${ins.note_population ? "estimation" : "population légale"} ${INSEE.millesimes.population}</span></strong>` : na}</div>
       </div>
     </div>`;
 }
+const insee = t => t.insee ?? {};
 
+/* ---------- Classement ---------- */
 function rendreClassement() {
-  const t = state.type, an = anneeVue();
-  const tri = [...DATA.regions].sort((a, b) => state.periode === "evo"
+  const t = state.type, an = anneeVue(), liste = vue();
+  const tri = [...liste].sort((a, b) => state.periode === "evo"
     ? evolution(b, t) - evolution(a, t) : indicateur(b, t, an) - indicateur(a, t, an));
-  const max = d3.max(DATA.regions, r => indicateur(r, t, an));
+  const max = d3.max(liste, r => indicateur(r, t, an)) || 1;
+  const quoi = state.zoom ? `départements — ${T.get("R:" + state.zoom).nom}` : "régions";
   document.getElementById("rank-title").textContent = state.periode === "evo"
-    ? `Classement par évolution ${Y0}→${Y1}` : `Classement des régions en ${an}${libNorm()}`;
+    ? `Classement des ${quoi} par évolution ${Y0}→${Y1}` : `Classement des ${quoi} en ${an}${libNorm()}`;
   const el = document.getElementById("rank");
   el.innerHTML = tri.map((r, i) => {
     const ev = evolution(r, t);
-    return `<button class="rank-row ${r.code === state.sel ? "sel" : ""}" data-c="${r.code}">
-      <span class="i">${i + 1}</span><span>${r.nom}</span>
+    return `<button class="rank-row ${r.cle === state.sel ? "sel" : ""}" data-c="${r.cle}">
+      <span class="i">${i + 1}</span><span>${state.zoom ? `${r.code} · ` : ""}${r.nom}</span>
       <span class="track"><span class="fill" style="width:${indicateur(r, t, an) / max * 100}%"></span></span>
       <span class="n">${fmtInd(indicateur(r, t, an))}</span><span class="e ${ev >= 0 ? "pos" : "neg"}">${evo(ev)}</span></button>`;
   }).join("");
-  el.querySelectorAll("button").forEach(b => b.onclick = () => { state.sel = b.dataset.c; rendre(); });
+  el.querySelectorAll("button").forEach(b => b.onclick = () => {
+    const terr = T.get(b.dataset.c);
+    // En vue nationale, un clic sur une région de métropole zoome dessus
+    if (!state.zoom && terr.niveau === "region" && !DROM.includes(terr.code)) zoomer(terr.code);
+    else selectionner(b.dataset.c);
+  });
 }
 
+/* ---------- Nuage de points (régions) ---------- */
 // Régression linéaire (moindres carrés) et coefficient de corrélation de Pearson
 function regression(pts) {
   const mx = d3.mean(pts, p => p.x), my = d3.mean(pts, p => p.y);
@@ -467,101 +596,104 @@ function regression(pts) {
 }
 
 function rendreNuage() {
-  const t = state.type, an = anneeVue();
-  const pts = DATA.regions.filter(r => insee(r).revenu_median && total(r, t, an)).map(r => ({
-    r, x: insee(r).revenu_median,
-    y: (r[t]?.[an]?.carburants?.["Électrique"] ?? 0) / total(r, t, an),
-  }));
-  const exclues = DATA.regions.filter(r => !insee(r).revenu_median).map(r => r.nom);
+  const t = state.type, an = anneeVue(), metro = state.nuage === "metro";
+  const pts = regions()
+    .filter(r => insee(r).revenu_median && total(r, t, an) && (!metro || !DROM.includes(r.code)))
+    .map(r => ({ r, x: insee(r).revenu_median, y: (r[t]?.[an]?.carburants?.["Électrique"] ?? 0) / total(r, t, an), v: total(r, t, an) }));
+  const exclues = regions().filter(r => !insee(r).revenu_median).map(r => r.nom);
+
   // Dimensions réelles de la carte pour garder des textes lisibles
   const W = Math.max(300, document.getElementById("scatter").parentElement.clientWidth - 40);
-  const H = Math.round(Math.min(420, Math.max(280, W * 0.5))), m = { t: 22, r: 40, b: 48, l: 52 };
+  const H = Math.round(Math.min(440, Math.max(300, W * 0.5))), m = { t: 24, r: 40, b: 48, l: 52 };
   const svg = d3.select("#scatter").attr("viewBox", `0 0 ${W} ${H}`);
   svg.selectAll("*").remove();
-  const x = d3.scaleLinear().domain(d3.extent(pts, p => p.x)).nice().range([m.l, W - m.r]);
-  const y = d3.scaleLinear().domain([0, d3.max(pts, p => p.y)]).nice().range([H - m.b, m.t]);
+
+  // Métropole : cadrage resserré 23 000–29 000 € et 15–26 % quand tous les points y tiennent
+  // (voitures neuves) ; sinon (occasion), axes recadrés sur les données avec une marge
+  const [xMin, xMax] = d3.extent(pts, p => p.x), [yMin, yMax] = d3.extent(pts, p => p.y);
+  const marge = (a, b) => [a - (b - a) * 0.12, b + (b - a) * 0.12];
+  const cadreX = metro && xMin >= 23000 && xMax <= 29000, cadreY = metro && yMin >= 0.15 && yMax <= 0.26;
+  const xDom = cadreX ? [23000, 29000] : metro ? marge(xMin, xMax) : [xMin, xMax];
+  const yDom = cadreY ? [0.15, 0.26] : metro ? marge(yMin, yMax) : [0, yMax];
+  const x = d3.scaleLinear().domain(xDom).range([m.l, W - m.r]);
+  const y = d3.scaleLinear().domain(yDom).range([H - m.b, m.t]);
+  if (!cadreX) x.nice();
+  if (!cadreY) y.nice();
+  const rayon = d3.scaleSqrt().domain([0, d3.max(pts, p => p.v)]).range([0, Math.min(26, W / 30)]);
 
   svg.append("g").attr("class", "grid").attr("transform", `translate(${m.l},0)`)
-    .call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.l - m.r)).tickFormat(""))
+    .call(d3.axisLeft(y).ticks(6).tickSize(-(W - m.l - m.r)).tickFormat(""))
     .call(g => g.select(".domain").remove());
   svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - m.b})`)
     .call(d3.axisBottom(x).ticks(6).tickFormat(v => nb(v) + " €"));
   svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`)
-    .call(d3.axisLeft(y).ticks(5).tickFormat(v => dec(v * 100, 0) + " %"));
+    .call(d3.axisLeft(y).ticks(6).tickFormat(v => dec(v * 100, y.domain()[1] - y.domain()[0] < 0.06 ? 1 : 0) + " %"));
   svg.append("text").attr("class", "titre-axe").attr("x", W - m.r).attr("y", H - 10).attr("text-anchor", "end")
     .text("Revenu disponible médian (€/an par unité de consommation)");
-  svg.append("text").attr("class", "titre-axe").attr("x", m.l).attr("y", m.t - 4)
+  svg.append("text").attr("class", "titre-axe").attr("x", m.l).attr("y", m.t - 8)
     .text("Part des voitures 100 % électriques");
 
-  // Droite de tendance (moindres carrés) et coefficient de corrélation
   const { pente, origine, r: rCorr } = regression(pts);
   const [x0, x1] = x.domain();
-  svg.append("line").attr("class", "tendance")
+  const clip = svg.append("clipPath").attr("id", "zone").append("rect")
+    .attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", H - m.t - m.b);
+  svg.append("line").attr("class", "tendance").attr("clip-path", "url(#zone)")
     .attr("x1", x(x0)).attr("y1", y(origine + pente * x0)).attr("x2", x(x1)).attr("y2", y(origine + pente * x1));
 
-  const g = svg.append("g").selectAll("g").data(pts).join("g");
-  g.append("circle").attr("class", p => "pt" + (p.r.code === state.sel ? " sel" : ""))
-    .attr("cx", p => x(p.x)).attr("cy", p => y(p.y)).attr("r", 7)
-    .on("mousemove", (e, p) => placerTip(e, `<b>${p.r.nom}</b>Revenu médian : ${eur(p.x)}<br>Part électrique : ${pct(p.y)}
-      <br>Volume total : ${nb(total(p.r, t, an))} voitures`))
+  const tri = [...pts].sort((a, b) => b.v - a.v); // petites bulles au-dessus
+  svg.append("g").selectAll("circle").data(tri).join("circle")
+    .attr("class", p => "bulle" + (p.r.cle === state.sel ? " sel" : ""))
+    .attr("cx", p => x(p.x)).attr("cy", p => y(p.y)).attr("r", p => Math.max(4, rayon(p.v)))
+    .on("mousemove", (e, p) => placerTip(e, `<b>${p.r.nom}</b>
+      <span class="k">Revenu médian</span> ${eur(p.x)}<br>
+      <span class="k">Part électrique</span> ${pct(p.y)}<br>
+      <span class="k">Volume total</span> ${nb(p.v)} voitures ${libType()}`))
     .on("mouseleave", () => document.getElementById("tip").style.opacity = 0)
-    .on("click", (e, p) => { state.sel = p.r.code; rendre(); });
-  const lab = g.append("text").attr("class", "lab").text(p => abrev(p.r));
-  // Placement des étiquettes sans chevauchement : on essaie plusieurs positions autour du point
-  const places = [];
-  const essais = [[10, 4], [10, -8], [10, 16], [-10, 4], [-10, -8], [-10, 16], [10, -20], [10, 28]];
-  lab.each(function (p) {
-    const w = this.getComputedTextLength(), cx = x(p.x), cy = y(p.y);
-    for (const [dx, dy] of essais) {
-      const x0 = dx > 0 ? cx + dx : cx + dx - w, b = { x0, x1: x0 + w, y0: cy + dy - 10, y1: cy + dy + 2 };
-      const libre = places.every(o => b.x1 < o.x0 || b.x0 > o.x1 || b.y1 < o.y0 || b.y0 > o.y1)
-        && pts.every(q => Math.hypot(x(q.x) - Math.max(b.x0, Math.min(x(q.x), b.x1)), y(q.y) - Math.max(b.y0, Math.min(y(q.y), b.y1))) > 6);
-      if (libre || dx === essais.at(-1)[0] && dy === essais.at(-1)[1]) {
-        places.push(b);
-        d3.select(this).attr("x", x0).attr("y", cy + dy);
-        break;
-      }
-    }
-  });
+    .on("click", (e, p) => DROM.includes(p.r.code) ? selectionner(p.r.cle) : zoomer(p.r.code));
 
-  // Coefficient sans l'outre-mer, pour ne pas laisser un seul point tirer la corrélation
-  const metro = pts.filter(p => !DROM.includes(p.r.code));
-  const rMetro = metro.length > 2 ? regression(metro).r : null;
+  // Étiquettes seulement pour les points isolés (aucune autre bulle à proximité)
+  const isole = p => pts.every(q => q === p ||
+    Math.hypot(x(p.x) - x(q.x), y(p.y) - y(q.y)) - Math.max(4, rayon(p.v)) - Math.max(4, rayon(q.v)) > 22);
+  svg.append("g").selectAll("text").data(pts.filter(isole)).join("text").attr("class", "lab")
+    .attr("x", p => x(p.x) + Math.max(4, rayon(p.v)) + 4).attr("y", p => y(p.y) + 4).text(p => abrev(p.r));
 
   const force = v => Math.abs(v) > 0.7 ? "forte" : Math.abs(v) > 0.4 ? "modérée" : "faible";
-  const avecMetro = rMetro !== null && metro.length < pts.length;
   document.getElementById("scatter-hint").textContent =
-    `${t === "neufs" ? "Voitures neuves" : "Voitures d'occasion"} · ${an} · chaque point est une région. ` +
-    `Corrélation ${force(rCorr)} sur l'ensemble (r = ${dec(rCorr, 2)})` +
-    (avecMetro ? `, ${force(rMetro)} en métropole seule (r = ${dec(rMetro, 2)}). ` : ". ") +
-    `Le filtre de motorisation ne s'applique pas à ce graphique.`;
-  document.getElementById("scatter-note").textContent = exclues.length
-    ? `Non représentées faute de revenu médian publié par l'Insee (Filosofi) : ${exclues.join(", ")}.` : "";
+    `Voitures ${libType()} · ${an} · une bulle par région, taille proportionnelle au volume de ventes. ` +
+    `Corrélation ${force(rCorr)} (r = ${dec(rCorr, 2)}). Survolez une bulle pour le détail.`;
+  document.getElementById("scatter-note").textContent = metro
+    ? "Outre-mer exclu de cette vue. « France entière » ajoute La Réunion, seule région d'outre-mer dont l'Insee publie le revenu médian."
+    : `Non représentées faute de revenu médian publié par l'Insee (Filosofi) : ${exclues.join(", ")}.`;
 }
 
 function rendre() {
   syncBoutons();
-  const sc = echelle();
-  rendreKpis(); rendreCarte(sc); rendreDetail(); rendreClassement(); rendreNuage();
+  rendreKpis(); rendreCarte(); rendreDetail(); rendreClassement(); rendreNuage();
 }
 
 Promise.all([
   d3.json("data/immatriculations_regions.json"),
-  d3.json("data/regions.geojson"),
+  d3.json("data/immatriculations_territoires.json"),
   d3.json("data/insee_regions.json"),
+  d3.json("data/insee_territoires.json"),
+  d3.json("data/regions.geojson"),
+  d3.json("data/departements.geojson"),
 ])
-  .then(([data, geo, insee]) => {
-    DATA = data; GEO = geo; INSEE = insee;
-    [Y0, Y1] = data.annees;
+  .then(([reg, ter, insReg, insTer, geoReg, geoDep]) => {
+    INSEE = insReg; GEO_REG = geoReg; GEO_DEP = geoDep;
+    FRANCE_POP = insReg.france.population;
+    charger(reg, ter, insReg, insTer);
+    [Y0, Y1] = reg.annees;
     state.periode = Y1;
     rendreControles(); rendre();
-    const maj = new Date(data.mise_a_jour).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
-    document.getElementById("footer").innerHTML = `Source : ${data.source}.
-      <a href="${data.jeu_de_donnees}">Jeu de données</a> (millésime ${data.millesime}).
+    const maj = new Date(reg.mise_a_jour).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+    document.getElementById("footer").innerHTML = `Source : ${reg.source}.
+      <a href="${reg.jeu_de_donnees}">Jeu de données</a> (millésime ${reg.millesime}).
       Champ : voitures particulières, France entière ; immatriculations rattachées à la commune du titulaire.<br>
-      Données de référence : ${insee.source} — population municipale ${insee.millesimes.population}
-      (estimation pour Mayotte), niveau de vie médian ${insee.millesimes.revenu_median},
-      ménages motorisés ${insee.millesimes.menages_motorises}.<br>
+      Données de référence : ${insReg.source} — population municipale ${insReg.millesimes.population}
+      (estimation pour Mayotte), niveau de vie médian ${insReg.millesimes.revenu_median},
+      ménages motorisés ${insReg.millesimes.menages_motorises}.
+      Grandes villes : ${insTer.source_villes} ; les chiffres portent sur la commune elle-même.<br>
       Données mises à jour automatiquement chaque semaine — dernière extraction le ${maj}.`;
     matchMedia("(prefers-color-scheme: dark)").addEventListener("change", rendre);
     let attente;
