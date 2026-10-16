@@ -24,7 +24,7 @@
   /* Échelle séquentielle (volumes) */
   --s0: #e8f0fb; --s1: #b9d0f0; --s2: #7fa9e0; --s3: #4a7fcc; --s4: #2257a8; --s5: #123a78;
   /* Échelle divergente (évolution) */
-  --d0: #b3362c; --d1: #e3907f; --d2: #f1ece6; --d3: #86c1a0; --d4: #1e7f4f;
+  --d0: #c62828; --d1: #f3aaa5; --d2: #ffffff; --d3: #a9c8ef; --d4: #1f5fbf;
   /* Carburants */
   --f-elec: #13a37a; --f-phev: #6bc4a6; --f-hev: #e3a73a; --f-ess: #d1603d; --f-die: #59606b; --f-aut: #b4b9c2;
 }
@@ -34,7 +34,7 @@
     --accent: #6fa3f0; --map-empty: #232832; --stroke: #0f1115; --hover: #ffffff;
     --pos: #5cc391; --neg: #f07b6e; --shadow: none;
     --s0: #1a2a44; --s1: #1f3e6e; --s2: #2c5ca0; --s3: #4a82cf; --s4: #7eabea; --s5: #bcd5f7;
-    --d0: #f07b6e; --d1: #a2564d; --d2: #3a3f48; --d3: #3f8b66; --d4: #5cc391;
+    --d0: #c62828; --d1: #f3aaa5; --d2: #ffffff; --d3: #a9c8ef; --d4: #1f5fbf;
     --f-die: #8d95a1; --f-aut: #4b515c;
   }
 }
@@ -43,7 +43,7 @@
   --accent: #6fa3f0; --map-empty: #232832; --stroke: #0f1115; --hover: #ffffff;
   --pos: #5cc391; --neg: #f07b6e; --shadow: none;
   --s0: #1a2a44; --s1: #1f3e6e; --s2: #2c5ca0; --s3: #4a82cf; --s4: #7eabea; --s5: #bcd5f7;
-  --d0: #f07b6e; --d1: #a2564d; --d2: #3a3f48; --d3: #3f8b66; --d4: #5cc391;
+  --d0: #c62828; --d1: #f3aaa5; --d2: #ffffff; --d3: #a9c8ef; --d4: #1f5fbf;
   --f-die: #8d95a1; --f-aut: #4b515c;
 }
 * { box-sizing: border-box; }
@@ -78,6 +78,7 @@ header p { margin: 0; color: var(--muted); max-width: 760px; }
 .panel .hint { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
 #map { width: 100%; height: auto; display: block; }
 #map path.reg { stroke: var(--stroke); stroke-width: 1.2; cursor: pointer; transition: opacity .15s; }
+#map.evo path.reg { stroke: #b4b9c2; }
 #map path.reg:hover, #map path.reg.sel { stroke: var(--hover); stroke-width: 2; }
 #map text { font-size: 11px; font-weight: 600; pointer-events: none; paint-order: stroke; stroke-width: 3px; stroke-linejoin: round; }
 .drom { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
@@ -88,7 +89,7 @@ header p { margin: 0; color: var(--muted); max-width: 760px; }
 .drom button.sel, .drom button:hover { outline: 2px solid var(--hover); outline-offset: -2px; }
 .drom b { display: block; font-size: 13px; font-variant-numeric: tabular-nums; }
 .legend { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
-.legend .bar { display: flex; height: 10px; width: 220px; border-radius: 5px; overflow: hidden; }
+.legend .bar { display: flex; height: 10px; width: 220px; border-radius: 5px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); }
 .legend .bar span { flex: 1; }
 .detail h3 { margin: 0; font-size: 20px; letter-spacing: -.01em; }
 .detail .big { font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
@@ -259,7 +260,7 @@ function rendreKpis() {
 function rendreCarte(sc) {
   const svg = d3.select("#map");
   const W = 600, H = 560;
-  svg.attr("viewBox", `0 0 ${W} ${H}`);
+  svg.attr("viewBox", `0 0 ${W} ${H}`).classed("evo", state.periode === "evo");
   const proj = d3.geoConicConformal().parallels([44, 49]).rotate([-3, 0]).fitSize([W, H - 10], GEO);
   const path = d3.geoPath(proj);
   const tip = document.getElementById("tip");
