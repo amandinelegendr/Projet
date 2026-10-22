@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 .claude/
+# Recherches privées (annonces de sites tiers) : ne jamais publier
+recherches/

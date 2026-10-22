@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Data — Occasion</title>
+<meta name="description" content="Comparateur et analyseur du marché des voitures d'occasion en France, sur un jeu de 600 annonces simulées.">
+<style>
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --soft: #f1f5f9;
+  --text: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --pos: #15803d;
+  --neg: #b91c1c;
+  --warn: #b45309;
+  --shadow: 0 1px 2px rgba(15, 23, 42, .05);
+  /* Échelle séquentielle de la carte */
+  --s0: #eff6ff; --s1: #bfdbfe; --s2: #93c5fd; --s3: #60a5fa; --s4: #2563eb; --s5: #1e3a8a;
+  /* Plateformes */
+  --p0: #2563eb; --p1: #0d9488; --p2: #d97706; --p3: #7c3aed;
+  /* Énergies */
+  --e-essence: #ea580c; --e-diesel: #475569; --e-elec: #059669; --e-hybride: #ca8a04;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1120; --surface: #111827; --soft: #1e293b; --text: #e2e8f0; --muted: #94a3b8; --line: #1f2a3c;
+    --accent: #60a5fa; --accent-soft: #1e3a5f; --pos: #4ade80; --neg: #f87171; --warn: #fbbf24; --shadow: none;
+    --s0: #172554; --s1: #1e3a8a; --s2: #1d4ed8; --s3: #3b82f6; --s4: #93c5fd; --s5: #dbeafe;
+    --p0: #60a5fa; --p1: #2dd4bf; --p2: #fbbf24; --p3: #a78bfa;
+    --e-essence: #fb923c; --e-diesel: #94a3b8; --e-elec: #34d399; --e-hybride: #facc15;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b1120; --surface: #111827; --soft: #1e293b; --text: #e2e8f0; --muted: #94a3b8; --line: #1f2a3c;
+  --accent: #60a5fa; --accent-soft: #1e3a5f; --pos: #4ade80; --neg: #f87171; --warn: #fbbf24; --shadow: none;
+  --s0: #172554; --s1: #1e3a8a; --s2: #1d4ed8; --s3: #3b82f6; --s4: #93c5fd; --s5: #dbeafe;
+  --p0: #60a5fa; --p1: #2dd4bf; --p2: #fbbf24; --p3: #a78bfa;
+  --e-essence: #fb923c; --e-diesel: #94a3b8; --e-elec: #34d399; --e-hybride: #facc15;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 15px/1.5 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1200px; margin: 0 auto; padding: 28px 16px 48px; }
+header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+h1 { font-size: clamp(24px, 3.2vw, 32px); line-height: 1.15; margin: 0 0 6px; letter-spacing: -.02em; }
+header p { margin: 0; color: var(--muted); max-width: 720px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: var(--soft); color: var(--muted); border: 1px solid var(--line); white-space: nowrap; }
+.badge.info { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+.panel { padding: 18px 20px; }
+h2 { font-size: 16px; margin: 0 0 4px; letter-spacing: -.01em; }
+h3 { font-size: 13px; font-weight: 600; margin: 16px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.hint { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+
+/* Filtres */
+.filtres { padding: 16px 18px; margin-bottom: 16px; display: grid; gap: 12px; }
+.ligne { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.groupe { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.groupe > span { font-size: 12.5px; color: var(--muted); font-weight: 500; min-width: 72px; }
+.seg { display: inline-flex; flex-wrap: wrap; background: var(--soft); border-radius: 999px; padding: 3px; gap: 2px; }
+.seg button {
+  border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 13.5px; font-weight: 500;
+  padding: 5px 13px; border-radius: 999px; cursor: pointer; white-space: nowrap;
+}
+.seg button:hover { color: var(--text); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+:root[data-theme="dark"] .seg button[aria-pressed="true"] { color: #0b1120; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .seg button[aria-pressed="true"] { color: #0b1120; } }
+.seg button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.seg.petit button { font-size: 12.5px; padding: 3px 10px; }
+select { font: inherit; font-size: 13.5px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); }
+input[type=range] { accent-color: var(--accent); width: 150px; }
+output { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; min-width: 82px; display: inline-block; }
+.lien { border: 0; background: none; color: var(--accent); font: inherit; font-size: 13px; cursor: pointer; padding: 0; }
+.lien:hover { text-decoration: underline; }
+
+/* KPI */
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.kpi { padding: 16px 18px; }
+.kpi .lbl { color: var(--muted); font-size: 13px; }
+.kpi .val { font-size: 25px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: 2px; }
+.kpi .val small { font-size: 14px; font-weight: 600; color: var(--muted); }
+.kpi .sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.pos { color: var(--pos); } .neg { color: var(--neg); }
+.perimetre { font-size: 13px; color: var(--muted); margin: -4px 0 12px; }
+
+/* Vue principale */
+.main { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 16px; }
+.entete { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+#carte { width: 100%; height: auto; display: block; }
+#carte path { stroke: var(--surface); stroke-width: 1.2; cursor: pointer; }
+#carte path:hover { stroke: var(--text); stroke-width: 1.8; }
+#carte path.sel { stroke: var(--text); stroke-width: 2.4; }
+#carte text { font-size: 11px; font-weight: 600; pointer-events: none; fill: var(--text); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+.legende { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); flex-wrap: wrap; margin-top: 8px; }
+.legende .bar { display: flex; height: 9px; width: 180px; border-radius: 5px; overflow: hidden; }
+.legende .bar span { flex: 1; }
+.barres { display: grid; gap: 7px; }
+.barre { display: grid; grid-template-columns: 150px 1fr 74px; gap: 10px; align-items: center; font-size: 13px; }
+.barre .piste { height: 10px; background: var(--soft); border-radius: 5px; overflow: hidden; }
+.barre .rempli { height: 100%; border-radius: 5px; }
+.barre .n { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.jauge { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: var(--soft); }
+.cles { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; font-size: 12.5px; }
+.cles i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.defile { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: right; font-weight: 500; color: var(--muted); font-size: 12px; padding: 6px 6px; border-bottom: 1px solid var(--line); }
+th:first-child, td:first-child { text-align: left; }
+td { padding: 7px 6px; border-bottom: 1px solid var(--line); text-align: right; font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: 0; }
+.note { display: inline-block; min-width: 38px; padding: 1px 7px; border-radius: 999px; font-size: 12px; font-weight: 600; text-align: center; }
+
+/* Analyse statistique */
+.section-titre { margin: 28px 0 4px; font-size: 20px; letter-spacing: -.01em; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 12px; }
+.stats .card { display: flex; flex-direction: column; }
+.stats svg { width: 100%; height: auto; display: block; }
+.axe text { fill: var(--muted); font-size: 11px; }
+.axe path, .axe line { stroke: var(--line); }
+.grille line { stroke: var(--line); stroke-dasharray: 2 3; }
+.resultat { margin-top: 12px; padding: 12px 14px; background: var(--soft); border-radius: 10px; font-size: 13.5px; }
+.resultat .chiffres { display: flex; flex-wrap: wrap; gap: 6px 16px; font-variant-numeric: tabular-nums; margin-bottom: 4px; }
+.resultat .chiffres b { font-weight: 600; }
+.conclusion { margin: 0; }
+.conclusion.oui::before { content: "● "; color: var(--pos); }
+.conclusion.non::before { content: "● "; color: var(--muted); }
+.avert { color: var(--warn); font-size: 12.5px; margin: 6px 0 0; }
+.vide { padding: 30px 0; text-align: center; color: var(--muted); font-size: 14px; }
+
+.tip {
+  position: fixed; pointer-events: none; background: var(--surface); color: var(--text); border: 1px solid var(--line);
+  border-radius: 10px; padding: 9px 12px; font-size: 13px; line-height: 1.5; box-shadow: 0 8px 24px rgba(15,23,42,.14);
+  opacity: 0; transition: opacity .1s; z-index: 10; max-width: 260px;
+}
+.tip b { display: block; }
+footer { margin-top: 28px; color: var(--muted); font-size: 12.5px; }
+.erreur { padding: 24px; margin: 24px 0; color: var(--neg); }
+@media (max-width: 960px) {
+  .main, .stats { grid-template-columns: minmax(0, 1fr); }
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .kpis { grid-template-columns: 1fr; }
+  .groupe > span { min-width: 0; width: 100%; }
+  .barre { grid-template-columns: 110px 1fr 64px; }
+  input[type=range] { width: 120px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Smart Data — le marché de l'occasion</h1>
+      <p>Comparateur et analyseur des annonces de voitures d'occasion en France : prix, plateformes, motorisations, régions et tests statistiques.</p>
+    </div>
+    <span class="badge info" title="Annonces générées par un modèle déterministe pour l'exercice : aucune ne correspond à un véhicule réel.">ⓘ Données simulées · 600 annonces</span>
+  </header>
+
+  <section class="card filtres" aria-label="Filtres">
+    <div class="ligne">
+      <div class="groupe"><span>Plateforme</span><div class="seg" id="f-plateforme" role="group" aria-label="Plateforme"></div></div>
+    </div>
+    <div class="ligne">
+      <div class="groupe"><span>Vendeur</span><div class="seg" id="f-vendeur" role="group" aria-label="Vendeur"></div></div>
+      <div class="groupe"><span>Énergie</span><div class="seg" id="f-energie" role="group" aria-label="Énergie"></div></div>
+    </div>
+    <div class="ligne">
+      <div class="groupe"><span>Constructeur</span><select id="f-constructeur" aria-label="Constructeur"></select></div>
+      <div class="groupe"><span>Année min.</span><input type="range" id="f-annee" min="2015" max="2025" step="1" aria-label="Année minimum"><output id="o-annee"></output></div>
+      <div class="groupe"><span>Km max.</span><input type="range" id="f-km" min="10000" step="10000" aria-label="Kilométrage maximum"><output id="o-km"></output></div>
+      <button class="lien" id="reinit">Réinitialiser</button>
+    </div>
+  </section>
+
+  <p class="perimetre" id="perimetre"></p>
+  <section class="kpis" id="kpis" aria-live="polite"></section>
+
+  <div class="main">
+    <section class="card panel">
+      <div class="entete">
+        <div>
+          <h2 id="titre-carte">Prix moyen par région</h2>
+          <p class="hint">Cliquez sur une région pour zoomer dessus, cliquez à nouveau pour revenir à la France entière.</p>
+        </div>
+        <div class="seg petit" id="f-mesure" role="group" aria-label="Indicateur de la carte">
+          <button data-v="prix">Prix moyen</button><button data-v="volume">Volume d'offres</button>
+        </div>
+      </div>
+      <svg id="carte" role="img" aria-label="Carte des régions de France"></svg>
+      <div class="legende" id="legende"></div>
+    </section>
+    <section class="card panel" id="zoom" aria-live="polite"></section>
+  </div>
+
+  <h2 class="section-titre">Analyse statistique</h2>
+  <p class="hint">Les quatre analyses portent sur les annonces filtrées (et sur la région choisie). Seuil de décision : α = 5 %.</p>
+  <div class="stats">
+    <section class="card panel" id="carte-a">
+      <h2>A — Distribution des prix et loi normale</h2>
+      <p class="hint">Histogramme des prix, avec la courbe en cloche de la loi normale de même moyenne et même écart-type.</p>
+      <svg id="graph-a"></svg>
+      <div class="resultat" id="res-a"></div>
+    </section>
+    <section class="card panel" id="carte-b">
+      <h2>B — Particulier ou professionnel : test t de Student</h2>
+      <p class="hint">Moyennes avec leur intervalle de confiance à 95 %. Test t de Welch (variances non supposées égales).</p>
+      <svg id="graph-b"></svg>
+      <div class="resultat" id="res-b"></div>
+    </section>
+    <section class="card panel" id="carte-c">
+      <div class="entete">
+        <h2>C — Comparer plusieurs groupes : l'ANOVA</h2>
+        <div class="seg petit" id="f-anova" role="group" aria-label="Facteur comparé">
+          <button data-v="plateforme">Plateformes</button><button data-v="energie">Énergies</button>
+        </div>
+      </div>
+      <p class="hint">Boîtes à moustaches des prix : médiane, quartiles et valeurs extrêmes (hors points isolés).</p>
+      <svg id="graph-c"></svg>
+      <div class="resultat" id="res-c"></div>
+    </section>
+    <section class="card panel" id="carte-d">
+      <div class="entete">
+        <h2>D — Décote et puissance</h2>
+        <div class="seg petit" id="f-onglet" role="group" aria-label="Analyse">
+          <button data-v="corr">Corrélation</button><button data-v="khi2">Khi²</button>
+        </div>
+      </div>
+      <p class="hint" id="hint-d"></p>
+      <div id="opt-corr" class="groupe" style="margin-bottom:6px"><span>Axe X</span>
+        <div class="seg petit" id="f-corrx" role="group" aria-label="Variable en abscisse">
+          <button data-v="kilometrage">Kilométrage</button><button data-v="chevaux_fiscaux">Chevaux fiscaux</button><button data-v="age">Âge</button>
+        </div>
+      </div>
+      <svg id="graph-d"></svg>
+      <div class="resultat" id="res-d"></div>
+    </section>
+  </div>
+
+  <footer>
+    Données simulées : 600 annonces générées par un modèle déterministe (prix neuf du modèle × décote annuelle × effet du kilométrage,
+    de la puissance et de la région, avec une prime de 8 à 12 % pour les professionnels). Les noms de plateformes et de constructeurs
+    servent uniquement à structurer l'exercice ; aucune annonce ne provient de ces sites. Fond de carte : france-geojson (IGN / Insee).
+  </footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="js/geo-regions.js"></script>
+<script src="js/donnees.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
