@@ -57,6 +57,15 @@ body {
 .wrap { max-width: 1180px; margin: 0 auto; padding: 32px 16px 48px; }
 header h1 { font-size: clamp(24px, 3.2vw, 34px); line-height: 1.15; margin: 0 0 8px; letter-spacing: -.02em; }
 header p { margin: 0; color: var(--muted); max-width: 760px; }
+.nav-projets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; font-size: 13px; }
+.nav-projets a {
+  padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
+  color: var(--muted); text-decoration: none; font-weight: 500;
+}
+.nav-projets a:hover { color: var(--text); }
+.nav-projets a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+:root[data-theme="dark"] .nav-projets a[aria-current="page"] { color: #0f1115; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .nav-projets a[aria-current="page"] { color: #0f1115; } }
 
 /* Barre de filtres : ligne 1 vue globale, ligne 2 motorisations */
 .controls { margin: 24px 0 20px; }
@@ -201,6 +210,10 @@ footer a { color: var(--accent); }
 <body>
 <div class="wrap">
   <header>
+    <nav class="nav-projets" aria-label="Projets">
+      <a href="index.html" aria-current="page">Ventes par région</a>
+      <a href="smart-data/index.html">Smart Data — marché de l'occasion →</a>
+    </nav>
     <h1>Où se vendent les voitures en France ?</h1>
     <p>Répartition par région, département et grande ville des immatriculations de voitures particulières sur les deux dernières années disponibles. Une immatriculation correspond à une vente : neuve, ou d'occasion lors d'un changement de propriétaire.</p>
   </header>

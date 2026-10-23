@@ -52,6 +52,15 @@ body {
 header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
 h1 { font-size: clamp(24px, 3.2vw, 32px); line-height: 1.15; margin: 0 0 6px; letter-spacing: -.02em; }
 header p { margin: 0; color: var(--muted); max-width: 720px; }
+.nav-projets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; font-size: 13px; width: 100%; }
+.nav-projets a {
+  padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
+  color: var(--muted); text-decoration: none; font-weight: 500;
+}
+.nav-projets a:hover { color: var(--text); }
+.nav-projets a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+:root[data-theme="dark"] .nav-projets a[aria-current="page"] { color: #0b1120; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .nav-projets a[aria-current="page"] { color: #0b1120; } }
 .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: var(--soft); color: var(--muted); border: 1px solid var(--line); white-space: nowrap; }
 .badge.info { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
@@ -159,6 +168,10 @@ footer { margin-top: 28px; color: var(--muted); font-size: 12.5px; }
 <body>
 <div class="wrap">
   <header>
+    <nav class="nav-projets" aria-label="Projets">
+      <a href="../index.html">← Ventes par région</a>
+      <a href="index.html" aria-current="page">Smart Data — marché de l'occasion</a>
+    </nav>
     <div>
       <h1>Smart Data — le marché de l'occasion</h1>
       <p>Comparateur et analyseur des annonces de voitures d'occasion en France : prix, plateformes, motorisations, régions et tests statistiques.</p>
