@@ -3,298 +3,275 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marché de l'occasion réel</title>
-<meta name="description" content="Prix, décote et carte du marché des voitures d'occasion en France, calculés sur plusieurs centaines de milliers d'annonces leboncoin, avec un estimateur de prix.">
+<title>Étude du marché de l'occasion</title>
+<meta name="description" content="Ce que des centaines de milliers d'annonces de voitures d'occasion nous apprennent sur la décote, les écarts de prix et les modèles qui gardent leur valeur, et comment s'en servir pour choisir sa voiture.">
 <style>
 :root {
   color-scheme: light;
   --bg: #f6f7f9; --surface: #fcfcfb; --soft: #f1f3f6; --text: #0b0b0b; --muted: #52514e; --line: #e3e6eb; --grid: #ecebe8;
-  --accent: #ec5a13; --s1: #2a78d6; --s2: #eb6834; --crit: #d03b3b;
-  --q1: #cde2fb; --q2: #9ec5f4; --q3: #6da7ec; --q4: #3987e5; --q5: #256abf; --q6: #104281; --nodata: #e6e5e1;
+  --accent: #ec5a13; --s1: #2a78d6; --s2: #eb6834;
+  --tbas: #d03b3b; --bas: #0ca30c; --ok: #8a8985; --haut: #c98500; --thaut: #ec835a;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  color-scheme: dark;
-  --bg: #0f1115; --surface: #1a1a19; --soft: #23231f; --text: #f0efec; --muted: #c3c2b7; --line: #34342f; --grid: #2b2b28;
-  --accent: #ff7a3a; --s1: #3987e5; --s2: #d95926;
-  --q1: #104281; --q2: #184f95; --q3: #1c5cab; --q4: #2a78d6; --q5: #5598e7; --q6: #9ec5f4; --nodata: #2e2e2a;
+  color-scheme: dark; --bg: #0f1115; --surface: #1a1a19; --soft: #23231f; --text: #f0efec; --muted: #c3c2b7; --line: #34342f; --grid: #2b2b28; --accent: #ff7a3a; --s1: #3987e5; --s2: #d95926; --ok: #9a9993;
 } }
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #0f1115; --surface: #1a1a19; --soft: #23231f; --text: #f0efec; --muted: #c3c2b7; --line: #34342f; --grid: #2b2b28;
-  --accent: #ff7a3a; --s1: #3987e5; --s2: #d95926;
-  --q1: #104281; --q2: #184f95; --q3: #1c5cab; --q4: #2a78d6; --q5: #5598e7; --q6: #9ec5f4; --nodata: #2e2e2a;
-}
+:root[data-theme="dark"] { color-scheme: dark; --bg: #0f1115; --surface: #1a1a19; --soft: #23231f; --text: #f0efec; --muted: #c3c2b7; --line: #34342f; --grid: #2b2b28; --accent: #ff7a3a; --s1: #3987e5; --s2: #d95926; --ok: #9a9993; }
 * { box-sizing: border-box; }
-[hidden] { display: none !important; }
-body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
-.wrap { max-width: 1280px; margin: 0 auto; padding: 24px 16px 48px; }
-h1 { font-size: clamp(22px, 3vw, 30px); margin: 0 0 4px; letter-spacing: -.02em; }
-h2 { font-size: 17px; margin: 0 0 2px; }
-.sous { color: var(--muted); margin: 0 0 12px; }
-.note { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
-a { color: var(--accent); }
-.nav-projets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; font-size: 13px; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 24px 16px 56px; }
+.nav-projets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; font-size: 13px; }
 .nav-projets a { padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); text-decoration: none; font-weight: 500; }
 .nav-projets a:hover { color: var(--text); }
 .nav-projets a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-.filtres { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; }
-.filtres label { display: flex; flex-direction: column; font-size: 12px; color: var(--muted); gap: 3px; min-width: 160px; flex: 1 1 160px; }
-select, input { font: inherit; font-size: 14px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--soft); color: var(--text); min-width: 0; width: 100%; }
-button.lien { font: inherit; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; }
-.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 14px; }
-.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
-.kpi .v { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
-.kpi .l { color: var(--muted); font-size: 13px; }
-.grille { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.panneau { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; min-width: 0; overflow-x: auto; }
-.panneau.large { grid-column: 1 / -1; }
-@media (max-width: 900px) { .grille { grid-template-columns: 1fr; } }
-@media (min-width: 901px) { .panneau.l2 { grid-column: span 2; } }
-@media (min-width: 1100px) {
-  .wrap { max-width: 1760px; padding: 24px 28px 48px; }
-  .disposition { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 20px; align-items: start; }
-  .filtres { flex-direction: column; align-items: stretch; flex-wrap: nowrap; position: sticky; top: 16px; margin: 0; }
-  .filtres label { flex: none; min-width: 0; }
-  .filtres::before { content: "Filtres"; font-weight: 600; font-size: 15px; }
-}
-@media (min-width: 1500px) { .grille { grid-template-columns: repeat(3, minmax(0, 1fr)); } .kpis { grid-template-columns: repeat(5, 1fr); } }
-@media (max-width: 700px) { .liste { font-size: 13px; } .liste td, .liste th { padding: 5px 4px; } }
-svg { display: block; width: 100%; height: auto; overflow: visible; }
-svg text { fill: var(--muted); font-size: 11px; font-family: inherit; }
-.grid line, .axe line { stroke: var(--grid); }
-.barre { fill: var(--s1); }
-.barre.survol { fill: var(--s2); }
-.ligne { fill: none; stroke: var(--s1); stroke-width: 2; }
-.point { fill: var(--s1); stroke: var(--surface); stroke-width: 2; }
-.cible { fill: transparent; cursor: crosshair; }
-#bulle { position: fixed; pointer-events: none; background: var(--text); color: var(--bg); font-size: 13px; padding: 6px 9px; border-radius: 8px; opacity: 0; transition: opacity .1s; z-index: 50; max-width: 280px; line-height: 1.35; }
-.liste { width: 100%; border-collapse: collapse; font-size: 14px; }
-.liste th { text-align: left; color: var(--muted); font-weight: 500; font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-.liste td { padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
-.liste td.n, .liste th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.liste tr.clic { cursor: pointer; }
-.liste tr.clic:hover td { background: var(--soft); }
-.jauge { height: 8px; border-radius: 4px; background: var(--s1); min-width: 2px; }
-.defile { max-height: 460px; overflow: auto; }
-.carte-dep path { stroke: var(--surface); stroke-width: .6; }
-.carte-dep path:hover { stroke: var(--text); stroke-width: 1.2; }
-.legende { display: flex; align-items: center; font-size: 12px; color: var(--muted); margin-top: 8px; flex-wrap: wrap; }
-.legende span.c { width: 34px; height: 10px; display: inline-block; }
-.legende .t { margin: 0 8px; }
-.onglets { display: flex; gap: 6px; margin: 8px 0; flex-wrap: wrap; }
-.onglets button { font: inherit; font-size: 13px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--soft); color: var(--text); cursor: pointer; }
-.onglets button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
-.estim { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 10px 0; }
-.estim label { display: flex; flex-direction: column; font-size: 12px; color: var(--muted); gap: 3px; }
-.resultat { background: var(--soft); border-radius: 10px; padding: 14px; }
-.resultat .v { font-size: 28px; font-weight: 700; }
-.avert { font-size: 13px; color: var(--muted); border-left: 3px solid var(--crit); padding: 4px 10px; margin: 8px 0 0; }
-.vide { color: var(--muted); padding: 20px 0; text-align: center; }
-footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
+h1 { font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -.02em; }
+h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 44px 0 6px; letter-spacing: -.01em; }
+h3 { font-size: 19px; line-height: 1.3; margin: 0 0 8px; }
+.chapo { color: var(--muted); max-width: 760px; margin: 0 0 8px; }
+.note { color: var(--muted); font-size: 13px; }
+a { color: var(--accent); }
+.essentiel { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 24px 0 8px; }
+.essentiel > div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.essentiel .v { font-size: 28px; font-weight: 800; letter-spacing: -.02em; }
+.essentiel .l { color: var(--muted); font-size: 14px; line-height: 1.4; }
+.constat { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin: 16px 0; }
+.constat .num { color: var(--accent); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+.constat p { margin: 8px 0 0; }
+.decision { margin-top: 12px !important; padding: 10px 14px; background: var(--soft); border-left: 4px solid var(--accent); border-radius: 6px; }
+.decision b:first-child { color: var(--accent); }
+figure { margin: 14px 0 0; }
+figure svg { display: block; width: 100%; height: auto; overflow: visible; }
+figure text { font-size: 12px; fill: var(--muted); font-family: inherit; }
+figure .lib { fill: var(--text); }
+figure .val { fill: var(--text); font-weight: 700; }
+figure .grille line { stroke: var(--grid); }
+figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.legende { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted); margin-top: 8px; }
+.legende span { display: inline-flex; align-items: center; gap: 6px; }
+.legende i { display: inline-block; width: 14px; height: 10px; border-radius: 2px; }
+ol.conseils, ol.etapes { padding-left: 22px; }
+ol.conseils li, ol.etapes li { margin: 10px 0; }
+.bouton { display: inline-block; margin-top: 10px; padding: 12px 22px; background: var(--accent); color: #fff; text-decoration: none; border-radius: 10px; font-weight: 700; }
+.bouton:hover { filter: brightness(1.05); }
+.limites li { margin: 6px 0; }
+#bulle { position: fixed; pointer-events: none; background: var(--text); color: var(--bg); font-size: 13px; padding: 6px 9px; border-radius: 8px; opacity: 0; transition: opacity .1s; z-index: 50; line-height: 1.35; }
 </style>
-<link rel="stylesheet" href="commun.css">
 </head>
 <body>
 <div class="wrap">
   <nav class="nav-projets" aria-label="Projets">
     <a href="../index.html">← Accueil</a>
     <a href="../smart-data/index.html">Smart Data — marché de l'occasion</a>
-    <a href="index.html" aria-current="page">Marché réel (leboncoin)</a>
+    <a href="index.html" aria-current="page">Marché réel : l'étude</a>
+    <a href="outil.html">Choisir ma voiture</a>
+    <a href="explorer.html">Explorer les données</a>
   </nav>
-  <h1>Le marché réel des voitures d'occasion</h1>
-  <p class="sous" id="sous"></p>
-  <p class="note">Statistiques calculées sur des annonces de particuliers et de professionnels publiées sur leboncoin. Seuls des chiffres agrégés sont publiés ici : aucune annonce, aucun vendeur, aucune photo. La collecte s'est faite par tranches de prix et n'est pas encore complète pour les voitures les plus chères : les comparaisons à modèle égal (décote, estimation) sont plus fiables que les chiffres « toutes voitures ».</p>
 
-  <div class="disposition">
-    <div class="filtres" id="filtres"></div>
-    <main>
-      <div class="kpis" id="kpis"></div>
-      <div class="grille">
-        <div class="panneau"><h2>Répartition des prix</h2><p class="note">Nombre d'annonces par tranche de 1 000 €.</p><div id="g-prix"></div></div>
-        <div class="panneau"><h2>Décote selon l'année</h2><p class="note">Prix médian par année de mise en circulation (au moins 10 annonces).</p><div id="g-annee"></div></div>
-        <div class="panneau"><h2>Décote selon le kilométrage</h2><p class="note">Prix médian par tranche de kilométrage.</p><div id="g-km"></div></div>
-        <div class="panneau"><h2>Carburants</h2><p class="note">Part des annonces et prix médian.</p><div id="g-carbu"></div></div>
-        <div class="panneau l2"><h2>Marques et modèles</h2><p class="note">Cliquer sur une ligne pour filtrer.</p>
-          <div class="onglets" id="o-liste"><button data-v="marque" class="on">Marques</button><button data-v="modele">Modèles</button></div>
-          <div class="defile" id="t-liste"></div></div>
-        <div class="panneau"><h2>Carte des départements</h2>
-          <div class="onglets" id="o-carte"><button data-v="prix" class="on">Prix médian</button><button data-v="nb">Nombre d'annonces</button><button data-v="km">Km médian</button></div>
-          <div id="g-carte"></div><div class="legende" id="leg-carte"></div></div>
-        <div class="panneau l2"><h2>Estimer un prix · juger une annonce</h2>
-          <p class="note">Choisis le modèle, l'année et le kilométrage : tu obtiens le prix habituel. Ajoute le prix demandé d'une annonce pour savoir s'il est correct. Modèle statistique (prix selon l'âge et le kilométrage) ajusté pour chaque modèle ayant au moins 30 annonces ; il ne tient pas compte de la finition ni de l'état.</p>
-          <div class="estim" id="estim"></div><div id="estim-res"></div></div>
-      </div>
-    </main>
-  </div>
-  <footer>Projet étudiant (IAE). Données : annonces publiques leboncoin, agrégées ; leboncoin n'est pas associé à ce projet.</footer>
+  <h1 id="titre">Ce que les annonces nous apprennent sur le marché de l'occasion</h1>
+  <p class="chapo" id="chapo"></p>
+  <div class="essentiel" id="essentiel"></div>
+
+  <h2>1. Ce que les données nous apprennent</h2>
+  <p class="chapo">Cinq constats, calculés sur les annonces à modèle, année et carburant comparables. Chaque titre répond à une question ; chaque constat se termine par la décision qu'on en tire.</p>
+  <div id="constats"></div>
+
+  <h2>2. Nos conseils</h2>
+  <ol class="conseils" id="conseils"></ol>
+
+  <h2>3. Choisir ma voiture, étape par étape</h2>
+  <ol class="etapes" id="etapes"></ol>
+  <a class="bouton" href="outil.html">Ouvrir l'outil « Choisir ma voiture » →</a>
+  <p class="note">L'outil donne, pour un modèle, une année, un carburant et un kilométrage, le prix moyen du marché et les montants à partir desquels c'est une bonne ou une mauvaise affaire.</p>
+
+  <h2>4. Méthode et limites</h2>
+  <ul class="limites" id="limites"></ul>
+  <p class="note">Pour explorer les chiffres par marque, modèle et département : <a href="explorer.html">Explorer les données</a>.</p>
 </div>
 <div id="bulle"></div>
-<script src="donnees.js"></script>
-<script src="geo-departements.js"></script>
-<script src="commun.js"></script>
+
+<script src="modele-prix.js"></script>
 <script>
-const D = window.AGREGATS, G = D.groupes, MODELES = D.modeles;
+const M = window.MODELE_PRIX, G = M.groupes, AREF = M.anneeRef, NOEUDS = [5, 10, 15, 20, 25];
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const NF = new Intl.NumberFormat('fr-FR', {maximumFractionDigits: 0});
-const nf = n => n == null || isNaN(n) ? '—' : NF.format(n);
-const eur = n => n == null ? '—' : nf(n) + ' €';
-const kmf = n => n == null ? '—' : nf(n) + ' km';
-const pct = x => Math.round(x * 100) + ' %';
-const ANNEE = new Date().getFullYear();
-const KM = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 250, 300];
-const F = {marque: '', modele: ''};
-let modeListe = 'marque', modeCarte = 'prix';
+const pc = (x, d = 0) => (x * 100).toLocaleString('fr-FR', {minimumFractionDigits: d, maximumFractionDigits: d}) + ' %';
+const pcs = (x, d = 0) => (x > 0 ? '+' : x < 0 ? '−' : '') + pc(Math.abs(x), d);
+const arrondi = (v, p) => Math.round(v / p) * p;
 
-// ---------- bulle ----------
+// ===================== Calculs (tous les chiffres de la page viennent d'ici) =====================
+const modeles = Object.entries(G).filter(([k, g]) => g.forme && k !== '*' && !k.endsWith('|*'));
+const moyP = (f, filtre = () => true) => { let w = 0, s = 0; for (const [k, g] of modeles) { if (!filtre(g)) continue; const v = f(g); if (v == null || !isFinite(v)) continue; w += g.n; s += g.n * v; } return w ? s / w : NaN; };
+
+// C1 — âge contre kilométrage (modèle complet, effets estimés ensemble), pondéré par le nombre d'annonces
+const bAge = moyP(g => g.b[1]), bKm = moyP(g => g.b[2]);
+const C1 = {an: 1 - Math.exp(bAge), km10: 1 - Math.exp(bKm), kmEquiv: bAge / bKm * 10000, kmParAn: M.kmParAn};
+
+// C2 — à modèle et année égaux, perte par tranche de 10 000 km selon le kilométrage (courbes propres à chaque année)
+const perte10k = (lp, a, b) => 1 - Math.exp((lp(b) - lp(a)) / ((b - a) / 10000));
+const SEGS = [[0, 50000, 'moins de 50 000 km'], [50000, 150000, '50 000 à 150 000 km'], [150000, 250000, '150 000 à 250 000 km']];
+const C2 = (() => {
+  const acc = SEGS.map(() => ({w: 0, s: 0})); let n = 0;
+  for (const [, g] of modeles) for (const c of Object.values(g.annees)) {
+    if (c[0] < 20 || c.length < 11) continue; n++;
+    const f = c.slice(5, 11), lf = km => { const x = km / 10000; return f[0] * x + NOEUDS.reduce((s, k, j) => s + f[1 + j] * Math.max(0, x - k), 0); };
+    SEGS.forEach(([a, b], i) => { if (b < c[3] || a > c[4]) return; acc[i].w += c[0]; acc[i].s += c[0] * Math.log(1 - perte10k(lf, a, b)); });
+  }
+  return {n, pertes: acc.map(a => 1 - Math.exp(a.s / a.w))};
+})();
+
+// C3 — dispersion des prix pour une même voiture (modèle × année avec au moins 50 annonces) : médiane des écarts-types
+const C3 = (() => {
+  const s = []; for (const [, g] of modeles) for (const c of Object.values(g.annees)) if (c[0] >= 50) s.push(c[2]);
+  s.sort((a, b) => a - b); const sig = s[s.length >> 1];
+  return {n: s.length, sig, p5: Math.exp(-1.645 * sig) - 1, p25: Math.exp(-0.674 * sig) - 1, p75: Math.exp(0.674 * sig) - 1, p95: Math.exp(1.645 * sig) - 1, ecart: Math.exp(2 * 0.674 * sig) - 1};
+})();
+
+// C4 — ce qui fait le prix, à âge et kilométrage égaux (modèles où les deux options sont courantes)
+const avec = (cb, n = 30) => g => (g.carbus[cb] || 0) >= n && (g.carbus.Diesel || 0) >= n;
+const nModeles = f => modeles.filter(([, g]) => f(g)).length;
+const C4 = [
+  {lib: 'Boîte automatique (vs manuelle)', v: Math.exp(moyP(g => g.b[4], g => g.auto > 0.05 && g.auto < 0.95)) - 1, n: nModeles(g => g.auto > 0.05 && g.auto < 0.95)},
+  {lib: 'Vendu par un professionnel (vs particulier)', v: Math.exp(moyP(g => g.b[5])) - 1, n: modeles.length},
+  {lib: 'Hybride (vs diesel)', v: Math.exp(moyP(g => g.b[7], avec('Hybride'))) - 1, n: nModeles(avec('Hybride'))},
+  {lib: 'Essence (vs diesel)', v: Math.exp(moyP(g => g.b[6], avec('Essence'))) - 1, n: nModeles(avec('Essence'))},
+].filter(x => x.n >= 10 && isFinite(x.v));
+
+// C5 — modèles courants qui gardent le mieux leur valeur : perte par an entre 6 et 15 ans, à 120 000 km,
+// composition réelle de chaque année ; uniquement les modèles dont le prix à 6 ans reste sous le seuil de collecte complète
+function prixAnnee(g, an, km = 120000) {
+  const c = g.annees[an]; if (!c || c[0] < 30 || c.length < 20) return null;
+  const k = km / 10000, f = c.slice(5, 11), moy = c.slice(11, 20);
+  let lp = c[1] + f[0] * k + NOEUDS.reduce((s, n, j) => s + f[1 + j] * Math.max(0, k - n), 0);
+  for (let j = 0; j < 9; j++) lp += g.forme[6 + j] * moy[j];
+  return Math.exp(lp);
+}
+const C5 = (() => {
+  const r = [];
+  for (const [k, g] of modeles) {
+    if (g.n < 2000) continue;
+    const pts = []; for (let a = 6; a <= 15; a++) { const p = prixAnnee(g, AREF - a); if (p) pts.push([a, Math.log(p)]); }
+    const p6 = prixAnnee(g, AREF - 6);
+    if (pts.length < 7 || !p6 || (M.plafondCollecte && p6 > 0.85 * M.plafondCollecte)) continue;
+    const ma = pts.reduce((s, p) => s + p[0], 0) / pts.length, ml = pts.reduce((s, p) => s + p[1], 0) / pts.length;
+    const pente = pts.reduce((s, p) => s + (p[0] - ma) * (p[1] - ml), 0) / pts.reduce((s, p) => s + (p[0] - ma) ** 2, 0);
+    r.push({nom: k.replace('|', ' '), n: g.n, parAn: 1 - Math.exp(pente), p6});
+  }
+  r.sort((a, b) => a.parAn - b.parAn);
+  const med = r.length ? r.map(x => x.parAn).sort((a, b) => a - b)[r.length >> 1] : NaN;
+  return {liste: r, med};
+})();
+
+// ===================== Petits graphiques SVG =====================
 const bulle = $('#bulle');
-function montre(e, html) { bulle.innerHTML = html; bulle.style.opacity = 1; const w = bulle.offsetWidth, h = bulle.offsetHeight; let x = e.clientX + 14, y = e.clientY + 14; if (x + w > innerWidth - 8) x = e.clientX - w - 14; if (y + h > innerHeight - 8) y = e.clientY - h - 14; bulle.style.left = x + 'px'; bulle.style.top = y + 'px'; }
-const cache = () => { bulle.style.opacity = 0; };
-
-// ---------- groupes ----------
-const cle = () => F.modele ? 'mm:' + F.marque + '|' + F.modele : F.marque ? 'm:' + F.marque : '';
-const marques = Object.keys(G).filter(k => k.startsWith('m:')).map(k => k.slice(2)).sort((a, b) => a.localeCompare(b, 'fr'));
-const modelesDe = m => Object.keys(G).filter(k => k.startsWith('mm:' + m + '|')).map(k => k.split('|')[1]).sort((a, b) => a.localeCompare(b, 'fr'));
-
-function dessineFiltres() {
-  const opt = (vals, v, tous) => `<option value="">${tous}</option>` + vals.map(x => `<option${x === v ? ' selected' : ''}>${esc(x)}</option>`).join('');
-  $('#filtres').innerHTML = `<label>Marque<select id="marque">${opt(marques, F.marque, 'Toutes les marques')}</select></label>` +
-    (F.marque ? `<label>Modèle<select id="modele">${opt(modelesDe(F.marque), F.modele, 'Tous les modèles')}</select></label>` : '') +
-    ((F.marque) ? '<button class="lien" id="raz">Tout afficher</button>' : '');
-  $('#marque').onchange = e => { F.marque = e.target.value; F.modele = ''; maj(); };
-  if ($('#modele')) $('#modele').onchange = e => { F.modele = e.target.value; maj(); };
-  if ($('#raz')) $('#raz').onclick = () => { F.marque = F.modele = ''; maj(); };
-}
-
-// ---------- graphiques ----------
-const W = 560, H = 260, MG = {h: 12, d: 12, b: 34, g: 56};
-const echelle = (d0, d1, r0, r1) => v => r0 + (v - d0) / (d1 - d0 || 1) * (r1 - r0);
-function graduations(max, n = 4) { const pas = Math.pow(10, Math.floor(Math.log10(Math.max(1, max) / n))); const m = [1, 2, 2.5, 5, 10].find(k => max / (k * pas) <= n) * pas; const t = [0]; while (t.at(-1) < max) t.push(t.at(-1) + m); return t; }
-const court = v => v >= 1e6 ? (v / 1e6).toLocaleString('fr-FR', {maximumFractionDigits: 1}) + ' M' : v >= 1e3 ? (v / 1e3).toLocaleString('fr-FR', {maximumFractionDigits: 1}) + ' k' : String(v);
-
-function barres(el, data, tip) {
-  if (!data.length) { el.innerHTML = '<div class="vide">Pas assez de données.</div>'; return; }
-  const ticks = graduations(Math.max(...data.map(d => d.v)) || 1), top = ticks.at(-1);
-  const y = echelle(0, top, H - MG.b, MG.h), bw = (W - MG.g - MG.d) / data.length, gap = Math.min(2, bw * .2);
-  let s = `<svg viewBox="0 0 ${W} ${H}" role="img">` + ticks.map(t => `<g class="grid"><line x1="${MG.g}" x2="${W - MG.d}" y1="${y(t)}" y2="${y(t)}"/></g><text x="${MG.g - 6}" y="${y(t) + 4}" text-anchor="end">${court(t)}</text>`).join('');
-  data.forEach((d, i) => {
-    const x = MG.g + i * bw, h = Math.max(0, y(0) - y(d.v)), r = Math.min(4, (bw - gap) / 2, h);
-    if (h > 0) s += `<path class="barre" data-i="${i}" d="M${x + gap / 2},${y(0)} V${y(d.v) + r} Q${x + gap / 2},${y(d.v)} ${x + gap / 2 + r},${y(d.v)} H${x + bw - gap / 2 - r} Q${x + bw - gap / 2},${y(d.v)} ${x + bw - gap / 2},${y(d.v) + r} V${y(0)} Z"/>`;
-    s += `<rect class="cible" data-i="${i}" x="${x}" y="${MG.h}" width="${bw}" height="${H - MG.b - MG.h}"/>`;
-    if (d.l) s += `<text x="${x + bw / 2}" y="${H - MG.b + 15}" text-anchor="middle">${esc(d.l)}</text>`;
+function info(el, html) { el.addEventListener('mousemove', e => { bulle.innerHTML = html; bulle.style.opacity = 1; bulle.style.left = Math.min(innerWidth - bulle.offsetWidth - 8, e.clientX + 14) + 'px'; bulle.style.top = (e.clientY + 14) + 'px'; }); el.addEventListener('mouseleave', () => bulle.style.opacity = 0); }
+// Barres horizontales (valeurs positives ou négatives), étiquettes à gauche, valeur au bout
+function barresH(items, {max, couleur = 'var(--s1)', fmt = v => pc(v, 1), larg = 220} = {}) {
+  const W = 640, h = 30, H = items.length * h + 8, x0 = larg, x1 = W - 70;
+  const vmax = max || Math.max(...items.map(i => Math.abs(i.v))), aNeg = items.some(i => i.v < 0);
+  const zero = aNeg ? x0 + (x1 - x0) / 2 : x0, echelle = (aNeg ? (x1 - x0) / 2 : x1 - x0) / vmax;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img">`;
+  if (aNeg) s += `<g class="grille"><line x1="${zero}" x2="${zero}" y1="0" y2="${H}"/></g>`;
+  items.forEach((it, i) => {
+    const y = 4 + i * h, w = Math.abs(it.v) * echelle, x = it.v >= 0 ? zero : zero - w, c = it.couleur || couleur;
+    s += `<text class="lib" x="${x0 - 10}" y="${y + 18}" text-anchor="end">${esc(it.lib)}</text>`;
+    s += `<rect data-i="${i}" x="${x}" y="${y + 5}" width="${Math.max(2, w)}" height="${h - 12}" rx="3" fill="${c}" opacity="${it.pale ? .45 : .9}"/>`;
+    // Valeur au bout des barres positives ; pour les négatives, juste à droite de l'axe zéro (pour ne pas chevaucher les libellés)
+    s += `<text class="val" x="${it.v >= 0 ? x + w + 6 : zero + 6}" y="${y + 18}" text-anchor="start">${fmt(it.v)}</text>`;
   });
-  el.innerHTML = s + `<g class="axe"><line x1="${MG.g}" x2="${W - MG.d}" y1="${y(0)}" y2="${y(0)}"/></g></svg>`;
-  el.querySelectorAll('.cible').forEach(c => { const i = +c.dataset.i, b = el.querySelector(`.barre[data-i="${i}"]`); c.onmousemove = e => { b?.classList.add('survol'); montre(e, tip(data[i])); }; c.onmouseleave = () => { b?.classList.remove('survol'); cache(); }; });
+  return s + '</svg>';
 }
 
-function courbe(el, data, tip) {
-  if (data.length < 2) { el.innerHTML = '<div class="vide">Pas assez de données.</div>'; return; }
-  const ticks = graduations(Math.max(...data.map(d => d.v))), top = ticks.at(-1);
-  const x0 = data[0].x, x1 = data.at(-1).x, x = echelle(x0, x1, MG.g + 6, W - MG.d - 6), y = echelle(0, top, H - MG.b, MG.h), pas = Math.max(1, Math.ceil((x1 - x0) / 8));
-  let s = `<svg viewBox="0 0 ${W} ${H}" role="img">` + ticks.map(t => `<g class="grid"><line x1="${MG.g}" x2="${W - MG.d}" y1="${y(t)}" y2="${y(t)}"/></g><text x="${MG.g - 6}" y="${y(t) + 4}" text-anchor="end">${court(t)}</text>`).join('');
-  for (let v = x0; v <= x1; v += pas) s += `<text x="${x(v)}" y="${H - MG.b + 15}" text-anchor="middle">${v}</text>`;
-  s += `<g class="axe"><line x1="${MG.g}" x2="${W - MG.d}" y1="${y(0)}" y2="${y(0)}"/></g><path class="ligne" d="${data.map((d, i) => (i ? 'L' : 'M') + x(d.x) + ',' + y(d.v)).join('')}"/>`;
-  s += `<line class="viseur" y1="${MG.h}" y2="${y(0)}" stroke="var(--muted)" stroke-dasharray="3 3" opacity="0"/><circle class="pt point" r="5" opacity="0"/><rect class="cible" x="${MG.g}" y="${MG.h}" width="${W - MG.g - MG.d}" height="${H - MG.b - MG.h}"/></svg>`;
-  el.innerHTML = s;
-  const svg = el.querySelector('svg'), v = el.querySelector('.viseur'), p = el.querySelector('.pt');
-  el.querySelector('.cible').onmousemove = e => {
-    const r = svg.getBoundingClientRect(), mx = (e.clientX - r.left) * W / r.width, d = data.reduce((a, b) => Math.abs(x(b.x) - mx) < Math.abs(x(a.x) - mx) ? b : a);
-    v.setAttribute('x1', x(d.x)); v.setAttribute('x2', x(d.x)); v.setAttribute('opacity', 1); p.setAttribute('cx', x(d.x)); p.setAttribute('cy', y(d.v)); p.setAttribute('opacity', 1); montre(e, tip(d));
-  };
-  el.querySelector('.cible').onmouseleave = () => { v.setAttribute('opacity', 0); p.setAttribute('opacity', 0); cache(); };
-}
+// ===================== Rédaction (phrases construites à partir des chiffres) =====================
+const n = M.n, meilleur = C5.liste[0], pire = C5.liste.at(-1);
+$('#titre').textContent = `Le marché de l'occasion : ce que ${NF.format(arrondi(n, 1000))} annonces nous apprennent`;
+$('#chapo').innerHTML = `Étude réalisée sur <b>${NF.format(n)} annonces de voitures d'occasion</b> publiées sur leboncoin et collectées ${esc(M.periode)}. On y cherche ce qui fait vraiment le prix d'une occasion, et ce qu'un acheteur doit en conclure.`;
 
-// ---------- carte ----------
-const GEO = window.GEO_DEPARTEMENTS || {features: []};
-let chemins = null;
-function prepareCarte() {
-  const kx = Math.cos(46.5 * Math.PI / 180), pts = [], feats = GEO.features.filter(f => !String(f.properties.code).startsWith('97'));
-  const anneaux = f => f.geometry.type === 'Polygon' ? f.geometry.coordinates : f.geometry.coordinates.flat();
-  for (const f of feats) for (const r of anneaux(f)) for (const [lo, la] of r) pts.push([lo * kx, -la]);
-  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]), x0 = Math.min(...xs), y0 = Math.min(...ys), L = 600, k = L / Math.max(Math.max(...xs) - x0, Math.max(...ys) - y0);
-  chemins = {L, Hc: Math.round((Math.max(...ys) - y0) * k), feats: feats.map(f => ({code: f.properties.code, nom: f.properties.nom,
-    d: anneaux(f).map(r => 'M' + r.map(([lo, la]) => ((lo * kx - x0) * k).toFixed(1) + ',' + ((-la - y0) * k).toFixed(1)).join('L') + 'Z').join('')}))};
-}
-function carte(g) {
-  if (!chemins) prepareCarte();
-  const val = {}; for (const [c, t] of Object.entries(g.dep)) val[c] = modeCarte === 'nb' ? t[0] : modeCarte === 'prix' ? t[1] : t[2];
-  const vs = Object.values(val).filter(v => v != null).sort((a, b) => a - b);
-  const seuils = vs.length ? [1, 2, 3, 4, 5].map(i => vs[Math.floor(i * vs.length / 6)]) : [];
-  const classe = v => v == null ? null : seuils.filter(s => v >= s).length + 1;
-  const fmt = modeCarte === 'prix' ? eur : modeCarte === 'km' ? kmf : nf;
-  $('#g-carte').innerHTML = `<svg viewBox="0 0 ${chemins.L} ${chemins.Hc}" class="carte-dep" role="img">${chemins.feats.map(f => { const c = classe(val[f.code]); return `<path data-c="${f.code}" d="${f.d}" fill="${c ? `var(--q${c})` : 'var(--nodata)'}"/>`; }).join('')}</svg>`;
-  $('#g-carte').querySelectorAll('path').forEach(p => {
-    const f = chemins.feats.find(x => x.code === p.dataset.c), t = g.dep[f.code];
-    p.onmousemove = e => montre(e, `<b>${esc(f.nom)} (${f.code})</b><br>${nf(t?.[0] || 0)} annonces` + (t && t.length > 1 ? `<br>Prix médian : ${eur(t[1])}<br>Km médian : ${kmf(t[2])}` : modeCarte !== 'nb' ? '<br>Trop peu d\'annonces' : ''));
-    p.onmouseleave = cache;
-  });
-  const b = vs.length ? [vs[0], ...seuils, vs.at(-1)] : [];
-  $('#leg-carte').innerHTML = b.length ? `<span class="t">${fmt(b[0])}</span>` + [1, 2, 3, 4, 5, 6].map(i => `<span class="c" style="background:var(--q${i})"></span>`).join('') + `<span class="t">${fmt(b.at(-1))}</span><span class="c" style="background:var(--nodata);margin-left:12px"></span><span class="t">trop peu d'annonces</span>` : '';
-}
+$('#essentiel').innerHTML = [
+  [NF.format(arrondi(C1.kmEquiv, 100)) + ' km', `coûtent autant qu'une année d'âge en plus ; un conducteur roule en moyenne ${NF.format(arrondi(C1.kmParAn, 100))} km par an`],
+  [pc(C3.ecart), `d'écart de prix entre une bonne et une mauvaise affaire, pour la même voiture`],
+  [pc(C2.pertes[0], 1) + ' → ' + pc(C2.pertes[2], 1), `de valeur perdue par tranche de 10 000 km : le kilométrage coûte de plus en plus cher`],
+  meilleur ? [pc(meilleur.parAn, 1) + ' / ' + pc(pire.parAn, 1), `de perte par an : ${esc(meilleur.nom)} contre ${esc(pire.nom)}, entre 6 et 15 ans`] : null,
+].filter(Boolean).map(([v, l]) => `<div><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
 
-// ---------- tableau marques / modèles ----------
-function liste() {
-  let rows;
-  if (F.marque) rows = modelesDe(F.marque).map(m => ({k: m, marque: F.marque, modele: m, g: G['mm:' + F.marque + '|' + m]}));
-  else if (modeListe === 'marque') rows = marques.map(m => ({k: m, marque: m, g: G['m:' + m]}));
-  else rows = Object.keys(G).filter(k => k.startsWith('mm:')).map(k => { const [m, mo] = k.slice(3).split('|'); return {k: m + ' ' + mo, marque: m, modele: mo, g: G[k]}; });
-  rows.sort((a, b) => b.g.n - a.g.n); rows = rows.slice(0, 80);
-  const max = rows[0]?.g.n || 1;
-  $('#o-liste').hidden = !!F.marque;
-  $('#t-liste').innerHTML = rows.length ? `<table class="liste"><thead><tr><th>${F.marque || modeListe === 'modele' ? 'Modèle' : 'Marque'}</th><th class="n">Annonces</th><th style="width:28%"></th><th class="n">Prix médian</th><th class="n">Km médian</th><th class="n">Âge médian</th></tr></thead><tbody>${rows.map((r, i) => `
-    <tr class="clic" data-i="${i}"><td>${esc(r.k)}</td><td class="n">${nf(r.g.n)}</td><td><div class="jauge" style="width:${(r.g.n / max * 100).toFixed(1)}%"></div></td><td class="n">${eur(r.g.prix)}</td><td class="n">${kmf(r.g.km)}</td><td class="n">${nf(r.g.age)} ans</td></tr>`).join('')}</tbody></table>` : '<div class="vide">Pas assez d\'annonces par modèle.</div>';
-  $('#t-liste').querySelectorAll('tr.clic').forEach(tr => tr.onclick = () => { const r = rows[+tr.dataset.i]; F.marque = r.marque; F.modele = r.modele || ''; maj(); scrollTo({top: 0, behavior: 'smooth'}); });
+const constats = [];
+// C1
+constats.push(`<article class="constat"><div class="num">Constat 1 · âge ou kilométrage ?</div>
+  <h3>Une année d'âge coûte autant que ${NF.format(arrondi(C1.kmEquiv, 100))} km, ${Math.abs(C1.kmEquiv / C1.kmParAn - 1) < 0.15 ? 'à peu près ce qu\'une voiture roule en un an' : C1.kmEquiv > C1.kmParAn ? 'plus que ce qu\'une voiture roule en un an' : 'moins que ce qu\'une voiture roule en un an'} (${NF.format(arrondi(C1.kmParAn, 100))} km)</h3>
+  <figure>${barresH([{lib: 'Une année de plus (à kilométrage égal)', v: C1.an}, {lib: '10 000 km de plus (à âge égal)', v: C1.km10}], {fmt: v => '−' + pc(v, 1) + ' de valeur', couleur: 'var(--s1)', larg: 300})}
+  <figcaption>Perte de valeur moyenne, effets mesurés ensemble sur ${NF.format(modeles.length)} modèles (moyenne pondérée par le nombre d'annonces).</figcaption></figure>
+  <p>À kilométrage égal, une voiture perd ${pc(C1.an, 1)} de sa valeur par année d'âge ; à âge égal, ${pc(C1.km10, 1)} par tranche de 10 000 km. Une année vaut donc environ ${NF.format(arrondi(C1.kmEquiv, 100))} km, à peine plus que ce que roule une voiture en moyenne (${NF.format(arrondi(C1.kmParAn, 100))} km par an, médiane des annonces de 3 à 20 ans).</p>
+  <p class="decision"><b>Décision :</b> à budget égal, une voiture plus récente mais plus kilométrée et une plus ancienne mais moins kilométrée se valent si l'écart est d'environ ${NF.format(arrondi(C1.kmEquiv, 1000))} km par année. Le bon indicateur est le <b>kilométrage par an</b> : nettement au-dessus de ${NF.format(arrondi(C1.kmParAn, 1000))} km/an, la voiture doit être moins chère.</p></article>`);
+// C2
+constats.push(`<article class="constat"><div class="num">Constat 2 · le kilométrage</div>
+  <h3>À âge égal, chaque 10 000 km coûte de plus en plus cher : ${pc(C2.pertes[0], 1)} avant 50 000 km, ${pc(C2.pertes[2], 1)} après 150 000 km</h3>
+  <figure>${barresH(SEGS.map(([, , lib], i) => ({lib, v: C2.pertes[i]})), {fmt: v => '−' + pc(v, 1) + ' / 10 000 km'})}
+  <figcaption>Perte par tranche de 10 000 km selon le kilométrage, à modèle et année identiques (${NF.format(C2.n)} combinaisons modèle × année, moyenne pondérée par le nombre d'annonces).</figcaption></figure>
+  <p>Les premiers kilomètres font peu baisser le prix ; au-delà de 150 000 km, chaque tranche coûte environ ${(C2.pertes[2] / C2.pertes[0]).toLocaleString('fr-FR', {maximumFractionDigits: 0})} fois plus. Une voiture peu kilométrée n'est donc pas beaucoup plus chère qu'une moyennement kilométrée du même âge.</p>
+  <p class="decision"><b>Décision :</b> à âge égal, un <b>faible kilométrage</b> ne coûte que peu de plus : c'est souvent le bon choix. À l'inverse, au-delà de 150 000 km, chaque kilomètre fait baisser la valeur plus vite : une telle voiture se revendra mal, à n'acheter que nettement sous la cote.</p></article>`);
+// C3 : courbe en cloche des prix autour du prix moyen
+const cloche = (() => {
+  const W = 640, H = 170, x0 = 30, x1 = W - 30, zmax = 2.6, X = z => x0 + (z + zmax) / (2 * zmax) * (x1 - x0), Y = z => H - 40 - Math.exp(-z * z / 2) * (H - 70);
+  const zones = [[-zmax, -1.645, 'var(--tbas)'], [-1.645, -0.674, 'var(--bas)'], [-0.674, 0.674, 'var(--ok)'], [0.674, 1.645, 'var(--haut)'], [1.645, zmax, 'var(--thaut)']];
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Répartition des prix autour du prix moyen">`;
+  for (const [a, b, c] of zones) { let d = `M${X(a)},${H - 40}`; for (let z = a; z <= b + 1e-9; z += 0.05) d += `L${X(z)},${Y(z)}`; d += `L${X(b)},${H - 40}Z`; s += `<path d="${d}" fill="${c}" opacity=".75"/>`; }
+  for (const [z, l] of [[-1.645, pcs(C3.p5)], [-0.674, pcs(C3.p25)], [0, 'prix moyen'], [0.674, pcs(C3.p75)], [1.645, pcs(C3.p95)]]) s += `<line x1="${X(z)}" x2="${X(z)}" y1="${H - 40}" y2="${H - 34}" stroke="var(--muted)"/><text x="${X(z)}" y="${H - 20}" text-anchor="middle"${z === 0 ? ' class="val"' : ''}>${l}</text>`;
+  return s + '</svg>';
+})();
+constats.push(`<article class="constat"><div class="num">Constat 3 · les écarts de prix</div>
+  <h3>Pour une même voiture, ${pc(C3.ecart)} d'écart de prix séparent une bonne d'une mauvaise affaire</h3>
+  <figure>${cloche}
+  <div class="legende"><span><i style="background:var(--tbas)"></i>prix suspect (5 % les moins chers)</span><span><i style="background:var(--bas)"></i>bonne affaire</span><span><i style="background:var(--ok)"></i>prix normal (la moitié du marché)</span><span><i style="background:var(--haut)"></i>mauvaise affaire</span><span><i style="background:var(--thaut)"></i>très mauvaise affaire</span></div>
+  <figcaption>Répartition typique des prix demandés autour du prix moyen, pour un même modèle, une même année et un même kilométrage (médiane sur ${NF.format(C3.n)} combinaisons modèle × année d'au moins 50 annonces).</figcaption></figure>
+  <p>À caractéristiques identiques, la moitié des annonces se situe entre ${pcs(C3.p25)} et ${pcs(C3.p75)} du prix moyen. Une annonce est une bonne affaire en dessous de ${pcs(C3.p25)}, une mauvaise au-dessus de ${pcs(C3.p75)}. Sous ${pcs(C3.p5)}, le prix est anormalement bas.</p>
+  <p class="decision"><b>Décision :</b> ne jamais juger un prix seul. <b>Comparer à la cote</b> du même modèle, de la même année et du même carburant, puis <b>négocier</b> : il y a en général ${pc(C3.p75)} de marge entre le prix moyen et les annonces trop chères. Méfiance sous ${pcs(C3.p5)} : vérifier l'historique et voir la voiture avant tout paiement.</p></article>`);
+// C4
+constats.push(`<article class="constat"><div class="num">Constat 4 · ce qui fait le prix</div>
+  <h3>${(() => { const t = C4.slice().sort((a, b) => b.v - a.v); const nomCourt = x => x.lib.replace(/ \(.*\)$/, '').replace('Vendu par un professionnel', 'l\'achat chez un professionnel').replace('Boîte automatique', 'la boîte automatique').replace(/^(Hybride|Essence)$/, m => 'un moteur ' + m.toLowerCase()); return `À âge et kilométrage égaux, ${nomCourt(t[0])} (${pcs(t[0].v, 1)}) et ${nomCourt(t[1])} (${pcs(t[1].v, 1)}) font le plus monter le prix`; })()}</h3>
+  <figure>${barresH(C4.map(x => ({lib: x.lib, v: x.v, couleur: x.v >= 0 ? 'var(--s2)' : 'var(--s1)'})), {fmt: v => pcs(v, 1), larg: 260})}
+  <div class="legende"><span><i style="background:var(--s2)"></i>plus cher</span><span><i style="background:var(--s1)"></i>moins cher</span></div>
+  <figcaption>Écart de prix moyen à modèle, âge et kilométrage égaux (chaque ligne est calculée sur les modèles où les deux options sont courantes : ${C4.map(x => NF.format(x.n)).join(', ')} modèles).</figcaption></figure>
+  <p>${C4.map(x => `${x.lib} : ${pcs(x.v, 1)}`).join(' ; ')}.</p>
+  <p class="decision"><b>Décision :</b> l'écart pro / particulier est le <b>prix de la garantie et des démarches</b> : il se justifie si le professionnel offre une vraie garantie, sinon il se négocie. Une boîte automatique se paie ; si elle n'est pas indispensable, la manuelle fait économiser. Pour le carburant, choisir selon l'usage (kilométrage annuel, ville ou route) et comparer aux voitures du <b>même carburant</b>.</p></article>`);
+// C5
+if (C5.liste.length >= 6) {
+  const items = C5.liste.map(x => ({lib: x.nom, v: x.parAn, couleur: x.parAn <= C5.med ? 'var(--s1)' : 'var(--s2)'}));
+  constats.push(`<article class="constat"><div class="num">Constat 5 · les modèles</div>
+    <h3>Entre 6 et 15 ans, une ${esc(meilleur.nom)} perd ${pc(meilleur.parAn, 1)} de sa valeur par an, une ${esc(pire.nom)} ${pc(pire.parAn, 1)}</h3>
+    <figure>${barresH(items, {fmt: v => '−' + pc(v, 1) + ' / an', larg: 170})}
+    <div class="legende"><span><i style="background:var(--s1)"></i>perd moins vite que la médiane (${pc(C5.med, 1)} par an)</span><span><i style="background:var(--s2)"></i>perd plus vite</span></div>
+    <figcaption>Perte de valeur par an entre 6 et 15 ans, à 120 000 km, pour les ${C5.liste.length} modèles les plus courants (au moins 2 000 annonces) dont le prix reste dans la zone où la collecte est complète. Un changement de génération du modèle entre 6 et 15 ans peut influencer son chiffre.</figcaption></figure>
+    <p>Au même âge et au même kilométrage, tous les modèles ne se déprécient pas au même rythme : sur dix ans, l'écart entre ${esc(meilleur.nom)} et ${esc(pire.nom)} représente environ ${pc(1 - Math.pow((1 - pire.parAn) / (1 - meilleur.parAn), 10))} de valeur en moins pour le second.</p>
+    <p class="decision"><b>Décision :</b> si vous comptez <b>revendre</b> la voiture, privilégier un modèle qui perd moins vite (en bleu). Si vous la gardez jusqu'au bout, un modèle qui se déprécie vite peut au contraire être une <b>bonne occasion à l'achat</b>, puisqu'il se trouve moins cher à âge égal.</p></article>`);
 }
+$('#constats').innerHTML = constats.join('');
 
-// ---------- estimateur et verdict ----------
-const E = {cle: '', annee: ANNEE - 5, km: 80000, prix: ''};
-function estimateur() {
-  const cles = Object.keys(MODELES).sort((a, b) => a.localeCompare(b, 'fr'));
-  const voulu = F.marque && F.modele && MODELES[F.marque + '|' + F.modele] ? F.marque + '|' + F.modele : null;
-  if (voulu) E.cle = voulu;
-  if (!MODELES[E.cle]) E.cle = cles.reduce((a, b) => MODELES[b].n > MODELES[a].n ? b : a);
-  $('#estim').innerHTML = `<label>Modèle<select id="e-cle">${cles.map(k => `<option value="${esc(k)}"${k === E.cle ? ' selected' : ''}>${esc(k.replace('|', ' '))} (${nf(MODELES[k].n)})</option>`).join('')}</select></label>
-    <label>Année<input id="e-annee" type="number" value="${E.annee}"></label><label>Kilométrage<input id="e-km" type="number" step="5000" value="${E.km}"></label>
-    <label>Prix demandé (facultatif)<input id="e-prix" type="number" step="100" placeholder="ex. 9 500" value="${esc(E.prix)}"></label>`;
-  $('#e-cle').onchange = e => { E.cle = e.target.value; resultat(); };
-  $('#e-annee').oninput = e => { E.annee = +e.target.value; resultat(); };
-  $('#e-km').oninput = e => { E.km = +e.target.value; resultat(); };
-  $('#e-prix').oninput = e => { E.prix = e.target.value; resultat(); };
-  resultat();
-}
-function resultat() {
-  const m = MODELES[E.cle]; if (!m) return;
-  const [marque, modele] = E.cle.split('|'), age = Math.max(0, ANNEE - E.annee);
-  const e = COMMUN.estimer(m, age, E.km), lo = e * Math.exp(-m.sigma), hi = e * Math.exp(m.sigma), r50 = v => Math.round(v / 50) * 50;
-  const hors = age < m.ageMin || age > m.ageMax || E.km < m.kmMin || E.km > m.kmMax;
-  const v = +E.prix > 0 ? COMMUN.verdict({marque, modele, annee: E.annee, km: E.km, prix: +E.prix}, MODELES) : null;
-  $('#estim-res').innerHTML = COMMUN.htmlVerdict(v) + `<div class="resultat"><div class="note" style="margin:0">Prix habituel</div><div class="v">${eur(r50(e))}</div>
-    <div>Fourchette : <b>${eur(r50(lo))}</b> à <b>${eur(r50(hi))}</b> (2 annonces sur 3) · d'après ${nf(m.n)} annonces · chaque année coûte environ ${pct(1 - Math.exp(m.b[1]))} de valeur, chaque 10 000 km environ ${pct(1 - Math.exp(m.b[2]))}.</div>
-    ${hors ? `<p class="avert">Hors des données observées pour ce modèle (${ANNEE - m.ageMax} à ${ANNEE - m.ageMin}, ${kmf(m.kmMin)} à ${kmf(m.kmMax)}) : estimation peu fiable.</p>` : ''}</div>`;
-}
+// Conseils généraux (chacun renvoie à un constat chiffré)
+$('#conseils').innerHTML = [
+  `<b>Comparer ce qui est comparable.</b> Un prix ne veut rien dire seul : toujours le rapporter à la cote du même modèle, de la même année et du même carburant (constat 3).`,
+  `<b>Regarder le kilométrage par an, pas seulement le kilométrage.</b> Au-delà d'environ ${NF.format(arrondi(C1.kmParAn, 1000))} km/an, la voiture a plus roulé que la moyenne et doit être moins chère (constat 1).`,
+  `<b>Un faible kilométrage vaut le léger surcoût</b> : à âge égal, les premiers kilomètres font peu baisser le prix (${pc(C2.pertes[0], 1)} par 10 000 km), contrairement aux kilométrages élevés (${pc(C2.pertes[2], 1)}) (constat 2).`,
+  `<b>Négocier les annonces au-dessus de la cote</b> : la moitié du marché se trouve entre ${pcs(C3.p25)} et ${pcs(C3.p75)} du prix moyen ; au-delà, l'écart doit être justifié (garantie, entretien, équipements) (constat 3).`,
+  `<b>Payer la garantie, pas l'étiquette « pro »</b> : un professionnel vend en moyenne ${pcs(C4.find(x => x.lib.startsWith('Vendu'))?.v ?? 0, 1)} plus cher ; cet écart doit correspondre à une garantie réelle (constat 4).`,
+  `<b>Se méfier des prix trop bas</b> : sous ${pcs(C3.p5)} de la cote, défaut caché ou arnaque sont possibles ; ne rien payer avant d'avoir vu la voiture et ses papiers (constat 3).`,
+  meilleur ? `<b>Penser à la revente</b> : certains modèles perdent nettement moins de valeur par an (${esc(meilleur.nom)} : ${pc(meilleur.parAn, 1)}) que d'autres (${esc(pire.nom)} : ${pc(pire.parAn, 1)}) (constat 5).` : null,
+].filter(Boolean).map(t => `<li>${t}</li>`).join('');
 
-// ---------- mise à jour ----------
-function maj() {
-  dessineFiltres();
-  const g = G[cle()] || G[''];
-  const titre = F.modele ? F.marque + ' ' + F.modele : F.marque || 'toutes marques';
-  $('#kpis').innerHTML = [[nf(g.n), 'annonces · ' + titre], [eur(g.prix), 'prix médian'], [kmf(g.km), 'kilométrage médian'], [g.age != null ? nf(g.age) + ' ans' : '—', 'âge médian'], [pct(g.pro), 'vendues par des pros']]
-    .map(([v, l]) => `<div class="kpi"><div class="v">${v}</div><div class="l">${esc(l)}</div></div>`).join('');
-  barres($('#g-prix'), g.hist.map((v, i) => ({v, i, l: i % 10 ? '' : i < 60 ? i + ' k€' : '60+'})), d => `<b>${d.i < 60 ? `${nf(d.i * 1000)} – ${nf(d.i * 1000 + 999)} €` : '60 000 € et plus'}</b><br>${nf(d.v)} annonces`);
-  courbe($('#g-annee'), g.annee.map(([x, v, n]) => ({x, v, n})), d => `<b>${d.x}</b><br>Prix médian : ${eur(d.v)}<br>${nf(d.n)} annonces`);
-  barres($('#g-km'), g.kmb.map(([i, v, n]) => ({i, v, n, l: i < KM.length - 1 ? String(KM[i]) : KM[i] + '+'})), d => `<b>${d.i < KM.length - 1 ? `${nf(KM[d.i] * 1000)} – ${nf(KM[d.i + 1] * 1000)} km` : `${nf(KM[d.i] * 1000)} km et plus`}</b><br>Prix médian : ${eur(d.v)}<br>${nf(d.n)} annonces`);
-  $('#g-km svg')?.insertAdjacentHTML('beforeend', `<text x="${W - MG.d}" y="${H - 2}" text-anchor="end">milliers de km</text>`);
-  const maxC = g.carbu[0]?.[1] || 1;
-  $('#g-carbu').innerHTML = `<table class="liste"><thead><tr><th>Carburant</th><th class="n">Part</th><th style="width:40%"></th><th class="n">Prix médian</th></tr></thead><tbody>${g.carbu.map(([k, n, p]) => `<tr><td>${esc(k)}</td><td class="n">${pct(n / g.n)}</td><td><div class="jauge" style="width:${(n / maxC * 100).toFixed(1)}%"></div></td><td class="n">${eur(p)}</td></tr>`).join('')}</tbody></table>`;
-  liste();
-  carte(g);
-  estimateur();
-}
-for (const [id, set] of [['#o-liste', v => modeListe = v], ['#o-carte', v => modeCarte = v]])
-  $(id).addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; set(b.dataset.v); $(id).querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); maj(); });
+$('#etapes').innerHTML = [
+  `<b>Fixer le besoin et le budget</b> : usage (ville, route, famille), kilométrage annuel prévu, boîte, budget maximal.`,
+  `<b>Choisir 2 ou 3 modèles</b> adaptés, en préférant ceux qui gardent leur valeur si vous revendez (constat 5).`,
+  `<b>Trouver la cote</b> dans l'outil : modèle, année, carburant et kilométrage donnent le prix moyen et les seuils de bonne et de mauvaise affaire.`,
+  `<b>Trier les annonces</b> : garder celles dans la zone « bonne affaire » ou « prix normal », vérifier le kilométrage par an (moins de ${NF.format(arrondi(C1.kmParAn, 1000))} km/an, c'est mieux).`,
+  `<b>Négocier</b> vers le prix moyen si l'annonce est au-dessus, en s'appuyant sur la cote.`,
+  `<b>Vérifier avant de payer</b> : contrôle technique, carnet d'entretien, historique, essai ; redoubler de prudence si le prix est anormalement bas.`,
+].map(t => `<li>${t}</li>`).join('');
 
-$('#sous').textContent = `${nf(D.nombre)} annonces analysées (base du ${D.date}) · ${nf(Object.keys(MODELES).length)} modèles avec estimation de prix.`;
-maj();
+$('#limites').innerHTML = [
+  `<b>Données :</b> ${NF.format(n)} annonces leboncoin collectées ${esc(M.periode)} (prix, marque, modèle, année, kilométrage, carburant, boîte, puissance, type de vendeur). Les prix symboliques et valeurs impossibles sont écartés.`,
+  `<b>Prix demandés, pas prix de vente :</b> les annonces donnent le prix affiché ; le prix réellement payé est souvent un peu plus bas après négociation.`,
+  M.plafondCollecte ? `<b>Collecte encore incomplète au-delà de ${NF.format(M.plafondCollecte)} € :</b> les voitures plus chères (souvent récentes) sont sous-représentées ; les chiffres portent surtout sur les occasions de moins de ${NF.format(M.plafondCollecte)} €.` : null,
+  `<b>Méthode :</b> pour chaque modèle, une régression relie le prix à l'année, au kilométrage (courbe par paliers), au carburant, à la boîte, à la puissance et au type de vendeur ; les constats sont des moyennes pondérées par le nombre d'annonces. Précision mesurée sur ${NF.format(M.evaluation.test)} annonces mises de côté : erreur médiane de ${pc(M.evaluation.cote.erreurMediane, 1)} sur le prix.`,
+  `<b>Ce que l'étude ne voit pas :</b> l'état réel, la finition, l'historique et l'entretien de chaque voiture.`,
+].filter(Boolean).map(t => `<li>${t}</li>`).join('');
 </script>
 </body>
 </html>
