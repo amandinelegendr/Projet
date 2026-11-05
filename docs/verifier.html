@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vérifier le prix d'une annonce</title>
+<meta name="description" content="Le prix de cette voiture d'occasion est-il bon ? Comparez-le en quelques secondes à des centaines de milliers d'annonces leboncoin : prix moyen, bonne affaire, trop cher.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="onglets" aria-label="Pages du site"><div>
+  <a href="index.html">🚗 Trouver ma voiture</a>
+  <a href="verifier.html" aria-current="page">€ Vérifier le prix<span class="long"> de mon annonce</span></a>
+</div></nav>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>Ce prix est-il <span>bon</span> ?</h1>
+    <p id="chapo"></p>
+  </header>
+
+  <section class="outil" aria-label="Vérifier un prix">
+    <div class="champs">
+      <label>Marque<select id="marque"></select></label>
+      <label>Modèle<select id="modele"></select></label>
+      <label>Année<select id="annee"></select></label>
+      <label>Kilométrage<input id="km" type="number" min="0" step="5000" placeholder="ex. 90 000"></label>
+      <label class="prix-champ">Prix de l'annonce (€)<input id="prix" class="prix" type="number" min="0" step="100" placeholder="ex. 8 500"></label>
+    </div>
+    <details class="plus"><summary>Plus de critères (carburant, boîte, vendeur)</summary>
+      <div class="champs">
+        <label>Carburant<select id="carburant"></select></label>
+        <label>Boîte<select id="boite"><option value="">Toutes</option><option>Manuelle</option><option>Automatique</option></select></label>
+        <label>Vendeur<select id="vendeur"><option value="">Tous</option><option>Particulier</option><option>Pro</option></select></label>
+      </div>
+    </details>
+    <div class="reponse">
+      <div id="verdict"></div>
+      <div><div class="jauge" id="jauge"></div><p class="resume" id="resume"></p><p class="liens-outil" id="liens-outil"></p><div id="avert"></div></div>
+    </div>
+    <details class="detail" id="detail"><summary>Voir comment évolue le prix (kilométrage, année)</summary>
+      <div class="graphes"><div><h3 id="t-km"></h3><div id="g-km"></div></div><div><h3 id="t-an"></h3><div id="g-an"></div></div></div>
+    </details>
+  </section>
+
+  <h2 id="rappel">Le prix ne dit pas tout</h2>
+  <p class="sous-h2">Un bon prix ne suffit pas : avant d'acheter, vérifiez aussi ces points, que l'outil ne peut pas voir.</p>
+  <ul class="rappel" id="rappel-liste"></ul>
+
+  <details class="methode"><summary>D'où viennent ces chiffres ? Méthode et limites</summary><ul id="limites"></ul></details>
+</div>
+<div id="bulle"></div>
+
+<script src="modele-prix.js"></script>
+<script src="lbc-modeles.js"></script>
+<script src="commun.js"></script>
+<script>
+$('#chapo').textContent = `Renseignez ce que vous savez de la voiture : nous comparons son prix à ${NF.format(arrondi(M.n, 1000))} annonces de voitures d'occasion. Plus vous précisez, plus la réponse est juste.`;
+
+// ============ Estimation du prix (même méthode que l'outil de construction) ============
+const marques = [...new Set(Object.keys(G).filter(k => k !== '*').map(k => k.split('|')[0]))].sort((a, b) => a.localeCompare(b, 'fr'));
+const modelesDe = m => Object.keys(G).filter(k => k.startsWith(m + '|') && !k.endsWith('|*')).map(k => k.split('|')[1]).sort((a, b) => a.localeCompare(b, 'fr'));
+function groupe() {
+  const m = $('#marque').value, mo = $('#modele').value;
+  if (m && mo && G[m + '|' + mo]) return {g: G[m + '|' + mo], niveau: 'modele', nom: m + ' ' + mo};
+  if (m && G[m + '|*']) return {g: G[m + '|*'], niveau: 'marque', nom: m};
+  return {g: G['*'], niveau: 'global', nom: 'toutes les voitures'};
+}
+const kmSaisi = () => $('#km').value === '' ? null : Math.max(0, +$('#km').value);
+const kmTypique = (g, an) => Math.round((g.annees?.[an]?.[20] || g.kmMed || 100000) / 5000) * 5000;
+const precise = () => !!($('#carburant').value || $('#boite').value || $('#vendeur').value);
+function vecteur(g, annee, km, moy) {
+  const x = Array(12).fill(0), boite = $('#boite').value, vend = $('#vendeur').value, carb = $('#carburant').value;
+  const parts = Object.values(g.carbus).reduce((a, b) => a + b, 0);
+  x[0] = 1; x[1] = Math.max(0, AREF - annee); x[2] = km / 10000;
+  x[3] = moy ? moy[0] : Math.log(g.pMed);
+  x[4] = boite ? (boite === 'Automatique' ? 1 : 0) : moy ? moy[1] : g.auto;
+  x[5] = vend ? (vend === 'Pro' ? 1 : 0) : moy ? moy[2] : 0.5;
+  for (let k = 1; k < CARBUS.length; k++) x[5 + k] = carb ? (carb === CARBUS[k] ? 1 : 0) : moy ? moy[2 + k] : (g.carbus[CARBUS[k]] || 0) / parts;
+  return x;
+}
+function estime(g, km, annee = +$('#annee').value) {
+  if (annee >= 1950) {
+    const c = g.forme ? g.annees?.[annee] : null, x = vecteur(g, annee, km, c && c.length >= 20 ? c.slice(11, 20) : null);
+    if (g.forme) {
+      const k = km / 10000, z = [k, ...NOEUDS.map(n => Math.max(0, k - n)), ...x.slice(3)];
+      const niv = c ? c[1] : g.tendance[0] + g.tendance[1] * Math.max(0, AREF - annee);
+      const f = c && c.length >= 11 ? [...c.slice(5, 11), ...g.forme.slice(6)] : g.forme;
+      const u = $('#carburant').value ? g.carbuAnnee?.[annee]?.[$('#carburant').value] : null;
+      return {lp: niv + z.reduce((s, v, i) => s + v * f[i], 0) + (u ? u[1] : 0), s: c ? c[2] : g.sigmaCote, n: c ? c[0] : 0};
+    }
+    return {lp: x.reduce((s, v, i) => s + v * g.b[i], 0), s: g.sigma, n: 0};
+  }
+  if (precise()) { const x = vecteur(g, AREF - Math.round(g.ageMed), km, null); return {lp: x.reduce((s, v, i) => s + v * g.b[i], 0), s: g.sigma, n: 0}; }
+  const k = km / 10000;
+  return {lp: g.bk[0] + g.bk[1] * k + g.bk[2] * k * k / 10, s: g.sigmaK, n: 0, sansAnnee: true};
+}
+const seuils = e => ({moyen: Math.exp(e.lp), s5: Math.exp(e.lp - Z5 * e.s), s25: Math.exp(e.lp - Z25 * e.s), s75: Math.exp(e.lp + Z25 * e.s), s95: Math.exp(e.lp + Z5 * e.s)});
+
+// ============ Outil : vérifier un prix ============
+const NIV = [
+  {cl: 'v-tbas', ic: '⚠', t: 'Prix anormalement bas', d: 'Méfiance : défaut caché ou arnaque possibles. Voyez la voiture et ses papiers avant de payer.'},
+  {cl: 'v-bas', ic: '✓', t: 'Bonne affaire', d: 'Moins cher que la plupart des voitures comparables.'},
+  {cl: 'v-ok', ic: '=', t: 'Prix normal', d: 'Dans la moyenne du marché pour cette voiture.'},
+  {cl: 'v-haut', ic: '!', t: 'Un peu cher', d: 'Négociez vers le prix moyen.'},
+  {cl: 'v-thaut', ic: '✕', t: 'Trop cher', d: 'Plus cher que presque toutes les voitures comparables.'},
+];
+function remplirMarques() { $('#marque').innerHTML = '<option value="">Toutes</option>' + marques.map(m => `<option>${esc(m)}</option>`).join(''); remplirModeles(); }
+function remplirModeles() {
+  const m = $('#marque').value, mods = m ? modelesDe(m) : [];
+  $('#modele').innerHTML = `<option value="">${m ? 'Tous' : '—'}</option>` + mods.map(x => `<option>${esc(x)}</option>`).join('');
+  $('#modele').disabled = !m; defauts();
+}
+function defauts() {
+  const {g} = groupe(), carbs = Object.keys(g.carbus), avantC = $('#carburant').value, avantA = $('#annee').value;
+  $('#carburant').innerHTML = '<option value="">Tous</option>' + CARBUS.filter(c => carbs.includes(c)).map(c => `<option>${esc(c)}</option>`).join('');
+  $('#carburant').value = carbs.includes(avantC) ? avantC : '';
+  const ans = []; for (let y = AREF - g.age[0]; y >= AREF - g.age[1]; y--) ans.push(y);
+  $('#annee').innerHTML = '<option value="">Toutes</option>' + ans.map(y => `<option>${y}</option>`).join('');
+  $('#annee').value = ans.includes(+avantA) ? avantA : '';
+  calcul();
+}
+
+function jauge(S, prix) {
+  const W = 620, H = 96, x0 = 10, x1 = W - 10, lmin = Math.log(S.s5) - 0.35 * (Math.log(S.s95) - Math.log(S.s5)) / 2, lmax = Math.log(S.s95) + 0.35 * (Math.log(S.s95) - Math.log(S.s5)) / 2;
+  const X = v => x0 + (Math.min(lmax, Math.max(lmin, Math.log(v))) - lmin) / (lmax - lmin) * (x1 - x0);
+  const zones = [[Math.exp(lmin), S.s5, 'var(--tbas)'], [S.s5, S.s25, 'var(--bas)'], [S.s25, S.s75, 'var(--ok)'], [S.s75, S.s95, 'var(--haut)'], [S.s95, Math.exp(lmax), 'var(--thaut)']];
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Position du prix sur le marché">`;
+  zones.forEach(([a, b, c], i) => s += `<rect x="${X(a) + (i ? 1.5 : 0)}" y="38" width="${Math.max(0, X(b) - X(a) - (i ? 1.5 : 0) - (i < 4 ? 1.5 : 0))}" height="20" rx="${i === 0 || i === 4 ? 10 : 0}" fill="${c}"/>`);
+  for (const [v, l] of [[S.s25, eur(S.s25)], [S.moyen, eur(S.moyen)], [S.s75, eur(S.s75)]]) s += `<line x1="${X(v)}" x2="${X(v)}" y1="58" y2="64" stroke="var(--muted)"/><text x="${X(v)}" y="80" text-anchor="middle" font-size="${v === S.moyen ? 15 : 13}" font-weight="${v === S.moyen ? 800 : 600}" fill="var(--${v === S.moyen ? 'text' : 'muted'})">${l}</text>`;
+  s += `<text x="${X(S.moyen)}" y="94" text-anchor="middle" font-size="11" fill="var(--muted)">prix moyen</text>`;
+  if (prix > 0) { const x = X(prix); s += `<path d="M${x - 9} 14 L${x + 9} 14 L${x} 30 Z" fill="var(--text)"/><text x="${Math.max(40, Math.min(W - 40, x))}" y="10" text-anchor="middle" font-size="14" font-weight="800" fill="var(--text)">${eur(prix)}</text>`; }
+  return s + '</svg>';
+}
+
+function calcul() {
+  const {g, niveau, nom} = groupe(), kmS = kmSaisi(), annee = +$('#annee').value, km = kmS ?? kmTypique(g, annee), e = estime(g, km), S = seuils(e), prix = +$('#prix').value;
+  const qui = `${nom}${annee ? ' de ' + annee : ''}${kmS == null ? ' (kilométrage typique : ' + NF.format(km) + ' km)' : ' à ' + NF.format(km) + ' km'}`;
+  if (prix > 0) {
+    const i = prix < S.s5 ? 0 : prix < S.s25 ? 1 : prix <= S.s75 ? 2 : prix <= S.s95 ? 3 : 4, n = NIV[i], ecart = prix / S.moyen - 1;
+    $('#verdict').innerHTML = `<div class="verdict ${n.cl}"><span class="ic" aria-hidden="true">${n.ic}</span><div class="t">${n.t}</div><div class="d">${ecart >= 0 ? '+' : '−'}${eur(Math.abs(prix - S.moyen))} par rapport au prix moyen</div><div class="d">${n.d}</div></div>`;
+  } else {
+    $('#verdict').innerHTML = `<div class="verdict v-info"><span class="ic" aria-hidden="true">€</span><div class="t">${eur(S.moyen)}</div><div class="d">prix moyen du marché</div><div class="d">Ajoutez le prix d'une annonce pour savoir s'il est bon.</div></div>`;
+  }
+  $('#jauge').innerHTML = jauge(S, prix);
+  $('#resume').innerHTML = `${esc(qui)} : <b style="color:var(--bas)">bonne affaire sous ${eur(S.s25)}</b>, <b style="color:var(--haut)">trop cher au-dessus de ${eur(S.s75)}</b>.`;
+  $('#liens-outil').innerHTML = `<a class="lbc" target="_blank" rel="noopener" href="${esc(lienLeboncoin({marque: $('#marque').value, modele: $('#modele').value, annee, carb: $('#carburant').value, prixMax: S.s25}))}">✓ Voir les bonnes affaires sur leboncoin <small>moins de ${eur(S.s25)}${annee ? ', ' + annee : ''}</small></a>`;
+  const av = [];
+  if (niveau !== 'modele') av.push(`Choisissez une marque et un modèle pour une réponse plus précise.`);
+  else if (!annee) av.push(`Ajoutez l'année : selon la génération, le même modèle ne vaut pas le même prix.`);
+  if (M.plafondCollecte && S.s75 > 0.85 * M.plafondCollecte) av.push(`Au-delà de ${NF.format(M.plafondCollecte)} €, nos données sont encore incomplètes : ces montants sont probablement un peu sous-estimés.`);
+  $('#avert').innerHTML = av.map(a => `<p class="avert">ℹ ${a}</p>`).join('');
+  if ($('#detail').open) graphes(g, nom, km, annee);
+}
+
+// ============ Graphiques détaillés (repliés) ============
+const bulle = $('#bulle');
+function graphes(g, nom, km, annee) {
+  // 1. Prix selon le kilométrage
+  const W = 480, H = 240, mg = {g: 50, d: 10, h: 12, b: 30}, KMAX = 300000;
+  const pts = []; for (let k = 0; k <= KMAX; k += 10000) { const e = estime(g, k); pts.push({k, m: Math.exp(e.lp), b: Math.exp(e.lp - Z25 * e.s), h: Math.exp(e.lp + Z25 * e.s)}); }
+  const obs = annee && g.points?.[annee] ? g.points[annee].map(([t, med, n]) => ({k: t * 20000 + 10000, med, n})) : [];
+  const yMax = Math.max(...pts.map(p => p.h), ...obs.map(o => o.med)) * 1.05, pas = [1000, 2000, 2500, 5000, 10000, 20000].find(p => yMax / p <= 5) || 50000;
+  const X = k => mg.g + Math.min(k, KMAX) / KMAX * (W - mg.g - mg.d), Y = v => H - mg.b - v / yMax * (H - mg.b - mg.h);
+  let s = `<svg viewBox="0 0 ${W} ${H}">`;
+  for (let v = 0; v <= yMax; v += pas) s += `<g class="grille"><line x1="${mg.g}" x2="${W - mg.d}" y1="${Y(v)}" y2="${Y(v)}"/></g><text x="${mg.g - 6}" y="${Y(v) + 4}" text-anchor="end">${NF.format(v / 1000)} k€</text>`;
+  for (let k = 0; k <= KMAX; k += 50000) s += `<text x="${X(k)}" y="${H - mg.b + 15}" text-anchor="middle">${NF.format(k / 1000)} k km</text>`;
+  s += `<path d="M${pts.map(p => X(p.k) + ',' + Y(p.h)).join('L')}L${pts.slice().reverse().map(p => X(p.k) + ',' + Y(p.b)).join('L')}Z" fill="var(--ok)" opacity=".22"/>`;
+  s += `<path d="M${pts.map(p => X(p.k) + ',' + Y(p.m)).join('L')}" fill="none" stroke="var(--text)" stroke-width="2"/>`;
+  s += obs.map(o => `<circle cx="${X(o.k)}" cy="${Y(o.med)}" r="5" fill="var(--accent)" fill-opacity=".65" stroke="var(--surface)" stroke-width="1.5"><title>${NF.format(o.k - 10000)}–${NF.format(o.k + 10000)} km : prix médian ${eur(o.med)} (${o.n} annonces)</title></circle>`).join('');
+  s += `<line x1="${X(km)}" x2="${X(km)}" y1="${mg.h}" y2="${H - mg.b}" stroke="var(--accent)" stroke-dasharray="4 3"/>`;
+  $('#t-km').textContent = `Prix selon le kilométrage — ${nom}${annee ? ' ' + annee : ''}`;
+  $('#g-km').innerHTML = s + `</svg><div class="legende"><span><i style="background:var(--text);height:2px"></i>prix moyen</span><span><i style="background:var(--ok);opacity:.4"></i>prix normal</span>${obs.length ? '<span><i style="background:var(--accent);border-radius:50%;width:9px;height:9px"></i>prix médians observés</span>' : ''}<span><i style="background:var(--accent);height:2px"></i>votre kilométrage</span></div>`;
+  // 2. Prix selon l'année (au kilométrage choisi)
+  const ans = Object.keys(g.annees || {}).map(Number).filter(y => g.annees[y][0] >= 20).sort((a, b) => a - b);
+  if (ans.length < 2) { $('#t-an').textContent = 'Prix selon l\'année'; $('#g-an').innerHTML = '<p class="note">Choisissez une marque et un modèle pour voir la cote selon l\'année.</p>'; return; }
+  const d = ans.map(y => { const e = estime(g, km, y); return {y, m: Math.exp(e.lp), b: Math.exp(e.lp - Z25 * e.s), h: Math.exp(e.lp + Z25 * e.s), n: g.annees[y][0]}; });
+  const yM = Math.max(...d.map(p => p.h)) * 1.05, pasA = [1000, 2000, 2500, 5000, 10000, 20000].find(p => yM / p <= 5) || 50000;
+  const XA = y => mg.g + (y - ans[0]) / Math.max(1, ans.at(-1) - ans[0]) * (W - mg.g - mg.d - 10) + 5, YA = v => H - mg.b - v / yM * (H - mg.b - mg.h);
+  let t = `<svg viewBox="0 0 ${W} ${H}">`;
+  for (let v = 0; v <= yM; v += pasA) t += `<g class="grille"><line x1="${mg.g}" x2="${W - mg.d}" y1="${YA(v)}" y2="${YA(v)}"/></g><text x="${mg.g - 6}" y="${YA(v) + 4}" text-anchor="end">${NF.format(v / 1000)} k€</text>`;
+  const sautA = Math.ceil(ans.length / 8); ans.forEach((y, i) => { if (i % sautA === 0 || y === annee) t += `<text x="${XA(y)}" y="${H - mg.b + 15}" text-anchor="middle"${y === annee ? ' style="font-weight:700;fill:var(--text)"' : ''}>${y}</text>`; });
+  t += `<path d="M${d.map(p => XA(p.y) + ',' + YA(p.h)).join('L')}L${d.slice().reverse().map(p => XA(p.y) + ',' + YA(p.b)).join('L')}Z" fill="var(--ok)" opacity=".22"/>`;
+  t += `<path d="M${d.map(p => XA(p.y) + ',' + YA(p.m)).join('L')}" fill="none" stroke="var(--s1)" stroke-width="2"/>`;
+  t += d.map(p => `<circle cx="${XA(p.y)}" cy="${YA(p.m)}" r="${p.y === annee ? 7 : 4.5}" fill="${p.y === annee ? 'var(--accent)' : 'var(--s1)'}" stroke="var(--surface)" stroke-width="2"><title>${p.y} : ${eur(p.m)} en moyenne à ${NF.format(km)} km (${p.n} annonces)</title></circle>`).join('');
+  $('#t-an').textContent = `Prix selon l'année — ${nom} à ${NF.format(km)} km`;
+  $('#g-an').innerHTML = t + `</svg><div class="legende"><span><i style="background:var(--s1);height:2px"></i>prix moyen par année</span><span><i style="background:var(--ok);opacity:.4"></i>prix normal</span>${annee ? '<span><i style="background:var(--accent);border-radius:50%;width:9px;height:9px"></i>année choisie</span>' : ''}</div><p class="note">Un saut d'une année à l'autre peut correspondre à un changement de génération.</p>`;
+}
+
+// ============ Rappel : ce que le prix ne vérifie pas ============
+// Le kilométrage par an est calculé avec l'année et le kilométrage saisis, comparé à la moyenne des annonces
+function rappel() {
+  const an = +$('#annee').value, km = kmSaisi(), age = an ? Math.max(1, AREF - an) : null, moy = arrondi(M.kmParAn, 1000);
+  let calc = '';
+  if (age && km != null) {
+    const parAn = km / age, r = parAn / M.kmParAn;
+    calc = `<span class="calc">Ici : ${NF.format(km)} km ÷ ${age} an${age > 1 ? 's' : ''} ≈ <b>${NF.format(arrondi(parAn, 500))} km/an</b> — ${r > 1.25 ? `<b style="color:var(--haut)">plus que la moyenne</b> : usure plus forte, négociez.` : r < 0.5 ? `<b style="color:var(--haut)">très peu</b> : vérifiez que le kilométrage est cohérent avec l'historique (contrôles techniques, factures).` : `<b style="color:var(--bas)">dans la normale</b>.`}</span>`;
+  }
+  const points = [
+    ['📏', 'Le kilométrage par an', `kilométrage ÷ âge ; les voitures des annonces roulent en moyenne ${NF.format(moy)} km par an.`, calc],
+    ['🧾', 'Le carnet d\'entretien et les factures', 'vidanges régulières, distribution faite à temps, gros travaux récents.'],
+    ['🔧', 'Le contrôle technique', 'obligatoire et de moins de 6 mois pour vendre une voiture de plus de 4 ans : lisez les défauts relevés et vérifiez s\'il y a une contre-visite.'],
+    ['📜', 'L\'historique et les papiers', 'carte grise au nom du vendeur, nombre de propriétaires, sinistres, gage : le vendeur peut vous transmettre le rapport officiel gratuit HistoVec.'],
+    ['🚦', 'L\'essai', 'démarrage à froid, freinage, passage des vitesses, bruits, voyants au tableau de bord.'],
+    ['💳', 'Le paiement en sécurité', 'jamais d\'acompte ni de mandat à distance avant d\'avoir vu la voiture ; chèque de banque vérifié ou virement à la remise des clés.'],
+  ];
+  $('#rappel-liste').innerHTML = points.map(([e, t, d, c = '']) => `<li><span class="em" aria-hidden="true">${e}</span><span><b>${t}</b><small>${d}</small>${c}</span></li>`).join('');
+}
+
+// ============ Pré-remplissage depuis la page « Trouver ma voiture » (paramètres de l'adresse) ============
+function preRemplir() {
+  const p = new URLSearchParams(location.search), choisir = (id, v) => { if (v && [...$('#' + id).options].some(o => o.value === v)) { $('#' + id).value = v; return true; } return false; };
+  if (!choisir('marque', p.get('marque'))) return;
+  remplirModeles();
+  if (choisir('modele', p.get('modele'))) defauts();
+  choisir('annee', p.get('annee'));
+  if (choisir('carburant', p.get('carburant'))) document.querySelector('details.plus').open = true;
+  if (p.get('km')) $('#km').value = Math.max(0, +p.get('km') || 0);
+  calcul();
+  setTimeout(() => $('#prix').focus(), 300);
+}
+
+afficherLimites();
+$('#marque').onchange = remplirModeles;
+$('#modele').onchange = defauts;
+for (const id of ['annee', 'km', 'prix', 'carburant', 'boite', 'vendeur']) $('#' + id).addEventListener('input', calcul);
+for (const id of ['annee', 'km']) $('#' + id).addEventListener('input', rappel);
+$('#annee').addEventListener('change', rappel);
+$('#detail').addEventListener('toggle', calcul);
+remplirMarques();
+preRemplir();
+rappel();
+</script>
+</body>
+</html>
