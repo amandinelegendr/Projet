@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trouver ma voiture d'occasion</title>
 <meta name="description" content="Trouver sa voiture d'occasion au bon prix : 3 questions pour connaître les modèles adaptés à votre budget et à votre usage, d'après des centaines de milliers d'annonces leboncoin.">
-<link rel="stylesheet" href="style.css?v=202611051618">
+<link rel="stylesheet" href="style.css?v=202611051635">
 </head>
 <body>
 <nav class="onglets" aria-label="Pages du site"><div>
@@ -51,11 +51,11 @@
 
 </div>
 
-<script src="modele-prix.js?v=202611051618"></script>
-<script src="lbc-modeles.js?v=202611051618"></script>
-<script src="affaires.js?v=202611051618"></script>
-<script src="photos.js?v=202611051618"></script>
-<script src="commun.js?v=202611051618"></script>
+<script src="modele-prix.js?v=202611051635"></script>
+<script src="lbc-modeles.js?v=202611051635"></script>
+<script src="affaires.js?v=202611051635"></script>
+<script src="photos.js?v=202611051635"></script>
+<script src="commun.js?v=202611051635"></script>
 <script>
 $('#chapo').textContent = `Nous avons analysé ${NF.format(arrondi(M.n, 1000))} annonces de voitures d'occasion. Répondez à 3 questions : nous vous proposons les modèles les plus adaptés à votre budget et à votre usage.`;
 
@@ -192,11 +192,11 @@ const COEURS = (() => { try { return JSON.parse(localStorage.getItem('coups-de-c
 const sauverCoeurs = () => { try { localStorage.setItem('coups-de-coeur', JSON.stringify(COEURS.map(({g, ...c}) => c))); } catch {} };
 const D = {liste: [], pos: 0, hist: []};
 const emojiType = g => { if (g.sansPermis) return '🛺'; const t = Object.entries(g.types || {}).sort((a, b) => b[1] - a[1])[0]?.[0]; return (TYPES.find(x => x[0] === t) || [, '🚗'])[1]; };
-// Photo du modèle (Wikimedia Commons) : celle dont l'année est la plus proche de l'année proposée, à 2 ans près
-// (même génération) ; à défaut, l'icône du type plutôt qu'une photo d'une autre génération
+// Photo du modèle (Wikimedia Commons, fichiers nommés par l'année du modèle) : la même année, sinon à un an près ;
+// à défaut, l'icône du type plutôt qu'une photo d'une autre génération
 function photoDe(c) {
-  let best = null, d0 = 2.6;
-  for (const [an, exact, h, f] of window.PHOTOS?.[c.marque + '|' + c.modele] || []) { const d = Math.abs(an - c.y) + (exact ? 0 : 0.5); if (d < d0) { d0 = d; best = {an, h, f}; } }
+  let best = null, d0 = 1.5;
+  for (const [an, h, f] of window.PHOTOS?.[c.marque + '|' + c.modele] || []) { const d = Math.abs(an - c.y) + (an > c.y ? 0.1 : 0); if (d < d0) { d0 = d; best = {an, h, f}; } }
   return best;
 }
 const photo = (c, lien) => { const p = photoDe(c);
