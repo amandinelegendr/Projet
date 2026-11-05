@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trouver ma voiture d'occasion</title>
 <meta name="description" content="Trouver sa voiture d'occasion au bon prix : 3 questions pour connaître les modèles adaptés à votre budget et à votre usage, d'après des centaines de milliers d'annonces leboncoin.">
-<link rel="stylesheet" href="style.css?v=202611051556">
+<link rel="stylesheet" href="style.css?v=202611051618">
 </head>
 <body>
 <nav class="onglets" aria-label="Pages du site"><div>
@@ -51,16 +51,16 @@
 
 </div>
 
-<script src="modele-prix.js?v=202611051556"></script>
-<script src="lbc-modeles.js?v=202611051556"></script>
-<script src="affaires.js?v=202611051556"></script>
-<script src="photos.js?v=202611051556"></script>
-<script src="commun.js?v=202611051556"></script>
+<script src="modele-prix.js?v=202611051618"></script>
+<script src="lbc-modeles.js?v=202611051618"></script>
+<script src="affaires.js?v=202611051618"></script>
+<script src="photos.js?v=202611051618"></script>
+<script src="commun.js?v=202611051618"></script>
 <script>
 $('#chapo').textContent = `Nous avons analysé ${NF.format(arrondi(M.n, 1000))} annonces de voitures d'occasion. Répondez à 3 questions : nous vous proposons les modèles les plus adaptés à votre budget et à votre usage.`;
 
 // ============ Questionnaire : proposer les voitures idéales ============
-const TYPES = [['Citadine', '🚗'], ['Berline', '🚘'], ['SUV / 4x4', '🚙'], ['Break', '🧳'], ['Monospace', '👨‍👩‍👧'], ['Utilitaire', '🚐'], ['Coupé / cabriolet', '🏎️']];
+const TYPES = [['Citadine', '🚗'], ['Berline', '🚘'], ['SUV / 4x4', '🚙'], ['Break', '🧳'], ['Monospace', '👨‍👩‍👧'], ['Utilitaire', '🚐'], ['Coupé / cabriolet', '🏎️'], ['Sans permis', '🛺']];
 // Conseils généraux par usage (règles d'usage courantes, pas tirées des annonces) : carburants à privilégier, types et puissance favorisés
 const USAGES = {
   quotidien: {carbs: ['Hybride', 'Essence', 'Électrique'], types: {'Citadine': 1}, conseil: `Pour des trajets courts et la ville, privilégiez une <b>essence</b> ou une <b>hybride</b> : un diesel supporte mal les petits trajets répétés (encrassement du filtre à particules). Une voiture compacte se gare plus facilement.`},
@@ -88,7 +88,11 @@ function usageCombine() {
 
 // Part des annonces d'un modèle déclarées dans un type ; seuil bas pour « Citadine », souvent déclarée « Berline » par les vendeurs
 function partType(g, t) { const tot = Object.values(g.types || {}).reduce((a, b) => a + b, 0); return tot ? (g.types[t] || 0) / tot : 0; }
+// Voitures sans permis : reconnues par la marque (constructeurs de voitures sans permis), car leboncoin ne les distingue pas
+const SANS_PERMIS = /^(Aixam|Bellier|Casalini|Chatenet|Grecav|Jdm|Ligier|Microcar)\|/i;
+for (const [k, g] of Object.entries(G)) g.sansPermis = SANS_PERMIS.test(k);
 function estDuType(g, t) {
+  if (t === 'Sans permis' || g.sansPermis) return t === 'Sans permis' && g.sansPermis;
   if (t === 'Citadine') return partType(g, 'Citadine') >= 0.10;
   if (t === 'Berline') return partType(g, 'Berline') >= 0.5 && partType(g, 'Citadine') < 0.10;
   return partType(g, t) >= 0.2;
@@ -112,6 +116,7 @@ function proposer() {
   const usage = usageCombine(), B = Q.budget, cands = [];
   for (const [cle, g] of modeles) {
     if (g.n < 100 || !g.types) continue;
+    if (g.sansPermis && !Q.types.has('Sans permis')) continue;     // sans permis : seulement si la catégorie est choisie
     if (Q.types.size && ![...Q.types].some(t => estDuType(g, t))) continue;
     if (usage?.filtre && !usage.filtre(g)) continue;
     // Carburant conseillé pour l'usage s'il est courant pour ce modèle (dans l'ordre de préférence), sinon tous carburants
@@ -143,7 +148,7 @@ function proposer() {
 
 // Pourquoi ce modèle correspond aux réponses (3 raisons au plus, les plus parlantes d'abord)
 const POUR_USAGE = {quotidien: 'la ville et les trajets courts', occasionnel: 'un usage occasionnel', route: 'les grands trajets', plaisir: 'le plaisir de conduire'};
-const typePrincipal = g => Object.entries(g.types || {}).sort((a, b) => b[1] - a[1])[0]?.[0];
+const typePrincipal = g => g.sansPermis ? 'Sans permis' : Object.entries(g.types || {}).sort((a, b) => b[1] - a[1])[0]?.[0];
 function raisons(c) {
   const r = [];
   if (c.aff?.motif) r.push(`Proche de la ${esc(c.aff.motif.marque + ' ' + c.aff.motif.modele)} que vous aimez`);
@@ -186,11 +191,18 @@ const COEURS = (() => { try { return JSON.parse(localStorage.getItem('coups-de-c
   .map(c => ({...c, g: G[c.marque + '|' + c.modele]})).filter(c => c.g);
 const sauverCoeurs = () => { try { localStorage.setItem('coups-de-coeur', JSON.stringify(COEURS.map(({g, ...c}) => c))); } catch {} };
 const D = {liste: [], pos: 0, hist: []};
-const emojiType = g => { const t = Object.entries(g.types || {}).sort((a, b) => b[1] - a[1])[0]?.[0]; return (TYPES.find(x => x[0] === t) || [, '🚗'])[1]; };
-// Photo du modèle (Wikipédia / Wikimedia Commons, indicative : pas forcément la même génération) ; à défaut, l'icône du type
-const photo = (c, lien) => { const p = window.PHOTOS?.[c.marque + '|' + c.modele];
-  return p ? `<figure class="photo"><img src="${esc(p[0])}" alt="${esc(c.marque + ' ' + c.modele)}" draggable="false"><figcaption>${lien ? `<a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(p[1])}" target="_blank" rel="noopener">Photo indicative · Wikimedia Commons</a>` : 'Photo indicative · Wikimedia Commons'}</figcaption></figure>`
-    : `<div class="photo vide" aria-hidden="true">${emojiType(c.g)}</div>`; };
+const emojiType = g => { if (g.sansPermis) return '🛺'; const t = Object.entries(g.types || {}).sort((a, b) => b[1] - a[1])[0]?.[0]; return (TYPES.find(x => x[0] === t) || [, '🚗'])[1]; };
+// Photo du modèle (Wikimedia Commons) : celle dont l'année est la plus proche de l'année proposée, à 2 ans près
+// (même génération) ; à défaut, l'icône du type plutôt qu'une photo d'une autre génération
+function photoDe(c) {
+  let best = null, d0 = 2.6;
+  for (const [an, exact, h, f] of window.PHOTOS?.[c.marque + '|' + c.modele] || []) { const d = Math.abs(an - c.y) + (exact ? 0 : 0.5); if (d < d0) { d0 = d; best = {an, h, f}; } }
+  return best;
+}
+const photo = (c, lien) => { const p = photoDe(c);
+  if (!p) return `<div class="photo vide" aria-hidden="true">${emojiType(c.g)}</div>`;
+  const f = encodeURIComponent(p.f), leg = `${esc(c.marque + ' ' + c.modele)} ${p.an} · Wikimedia Commons`;
+  return `<figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/${p.h}/${f}/500px-${f}" alt="${esc(c.marque + ' ' + c.modele + ' ' + p.an)}" draggable="false"><figcaption>${lien ? `<a href="https://commons.wikimedia.org/wiki/File:${f}" target="_blank" rel="noopener">${leg}</a>` : leg}</figcaption></figure>`; };
 const tags = c => `<div class="tags">${c.garde ? '<span>📉 garde bien sa valeur</span>' : ''}<span>🔎 ${NF.format(c.n)} annonces</span>${Q.usages.has('route') && c.g.pMed >= 100 ? '<span>🛣️ assez puissante</span>' : ''}${Q.usages.has('plaisir') && c.g.pMed >= 150 ? '<span>🏁 puissante</span>' : ''}</div>`;
 const entete = c => `<h3>${esc(c.marque)} ${esc(c.modele)}</h3>
     <div class="an">${c.y}${c.carb ? ' · ' + esc(c.carb.toLowerCase()) : ''} · environ ${NF.format(c.km)} km</div>
