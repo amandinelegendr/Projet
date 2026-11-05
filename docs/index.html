@@ -48,7 +48,6 @@
   </section>
   <div id="propositions"></div>
 
-  <details class="methode"><summary>D'où viennent ces chiffres ? Méthode et limites</summary><ul id="limites"></ul></details>
 </div>
 
 <script src="modele-prix.js"></script>
@@ -158,10 +157,6 @@ $('#q-budget').onclick = e => { const b = e.target.closest('button'); if (!b) re
 $('#budget').oninput = e => { Q.budget = +e.target.value; $('#budget-val').textContent = eur(Q.budget); afficherPropositions(); };
 $('#q-type').onclick = e => { const b = e.target.closest('button'); if (!b) return; b.classList.toggle('on'); b.classList.contains('on') ? Q.types.add(b.dataset.v) : Q.types.delete(b.dataset.v); afficherPropositions(); };
 $('#q-usage').onclick = e => { const b = e.target.closest('button'); if (!b) return; const deja = b.classList.contains('on'); $('#q-usage').querySelectorAll('button').forEach(x => x.classList.remove('on')); if (!deja) b.classList.add('on'); Q.usage = deja ? null : b.dataset.v; afficherPropositions(); };
-
-afficherLimites([
-  `<b>Voitures proposées :</b> parmi les modèles qui comptent au moins 300 annonces et correspondent au type choisi (type déclaré par les vendeurs dans les annonces), on retient pour chacun l'année la plus récente dont le prix moyen tient dans le budget (sans budget : l'année la plus proposée entre 4 et 10 ans), avec le carburant conseillé pour l'usage. Le classement favorise les années récentes, les modèles qui perdent le moins de valeur par an et ceux qui offrent le plus d'annonces. Les conseils par usage (carburant, type) sont des règles générales, pas des résultats de l'étude.`,
-]);
 afficherPropositions();
 </script>
 </body>

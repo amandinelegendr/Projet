@@ -54,15 +54,3 @@ function lienLeboncoin({marque, modele, annee, carb, prixMax, kmMax}) {
   if (kmMax) p.set('mileage', 'min-' + Math.round(kmMax / 5000) * 5000);
   return 'https://www.leboncoin.fr/recherche?' + p.toString();
 }
-
-// Méthode et limites (communes aux deux pages ; chaque page peut ajouter ses propres lignes)
-function afficherLimites(propres = []) {
-  $('#limites').innerHTML = [
-    `${NF.format(M.n)} annonces de voitures d'occasion publiées sur leboncoin, collectées ${esc(M.periode)}. Les prix symboliques et valeurs impossibles sont écartés.`,
-    `Ce sont des <b>prix demandés</b> : le prix réellement payé est souvent un peu plus bas après négociation.`,
-    M.plafondCollecte ? `La collecte n'est pas encore complète au-delà de ${NF.format(M.plafondCollecte)} € : les voitures plus chères, souvent récentes, sont sous-représentées.` : null,
-    `Pour chaque modèle, le prix est relié à l'année, au kilométrage, au carburant, à la boîte et au type de vendeur. Testé sur ${NF.format(M.evaluation.test)} annonces non utilisées pour le calcul : l'estimation se trompe en moyenne (médiane) de ${pc(M.evaluation.cote.erreurMediane)} sur le prix.`,
-    ...propres,
-    `L'outil ne voit ni l'état, ni la finition, ni l'historique de la voiture : c'est un repère, pas une expertise.`,
-  ].filter(Boolean).map(t => `<li>${t}</li>`).join('');
-}

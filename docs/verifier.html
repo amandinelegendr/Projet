@@ -51,7 +51,6 @@
   <p class="sous-h2">Un bon prix ne suffit pas : avant d'acheter, vérifiez aussi ces points, que l'outil ne peut pas voir.</p>
   <ul class="rappel" id="rappel-liste"></ul>
 
-  <details class="methode"><summary>D'où viennent ces chiffres ? Méthode et limites</summary><ul id="limites"></ul></details>
 </div>
 <div id="bulle"></div>
 
@@ -300,7 +299,6 @@ function preRemplir() {
   setTimeout(() => $('#prix').focus(), 300);
 }
 
-afficherLimites();
 $('#marque').onchange = remplirModeles;
 $('#modele').onchange = defauts;
 for (const id of ['annee', 'km', 'prix', 'carburant', 'boite', 'vendeur']) $('#' + id).addEventListener('input', calcul);
