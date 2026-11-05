@@ -84,6 +84,42 @@ details.detail summary { cursor: pointer; font-weight: 600; color: var(--accent)
 .puces { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
 .puces span { padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 600; }
 
+/* ---------- questionnaire ---------- */
+.questions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .questions { grid-template-columns: 1fr; } }
+.question { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px; }
+.q-titre { font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.q-titre small { font-weight: 400; color: var(--muted); font-size: 13px; }
+.q-n { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 14px; flex: none; }
+.choix { display: flex; flex-wrap: wrap; gap: 8px; }
+.choix button { font: inherit; font-size: 14px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 2px; flex: 1 1 90px; padding: 10px 8px; border-radius: 14px; border: 2px solid var(--line); background: var(--soft); color: var(--text); cursor: pointer; transition: border-color .12s, background .12s; }
+.choix button:hover { border-color: var(--accent); }
+.choix button.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--surface)); }
+.choix button small { font-weight: 400; font-size: 12px; color: var(--muted); }
+.choix .em { font-size: 26px; line-height: 1.1; }
+.choix-types button { flex: 1 1 74px; font-size: 13px; }
+.budget-champ { margin-top: 14px; }
+.budget-ligne { display: flex; align-items: center; gap: 12px; }
+.budget-ligne input { flex: 1; padding: 0; border: 0; background: none; accent-color: var(--accent); }
+.budget-ligne output { font-size: 20px; font-weight: 800; color: var(--text); min-width: 96px; text-align: right; }
+#propositions { margin-top: 22px; }
+.props { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.prop { background: var(--surface); border: 2px solid var(--line); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 8px; position: relative; }
+.prop.top { border-color: var(--accent); }
+.prop .rang { position: absolute; top: -12px; left: 16px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+.prop h3 { margin: 4px 0 0; font-size: 21px; line-height: 1.2; }
+.prop .an { color: var(--muted); font-size: 15px; }
+.prop .px { font-size: 28px; font-weight: 800; letter-spacing: -.02em; }
+.prop .px small { font-size: 13px; font-weight: 500; color: var(--muted); }
+.prop .bon { font-size: 14px; }
+.prop .bon b { color: var(--bas); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--soft); }
+.prop button { margin-top: auto; font: inherit; font-weight: 700; padding: 10px; border-radius: 10px; border: 0; background: var(--accent); color: #fff; cursor: pointer; }
+.prop button:hover { filter: brightness(1.05); }
+.conseil-usage { margin-top: 14px; padding: 12px 16px; border-radius: 12px; background: var(--surface); border: 1px dashed var(--line); font-size: 15px; }
+.vide-props { text-align: center; color: var(--muted); padding: 20px; background: var(--surface); border-radius: 14px; border: 1px dashed var(--line); }
+
 /* ---------- check-list ---------- */
 .checklist { list-style: none; padding: 0; margin: 0 auto; max-width: 720px; display: flex; flex-direction: column; gap: 10px; }
 .checklist li label { flex-direction: row; align-items: center; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; cursor: pointer; font-size: 16px; color: var(--text); font-weight: 400; }
@@ -104,11 +140,39 @@ details.methode li { margin: 6px 0; color: var(--muted); font-size: 14px; }
     <h1>Trouver sa voiture d'occasion<br><span>au bon prix</span></h1>
     <p id="chapo"></p>
     <nav class="etapes3" aria-label="Les trois étapes">
-      <a href="#savoir"><span class="n">1</span><span><b>Comprendre le marché</b><small>5 choses à savoir avant de chercher</small></span></a>
+      <a href="#besoins"><span class="n">1</span><span><b>Trouver ma voiture idéale</b><small>3 questions, des modèles proposés</small></span></a>
       <a href="#prix"><span class="n">2</span><span><b>Vérifier le prix</b><small>bonne ou mauvaise affaire, en 10 secondes</small></span></a>
       <a href="#checklist"><span class="n">3</span><span><b>Acheter sereinement</b><small>la check-list avant de payer</small></span></a>
     </nav>
   </header>
+
+  <h2 id="besoins">Quelle voiture pour vous ?</h2>
+  <p class="sous-h2">Répondez à 3 questions : nous vous proposons les modèles les plus adaptés, à la meilleure année pour votre budget.</p>
+  <section class="questions" aria-label="Vos besoins">
+    <div class="question">
+      <div class="q-titre"><span class="q-n">1</span>Avez-vous un budget ?</div>
+      <div class="choix" id="q-budget">
+        <button type="button" data-v="non" class="on"><span class="em">🤷</span>Pas encore</button>
+        <button type="button" data-v="oui"><span class="em">💶</span>Oui</button>
+      </div>
+      <label class="budget-champ" id="budget-champ" hidden>Budget maximum
+        <span class="budget-ligne"><input id="budget" type="range" min="2000" max="30000" step="500" value="10000"><output id="budget-val">10 000 €</output></span>
+      </label>
+    </div>
+    <div class="question">
+      <div class="q-titre"><span class="q-n">2</span>Quel type de voiture ? <small>(plusieurs choix possibles)</small></div>
+      <div class="choix choix-types" id="q-type"></div>
+    </div>
+    <div class="question">
+      <div class="q-titre"><span class="q-n">3</span>Comment allez-vous l'utiliser ?</div>
+      <div class="choix" id="q-usage">
+        <button type="button" data-v="quotidien"><span class="em">🏙️</span>Tous les jours<small>trajets courts, ville</small></button>
+        <button type="button" data-v="occasionnel"><span class="em">📅</span>De temps en temps<small>courses, week-ends</small></button>
+        <button type="button" data-v="route"><span class="em">🛣️</span>Grands trajets<small>autoroute, beaucoup de km</small></button>
+      </div>
+    </div>
+  </section>
+  <div id="propositions"></div>
 
   <h2 id="savoir">5 choses à savoir</h2>
   <p class="sous-h2">Ce que nous apprennent les annonces, et ce que vous devez en faire.</p>
@@ -388,15 +452,131 @@ $('#limites').innerHTML = [
   `Ce sont des <b>prix demandés</b> : le prix réellement payé est souvent un peu plus bas après négociation.`,
   M.plafondCollecte ? `La collecte n'est pas encore complète au-delà de ${NF.format(M.plafondCollecte)} € : les voitures plus chères, souvent récentes, sont sous-représentées.` : null,
   `Pour chaque modèle, le prix est relié à l'année, au kilométrage, au carburant, à la boîte et au type de vendeur. Testé sur ${NF.format(M.evaluation.test)} annonces non utilisées pour le calcul : l'estimation se trompe en moyenne (médiane) de ${pc(M.evaluation.cote.erreurMediane)} sur le prix.`,
+  `<b>Voitures proposées :</b> parmi les modèles qui comptent au moins 300 annonces et correspondent au type choisi (type déclaré par les vendeurs dans les annonces), on retient pour chacun l'année la plus récente dont le prix moyen tient dans le budget (sans budget : l'année la plus proposée entre 4 et 10 ans), avec le carburant conseillé pour l'usage. Le classement favorise les années récentes, les modèles qui perdent le moins de valeur par an et ceux qui offrent le plus d'annonces. Les conseils par usage (carburant, type) sont des règles générales, pas des résultats de l'étude.`,
   `L'outil ne voit ni l'état, ni la finition, ni l'historique de la voiture : c'est un repère, pas une expertise.`,
 ].filter(Boolean).map(t => `<li>${t}</li>`).join('');
 
 // ============ Événements ============
+// ============ Questionnaire : proposer les voitures idéales ============
+const TYPES = [['Citadine', '🚗'], ['Berline', '🚘'], ['SUV / 4x4', '🚙'], ['Break', '🧳'], ['Monospace', '👨‍👩‍👧'], ['Utilitaire', '🚐'], ['Coupé / cabriolet', '🏎️']];
+// Conseils généraux par usage (règles d'usage courantes, pas tirées des annonces) : carburants à privilégier, types et puissance favorisés
+const USAGES = {
+  quotidien: {carbs: ['Hybride', 'Essence', 'Électrique'], types: {'Citadine': 1}, conseil: `Pour des trajets courts et la ville, privilégiez une <b>essence</b> ou une <b>hybride</b> : un diesel supporte mal les petits trajets répétés (encrassement du filtre à particules). Une voiture compacte se gare plus facilement.`},
+  occasionnel: {carbs: ['Essence', 'Hybride'], prix: true, conseil: `Pour un usage occasionnel, inutile de payer cher : une <b>essence</b> un peu plus ancienne mais peu kilométrée suffit, et son entretien reste simple.`},
+  route: {carbs: ['Diesel', 'Hybride', 'Essence'], types: {'Berline': 1, 'Break': 1, 'SUV / 4x4': 1}, puissance: 100, conseil: `Pour beaucoup de kilomètres et l'autoroute, un <b>diesel</b> ou une <b>hybride</b> consomme moins ; préférez une voiture assez puissante et confortable, avec un entretien bien suivi.`},
+};
+const Q = {budget: null, types: new Set(), usage: null};
+
+// Part des annonces d'un modèle déclarées dans un type ; seuil bas pour « Citadine », souvent déclarée « Berline » par les vendeurs
+function partType(g, t) { const tot = Object.values(g.types || {}).reduce((a, b) => a + b, 0); return tot ? (g.types[t] || 0) / tot : 0; }
+function estDuType(g, t) {
+  if (t === 'Citadine') return partType(g, 'Citadine') >= 0.10;
+  if (t === 'Berline') return partType(g, 'Berline') >= 0.5 && partType(g, 'Citadine') < 0.10;
+  return partType(g, t) >= 0.2;
+}
+// Prix moyen d'un modèle pour une année, un kilométrage et un carburant (null = mélange réel de l'année)
+function prixModele(g, an, km, carb) {
+  const c = g.annees?.[an]; if (!c || c.length < 20) return null;
+  const k = km / 10000, f = c.slice(5, 11), x = c.slice(11, 20).slice();
+  if (carb) for (let j = 1; j < CARBUS.length; j++) x[2 + j] = CARBUS[j] === carb ? 1 : 0;
+  let lp = c[1] + f[0] * k + NOEUDS.reduce((s, n, j) => s + f[1 + j] * Math.max(0, k - n), 0);
+  for (let j = 0; j < 9; j++) lp += g.forme[6 + j] * x[j];
+  const u = carb ? g.carbuAnnee?.[an]?.[carb] : null; if (u) lp += u[1];
+  return {moyen: Math.exp(lp), bon: Math.exp(lp - Z25 * c[2])};
+}
+// Perte de valeur par an (entre 4 et 15 ans, à 120 000 km), mise en cache
+const cacheDepr = new Map();
+function deprAn(g) {
+  if (cacheDepr.has(g)) return cacheDepr.get(g);
+  const pts = []; for (let a = 4; a <= 15; a++) { const c = g.annees?.[AREF - a]; if (c && c[0] >= 30) { const p = prixModele(g, AREF - a, 120000, null); if (p) pts.push([a, Math.log(p.moyen)]); } }
+  let v = null;
+  if (pts.length >= 5) { const ma = pts.reduce((s, p) => s + p[0], 0) / pts.length, ml = pts.reduce((s, p) => s + p[1], 0) / pts.length; v = 1 - Math.exp(pts.reduce((s, p) => s + (p[0] - ma) * (p[1] - ml), 0) / pts.reduce((s, p) => s + (p[0] - ma) ** 2, 0)); }
+  cacheDepr.set(g, v); return v;
+}
+
+// Repères sur tout le marché (modèles courants) : perte de valeur médiane et 1er quartile (le quart qui perd le moins vite)
+let reperes = null;
+function repereDepr() {
+  if (reperes) return reperes;
+  const v = modeles.filter(([, g]) => g.n >= 300).map(([, g]) => deprAn(g)).filter(x => x != null).sort((a, b) => a - b);
+  return reperes = {med: v[v.length >> 1], q1: v[Math.floor(v.length / 4)]};
+}
+function proposer() {
+  const usage = Q.usage ? USAGES[Q.usage] : null, cands = [];
+  for (const [cle, g] of modeles) {
+    if (g.n < 300 || !g.types) continue;
+    if (Q.types.size && ![...Q.types].some(t => estDuType(g, t))) continue;
+    // Carburant conseillé pour l'usage, s'il est courant pour ce modèle
+    const carb = usage ? usage.carbs.find(c => (g.carbus[c] || 0) >= Math.max(30, 0.05 * g.n)) || null : null;
+    // Années possibles (au moins 30 annonces, et au moins 10 dans ce carburant)
+    const ans = Object.keys(g.annees).map(Number).filter(y => g.annees[y][0] >= 40 && g.annees[y].length >= 21 && (!carb || (g.carbuAnnee?.[y]?.[carb]?.[0] || 0) >= 40)).sort((a, b) => b - a);
+    let choix = null;
+    for (const y of ans) {
+      const km = Math.round(g.annees[y][20] / 1000) * 1000, p = prixModele(g, y, km, carb); if (!p) continue;
+      const n = carb ? g.carbuAnnee[y][carb][0] : g.annees[y][0];
+      if (Q.budget) { if (p.moyen <= Q.budget) { choix = {y, km, p, n}; break; } }
+      else if (AREF - y >= 4 && AREF - y <= 10 && (!choix || n > choix.n)) choix = {y, km, p, n};   // sans budget : l'année la plus proposée entre 4 et 10 ans
+    }
+    if (!choix) continue;
+    const [marque, modele] = cle.split('|'), d = deprAn(g);
+    cands.push({marque, modele, g, carb, d, ...choix});
+  }
+  if (!cands.length) return [];
+  const {med: medD, q1} = repereDepr();
+  for (const c of cands) {
+    let s = -(AREF - c.y) * 0.25;                                   // plus récente = mieux
+    if (c.d != null) s += Math.max(-3, Math.min(3, (medD - c.d) * 100)) * 0.2;   // garde mieux sa valeur = mieux (effet plafonné)
+    s += Math.log10(c.n) * 0.9;                                     // beaucoup d'annonces = plus de choix
+    if (usage?.types) s += Math.max(0, ...Object.keys(usage.types).map(t => estDuType(c.g, t) ? 0.5 : 0));
+    if (usage?.puissance && c.g.pMed >= usage.puissance) s += 0.4;
+    if (usage?.prix) s -= c.p.moyen / (Q.budget || 10000) * 0.6;    // usage occasionnel : moins cher = mieux
+    c.score = s; c.garde = c.d != null && c.d <= q1;
+  }
+  return cands.sort((a, b) => b.score - a.score).slice(0, 6);
+}
+
+function afficherPropositions() {
+  const liste = proposer(), usage = Q.usage ? USAGES[Q.usage] : null;
+  const contexte = [Q.budget ? `budget ${eur(Q.budget)}` : 'budget non fixé', Q.types.size ? [...Q.types].join(', ').toLowerCase() : 'tous types', Q.usage ? {quotidien: 'usage quotidien', occasionnel: 'usage occasionnel', route: 'grands trajets'}[Q.usage] : null].filter(Boolean).join(' · ');
+  if (!liste.length) {
+    $('#propositions').innerHTML = `<div class="vide-props">Aucun modèle courant ne correspond (${esc(contexte)}).${Q.budget ? ' Essayez un budget un peu plus élevé ou un autre type.' : ''}</div>`;
+    return;
+  }
+  const cartesP = liste.map((c, i) => `<article class="prop${i === 0 ? ' top' : ''}"><span class="rang">${i === 0 ? '★ Notre choix' : 'N° ' + (i + 1)}</span>
+    <h3>${esc(c.marque)} ${esc(c.modele)}</h3>
+    <div class="an">${c.y}${c.carb ? ' · ' + esc(c.carb.toLowerCase()) : ''} · environ ${NF.format(c.km)} km</div>
+    <div class="px">${eur(c.p.moyen)} <small>prix moyen</small></div>
+    <div class="bon">Bonne affaire sous <b>${eur(c.p.bon)}</b></div>
+    <div class="tags">${c.garde ? '<span>📉 garde bien sa valeur</span>' : ''}<span>🔎 ${NF.format(c.n)} annonces</span>${Q.usage === 'route' && c.g.pMed >= 100 ? '<span>🛣️ assez puissante</span>' : ''}</div>
+    <button type="button" data-i="${i}">Vérifier une annonce de ce modèle →</button></article>`).join('');
+  $('#propositions').innerHTML = `<p class="note" style="text-align:center;margin:0 0 14px">${esc(contexte)} — ${Q.budget ? 'pour chaque modèle, l\'année la plus récente dans votre budget' : 'pour chaque modèle, l\'année la plus proposée entre 4 et 10 ans'}, au kilométrage habituel. Classement : récence, valeur qui se garde, choix d'annonces.</p>
+    <div class="props">${cartesP}</div>
+    ${usage ? `<div class="conseil-usage">💡 <b>Conseil :</b> ${usage.conseil}</div>` : ''}
+    ${Q.budget && M.plafondCollecte && Q.budget > 0.85 * M.plafondCollecte ? `<p class="avert" style="text-align:center">ℹ Au-delà de ${NF.format(M.plafondCollecte)} €, nos données sont encore incomplètes : les propositions sont moins sûres.</p>` : ''}`;
+  $('#propositions').querySelectorAll('.prop button').forEach(b => b.onclick = () => verifierModele(liste[+b.dataset.i]));
+}
+// Pré-remplit l'outil « Ce prix est-il bon ? » avec le modèle proposé
+function verifierModele(c) {
+  $('#marque').value = c.marque; remplirModeles();
+  $('#modele').value = c.modele; defauts();
+  $('#annee').value = String(c.y);
+  if (c.carb) { $('#carburant').value = c.carb; document.querySelector('details.plus').open = true; }
+  $('#km').value = c.km; $('#prix').value = '';
+  calcul();
+  $('#prix').scrollIntoView({behavior: 'smooth', block: 'center'}); setTimeout(() => $('#prix').focus(), 500);
+}
+$('#q-type').innerHTML = TYPES.map(([t, e]) => `<button type="button" data-v="${esc(t)}"><span class="em">${e}</span>${esc(t)}</button>`).join('');
+$('#q-budget').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#q-budget').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); const oui = b.dataset.v === 'oui'; $('#budget-champ').hidden = !oui; Q.budget = oui ? +$('#budget').value : null; afficherPropositions(); };
+$('#budget').oninput = e => { Q.budget = +e.target.value; $('#budget-val').textContent = eur(Q.budget); afficherPropositions(); };
+$('#q-type').onclick = e => { const b = e.target.closest('button'); if (!b) return; b.classList.toggle('on'); b.classList.contains('on') ? Q.types.add(b.dataset.v) : Q.types.delete(b.dataset.v); afficherPropositions(); };
+$('#q-usage').onclick = e => { const b = e.target.closest('button'); if (!b) return; const deja = b.classList.contains('on'); $('#q-usage').querySelectorAll('button').forEach(x => x.classList.remove('on')); if (!deja) b.classList.add('on'); Q.usage = deja ? null : b.dataset.v; afficherPropositions(); };
+
 $('#marque').onchange = remplirModeles;
 $('#modele').onchange = defauts;
 for (const id of ['annee', 'km', 'prix', 'carburant', 'boite', 'vendeur']) $('#' + id).addEventListener('input', calcul);
 $('#detail').addEventListener('toggle', calcul);
 remplirMarques();
+afficherPropositions();
 </script>
 </body>
 </html>
