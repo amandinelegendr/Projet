@@ -115,7 +115,22 @@ details.detail summary { cursor: pointer; font-weight: 600; color: var(--accent)
 .prop .bon b { color: var(--bas); }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tags span { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--soft); }
-.prop button { margin-top: auto; font: inherit; font-weight: 700; padding: 10px; border-radius: 10px; border: 0; background: var(--accent); color: #fff; cursor: pointer; }
+.meilleures { border: 1px solid var(--line); border-radius: 12px; padding: 8px 10px; background: var(--soft); }
+.meilleures .m-titre { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.meilleures a { display: grid; grid-template-columns: auto 1fr auto auto; gap: 8px; align-items: baseline; padding: 6px 4px; border-top: 1px solid var(--line); color: var(--text); text-decoration: none; font-size: 14px; }
+.meilleures a:first-of-type { border-top: 0; }
+.meilleures a:hover { color: var(--accent); }
+.meilleures a span { color: var(--muted); font-size: 13px; }
+.meilleures a em { font-style: normal; font-weight: 700; color: var(--bas); font-size: 13px; }
+.meilleures .fl { color: var(--accent) !important; }
+.meilleures .m-note { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.liens-lbc { display: flex; flex-direction: column; gap: 6px; margin-top: auto; }
+a.lbc { display: block; text-align: center; padding: 9px 10px; border-radius: 10px; background: var(--bas); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; line-height: 1.25; }
+.liens-outil { margin: 10px 0 0; } .liens-outil a.lbc { display: inline-block; padding: 9px 16px; }
+a.lbc small { display: block; font-weight: 500; font-size: 12px; opacity: .9; }
+a.lbc.secondaire { background: var(--soft); color: var(--text); border: 1px solid var(--line); font-weight: 600; }
+a.lbc:hover { filter: brightness(1.05); }
+.prop button { font: inherit; font-weight: 700; font-size: 14px; padding: 9px; border-radius: 10px; border: 1px solid var(--accent); background: none; color: var(--accent); cursor: pointer; }
 .prop button:hover { filter: brightness(1.05); }
 .conseil-usage { margin-top: 14px; padding: 12px 16px; border-radius: 12px; background: var(--surface); border: 1px dashed var(--line); font-size: 15px; }
 .vide-props { text-align: center; color: var(--muted); padding: 20px; background: var(--surface); border-radius: 14px; border: 1px dashed var(--line); }
@@ -197,7 +212,7 @@ details.methode li { margin: 6px 0; color: var(--muted); font-size: 14px; }
     </details>
     <div class="reponse">
       <div id="verdict"></div>
-      <div><div class="jauge" id="jauge"></div><p class="resume" id="resume"></p><div id="avert"></div></div>
+      <div><div class="jauge" id="jauge"></div><p class="resume" id="resume"></p><p class="liens-outil" id="liens-outil"></p><div id="avert"></div></div>
     </div>
     <details class="detail" id="detail"><summary>Voir comment évolue le prix (kilométrage, année)</summary>
       <div class="graphes"><div><h3 id="t-km"></h3><div id="g-km"></div></div><div><h3 id="t-an"></h3><div id="g-an"></div></div></div>
@@ -213,6 +228,8 @@ details.methode li { margin: 6px 0; color: var(--muted); font-size: 14px; }
 <div id="bulle"></div>
 
 <script src="modele-prix.js"></script>
+<script src="lbc-modeles.js"></script>
+<script src="affaires.js"></script>
 <script>
 const M = window.MODELE_PRIX, G = M.groupes, CARBUS = M.carburants, AREF = M.anneeRef, NOEUDS = [5, 10, 15, 20, 25];
 const $ = s => document.querySelector(s);
@@ -391,6 +408,7 @@ function calcul() {
   }
   $('#jauge').innerHTML = jauge(S, prix);
   $('#resume').innerHTML = `${esc(qui)} : <b style="color:var(--bas)">bonne affaire sous ${eur(S.s25)}</b>, <b style="color:var(--haut)">trop cher au-dessus de ${eur(S.s75)}</b>.`;
+  $('#liens-outil').innerHTML = `<a class="lbc" target="_blank" rel="noopener" href="${esc(lienLeboncoin({marque: $('#marque').value, modele: $('#modele').value, annee, carb: $('#carburant').value, prixMax: S.s25}))}">✓ Voir les bonnes affaires sur leboncoin <small>moins de ${eur(S.s25)}${annee ? ', ' + annee : ''}</small></a>`;
   const av = [];
   if (niveau !== 'modele') av.push(`Choisissez une marque et un modèle pour une réponse plus précise.`);
   else if (!annee) av.push(`Ajoutez l'année : selon la génération, le même modèle ne vaut pas le même prix.`);
@@ -548,13 +566,46 @@ function afficherPropositions() {
     <div class="px">${eur(c.p.moyen)} <small>prix moyen</small></div>
     <div class="bon">Bonne affaire sous <b>${eur(c.p.bon)}</b></div>
     <div class="tags">${c.garde ? '<span>📉 garde bien sa valeur</span>' : ''}<span>🔎 ${NF.format(c.n)} annonces</span>${Q.usage === 'route' && c.g.pMed >= 100 ? '<span>🛣️ assez puissante</span>' : ''}</div>
-    <button type="button" data-i="${i}">Vérifier une annonce de ce modèle →</button></article>`).join('');
+    ${meilleuresAnnonces(c)}
+    <div class="liens-lbc">
+      <a class="lbc" target="_blank" rel="noopener" href="${esc(lienLeboncoin({marque: c.marque, modele: c.modele, annee: c.y, carb: c.carb, prixMax: c.p.bon}))}">🔍 Rechercher les bonnes affaires du moment <small>${esc(c.modele)} ${c.y}${c.carb ? ' ' + esc(c.carb.toLowerCase()) : ''}, moins de ${eur(c.p.bon)}</small></a>
+      <a class="lbc secondaire" target="_blank" rel="noopener" href="${esc(lienLeboncoin({marque: c.marque, modele: c.modele, annee: c.y, carb: c.carb, prixMax: Q.budget || null}))}">Toutes les annonces${Q.budget ? ' dans mon budget' : ''}</a>
+    </div>
+    <button type="button" data-i="${i}">Vérifier le prix d'une annonce →</button></article>`).join('');
   $('#propositions').innerHTML = `<p class="note" style="text-align:center;margin:0 0 14px">${esc(contexte)} — ${Q.budget ? 'pour chaque modèle, l\'année la plus récente dans votre budget' : 'pour chaque modèle, l\'année la plus proposée entre 4 et 10 ans'}, au kilométrage habituel. Classement : récence, valeur qui se garde, choix d'annonces.</p>
     <div class="props">${cartesP}</div>
     ${usage ? `<div class="conseil-usage">💡 <b>Conseil :</b> ${usage.conseil}</div>` : ''}
     ${Q.budget && M.plafondCollecte && Q.budget > 0.85 * M.plafondCollecte ? `<p class="avert" style="text-align:center">ℹ Au-delà de ${NF.format(M.plafondCollecte)} €, nos données sont encore incomplètes : les propositions sont moins sûres.</p>` : ''}`;
   $('#propositions').querySelectorAll('.prop button').forEach(b => b.onclick = () => verifierModele(liste[+b.dataset.i]));
 }
+// ---------- Liens vers les annonces leboncoin (recherche pré-remplie : toujours les annonces du moment) ----------
+// Codes des filtres leboncoin : par défaut MARQUE en majuscules et MARQUE_Modèle ; exceptions relevées sur le site (lbc-modeles.js)
+const LBC_CARBU = {'Essence': 1, 'Diesel': 2, 'GPL / GNV': 3, 'Électrique': 4, 'Autre': 5, 'Hybride': 6, 'Hybride rechargeable': 6};
+function lienLeboncoin({marque, modele, annee, carb, prixMax, kmMax}) {
+  const p = new URLSearchParams({category: '2'});
+  if (marque) {
+    const code = (window.LBC_MODELES || {})[marque + '|' + (modele || '')] || [marque.toUpperCase(), modele ? marque.toUpperCase() + '_' + modele : null];
+    p.set('u_car_brand', code[0]); if (modele && code[1]) p.set('u_car_model', code[1]);
+  }
+  if (annee) p.set('regdate', annee + '-' + annee);
+  if (carb && LBC_CARBU[carb]) p.set('fuel', LBC_CARBU[carb]);
+  if (prixMax) p.set('price', 'min-' + Math.round(prixMax / 100) * 100);
+  if (kmMax) p.set('mileage', 'min-' + Math.round(kmMax / 5000) * 5000);
+  return 'https://www.leboncoin.fr/recherche?' + p.toString();
+}
+
+// Meilleures annonces relevées pour ce modèle, cette année (et ce carburant) : les 3 plus sous la cote, dans le budget
+function meilleuresAnnonces(c) {
+  const A = window.AFFAIRES?.modeles?.[c.marque + '|' + c.modele]?.[c.y]; if (!A) return '';
+  let l = c.carb ? (A[c.carb] || []).map(x => [...x, c.carb]) : Object.entries(A).flatMap(([cb, xs]) => xs.map(x => [...x, cb]));
+  if (Q.budget) l = l.filter(x => x[1] <= Q.budget);
+  l = l.sort((a, b) => a[3] - b[3]).slice(0, 3);
+  if (!l.length) return '';
+  return `<div class="meilleures"><div class="m-titre">🏷️ Les meilleures annonces relevées</div>${l.map(([id, px, km, ec, cb]) =>
+    `<a target="_blank" rel="noopener" href="https://www.leboncoin.fr/ad/voitures/${id}"><b>${eur(px)}</b><span>${NF.format(km)} km${c.carb ? '' : ' · ' + esc(cb.toLowerCase())}</span><em>${ec}&nbsp;%</em><span class="fl">↗</span></a>`).join('')}
+    <div class="m-note">Relevées le ${esc(window.AFFAIRES.releve)} : certaines ont pu être vendues depuis.</div></div>`;
+}
+
 // Pré-remplit l'outil « Ce prix est-il bon ? » avec le modèle proposé
 function verifierModele(c) {
   $('#marque').value = c.marque; remplirModeles();
