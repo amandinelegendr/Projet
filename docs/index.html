@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trouver ma voiture d'occasion</title>
 <meta name="description" content="Trouver sa voiture d'occasion au bon prix : 3 questions pour connaître les modèles adaptés à votre budget et à votre usage, d'après des centaines de milliers d'annonces leboncoin.">
-<link rel="stylesheet" href="style.css?v=202611051537">
+<link rel="stylesheet" href="style.css?v=202611051556">
 </head>
 <body>
 <nav class="onglets" aria-label="Pages du site"><div>
@@ -51,10 +51,11 @@
 
 </div>
 
-<script src="modele-prix.js?v=202611051537"></script>
-<script src="lbc-modeles.js?v=202611051537"></script>
-<script src="affaires.js?v=202611051537"></script>
-<script src="commun.js?v=202611051537"></script>
+<script src="modele-prix.js?v=202611051556"></script>
+<script src="lbc-modeles.js?v=202611051556"></script>
+<script src="affaires.js?v=202611051556"></script>
+<script src="photos.js?v=202611051556"></script>
+<script src="commun.js?v=202611051556"></script>
 <script>
 $('#chapo').textContent = `Nous avons analysé ${NF.format(arrondi(M.n, 1000))} annonces de voitures d'occasion. Répondez à 3 questions : nous vous proposons les modèles les plus adaptés à votre budget et à votre usage.`;
 
@@ -92,39 +93,90 @@ function estDuType(g, t) {
   if (t === 'Berline') return partType(g, 'Berline') >= 0.5 && partType(g, 'Citadine') < 0.10;
   return partType(g, t) >= 0.2;
 }
+// Année retenue pour un modèle (et un carburant) : avec un budget, l'année dont le prix moyen s'approche le plus
+// du budget sans le dépasser (à prix proche, la plus récente) ; sans budget, l'année la plus proposée entre 4 et 10 ans
+function choisirAnnee(g, carb, B) {
+  let choix = null, meilleur = -Infinity;
+  for (const y of Object.keys(g.annees).map(Number)) {
+    const c = g.annees[y], nC = carb ? g.carbuAnnee?.[y]?.[carb]?.[0] || 0 : c[0];
+    if (c[0] < 20 || c.length < 21 || nC < 15) continue;
+    const km = Math.round(c[20] / 1000) * 1000, p = prixModele(g, y, km, carb); if (!p) continue;
+    let v;
+    if (B) { if (p.moyen > B) continue; v = p.moyen / B * 10 + (y - AREF) * 0.3; }
+    else v = (AREF - y >= 4 && AREF - y <= 10 ? 1e6 : 0) + nC;
+    if (v > meilleur) { meilleur = v; choix = {y, km, p, n: nC}; }
+  }
+  return choix;
+}
 function proposer() {
-  const usage = usageCombine(), cands = [];
+  const usage = usageCombine(), B = Q.budget, cands = [];
   for (const [cle, g] of modeles) {
-    if (g.n < 300 || !g.types) continue;
+    if (g.n < 100 || !g.types) continue;
     if (Q.types.size && ![...Q.types].some(t => estDuType(g, t))) continue;
     if (usage?.filtre && !usage.filtre(g)) continue;
-    // Carburant conseillé pour l'usage, s'il est courant pour ce modèle
-    const carb = usage ? usage.carbs.find(c => (g.carbus[c] || 0) >= Math.max(30, 0.05 * g.n)) || null : null;
-    // Années possibles (au moins 30 annonces, et au moins 10 dans ce carburant)
-    const ans = Object.keys(g.annees).map(Number).filter(y => g.annees[y][0] >= 40 && g.annees[y].length >= 21 && (!carb || (g.carbuAnnee?.[y]?.[carb]?.[0] || 0) >= 40)).sort((a, b) => b - a);
-    let choix = null;
-    for (const y of ans) {
-      const km = Math.round(g.annees[y][20] / 1000) * 1000, p = prixModele(g, y, km, carb); if (!p) continue;
-      const n = carb ? g.carbuAnnee[y][carb][0] : g.annees[y][0];
-      if (Q.budget) { if (p.moyen <= Q.budget) { choix = {y, km, p, n}; break; } }
-      else if (AREF - y >= 4 && AREF - y <= 10 && (!choix || n > choix.n)) choix = {y, km, p, n};   // sans budget : l'année la plus proposée entre 4 et 10 ans
-    }
+    // Carburant conseillé pour l'usage s'il est courant pour ce modèle (dans l'ordre de préférence), sinon tous carburants
+    const carbs = usage ? usage.carbs.filter(c => (g.carbus[c] || 0) >= Math.max(20, 0.05 * g.n)) : [];
+    let choix = null, carb = null;
+    for (carb of [...carbs, null]) if ((choix = choisirAnnee(g, carb, B))) break;
     if (!choix) continue;
-    const [marque, modele] = cle.split('|'), d = deprAn(g);
-    cands.push({marque, modele, g, carb, d, ...choix});
+    const [marque, modele] = cle.split('|');
+    cands.push({marque, modele, g, carb, d: deprAn(g), ...choix});
   }
   if (!cands.length) return [];
+  // Avec un budget : on garde les voitures proches du budget (au moins 70 % du budget, 50 % s'il y en a trop peu)
+  let liste = cands;
+  if (B) for (const seuil of [0.7, 0.5, 0]) { liste = cands.filter(c => c.p.moyen >= seuil * B); if (liste.length >= 12) break; }
   const {med: medD, q1} = repereDepr();
-  for (const c of cands) {
-    let s = -(AREF - c.y) * 0.25;                                   // plus récente = mieux
+  for (const c of liste) {
+    let s = -(AREF - c.y) * 0.2;                                    // plus récente = mieux
     if (c.d != null) s += Math.max(-3, Math.min(3, (medD - c.d) * 100)) * 0.2;   // garde mieux sa valeur = mieux (effet plafonné)
-    s += Math.log10(c.n) * 0.9;                                     // beaucoup d'annonces = plus de choix
+    s += Math.log10(c.n) * 0.6;                                     // beaucoup d'annonces = plus de choix
+    if (B) s -= (1 - c.p.moyen / B) * 4;                            // proche du budget = mieux
     if (usage?.types) s += Math.max(0, ...Object.keys(usage.types).map(t => estDuType(c.g, t) ? 0.5 : 0));
     if (usage?.puissance && c.g.pMed >= usage.puissance) s += 0.4;
-    if (usage?.prix) s -= c.p.moyen / (Q.budget || 10000) * 0.6;    // usage occasionnel : moins cher = mieux
+    if (usage?.carbs && c.carb && c.carb === usage.carbs[0]) s += 0.3;
+    if (usage?.prix) s -= c.p.moyen / (B || 10000) * 0.6;           // usage occasionnel : moins cher = mieux
     c.score = s; c.garde = c.d != null && c.d <= q1;
   }
-  return cands.sort((a, b) => b.score - a.score).slice(0, 15);
+  return liste.sort((a, b) => b.score - a.score).slice(0, 40);
+}
+
+// Pourquoi ce modèle correspond aux réponses (3 raisons au plus, les plus parlantes d'abord)
+const POUR_USAGE = {quotidien: 'la ville et les trajets courts', occasionnel: 'un usage occasionnel', route: 'les grands trajets', plaisir: 'le plaisir de conduire'};
+const typePrincipal = g => Object.entries(g.types || {}).sort((a, b) => b[1] - a[1])[0]?.[0];
+function raisons(c) {
+  const r = [];
+  if (c.aff?.motif) r.push(`Proche de la ${esc(c.aff.motif.marque + ' ' + c.aff.motif.modele)} que vous aimez`);
+  if (Q.budget) r.push(c.p.moyen >= 0.9 * Q.budget ? `Au plus près de votre budget (${eur(c.p.moyen)})` : `Dans votre budget, avec ${eur(Q.budget - c.p.moyen)} de marge`);
+  const t = [...Q.types].find(t => estDuType(c.g, t)); if (t) r.push(`${t}, comme demandé`);
+  const u = [...Q.usages].find(u => c.carb && USAGES[u].carbs[0] === c.carb) || [...Q.usages].find(u => c.carb && USAGES[u].carbs.includes(c.carb));
+  if (u) r.push(`${c.carb} : le carburant conseillé pour ${POUR_USAGE[u]}`);
+  if (Q.usages.has('plaisir') && c.g.pMed >= 150) r.push(`${NF.format(c.g.pMed)} ch en moyenne`);
+  else if (Q.usages.has('route') && c.g.pMed >= 100) r.push(`${NF.format(c.g.pMed)} ch : à l'aise sur autoroute`);
+  if (Q.usages.has('quotidien') && estDuType(c.g, 'Citadine')) r.push('Citadine, facile à garer');
+  if (c.garde) r.push('Garde bien sa valeur à la revente');
+  if (c.n >= 300) r.push(`${NF.format(c.n)} annonces : beaucoup de choix`);
+  return r.slice(0, 3);
+}
+// Ce que vous avez aimé ou passé rapproche ou éloigne les modèles qui leur ressemblent (marque, type, puissance, prix, carburant)
+function affinite(c) {
+  let s = 0, motif = null, best = 0;
+  const avis = [...COEURS.map(k => ({c: k, aime: true})), ...D.hist.filter(h => !h.aime)];
+  for (const {c: k, aime} of avis) {
+    if (k.marque === c.marque && k.modele === c.modele) continue;
+    const sim = (k.marque === c.marque ? 1 : 0) + (typePrincipal(k.g) === typePrincipal(c.g) ? 0.7 : 0) + ((k.carb || '') === (c.carb || '') ? 0.2 : 0)
+      + (Math.abs(Math.log(k.g.pMed / c.g.pMed)) < 0.2 ? 0.5 : 0) + (Math.abs(Math.log(k.p.moyen / c.p.moyen)) < 0.15 ? 0.3 : 0);
+    s += aime ? sim : -0.6 * sim;
+    if (aime && sim > best) { best = sim; motif = k; }
+  }
+  return {s, motif: best >= 1.5 ? motif : null};
+}
+// Réordonne les cartes restantes selon vos choix
+function personnaliser() {
+  const reste = D.liste.slice(D.pos);
+  for (const c of reste) c.aff = affinite(c);
+  reste.sort((a, b) => (b.score + 0.8 * b.aff.s) - (a.score + 0.8 * a.aff.s));
+  D.liste.splice(D.pos, reste.length, ...reste);
 }
 
 // ============ Choisir parmi les modèles proposés : glisser à droite (j'aime) ou à gauche (passer) ============
@@ -135,6 +187,10 @@ const COEURS = (() => { try { return JSON.parse(localStorage.getItem('coups-de-c
 const sauverCoeurs = () => { try { localStorage.setItem('coups-de-coeur', JSON.stringify(COEURS.map(({g, ...c}) => c))); } catch {} };
 const D = {liste: [], pos: 0, hist: []};
 const emojiType = g => { const t = Object.entries(g.types || {}).sort((a, b) => b[1] - a[1])[0]?.[0]; return (TYPES.find(x => x[0] === t) || [, '🚗'])[1]; };
+// Photo du modèle (Wikipédia / Wikimedia Commons, indicative : pas forcément la même génération) ; à défaut, l'icône du type
+const photo = (c, lien) => { const p = window.PHOTOS?.[c.marque + '|' + c.modele];
+  return p ? `<figure class="photo"><img src="${esc(p[0])}" alt="${esc(c.marque + ' ' + c.modele)}" draggable="false"><figcaption>${lien ? `<a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(p[1])}" target="_blank" rel="noopener">Photo indicative · Wikimedia Commons</a>` : 'Photo indicative · Wikimedia Commons'}</figcaption></figure>`
+    : `<div class="photo vide" aria-hidden="true">${emojiType(c.g)}</div>`; };
 const tags = c => `<div class="tags">${c.garde ? '<span>📉 garde bien sa valeur</span>' : ''}<span>🔎 ${NF.format(c.n)} annonces</span>${Q.usages.has('route') && c.g.pMed >= 100 ? '<span>🛣️ assez puissante</span>' : ''}${Q.usages.has('plaisir') && c.g.pMed >= 150 ? '<span>🏁 puissante</span>' : ''}</div>`;
 const entete = c => `<h3>${esc(c.marque)} ${esc(c.modele)}</h3>
     <div class="an">${c.y}${c.carb ? ' · ' + esc(c.carb.toLowerCase()) : ''} · environ ${NF.format(c.km)} km</div>
@@ -145,8 +201,8 @@ function afficherPropositions() {
   const liste = proposer(), usage = usageCombine();
   const contexte = [Q.budget ? `budget ${eur(Q.budget)}` : 'budget non fixé', Q.types.size ? [...Q.types].join(', ').toLowerCase() : 'tous types', Q.usages.size ? [...Q.usages].map(u => LIB_USAGE[u]).join(' + ') : null].filter(Boolean).join(' · ');
   liste.forEach((c, i) => c.rang = i + 1);
-  D.liste = liste.filter(c => !COEURS.some(k => cleC(k) === cleC(c))); D.pos = 0; D.hist = [];
-  $('#propositions').innerHTML = (liste.length ? `<p class="note" style="text-align:center;margin:0 0 14px">${esc(contexte)} — ${Q.budget ? 'pour chaque modèle, l\'année la plus récente dans votre budget' : 'pour chaque modèle, l\'année la plus proposée entre 4 et 10 ans'}, au kilométrage habituel. Classement : récence, valeur qui se garde, choix d'annonces.</p>
+  D.liste = liste.filter(c => !COEURS.some(k => cleC(k) === cleC(c))); D.pos = 0; D.hist = []; personnaliser();
+  $('#propositions').innerHTML = (liste.length ? `<p class="note" style="text-align:center;margin:0 0 14px">${esc(contexte)} — ${Q.budget ? 'pour chaque modèle, l\'année la plus récente dans votre budget' : 'pour chaque modèle, l\'année la plus proposée entre 4 et 10 ans'}, au kilométrage habituel. Vos « j'aime » et « non » réordonnent la suite des cartes.</p>
     <div class="swipe">
       <div class="pile" id="pile"></div>
       <div class="swipe-btns"><button type="button" id="passer" title="Passer (flèche gauche)" aria-label="Passer">✕</button><button type="button" id="retour" title="Revenir à la carte précédente" aria-label="Revenir">↩</button><button type="button" id="aimer" title="J'aime (flèche droite)" aria-label="J'aime">♥</button></div>
@@ -171,10 +227,11 @@ function afficherPile() {
   $('#pile').innerHTML = fini
     ? `<div class="pile-fin"><div><div class="em-type">🏁</div><p>Vous avez vu les ${D.liste.length} modèles proposés.</p>${D.hist.some(h => !h.aime) ? '<button type="button" id="revoir">Revoir les modèles passés</button>' : ''}</div></div>`
     : reste.map((c, i) => `<article class="prop swipe-carte" style="--i:${i}"${i ? ' aria-hidden="true"' : ' data-top'}>
-    <span class="rang">${c.rang === 1 ? '★ Notre choix' : 'N° ' + c.rang}</span>
+    ${c.aff?.motif ? '<span class="rang">♥ Pour vous</span>' : c.rang === 1 ? '<span class="rang">★ Notre choix</span>' : ''}
     <span class="tampon oui">J'AIME</span><span class="tampon non">NON</span>
-    <div class="em-type" aria-hidden="true">${emojiType(c.g)}</div>
-    ${entete(c)}${tags(c)}</article>`).reverse().join('');
+    ${photo(c)}
+    ${entete(c)}
+    <ul class="raisons">${raisons(c).map(t => `<li>${t}</li>`).join('')}</ul></article>`).reverse().join('');
   if (fini) { const r = $('#revoir'); if (r) r.onclick = () => { D.liste = D.hist.filter(h => !h.aime).map(h => h.c); D.pos = 0; D.hist = []; afficherPile(); }; return; }
   glisser($('#pile [data-top]'));
 }
@@ -203,7 +260,7 @@ function decider(aime) {
   el.querySelector(aime ? '.tampon.oui' : '.tampon.non').style.opacity = 1;
   el.style.transform = `translateX(${aime ? 140 : -140}%) rotate(${aime ? 24 : -24}deg)`; el.style.opacity = 0;
   if (aime && !COEURS.some(k => cleC(k) === cleC(c))) { COEURS.unshift(c); sauverCoeurs(); afficherCoeurs(); }
-  D.hist.push({c, aime}); D.pos++;
+  D.hist.push({c, aime}); D.pos++; personnaliser();
   setTimeout(afficherPile, 230);
 }
 function revenir() {
@@ -221,6 +278,7 @@ document.addEventListener('keydown', e => {
 function afficherCoeurs() {
   $('#coeurs').innerHTML = COEURS.length ? `<h3 class="coeurs-titre">♥ Mes coups de cœur (${COEURS.length})</h3><div class="props">${COEURS.map((c, i) => `<article class="prop coeur"><span class="rang">♥ Coup de cœur</span>
     <button type="button" class="retirer" data-i="${i}" title="Retirer des coups de cœur">✕ Retirer</button>
+    ${photo(c, true)}
     ${entete(c)}${tags(c)}
     ${meilleuresAnnonces(c)}
     <div class="liens-lbc">
