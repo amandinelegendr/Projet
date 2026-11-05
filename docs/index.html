@@ -43,6 +43,7 @@
         <button type="button" data-v="quotidien"><span class="em">🏙️</span>Tous les jours<small>trajets courts, ville</small></button>
         <button type="button" data-v="occasionnel"><span class="em">📅</span>De temps en temps<small>courses, week-ends</small></button>
         <button type="button" data-v="route"><span class="em">🛣️</span>Grands trajets<small>autoroute, beaucoup de km</small></button>
+        <button type="button" data-v="plaisir"><span class="em">🏁</span>Pour le plaisir<small>balades, conduite sportive</small></button>
       </div>
     </div>
   </section>
@@ -64,6 +65,7 @@ const USAGES = {
   quotidien: {carbs: ['Hybride', 'Essence', 'Électrique'], types: {'Citadine': 1}, conseil: `Pour des trajets courts et la ville, privilégiez une <b>essence</b> ou une <b>hybride</b> : un diesel supporte mal les petits trajets répétés (encrassement du filtre à particules). Une voiture compacte se gare plus facilement.`},
   occasionnel: {carbs: ['Essence', 'Hybride'], prix: true, conseil: `Pour un usage occasionnel, inutile de payer cher : une <b>essence</b> un peu plus ancienne mais peu kilométrée suffit, et son entretien reste simple.`},
   route: {carbs: ['Diesel', 'Hybride', 'Essence'], types: {'Berline': 1, 'Break': 1, 'SUV / 4x4': 1}, puissance: 100, conseil: `Pour beaucoup de kilomètres et l'autoroute, un <b>diesel</b> ou une <b>hybride</b> consomme moins ; préférez une voiture assez puissante et confortable, avec un entretien bien suivi.`},
+  plaisir: {carbs: ['Essence', 'Hybride'], types: {'Coupé / cabriolet': 1}, puissance: 150, filtre: g => estDuType(g, 'Coupé / cabriolet') || (g.pMed >= 150 && (Q.types.size || partType(g, 'SUV / 4x4') + partType(g, 'Monospace') < 0.5)), conseil: `Pour le plaisir de conduire, privilégiez une <b>essence</b> assez puissante, coupé ou cabriolet. Ces voitures roulent peu : une plus ancienne mais <b>peu kilométrée et bien entretenue</b> est souvent un bon choix ; méfiez-vous des modèles modifiés ou conduits sur circuit.`},
 };
 const Q = {budget: +$("#budget").value, types: new Set(), usage: null};
 
@@ -79,6 +81,7 @@ function proposer() {
   for (const [cle, g] of modeles) {
     if (g.n < 300 || !g.types) continue;
     if (Q.types.size && ![...Q.types].some(t => estDuType(g, t))) continue;
+    if (usage?.filtre && !usage.filtre(g)) continue;
     // Carburant conseillé pour l'usage, s'il est courant pour ce modèle
     const carb = usage ? usage.carbs.find(c => (g.carbus[c] || 0) >= Math.max(30, 0.05 * g.n)) || null : null;
     // Années possibles (au moins 30 annonces, et au moins 10 dans ce carburant)
@@ -110,7 +113,7 @@ function proposer() {
 
 function afficherPropositions() {
   const liste = proposer(), usage = Q.usage ? USAGES[Q.usage] : null;
-  const contexte = [Q.budget ? `budget ${eur(Q.budget)}` : 'budget non fixé', Q.types.size ? [...Q.types].join(', ').toLowerCase() : 'tous types', Q.usage ? {quotidien: 'usage quotidien', occasionnel: 'usage occasionnel', route: 'grands trajets'}[Q.usage] : null].filter(Boolean).join(' · ');
+  const contexte = [Q.budget ? `budget ${eur(Q.budget)}` : 'budget non fixé', Q.types.size ? [...Q.types].join(', ').toLowerCase() : 'tous types', Q.usage ? {quotidien: 'usage quotidien', occasionnel: 'usage occasionnel', route: 'grands trajets', plaisir: 'pour le plaisir'}[Q.usage] : null].filter(Boolean).join(' · ');
   if (!liste.length) {
     $('#propositions').innerHTML = `<div class="vide-props">Aucun modèle courant ne correspond (${esc(contexte)}).${Q.budget ? ' Essayez un budget un peu plus élevé ou un autre type.' : ''}</div>`;
     return;
@@ -120,7 +123,7 @@ function afficherPropositions() {
     <div class="an">${c.y}${c.carb ? ' · ' + esc(c.carb.toLowerCase()) : ''} · environ ${NF.format(c.km)} km</div>
     <div class="px">${eur(c.p.moyen)} <small>prix moyen</small></div>
     <div class="bon">Bonne affaire sous <b>${eur(c.p.bon)}</b></div>
-    <div class="tags">${c.garde ? '<span>📉 garde bien sa valeur</span>' : ''}<span>🔎 ${NF.format(c.n)} annonces</span>${Q.usage === 'route' && c.g.pMed >= 100 ? '<span>🛣️ assez puissante</span>' : ''}</div>
+    <div class="tags">${c.garde ? '<span>📉 garde bien sa valeur</span>' : ''}<span>🔎 ${NF.format(c.n)} annonces</span>${Q.usage === 'route' && c.g.pMed >= 100 ? '<span>🛣️ assez puissante</span>' : ''}${Q.usage === 'plaisir' && c.g.pMed >= 150 ? '<span>🏁 puissante</span>' : ''}</div>
     ${meilleuresAnnonces(c)}
     <div class="liens-lbc">
       <a class="lbc" target="_blank" rel="noopener" href="${esc(lienLeboncoin({marque: c.marque, modele: c.modele, annee: c.y, carb: c.carb, prixMax: c.p.bon}))}">🔍 Rechercher les bonnes affaires du moment <small>${esc(c.modele)} ${c.y}${c.carb ? ' ' + esc(c.carb.toLowerCase()) : ''}, moins de ${eur(c.p.bon)}</small></a>
