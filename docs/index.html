@@ -202,7 +202,7 @@ function afficherPropositions() {
   const contexte = [Q.budget ? `budget ${eur(Q.budget)}` : 'budget non fixé', Q.types.size ? [...Q.types].join(', ').toLowerCase() : 'tous types', Q.usages.size ? [...Q.usages].map(u => LIB_USAGE[u]).join(' + ') : null].filter(Boolean).join(' · ');
   liste.forEach((c, i) => c.rang = i + 1);
   D.liste = liste.filter(c => !COEURS.some(k => cleC(k) === cleC(c))); D.pos = 0; D.hist = []; personnaliser();
-  $('#propositions').innerHTML = (liste.length ? `<p class="note" style="text-align:center;margin:0 0 14px">${esc(contexte)} — ${Q.budget ? 'pour chaque modèle, l\'année la plus récente dans votre budget' : 'pour chaque modèle, l\'année la plus proposée entre 4 et 10 ans'}, au kilométrage habituel. Vos « j'aime » et « non » réordonnent la suite des cartes.</p>
+  $('#propositions').innerHTML = (liste.length ? `<p class="note" style="text-align:center;margin:0 0 14px">${esc(contexte)} — ${Q.budget ? 'pour chaque modèle, l\'année dont le prix s'approche le plus de votre budget' : 'pour chaque modèle, l\'année la plus proposée entre 4 et 10 ans'}, au kilométrage habituel. Vos « j'aime » et « non » réordonnent la suite des cartes.</p>
     <div class="swipe">
       <div class="pile" id="pile"></div>
       <div class="swipe-btns"><button type="button" id="passer" title="Passer (flèche gauche)" aria-label="Passer">✕</button><button type="button" id="retour" title="Revenir à la carte précédente" aria-label="Revenir">↩</button><button type="button" id="aimer" title="J'aime (flèche droite)" aria-label="J'aime">♥</button></div>
