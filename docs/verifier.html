@@ -43,6 +43,10 @@
     </details>
   </section>
 
+  <h2 id="savoir">Ce qu'il faut savoir sur <span id="savoir-nom">cette voiture</span></h2>
+  <p class="sous-h2" id="savoir-sous"></p>
+  <div class="cartes" id="cartes"></div>
+
   <h2 id="rappel">Le prix ne dit pas tout</h2>
   <p class="sous-h2">Un bon prix ne suffit pas : avant d'acheter, vérifiez aussi ces points, que l'outil ne peut pas voir.</p>
   <ul class="rappel" id="rappel-liste"></ul>
@@ -150,6 +154,7 @@ function calcul() {
   else if (!annee) av.push(`Ajoutez l'année : selon la génération, le même modèle ne vaut pas le même prix.`);
   if (M.plafondCollecte && S.s75 > 0.85 * M.plafondCollecte) av.push(`Au-delà de ${NF.format(M.plafondCollecte)} €, nos données sont encore incomplètes : ces montants sont probablement un peu sous-estimés.`);
   $('#avert').innerHTML = av.map(a => `<p class="avert">ℹ ${a}</p>`).join('');
+  savoir(g, niveau, nom, kmS);
   if ($('#detail').open) graphes(g, nom, km, annee);
 }
 
@@ -187,17 +192,92 @@ function graphes(g, nom, km, annee) {
   $('#g-an').innerHTML = t + `</svg><div class="legende"><span><i style="background:var(--s1);height:2px"></i>prix moyen par année</span><span><i style="background:var(--ok);opacity:.4"></i>prix normal</span>${annee ? '<span><i style="background:var(--accent);border-radius:50%;width:9px;height:9px"></i>année choisie</span>' : ''}</div><p class="note">Un saut d'une année à l'autre peut correspondre à un changement de génération.</p>`;
 }
 
-// ============ Rappel : ce que le prix ne vérifie pas ============
-// Le kilométrage par an est calculé avec l'année et le kilométrage saisis, comparé à la moyenne des annonces
-function rappel() {
-  const an = +$('#annee').value, km = kmSaisi(), age = an ? Math.max(1, AREF - an) : null, moy = arrondi(M.kmParAn, 1000);
-  let calc = '';
-  if (age && km != null) {
-    const parAn = km / age, r = parAn / M.kmParAn;
-    calc = `<span class="calc">Ici : ${NF.format(km)} km ÷ ${age} an${age > 1 ? 's' : ''} ≈ <b>${NF.format(arrondi(parAn, 500))} km/an</b> — ${r > 1.25 ? `<b style="color:var(--haut)">plus que la moyenne</b> : usure plus forte, négociez.` : r < 0.5 ? `<b style="color:var(--haut)">très peu</b> : vérifiez que le kilométrage est cohérent avec l'historique (contrôles techniques, factures).` : `<b style="color:var(--bas)">dans la normale</b>.`}</span>`;
+// ============ Ce qu'il faut savoir sur la voiture choisie (calculé pour ce modèle et cette année) ============
+const kmTxt = k => NF.format(arrondi(k, 1000)) + ' km';
+const signe = v => (v >= 0 ? '+' : '−') + eur(Math.abs(v));
+// Barres verticales : [{l: libellé, v: valeur, on: mise en avant}]
+function barres(items, fmt = eur) {
+  const max = Math.max(...items.map(i => i.v)), w = 300 / items.length;
+  return `<svg viewBox="0 0 300 110">${items.map((it, i) => { const h = 12 + it.v / max * 60, x = i * w + w / 2; return `<rect x="${x - 26}" y="${88 - h}" width="52" height="${h}" rx="6" fill="${it.on ? 'var(--accent)' : 'var(--s1)'}" opacity="${it.on ? 1 : .55}"/><text x="${x}" y="${82 - h}" text-anchor="middle" font-size="13" font-weight="700" fill="var(--text)">${fmt(it.v)}</text><text x="${x}" y="105" text-anchor="middle" font-size="12" fill="var(--muted)">${esc(it.l)}</text>`; }).join('')}</svg>`;
+}
+// Barres de part et d'autre de zéro : [[libellé, écart en €], …]
+function ecarts(items) {
+  const max = Math.max(...items.map(i => Math.abs(i[1]))) || 1, H = items.length * 28 + 4;
+  return `<svg viewBox="0 0 300 ${H}"><line x1="150" x2="150" y1="0" y2="${H}" stroke="var(--line)"/>${items.map(([l, v], i) => { const w = Math.abs(v) / max * 110, y = 4 + i * 28; return `<rect x="${v >= 0 ? 150 : 150 - w}" y="${y}" width="${w}" height="20" rx="5" fill="${v >= 0 ? 'var(--s2)' : 'var(--s1)'}"/><text x="${v >= 0 ? 144 : 156}" y="${y + 15}" text-anchor="${v >= 0 ? 'end' : 'start'}" font-size="13" font-weight="700" fill="var(--text)">${esc(l)} ${signe(v)}</text>`; }).join('')}</svg>`;
+}
+function savoir(g, niveau, nom, kmS) {
+  const vide = t => { $('#savoir-nom').textContent = 'cette voiture'; $('#savoir-sous').textContent = t; $('#cartes').innerHTML = ''; };
+  if (niveau !== 'modele') return vide('Choisissez une marque et un modèle : nous vous dirons ce qu\'il faut savoir sur cette voiture précise.');
+  const ok = y => g.annees?.[y]?.[0] >= 20 && g.annees[y].length >= 21;
+  let Y = +$('#annee').value; const choisie = ok(Y);
+  if (!choisie) Y = +(Object.keys(g.annees || {}).filter(ok).sort((a, b) => g.annees[b][0] - g.annees[a][0])[0] || 0);
+  if (!Y) return vide('Pas assez d\'annonces de ce modèle pour en dire plus.');
+  const c = g.annees[Y], km = kmS ?? Math.round(c[20] / 1000) * 1000, P = (k, y = Y) => Math.exp(estime(g, k, y).lp), prix = P(km), voiture = `${nom} ${Y}`;
+  $('#savoir-nom').textContent = voiture;
+  $('#savoir-sous').textContent = `Calculé sur ${NF.format(c[0])} annonces de ${voiture}${choisie ? '' : ' (l\'année la plus proposée : choisissez l\'année de l\'annonce pour adapter)'}${kmS == null ? ', au kilométrage habituel' : ', à ' + kmTxt(km)}.`;
+  const cartes = [];
+
+  // 1. Kilométrage habituel de ce modèle à cet âge, comparé à toutes les voitures et à l'annonce
+  const age = Math.max(1, AREF - Y), kmMed = c[20], kmAn = kmMed / age, r = kmS != null ? kmS / kmMed - 1 : null;
+  cartes.push({
+    visuel: barres([{l: 'ce modèle', v: kmMed}, {l: 'toutes voitures', v: M.kmParAn * age}, ...(kmS != null ? [{l: 'la vôtre', v: kmS, on: true}] : [])], kmTxt),
+    titre: `Une ${esc(voiture)} affiche en général ${kmTxt(kmMed)}`,
+    texte: `Soit environ ${kmTxt(kmAn)} par an, ${kmAn > 1.15 * M.kmParAn ? 'plus que' : kmAn < 0.85 * M.kmParAn ? 'moins que' : 'autant que'} la moyenne des voitures (${kmTxt(M.kmParAn)} par an).${r != null ? ` La vôtre en a ${pc(Math.abs(r))} de ${r >= 0 ? 'plus' : 'moins'}.` : ''}`,
+    conseil: r == null ? `Indiquez le kilométrage de l'annonce pour la situer.` : r > 0.25 ? `<b>Plus de kilomètres que d'habitude :</b> le prix doit être plus bas et l'entretien irréprochable.` : r < -0.4 ? `<b>Très peu de kilomètres :</b> vérifiez qu'ils sont cohérents avec les contrôles techniques et les factures.` : `<b>Kilométrage dans la norme</b> pour une ${esc(voiture)}.`
+  });
+
+  // 2. Ce que coûtent 10 000 km de plus, à ce kilométrage
+  const paliers = [50000, 100000, 150000, 200000].filter(k => k >= c[3] && k <= c[4]), perte = prix - P(km + 10000);
+  if (paliers.length >= 2 && perte > 0) cartes.push({
+    visuel: barres(paliers.map(k => ({l: k / 1000 + ' k km', v: P(k), on: Math.abs(k - km) <= 25000}))),
+    titre: `Chaque 10 000 km de plus lui retire environ ${eur(perte)}`,
+    texte: `Une ${esc(voiture)} vaut environ ${eur(P(paliers[0]))} à ${kmTxt(paliers[0])} et ${eur(P(paliers.at(-1)))} à ${kmTxt(paliers.at(-1))}.`,
+    conseil: `Entre deux annonces, <b>un écart d'environ ${eur(perte)} par tranche de 10 000 km</b> est justifié ; au-delà, négociez.`
+  });
+
+  // 3. Une année de plus ou de moins, au même kilométrage
+  const voisins = [Y - 1, Y, Y + 1].filter(y => y === Y || (y <= AREF && ok(y)));
+  if (voisins.length >= 2) {
+    const plus = voisins.includes(Y + 1) ? P(km, Y + 1) - prix : null, moins = voisins.includes(Y - 1) ? P(km, Y - 1) - prix : null;
+    // Écart d'une année voisine en clair (moins de 3 % : « à peu près le même prix »)
+    const ecart = v => Math.abs(v) < 0.03 * prix ? 'à peu près le même prix' : v > 0 ? `${eur(v)} de plus` : `${eur(-v)} de moins`;
+    const peu = [plus, moins].every(v => v == null || Math.abs(v) < 0.03 * prix);
+    cartes.push({
+      visuel: barres(voisins.map(y => ({l: String(y), v: P(km, y), on: y === Y}))),
+      titre: peu ? `Une année de plus ou de moins change peu son prix` : plus != null ? `Une ${Y + 1} coûte ${ecart(plus)}` : `Une ${Y - 1} coûte ${ecart(moins)}`,
+      texte: `Au même kilométrage (${kmTxt(km)}) qu'une ${Y} : ${[plus != null ? `une ${Y + 1} coûte ${ecart(plus)}` : null, moins != null ? `une ${Y - 1}, ${ecart(moins)}` : null].filter(Boolean).join(', ')}.`,
+      conseil: Math.max(Math.abs(plus ?? 0), Math.abs(moins ?? 0)) > 0.2 * prix ? `<b>Gros écart d'une année à l'autre :</b> sans doute un changement de génération ou de version ; comparez les équipements.` : `<b>Regardez aussi les années voisines</b> : une voiture un peu plus ancienne mais moins kilométrée peut être un meilleur choix.`
+    });
   }
+
+  // 4. Ce qui fait varier le prix de ce modèle : boîte, vendeur, carburant
+  const opts = [];
+  if (g.auto > 0.05 && g.auto < 0.95) opts.push(['Boîte auto', prix * (Math.exp(g.b[4]) - 1)]);
+  opts.push(['Vendeur pro', prix * (Math.exp(g.b[5]) - 1)]);
+  const mix = prixModele(g, Y, km, null), carbs = Object.entries(g.carbuAnnee?.[Y] || {}).filter(([, u]) => u[0] >= 20).sort((a, b) => b[1][0] - a[1][0]).slice(0, 2);
+  if (mix && carbs.length >= 2) for (const [cb] of carbs) { const p = prixModele(g, Y, km, cb); if (p) opts.push([cb, p.moyen - mix.moyen]); }
+  const maxO = Math.max(...opts.map(o => Math.abs(o[1])));
+  cartes.push({
+    visuel: ecarts(opts),
+    titre: `${opts.length > 2 ? 'Boîte, vendeur, carburant' : 'Boîte et vendeur'} : jusqu'à ${eur(maxO)} d'écart`,
+    texte: `Pour une ${esc(voiture)} : ${opts.map(([l, v]) => `${esc(l.toLowerCase())} ${signe(v)}`).join(', ')}${opts.length > 2 ? ' (carburant : par rapport au prix moyen de l\'année)' : ''}.`,
+    conseil: `Comparez des annonces <b>à équipement égal</b> ; chez un pro, le surcoût doit correspondre à une vraie garantie.`
+  });
+
+  // 5. Ce qu'elle vaudra dans un an (même voiture : un an et un an de kilomètres de plus)
+  const d = deprAn(g), rep = repereDepr(), dans1 = ok(Y - 1) ? P(km + kmAn, Y - 1) : null, dans3 = ok(Y - 3) ? P(km + 3 * kmAn, Y - 3) : null;
+  if (dans1 && d != null) cartes.push({
+    visuel: barres([{l: 'aujourd\'hui', v: prix, on: true}, {l: 'dans 1 an', v: dans1}, ...(dans3 ? [{l: 'dans 3 ans', v: dans3}] : [])]),
+    titre: `Dans un an, elle vaudra environ ${eur(dans1)}`,
+    texte: `Avec ${kmTxt(kmAn)} de plus. Une ${esc(nom)} perd environ ${pc(d)} de sa valeur par an, quand un modèle courant typique en perd ${pc(rep.med)}.`,
+    conseil: d <= rep.q1 ? `<b>Ce modèle garde bien sa valeur :</b> il se revendra bien.` : d <= rep.med ? `<b>Perte de valeur plutôt modérée</b> pour ce modèle.` : `<b>Ce modèle perd vite sa valeur :</b> intéressant si vous le gardez longtemps, moins si vous comptez revendre vite.`
+  });
+  $('#cartes').innerHTML = cartes.map(c => `<article class="carte"><div class="visuel">${c.visuel}</div><h3>${c.titre}</h3><p>${c.texte}</p><div class="conseil">${c.conseil}</div></article>`).join('');
+}
+
+// ============ Rappel : ce que le prix ne vérifie pas ============
+function rappel() {
   const points = [
-    ['📏', 'Le kilométrage par an', `kilométrage ÷ âge ; les voitures des annonces roulent en moyenne ${NF.format(moy)} km par an.`, calc],
     ['🧾', 'Le carnet d\'entretien et les factures', 'vidanges régulières, distribution faite à temps, gros travaux récents.'],
     ['🔧', 'Le contrôle technique', 'obligatoire et de moins de 6 mois pour vendre une voiture de plus de 4 ans : lisez les défauts relevés et vérifiez s\'il y a une contre-visite.'],
     ['📜', 'L\'historique et les papiers', 'carte grise au nom du vendeur, nombre de propriétaires, sinistres, gage : le vendeur peut vous transmettre le rapport officiel gratuit HistoVec.'],
@@ -224,8 +304,6 @@ afficherLimites();
 $('#marque').onchange = remplirModeles;
 $('#modele').onchange = defauts;
 for (const id of ['annee', 'km', 'prix', 'carburant', 'boite', 'vendeur']) $('#' + id).addEventListener('input', calcul);
-for (const id of ['annee', 'km']) $('#' + id).addEventListener('input', rappel);
-$('#annee').addEventListener('change', rappel);
 $('#detail').addEventListener('toggle', calcul);
 remplirMarques();
 preRemplir();

@@ -48,10 +48,6 @@
   </section>
   <div id="propositions"></div>
 
-  <h2 id="savoir">5 choses à savoir</h2>
-  <p class="sous-h2">Ce que nous apprennent les annonces, et ce que vous devez en faire.</p>
-  <div class="cartes" id="cartes"></div>
-
   <details class="methode"><summary>D'où viennent ces chiffres ? Méthode et limites</summary><ul id="limites"></ul></details>
 </div>
 
@@ -60,81 +56,7 @@
 <script src="affaires.js"></script>
 <script src="commun.js"></script>
 <script>
-// ============ Constats (calculés à partir des données) ============
-const C2 = (() => {
-  const segs = [[0, 50000], [50000, 150000], [150000, 250000]], acc = segs.map(() => ({w: 0, s: 0}));
-  for (const [, g] of modeles) for (const c of Object.values(g.annees)) {
-    if (c[0] < 20 || c.length < 11) continue;
-    const f = c.slice(5, 11), lf = km => { const x = km / 10000; return f[0] * x + NOEUDS.reduce((s, k, j) => s + f[1 + j] * Math.max(0, x - k), 0); };
-    segs.forEach(([a, b], i) => { if (b < c[3] || a > c[4]) return; acc[i].w += c[0]; acc[i].s += c[0] * Math.log(1 - perte10k(lf, a, b)); });
-  }
-  return acc.map(a => 1 - Math.exp(a.s / a.w));
-})();
-const C3 = (() => { const s = []; for (const [, g] of modeles) for (const c of Object.values(g.annees)) if (c[0] >= 50) s.push(c[2]); s.sort((a, b) => a - b); const sig = s[s.length >> 1]; return {p25: 1 - Math.exp(-Z25 * sig), p75: Math.exp(Z25 * sig) - 1, ecart: Math.exp(2 * Z25 * sig) - 1}; })();
-const C4 = {auto: Math.exp(moyP(g => g.b[4], g => g.auto > 0.05 && g.auto < 0.95)) - 1, pro: Math.exp(moyP(g => g.b[5])) - 1,
-  essence: Math.exp(moyP(g => g.b[6], g => (g.carbus.Essence || 0) >= 30 && (g.carbus.Diesel || 0) >= 30)) - 1};
-function prixAnnee(g, an, km = 120000) {
-  const c = g.annees[an]; if (!c || c[0] < 30 || c.length < 20) return null;
-  const k = km / 10000, f = c.slice(5, 11), moy = c.slice(11, 20);
-  let lp = c[1] + f[0] * k + NOEUDS.reduce((s, n, j) => s + f[1 + j] * Math.max(0, k - n), 0);
-  for (let j = 0; j < 9; j++) lp += g.forme[6 + j] * moy[j];
-  return Math.exp(lp);
-}
-const C5 = (() => {
-  const r = [];
-  for (const [k, g] of modeles) {
-    if (g.n < 2000) continue;
-    const pts = []; for (let a = 6; a <= 15; a++) { const p = prixAnnee(g, AREF - a); if (p) pts.push([a, Math.log(p)]); }
-    const p6 = prixAnnee(g, AREF - 6);
-    if (pts.length < 7 || !p6 || (M.plafondCollecte && p6 > 0.85 * M.plafondCollecte)) continue;
-    const ma = pts.reduce((s, p) => s + p[0], 0) / pts.length, ml = pts.reduce((s, p) => s + p[1], 0) / pts.length;
-    const pente = pts.reduce((s, p) => s + (p[0] - ma) * (p[1] - ml), 0) / pts.reduce((s, p) => s + (p[0] - ma) ** 2, 0);
-    r.push({nom: k.replace('|', ' '), parAn: 1 - Math.exp(pente)});
-  }
-  return r.sort((a, b) => a.parAn - b.parAn);
-})();
-
-// ============ Rédaction et visuels des 5 cartes ============
-$('#chapo').textContent = `Nous avons analysé ${NF.format(arrondi(M.n, 1000))} annonces de voitures d'occasion. Répondez à 3 questions : nous vous proposons les modèles les plus adaptés, et ce qu'il faut savoir avant d'acheter.`;
-
-const icCal = (x, y) => `<g transform="translate(${x},${y})"><rect x="-26" y="-22" width="52" height="46" rx="8" fill="var(--s1)"/><rect x="-26" y="-22" width="52" height="13" rx="6" fill="var(--s2)"/><text x="0" y="17" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">1 an</text></g>`;
-const icRoute = (x, y, km) => `<g transform="translate(${x},${y})"><path d="M-30 26 L-10 -24 L10 -24 L30 26 Z" fill="var(--muted)" opacity=".85"/><path d="M0 -18 V-8 M0 0 V10 M0 18 V26" stroke="#fff" stroke-width="3"/><text x="0" y="46" text-anchor="middle" font-size="14" font-weight="800" fill="var(--text)">${km}</text></g>`;
-const cartes = [];
-cartes.push({
-  visuel: `<svg viewBox="0 0 300 110">${icCal(80, 50)}<text x="150" y="58" text-anchor="middle" font-size="34" font-weight="800" fill="var(--text)">=</text>${icRoute(220, 42, '≈ ' + NF.format(arrondi(C1.kmEquiv, 1000)) + ' km')}</svg>`,
-  titre: `Une année d'âge coûte autant que ${NF.format(arrondi(C1.kmEquiv, 1000))} km`,
-  texte: `Une année de plus fait baisser le prix autant qu'environ ${NF.format(arrondi(C1.kmEquiv, 1000))} km de plus, ${Math.abs(C1.kmEquiv / C1.kmParAn - 1) < 0.15 ? 'à peu près' : C1.kmEquiv > C1.kmParAn ? 'un peu plus que' : 'un peu moins que'} ce que roule une voiture en un an (${NF.format(arrondi(C1.kmParAn, 1000))} km).`,
-  conseil: `Regardez le <b>kilométrage par an</b> (km ÷ âge) : au-delà de ${NF.format(arrondi(C1.kmParAn, 1000))} km/an, la voiture a plus roulé que la moyenne et doit être moins chère.`
-});
-cartes.push({
-  visuel: (() => { const h = C2.map(v => 18 + v / Math.max(...C2) * 64); const lib = ['peu de km', 'moyen', 'beaucoup de km']; return `<svg viewBox="0 0 300 110">${h.map((v, i) => `<rect x="${40 + i * 80}" y="${86 - v}" width="54" height="${v}" rx="6" fill="${i === 2 ? 'var(--s2)' : 'var(--s1)'}" opacity="${.55 + i * .2}"/><text x="${67 + i * 80}" y="104" text-anchor="middle" font-size="12" fill="var(--muted)">${lib[i]}</text>`).join('')}</svg>`; })(),
-  titre: `Plus une voiture a roulé, plus chaque kilomètre lui fait perdre de la valeur`,
-  texte: `À âge égal, les premiers kilomètres font à peine baisser le prix ; au-delà de 150 000 km, chaque tranche de kilomètres coûte environ ${Math.round(C2[2] / C2[0])} fois plus cher.`,
-  conseil: `<b>Un faible kilométrage vaut le léger surcoût.</b> Au-delà de 150 000 km, n'achetez que nettement sous la cote : la voiture se revendra mal.`
-});
-cartes.push({
-  visuel: (() => { const W = 300, X = z => 20 + (z + 2.6) / 5.2 * 260, Y = z => 90 - Math.exp(-z * z / 2) * 76; const zones = [[-2.6, -1.645, 'var(--tbas)'], [-1.645, -0.674, 'var(--bas)'], [-0.674, 0.674, 'var(--ok)'], [0.674, 1.645, 'var(--haut)'], [1.645, 2.6, 'var(--thaut)']];
-    return `<svg viewBox="0 0 ${W} 110">${zones.map(([a, b, c]) => { let d = `M${X(a)},90`; for (let z = a; z <= b + 1e-9; z += .05) d += `L${X(z)},${Y(z)}`; return `<path d="${d}L${X(b)},90Z" fill="${c}" opacity=".8"/>`; }).join('')}<text x="${X(-1.15)}" y="106" text-anchor="middle" font-size="12" fill="var(--bas)" font-weight="700">bonne affaire</text><text x="${X(1.15)}" y="106" text-anchor="middle" font-size="12" fill="var(--haut)" font-weight="700">trop cher</text></svg>`; })(),
-  titre: `Pour une même voiture, les prix varient de ${pc(C3.ecart)}`,
-  texte: `À modèle, année et kilométrage identiques, certaines annonces sont bien moins chères que d'autres. Une bonne affaire se trouve environ ${pc(C3.p25)} sous le prix moyen.`,
-  conseil: `<b>Ne jugez jamais un prix seul</b> : comparez-le à la cote (page <a href="verifier.html">Vérifier le prix</a>), puis négociez les annonces au-dessus.`
-});
-cartes.push({
-  visuel: (() => { const items = [['Boîte auto', C4.auto], ['Vendeur pro', C4.pro], ['Essence', C4.essence]]; const max = Math.max(...items.map(i => Math.abs(i[1]))); return `<svg viewBox="0 0 300 110"><line x1="150" x2="150" y1="6" y2="100" stroke="var(--line)"/>${items.map(([l, v], i) => { const w = Math.abs(v) / max * 110, y = 10 + i * 32; return `<rect x="${v >= 0 ? 150 : 150 - w}" y="${y}" width="${w}" height="22" rx="5" fill="${v >= 0 ? 'var(--s2)' : 'var(--s1)'}"/><text x="${v >= 0 ? 144 : 156}" y="${y + 16}" text-anchor="${v >= 0 ? 'end' : 'start'}" font-size="13" font-weight="700" fill="var(--text)">${l} ${v >= 0 ? '↑' : '↓'}</text>`; }).join('')}</svg>`; })(),
-  titre: `Boîte automatique et vendeur professionnel font monter le prix`,
-  texte: `À voiture égale, une boîte automatique coûte environ ${pc(C4.auto)} de plus, un vendeur pro ${pc(C4.pro)} de plus ; une essence est environ ${pc(-C4.essence)} moins chère qu'une diesel.`,
-  conseil: `Chez un pro, <b>le surcoût doit correspondre à une vraie garantie</b>. Si la boîte auto n'est pas indispensable, la manuelle fait économiser.`
-});
-if (C5.length >= 6) {
-  const bons = C5.slice(0, 3), mauvais = C5.slice(-3).reverse();
-  cartes.push({
-    visuel: `<div class="puces">${bons.map(x => `<span style="background:color-mix(in srgb, var(--bas) 18%, transparent);color:var(--text)">✓ ${esc(x.nom)}</span>`).join('')}${mauvais.map(x => `<span style="background:color-mix(in srgb, var(--haut) 20%, transparent);color:var(--text)">↓ ${esc(x.nom)}</span>`).join('')}</div>`,
-    titre: `Certains modèles gardent bien mieux leur valeur`,
-    texte: `Entre 6 et 15 ans, une ${esc(bons[0].nom)} perd environ ${pc(bons[0].parAn)} de sa valeur par an, une ${esc(mauvais[0].nom)} environ ${pc(mauvais[0].parAn)} (parmi les ${C5.length} modèles les plus courants).`,
-    conseil: `<b>Vous revendrez ?</b> Préférez un modèle qui perd lentement (en vert). Vous la garderez longtemps ? Un modèle qui se déprécie vite se trouve moins cher.`
-  });
-}
-$('#cartes').innerHTML = cartes.map(c => `<article class="carte"><div class="visuel">${c.visuel}</div><h3>${c.titre}</h3><p>${c.texte}</p><div class="conseil">${c.conseil}</div></article>`).join('');
+$('#chapo').textContent = `Nous avons analysé ${NF.format(arrondi(M.n, 1000))} annonces de voitures d'occasion. Répondez à 3 questions : nous vous proposons les modèles les plus adaptés à votre budget et à votre usage.`;
 
 // ============ Questionnaire : proposer les voitures idéales ============
 const TYPES = [['Citadine', '🚗'], ['Berline', '🚘'], ['SUV / 4x4', '🚙'], ['Break', '🧳'], ['Monospace', '👨‍👩‍👧'], ['Utilitaire', '🚐'], ['Coupé / cabriolet', '🏎️']];
@@ -152,33 +74,6 @@ function estDuType(g, t) {
   if (t === 'Citadine') return partType(g, 'Citadine') >= 0.10;
   if (t === 'Berline') return partType(g, 'Berline') >= 0.5 && partType(g, 'Citadine') < 0.10;
   return partType(g, t) >= 0.2;
-}
-// Prix moyen d'un modèle pour une année, un kilométrage et un carburant (null = mélange réel de l'année)
-function prixModele(g, an, km, carb) {
-  const c = g.annees?.[an]; if (!c || c.length < 20) return null;
-  const k = km / 10000, f = c.slice(5, 11), x = c.slice(11, 20).slice();
-  if (carb) for (let j = 1; j < CARBUS.length; j++) x[2 + j] = CARBUS[j] === carb ? 1 : 0;
-  let lp = c[1] + f[0] * k + NOEUDS.reduce((s, n, j) => s + f[1 + j] * Math.max(0, k - n), 0);
-  for (let j = 0; j < 9; j++) lp += g.forme[6 + j] * x[j];
-  const u = carb ? g.carbuAnnee?.[an]?.[carb] : null; if (u) lp += u[1];
-  return {moyen: Math.exp(lp), bon: Math.exp(lp - Z25 * c[2])};
-}
-// Perte de valeur par an (entre 4 et 15 ans, à 120 000 km), mise en cache
-const cacheDepr = new Map();
-function deprAn(g) {
-  if (cacheDepr.has(g)) return cacheDepr.get(g);
-  const pts = []; for (let a = 4; a <= 15; a++) { const c = g.annees?.[AREF - a]; if (c && c[0] >= 30) { const p = prixModele(g, AREF - a, 120000, null); if (p) pts.push([a, Math.log(p.moyen)]); } }
-  let v = null;
-  if (pts.length >= 5) { const ma = pts.reduce((s, p) => s + p[0], 0) / pts.length, ml = pts.reduce((s, p) => s + p[1], 0) / pts.length; v = 1 - Math.exp(pts.reduce((s, p) => s + (p[0] - ma) * (p[1] - ml), 0) / pts.reduce((s, p) => s + (p[0] - ma) ** 2, 0)); }
-  cacheDepr.set(g, v); return v;
-}
-
-// Repères sur tout le marché (modèles courants) : perte de valeur médiane et 1er quartile (le quart qui perd le moins vite)
-let reperes = null;
-function repereDepr() {
-  if (reperes) return reperes;
-  const v = modeles.filter(([, g]) => g.n >= 300).map(([, g]) => deprAn(g)).filter(x => x != null).sort((a, b) => a - b);
-  return reperes = {med: v[v.length >> 1], q1: v[Math.floor(v.length / 4)]};
 }
 function proposer() {
   const usage = Q.usage ? USAGES[Q.usage] : null, cands = [];
@@ -232,7 +127,7 @@ function afficherPropositions() {
       <a class="lbc" target="_blank" rel="noopener" href="${esc(lienLeboncoin({marque: c.marque, modele: c.modele, annee: c.y, carb: c.carb, prixMax: c.p.bon}))}">🔍 Rechercher les bonnes affaires du moment <small>${esc(c.modele)} ${c.y}${c.carb ? ' ' + esc(c.carb.toLowerCase()) : ''}, moins de ${eur(c.p.bon)}</small></a>
       <a class="lbc secondaire" target="_blank" rel="noopener" href="${esc(lienLeboncoin({marque: c.marque, modele: c.modele, annee: c.y, carb: c.carb, prixMax: Q.budget || null}))}">Toutes les annonces${Q.budget ? ' dans mon budget' : ''}</a>
     </div>
-    <button type="button" data-i="${i}">Vérifier le prix d'une annonce →</button></article>`).join('');
+    <button type="button" data-i="${i}">Vérifier un prix et tout savoir sur ce modèle →</button></article>`).join('');
   $('#propositions').innerHTML = `<p class="note" style="text-align:center;margin:0 0 14px">${esc(contexte)} — ${Q.budget ? 'pour chaque modèle, l\'année la plus récente dans votre budget' : 'pour chaque modèle, l\'année la plus proposée entre 4 et 10 ans'}, au kilométrage habituel. Classement : récence, valeur qui se garde, choix d'annonces.</p>
     <div class="props">${cartesP}</div>
     ${usage ? `<div class="conseil-usage">💡 <b>Conseil :</b> ${usage.conseil}</div>` : ''}

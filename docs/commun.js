@@ -9,11 +9,35 @@ const pc = (x, d = 0) => (x * 100).toLocaleString('fr-FR', {minimumFractionDigit
 const arrondi = (v, p) => Math.round(v / p) * p;
 const Z5 = 1.645, Z25 = 0.674;
 
-// Modèles détaillés (cote par année) et moyennes pondérées par le nombre d'annonces
+// Modèles détaillés (cote par année)
 const modeles = Object.entries(G).filter(([k, g]) => g.forme && k !== '*' && !k.endsWith('|*'));
-const moyP = (f, filtre = () => true) => { let w = 0, s = 0; for (const [, g] of modeles) { if (!filtre(g)) continue; const v = f(g); if (v == null || !isFinite(v)) continue; w += g.n; s += g.n * v; } return w ? s / w : NaN; };
-const perte10k = (lp, a, b) => 1 - Math.exp((lp(b) - lp(a)) / ((b - a) / 10000));
-const C1 = (() => { const bA = moyP(g => g.b[1]), bK = moyP(g => g.b[2]); return {an: 1 - Math.exp(bA), km10: 1 - Math.exp(bK), kmEquiv: bA / bK * 10000, kmParAn: M.kmParAn}; })();
+// Prix moyen d'un modèle pour une année, un kilométrage et un carburant (null = mélange réel de l'année)
+function prixModele(g, an, km, carb) {
+  const c = g.annees?.[an]; if (!c || c.length < 20) return null;
+  const k = km / 10000, f = c.slice(5, 11), x = c.slice(11, 20).slice();
+  if (carb) for (let j = 1; j < CARBUS.length; j++) x[2 + j] = CARBUS[j] === carb ? 1 : 0;
+  let lp = c[1] + f[0] * k + NOEUDS.reduce((s, n, j) => s + f[1 + j] * Math.max(0, k - n), 0);
+  for (let j = 0; j < 9; j++) lp += g.forme[6 + j] * x[j];
+  const u = carb ? g.carbuAnnee?.[an]?.[carb] : null; if (u) lp += u[1];
+  return {moyen: Math.exp(lp), bon: Math.exp(lp - Z25 * c[2])};
+}
+// Perte de valeur par an (entre 4 et 15 ans, à 120 000 km), mise en cache
+const cacheDepr = new Map();
+function deprAn(g) {
+  if (cacheDepr.has(g)) return cacheDepr.get(g);
+  const pts = []; for (let a = 4; a <= 15; a++) { const c = g.annees?.[AREF - a]; if (c && c[0] >= 30) { const p = prixModele(g, AREF - a, 120000, null); if (p) pts.push([a, Math.log(p.moyen)]); } }
+  let v = null;
+  if (pts.length >= 5) { const ma = pts.reduce((s, p) => s + p[0], 0) / pts.length, ml = pts.reduce((s, p) => s + p[1], 0) / pts.length; v = 1 - Math.exp(pts.reduce((s, p) => s + (p[0] - ma) * (p[1] - ml), 0) / pts.reduce((s, p) => s + (p[0] - ma) ** 2, 0)); }
+  cacheDepr.set(g, v); return v;
+}
+
+// Repères sur tout le marché (modèles courants) : perte de valeur médiane et 1er quartile (le quart qui perd le moins vite)
+let reperes = null;
+function repereDepr() {
+  if (reperes) return reperes;
+  const v = modeles.filter(([, g]) => g.n >= 300).map(([, g]) => deprAn(g)).filter(x => x != null).sort((a, b) => a - b);
+  return reperes = {med: v[v.length >> 1], q1: v[Math.floor(v.length / 4)]};
+}
 
 // ---------- Liens vers les annonces leboncoin (recherche pré-remplie : toujours les annonces du moment) ----------
 // Codes des filtres leboncoin : par défaut MARQUE en majuscules et MARQUE_Modèle ; exceptions relevées sur le site (lbc-modeles.js)
