@@ -108,33 +108,113 @@ function proposer() {
     if (usage?.prix) s -= c.p.moyen / (Q.budget || 10000) * 0.6;    // usage occasionnel : moins cher = mieux
     c.score = s; c.garde = c.d != null && c.d <= q1;
   }
-  return cands.sort((a, b) => b.score - a.score).slice(0, 6);
+  return cands.sort((a, b) => b.score - a.score).slice(0, 15);
 }
+
+// ============ Choisir parmi les modèles proposés : glisser à droite (j'aime) ou à gauche (passer) ============
+const cleC = c => [c.marque, c.modele, c.y, c.carb || ''].join('|');
+// Coups de cœur gardés dans ce navigateur (sans les données du modèle, retrouvées au chargement)
+const COEURS = (() => { try { return JSON.parse(localStorage.getItem('coups-de-coeur')) || []; } catch { return []; } })()
+  .map(c => ({...c, g: G[c.marque + '|' + c.modele]})).filter(c => c.g);
+const sauverCoeurs = () => { try { localStorage.setItem('coups-de-coeur', JSON.stringify(COEURS.map(({g, ...c}) => c))); } catch {} };
+const D = {liste: [], pos: 0, hist: []};
+const emojiType = g => { const t = Object.entries(g.types || {}).sort((a, b) => b[1] - a[1])[0]?.[0]; return (TYPES.find(x => x[0] === t) || [, '🚗'])[1]; };
+const tags = c => `<div class="tags">${c.garde ? '<span>📉 garde bien sa valeur</span>' : ''}<span>🔎 ${NF.format(c.n)} annonces</span>${Q.usage === 'route' && c.g.pMed >= 100 ? '<span>🛣️ assez puissante</span>' : ''}${Q.usage === 'plaisir' && c.g.pMed >= 150 ? '<span>🏁 puissante</span>' : ''}</div>`;
+const entete = c => `<h3>${esc(c.marque)} ${esc(c.modele)}</h3>
+    <div class="an">${c.y}${c.carb ? ' · ' + esc(c.carb.toLowerCase()) : ''} · environ ${NF.format(c.km)} km</div>
+    <div class="px">${eur(c.p.moyen)} <small>prix moyen</small></div>
+    <div class="bon">Bonne affaire sous <b>${eur(c.p.bon)}</b></div>`;
 
 function afficherPropositions() {
   const liste = proposer(), usage = Q.usage ? USAGES[Q.usage] : null;
   const contexte = [Q.budget ? `budget ${eur(Q.budget)}` : 'budget non fixé', Q.types.size ? [...Q.types].join(', ').toLowerCase() : 'tous types', Q.usage ? {quotidien: 'usage quotidien', occasionnel: 'usage occasionnel', route: 'grands trajets', plaisir: 'pour le plaisir'}[Q.usage] : null].filter(Boolean).join(' · ');
-  if (!liste.length) {
-    $('#propositions').innerHTML = `<div class="vide-props">Aucun modèle courant ne correspond (${esc(contexte)}).${Q.budget ? ' Essayez un budget un peu plus élevé ou un autre type.' : ''}</div>`;
-    return;
+  liste.forEach((c, i) => c.rang = i + 1);
+  D.liste = liste.filter(c => !COEURS.some(k => cleC(k) === cleC(c))); D.pos = 0; D.hist = [];
+  $('#propositions').innerHTML = (liste.length ? `<p class="note" style="text-align:center;margin:0 0 14px">${esc(contexte)} — ${Q.budget ? 'pour chaque modèle, l\'année la plus récente dans votre budget' : 'pour chaque modèle, l\'année la plus proposée entre 4 et 10 ans'}, au kilométrage habituel. Classement : récence, valeur qui se garde, choix d'annonces.</p>
+    <div class="swipe">
+      <div class="pile" id="pile"></div>
+      <div class="swipe-btns"><button type="button" id="passer" title="Passer (flèche gauche)" aria-label="Passer">✕</button><button type="button" id="retour" title="Revenir à la carte précédente" aria-label="Revenir">↩</button><button type="button" id="aimer" title="J'aime (flèche droite)" aria-label="J'aime">♥</button></div>
+      <div class="note">Glissez la carte ou utilisez les boutons · <span id="compteur"></span></div>
+    </div>
+    ${usage ? `<div class="conseil-usage">💡 <b>Conseil :</b> ${usage.conseil}</div>` : ''}
+    ${Q.budget && M.plafondCollecte && Q.budget > 0.85 * M.plafondCollecte ? `<p class="avert" style="text-align:center">ℹ Au-delà de ${NF.format(M.plafondCollecte)} €, nos données sont encore incomplètes : les propositions sont moins sûres.</p>` : ''}`
+    : `<div class="vide-props">Aucun modèle courant ne correspond (${esc(contexte)}).${Q.budget ? ' Essayez un budget un peu plus élevé ou un autre type.' : ''}</div>`) + '<div id="coeurs"></div>';
+  if (liste.length) {
+    $('#passer').onclick = () => decider(false);
+    $('#aimer').onclick = () => decider(true);
+    $('#retour').onclick = revenir;
+    afficherPile();
   }
-  const cartesP = liste.map((c, i) => `<article class="prop${i === 0 ? ' top' : ''}"><span class="rang">${i === 0 ? '★ Notre choix' : 'N° ' + (i + 1)}</span>
-    <h3>${esc(c.marque)} ${esc(c.modele)}</h3>
-    <div class="an">${c.y}${c.carb ? ' · ' + esc(c.carb.toLowerCase()) : ''} · environ ${NF.format(c.km)} km</div>
-    <div class="px">${eur(c.p.moyen)} <small>prix moyen</small></div>
-    <div class="bon">Bonne affaire sous <b>${eur(c.p.bon)}</b></div>
-    <div class="tags">${c.garde ? '<span>📉 garde bien sa valeur</span>' : ''}<span>🔎 ${NF.format(c.n)} annonces</span>${Q.usage === 'route' && c.g.pMed >= 100 ? '<span>🛣️ assez puissante</span>' : ''}${Q.usage === 'plaisir' && c.g.pMed >= 150 ? '<span>🏁 puissante</span>' : ''}</div>
+  afficherCoeurs();
+}
+
+function afficherPile() {
+  const reste = D.liste.slice(D.pos, D.pos + 3), fini = !reste.length;
+  $('#compteur').textContent = fini ? 'tous les modèles vus' : `modèle ${D.pos + 1} sur ${D.liste.length}`;
+  $('#retour').disabled = !D.hist.length; $('#passer').disabled = $('#aimer').disabled = fini;
+  $('#pile').innerHTML = fini
+    ? `<div class="pile-fin"><div><div class="em-type">🏁</div><p>Vous avez vu les ${D.liste.length} modèles proposés.</p>${D.hist.some(h => !h.aime) ? '<button type="button" id="revoir">Revoir les modèles passés</button>' : ''}</div></div>`
+    : reste.map((c, i) => `<article class="prop swipe-carte" style="--i:${i}"${i ? ' aria-hidden="true"' : ' data-top'}>
+    <span class="rang">${c.rang === 1 ? '★ Notre choix' : 'N° ' + c.rang}</span>
+    <span class="tampon oui">J'AIME</span><span class="tampon non">NON</span>
+    <div class="em-type" aria-hidden="true">${emojiType(c.g)}</div>
+    ${entete(c)}${tags(c)}</article>`).reverse().join('');
+  if (fini) { const r = $('#revoir'); if (r) r.onclick = () => { D.liste = D.hist.filter(h => !h.aime).map(h => h.c); D.pos = 0; D.hist = []; afficherPile(); }; return; }
+  glisser($('#pile [data-top]'));
+}
+
+// Glisser la carte du dessus à la souris ou au doigt
+function glisser(el) {
+  let x0 = null, dx = 0;
+  const oui = el.querySelector('.tampon.oui'), non = el.querySelector('.tampon.non');
+  el.onpointerdown = e => { x0 = e.clientX; dx = 0; el.setPointerCapture(e.pointerId); el.classList.add('drag'); };
+  el.onpointermove = e => {
+    if (x0 == null) return;
+    dx = e.clientX - x0;
+    el.style.transform = `translateX(${dx}px) rotate(${dx / 18}deg)`;
+    oui.style.opacity = Math.max(0, Math.min(1, dx / 100)); non.style.opacity = Math.max(0, Math.min(1, -dx / 100));
+  };
+  el.onpointerup = el.onpointercancel = () => {
+    if (x0 == null) return; x0 = null; el.classList.remove('drag');
+    if (Math.abs(dx) > 100) return decider(dx > 0);
+    el.style.transform = ''; oui.style.opacity = non.style.opacity = 0;
+  };
+}
+
+function decider(aime) {
+  const el = $('#pile [data-top]'), c = D.liste[D.pos]; if (!el || !c || el.dataset.parti) return;
+  el.dataset.parti = 1; el.classList.remove('drag');
+  el.querySelector(aime ? '.tampon.oui' : '.tampon.non').style.opacity = 1;
+  el.style.transform = `translateX(${aime ? 140 : -140}%) rotate(${aime ? 24 : -24}deg)`; el.style.opacity = 0;
+  if (aime && !COEURS.some(k => cleC(k) === cleC(c))) { COEURS.unshift(c); sauverCoeurs(); afficherCoeurs(); }
+  D.hist.push({c, aime}); D.pos++;
+  setTimeout(afficherPile, 230);
+}
+function revenir() {
+  const h = D.hist.pop(); if (!h) return;
+  if (h.aime) { const i = COEURS.findIndex(k => cleC(k) === cleC(h.c)); if (i >= 0) COEURS.splice(i, 1); sauverCoeurs(); afficherCoeurs(); }
+  D.pos--; afficherPile();
+}
+document.addEventListener('keydown', e => {
+  if (e.target.closest?.('input, select, textarea') || !$('#pile [data-top]')) return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); decider(true); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); decider(false); }
+});
+
+// Coups de cœur : la fiche complète, avec les meilleures annonces et les liens leboncoin
+function afficherCoeurs() {
+  $('#coeurs').innerHTML = COEURS.length ? `<h3 class="coeurs-titre">♥ Mes coups de cœur (${COEURS.length})</h3><div class="props">${COEURS.map((c, i) => `<article class="prop coeur"><span class="rang">♥ Coup de cœur</span>
+    <button type="button" class="retirer" data-i="${i}" title="Retirer des coups de cœur">✕ Retirer</button>
+    ${entete(c)}${tags(c)}
     ${meilleuresAnnonces(c)}
     <div class="liens-lbc">
       <a class="lbc" target="_blank" rel="noopener" href="${esc(lienLeboncoin({marque: c.marque, modele: c.modele, annee: c.y, carb: c.carb, prixMax: c.p.bon}))}">🔍 Rechercher les bonnes affaires du moment <small>${esc(c.modele)} ${c.y}${c.carb ? ' ' + esc(c.carb.toLowerCase()) : ''}, moins de ${eur(c.p.bon)}</small></a>
       <a class="lbc secondaire" target="_blank" rel="noopener" href="${esc(lienLeboncoin({marque: c.marque, modele: c.modele, annee: c.y, carb: c.carb, prixMax: Q.budget || null}))}">Toutes les annonces${Q.budget ? ' dans mon budget' : ''}</a>
     </div>
-    <button type="button" data-i="${i}">Vérifier un prix et tout savoir sur ce modèle →</button></article>`).join('');
-  $('#propositions').innerHTML = `<p class="note" style="text-align:center;margin:0 0 14px">${esc(contexte)} — ${Q.budget ? 'pour chaque modèle, l\'année la plus récente dans votre budget' : 'pour chaque modèle, l\'année la plus proposée entre 4 et 10 ans'}, au kilométrage habituel. Classement : récence, valeur qui se garde, choix d'annonces.</p>
-    <div class="props">${cartesP}</div>
-    ${usage ? `<div class="conseil-usage">💡 <b>Conseil :</b> ${usage.conseil}</div>` : ''}
-    ${Q.budget && M.plafondCollecte && Q.budget > 0.85 * M.plafondCollecte ? `<p class="avert" style="text-align:center">ℹ Au-delà de ${NF.format(M.plafondCollecte)} €, nos données sont encore incomplètes : les propositions sont moins sûres.</p>` : ''}`;
-  $('#propositions').querySelectorAll('.prop button').forEach(b => b.onclick = () => verifierModele(liste[+b.dataset.i]));
+    <button type="button" class="verifier" data-i="${i}">Vérifier un prix et tout savoir sur ce modèle →</button></article>`).join('')}</div>`
+    : `<p class="note coeurs-vide">Glissez à droite les modèles qui vous plaisent : ils s'ajoutent ici avec les meilleures annonces et les liens leboncoin.</p>`;
+  $('#coeurs').querySelectorAll('.verifier').forEach(b => b.onclick = () => verifierModele(COEURS[+b.dataset.i]));
+  $('#coeurs').querySelectorAll('.retirer').forEach(b => b.onclick = () => { COEURS.splice(+b.dataset.i, 1); sauverCoeurs(); afficherCoeurs(); });
 }
 
 // Meilleures annonces relevées pour ce modèle, cette année (et ce carburant) : les 3 plus sous la cote, dans le budget
